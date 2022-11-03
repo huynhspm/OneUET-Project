@@ -19,15 +19,17 @@ const User = sequelize.define(
 			allowNull: false,
 			type: DataTypes.STRING,
 		},
-		role: {
-			allowNull: false,
-			type: DataTypes.STRING,
-		},
 		name: {
-			type: DataTypes.STRING,
+			type: DataTypes.TEXT,
 		},
 		avatar: {
 			type: DataTypes.STRING,
+		},
+		class: {
+			type: DataTypes.STRING,
+		},
+		history: {
+			type: DataTypes.TEXT,
 		},
 	},
 	{

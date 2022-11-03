@@ -1,6 +1,8 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../index.js";
 
+import Course from "./Course.js";
+
 const Document = sequelize.define(
 	"Document",
 	{
@@ -10,30 +12,29 @@ const Document = sequelize.define(
 			primaryKey: true,
 			type: DataTypes.INTEGER,
 		},
-		id_file: {
-			allowNull: false,
-			type: DataTypes.INTEGER,
-		},
-		id_course: {
-			allowNull: false,
-			type: DataTypes.INTEGER,
-		},
-		id_upload: {
-			allowNull: false,
-			type: DataTypes.INTEGER,
-		},
 		year: {
 			allowNull: false,
 			type: DataTypes.INTEGER,
 		},
 		category: {
 			allowNull: false,
+			type: DataTypes.STRING,
+		},
+		startVote: {
 			type: DataTypes.INTEGER,
+			defaultValue: 0,
+		},
+		status: {
+			type: DataTypes.STRING,
+			defaultValue: "private",
 		},
 	},
 	{
 		tableName: "document",
 	}
 );
+
+Document.belongsTo(Course);
+Course.hasMany(Document);
 
 export default Document;

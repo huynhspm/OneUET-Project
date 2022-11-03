@@ -1,10 +1,8 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../index.js";
 
-import Course from "./Course.js";
-
-const Class = sequelize.define(
-	"Class",
+const Role = sequelize.define(
+	"Role",
 	{
 		id: {
 			allowNull: false,
@@ -12,19 +10,14 @@ const Class = sequelize.define(
 			primaryKey: true,
 			type: DataTypes.INTEGER,
 		},
-		semester: {
+		name: {
+			allowNull: false,
 			type: DataTypes.STRING,
-		},
-		credit: {
-			type: DataTypes.INTEGER,
 		},
 	},
 	{
-		tableName: "class",
+		tableName: "role",
 	}
 );
 
-Class.belongsTo(Course);
-Course.hasMany(Class);
-
-export default Class;
+export default Role;

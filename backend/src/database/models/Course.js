@@ -1,6 +1,8 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../index.js";
 
+import Class from "./Class.js";
+
 const Course = sequelize.define(
 	"Course",
 	{
@@ -12,7 +14,7 @@ const Course = sequelize.define(
 		},
 		name: {
 			allowNull: false,
-			type: DataTypes.STRING,
+			type: DataTypes.TEXT,
 		},
 		code: {
 			allowNull: false,

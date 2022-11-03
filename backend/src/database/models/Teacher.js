@@ -19,7 +19,7 @@ const Teacher = sequelize.define(
 			type: DataTypes.STRING,
 		},
 		faculty: {
-			type: DataTypes.STRING,
+			type: DataTypes.TEXT,
 		},
 	},
 	{

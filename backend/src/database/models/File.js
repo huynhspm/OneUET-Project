@@ -1,0 +1,32 @@
+import { DataTypes } from "sequelize";
+import sequelize from "../index.js";
+
+import Document from "./Document.js";
+
+const File = sequelize.define(
+	"File",
+	{
+		id: {
+			allowNull: false,
+			autoIncrement: true,
+			primaryKey: true,
+			type: DataTypes.INTEGER,
+		},
+		link: {
+			allowNull: false,
+			type: DataTypes.STRING,
+		},
+		type: {
+			allowNull: false,
+			type: DataTypes.STRING,
+		},
+	},
+	{
+		tableName: "file",
+	}
+);
+
+Document.hasOne(File);
+File.belongsTo(Document);
+
+export default File;
