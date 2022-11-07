@@ -1,0 +1,16 @@
+.header {
+    background-color: #f1f1f1;
+    display: flex;
+    justify-content: space-between;
+}
+.search-group {
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+}
+.input-search {
+    width: 90%;
+}
+.btn {
+    margin: auto;
+}

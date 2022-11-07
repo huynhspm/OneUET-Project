@@ -1,11 +1,8 @@
-import RecentlyAccessedDocument from "../../components/DocumentCard";
-
+import DocumentCard from "../../components/DocumentCard";
 const HomePage = () => {
 	return (
 		<>
-			<h3>Recently Accessed Document</h3>
-			<RecentlyAccessedDocument />
-			<div> Hello, I'M SPM</div>
+			<DocumentCard src_img="https://randomuser.me/api/portraits/women/79.jpg" name= "Du"/>
 		</>
 	);
 };
