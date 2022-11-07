@@ -1,7 +1,7 @@
-import { DataTypes } from "sequelize";
-import sequelize from "../index.js";
+const { DataTypes } = require("sequelize");
+const sequelize = require("../");
 
-import Course from "./Course.js";
+const Course = require("./Course");
 
 const Document = sequelize.define(
 	"Document",
@@ -37,4 +37,4 @@ const Document = sequelize.define(
 Document.belongsTo(Course);
 Course.hasMany(Document);
 
-export default Document;
+module.exports = Document;

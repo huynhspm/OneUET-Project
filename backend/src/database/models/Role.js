@@ -1,5 +1,5 @@
-import { DataTypes } from "sequelize";
-import sequelize from "../index.js";
+const { DataTypes } = require("sequelize");
+const sequelize = require("../");
 
 const Role = sequelize.define(
 	"Role",
@@ -20,4 +20,4 @@ const Role = sequelize.define(
 	}
 );
 
-export default Role;
+module.exports = Role;

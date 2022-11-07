@@ -1,7 +1,8 @@
-import { DataTypes } from "sequelize";
-import sequelize from "../index.js";
-import Teacher from "./Teacher.js";
-import Class from "./Class.js";
+const { DataTypes } = require("sequelize");
+const sequelize = require("../");
+
+const Teacher = require("./Teacher");
+const Class = require("./Class");
 
 const TeacherClass = sequelize.define(
 	"TeacherClass",
@@ -21,4 +22,4 @@ const TeacherClass = sequelize.define(
 Teacher.belongsToMany(Class, { through: TeacherClass });
 Class.belongsToMany(Teacher, { through: TeacherClass });
 
-export default TeacherClass;
+module.exports = TeacherClass;

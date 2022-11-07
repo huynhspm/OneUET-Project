@@ -1,7 +1,6 @@
-import app from "./app.js";
-import config from "./config.js";
+const app = require("./app");
+const config = require("./config");
 
-console.log(config);
 const port = config.port;
 
 app.listen(port, () =>

@@ -1,7 +1,7 @@
-import { DataTypes } from "sequelize";
-import sequelize from "../index.js";
+const { DataTypes } = require("sequelize");
+const sequelize = require("../");
 
-import Course from "./Course.js";
+const Course = require("./Course");
 
 const Class = sequelize.define(
 	"Class",
@@ -11,6 +11,11 @@ const Class = sequelize.define(
 			autoIncrement: true,
 			primaryKey: true,
 			type: DataTypes.INTEGER,
+		},
+		code: {
+			allowNull: false,
+			unique: true,
+			type: DataTypes.STRING,
 		},
 		semester: {
 			type: DataTypes.STRING,
@@ -27,4 +32,4 @@ const Class = sequelize.define(
 Class.belongsTo(Course);
 Course.hasMany(Class);
 
-export default Class;
+module.exports = Class;
