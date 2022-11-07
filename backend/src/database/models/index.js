@@ -1,15 +1,15 @@
-import User from "./User.js";
-import Teacher from "./Teacher.js";
-import Class from "./Class.js";
-import Course from "./Course.js";
-import TeacherClass from "./TeacherClass.js";
-import UserClass from "./UserClass.js";
-import Document from "./Document.js";
-import File from "./File.js";
-import Role from "./Role.js";
-import UserRole from "./UseRole.js";
+const User = require("./User");
+const Teacher = require("./Teacher");
+const Class = require("./Class");
+const Course = require("./Course");
+const TeacherClass = require("./TeacherClass");
+const UserClass = require("./UserClass");
+const Document = require("./Document");
+const File = require("./File");
+const Role = require("./Role");
+const UserRole = require("./UserRole");
 
-export {
+module.exports = {
 	User,
 	Teacher,
 	Course,

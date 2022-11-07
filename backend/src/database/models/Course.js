@@ -1,7 +1,7 @@
-import { DataTypes } from "sequelize";
-import sequelize from "../index.js";
+const { DataTypes } = require("sequelize");
+const sequelize = require("../");
 
-import Class from "./Class.js";
+const Class = require("./Class");
 
 const Course = sequelize.define(
 	"Course",
@@ -26,4 +26,4 @@ const Course = sequelize.define(
 	}
 );
 
-export default Course;
+module.exports = Course;

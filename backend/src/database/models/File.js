@@ -1,7 +1,7 @@
-import { DataTypes } from "sequelize";
-import sequelize from "../index.js";
+const { DataTypes } = require("sequelize");
+const sequelize = require("../");
 
-import Document from "./Document.js";
+const Document = require("./Document");
 
 const File = sequelize.define(
 	"File",
@@ -29,4 +29,4 @@ const File = sequelize.define(
 Document.hasOne(File);
 File.belongsTo(Document);
 
-export default File;
+module.exports = File;

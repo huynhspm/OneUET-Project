@@ -1,5 +1,8 @@
-import { DataTypes, Model } from "sequelize";
-import sequelize from "../index.js";
+const bcrypt = require("bcrypt");
+const { DataTypes } = require("sequelize");
+const sequelize = require("../");
+
+const RoleCode = require("../../utils/constant/Role");
 
 const User = sequelize.define(
 	"User",
@@ -12,6 +15,7 @@ const User = sequelize.define(
 		},
 		email: {
 			allowNull: false,
+
 			unique: true,
 			type: DataTypes.STRING,
 		},
@@ -37,4 +41,18 @@ const User = sequelize.define(
 	}
 );
 
-export default User;
+User.beforeCreate((user) => {
+	const hashedPassword = bcrypt.hashSync(user.password, 10);
+	user.password = hashedPassword;
+});
+
+User.beforeUpdate((user) => {
+	const hashedPassword = bcrypt.hashSync(user.password, 10);
+	user.password = hashedPassword;
+});
+
+User.afterCreate(async (user) => {
+	await user.addRole(RoleCode.User);
+});
+
+module.exports = User;

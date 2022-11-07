@@ -1,5 +1,5 @@
-import { DataTypes } from "sequelize";
-import sequelize from "../index.js";
+const { DataTypes } = require("sequelize");
+const sequelize = require("../");
 
 const Teacher = sequelize.define(
 	"Teacher",
@@ -27,4 +27,4 @@ const Teacher = sequelize.define(
 	}
 );
 
-export default Teacher;
+module.exports = Teacher;

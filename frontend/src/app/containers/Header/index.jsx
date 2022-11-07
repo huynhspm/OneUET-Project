@@ -1,9 +1,9 @@
-const Header = () => {
+import AppBar from "../../components/AppBar";
+
+export default function Header() {
 	return (
 		<>
-			<h1> HEADER </h1>
+			<AppBar />
 		</>
 	);
-};
-
-export default Header;
+}

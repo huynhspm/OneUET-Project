@@ -1,7 +1,7 @@
 const service = require("./service");
 
-const login = async (req, res) => {
-	const result = await service.login(req.body);
+const register = async (req, res) => {
+	const result = await service.register(req.body);
 	const { data, message, status } = result;
 	res.status(status).json({
 		data: data,
@@ -10,4 +10,4 @@ const login = async (req, res) => {
 	});
 };
 
-module.exports = { login };
+module.exports = { register };

@@ -1,5 +1,6 @@
-import { Sequelize } from "sequelize";
-import config from "../config.js";
+const { Sequelize } = require("sequelize");
+
+const config = require("../config");
 
 console.log("Connecting to database.");
 
@@ -24,4 +25,4 @@ const test_connection = async () => {
 
 test_connection();
 
-export default sequelize;
+module.exports = sequelize;
