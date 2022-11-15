@@ -5,11 +5,13 @@ import CardMedia from '@mui/material/CardMedia';
 import { Link } from "react-router-dom";
 import Typography from '@mui/material/Typography';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import './styles.css'
+
 const DocumentCard = (props) => {
     // props have height, title, description, src_img, link (link to web see document)
     return (
         <>
-            <Card>
+            <Card className="doc_card">
                 <CardMedia
                     component="img"
                     height={props.height}
@@ -18,14 +20,14 @@ const DocumentCard = (props) => {
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                    {props.title}
+                        {props.title}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                    {props.description}
+                        {props.description}
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Link className="btn" to={props.link}><RemoveRedEyeIcon/>Xem tài liệu</Link>
+                    <Link className="btn" to={props.link}><RemoveRedEyeIcon />Xem tài liệu</Link>
                 </CardActions>
             </Card>
         </>
