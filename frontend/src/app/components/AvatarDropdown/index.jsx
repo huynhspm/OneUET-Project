@@ -40,7 +40,7 @@ const AvatarDropdown = () => {
                     'aria-labelledby': 'basic-button',
                 }}
             >
-                <MenuItem className='menu-item' containerElement={<Link to="/profile/information" />}><AccountBoxIcon /> Cập nhật thông tin</MenuItem>
+                <MenuItem className='menu-item' as={Link} to="/profile/information"><AccountBoxIcon /> Cập nhật thông tin</MenuItem>
                 <MenuItem className='menu-item' containerElement={<Link to="/profile/schedule" />}><CalendarMonthIcon />Thời khóa biểu</MenuItem>
                 <MenuItem className='menu-item' containerElement={<Link to="/profile/learning-result" />}><EmojiEventsIcon />Kết quả học tập</MenuItem>
                 <MenuItem className='menu-item' containerElement={<Link to="/profile/private-document" />}><FolderSharedIcon />Tài liệu cá nhân</MenuItem>
