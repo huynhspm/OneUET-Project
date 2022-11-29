@@ -5,7 +5,7 @@ const User = require("./User");
 const Role = require("./Role");
 
 const UserRole = sequelize.define(
-	"UserRole",
+	"userRole",
 	{
 		id: {
 			allowNull: false,
@@ -15,11 +15,11 @@ const UserRole = sequelize.define(
 		},
 	},
 	{
-		tableName: "user_role",
+		tableName: "userRole",
 	}
 );
 
-User.belongsToMany(Role, { through: UserRole });
-Role.belongsToMany(User, { through: UserRole });
+User.belongsToMany(Role, { through: UserRole, uniqueKey: true });
+Role.belongsToMany(User, { through: UserRole, uniqueKey: true });
 
 module.exports = UserRole;

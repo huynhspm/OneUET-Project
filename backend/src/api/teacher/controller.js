@@ -1,7 +1,8 @@
 const service = require("./service");
 
+// POST: /
 const createTeacher = async (req, res) => {
-	const result = await service.createTeacher(req.body);
+	const result = await service.createTeacher(req);
 	const { data, message, status } = result;
 
 	res.status(status).json({
@@ -11,8 +12,9 @@ const createTeacher = async (req, res) => {
 	});
 };
 
-const getTeachers = async (req, res) => {
-	const result = await service.getTeachers(req.body);
+// GET: /
+const getAllTeachers = async (req, res) => {
+	const result = await service.getAllTeachers(req);
 	const { data, message, status } = result;
 
 	res.status(status).json({
@@ -22,24 +24,59 @@ const getTeachers = async (req, res) => {
 	});
 };
 
+// GET: /:id
+const getTeacherById = async (req, res) => {
+	const result = await service.getTeacherById(req);
+	const { data, message, status } = result;
+
+	res.status(status).json({
+		data: data,
+		message: message,
+		status: status,
+	});
+};
+
+// PUT: /:id
 const updateTeacher = async (req, res) => {
-	const result = await service.updateTeacher(req.body);
-	const { message, status } = result;
+	const result = await service.updateTeacher(req);
+	const { data, message, status } = result;
 
 	res.status(status).json({
+		data: data,
 		message: message,
 		status: status,
 	});
 };
 
+// DELETE: /:id
 const deleteTeacher = async (req, res) => {
-	const result = await service.deleteTeacher(req.body);
-	const { message, status } = result;
+	const result = await service.deleteTeacher(req);
+	const { data, message, status } = result;
 
 	res.status(status).json({
+		data: data,
 		message: message,
 		status: status,
 	});
 };
 
-module.exports = { createTeacher, getTeachers, updateTeacher, deleteTeacher };
+// GET: /:id/course
+const getCourses = async (req, res) => {
+	const result = await service.getCourses(req);
+	const { data, message, status } = result;
+
+	res.status(status).json({
+		data: data,
+		message: message,
+		status: status,
+	});
+};
+
+module.exports = {
+	createTeacher,
+	getAllTeachers,
+	getTeacherById,
+	updateTeacher,
+	deleteTeacher,
+	getCourses,
+};

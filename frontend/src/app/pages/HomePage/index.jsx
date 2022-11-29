@@ -27,8 +27,12 @@ const HomePage = () => {
 			<HorizontalDocumentList data={cards_json.slice(currentPageRec - 1, currentPageRec + 3)} height="200px"/>
 			<h1>Bạn đã xem những tài liệu này????</h1>
 			<Pagination count={cards_json.length - 3} color="primary" onChange={onPageChangeSeen}/>
+<<<<<<< HEAD
 			<HorizontalDocumentList data={cards_json.slice(currentPageSeen - 1, currentPageSeen + 3)} height="200px"/>
 
+=======
+			<HorizontalDocumentList data={cards_json.slice(currentPageSeen - 1, currentPageSeen + 3)} height="140px"/>
+>>>>>>> 32052fcd3a5551486074a2c8b631acfa132f9340
 		</>
 	);
 };

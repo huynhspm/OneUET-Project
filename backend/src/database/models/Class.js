@@ -4,7 +4,7 @@ const sequelize = require("../");
 const Course = require("./Course");
 
 const Class = sequelize.define(
-	"Class",
+	"class",
 	{
 		id: {
 			allowNull: false,
@@ -16,12 +16,6 @@ const Class = sequelize.define(
 			allowNull: false,
 			unique: true,
 			type: DataTypes.STRING,
-		},
-		semester: {
-			type: DataTypes.STRING,
-		},
-		credit: {
-			type: DataTypes.INTEGER,
 		},
 	},
 	{

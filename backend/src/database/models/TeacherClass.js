@@ -19,7 +19,7 @@ const TeacherClass = sequelize.define(
 	}
 );
 
-Teacher.belongsToMany(Class, { through: TeacherClass });
-Class.belongsToMany(Teacher, { through: TeacherClass });
+Teacher.belongsToMany(Class, { through: TeacherClass, uniqueKey: true });
+Class.belongsToMany(Teacher, { through: TeacherClass, uniqueKey: true });
 
 module.exports = TeacherClass;
