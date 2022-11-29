@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../");
 
 const Teacher = sequelize.define(
-	"Teacher",
+	"teacher",
 	{
 		id: {
 			allowNull: false,
@@ -18,8 +18,11 @@ const Teacher = sequelize.define(
 		name: {
 			type: DataTypes.STRING,
 		},
+		academicLevel: {
+			type: DataTypes.STRING,
+		},
 		faculty: {
-			type: DataTypes.TEXT,
+			type: DataTypes.STRING,
 		},
 	},
 	{
