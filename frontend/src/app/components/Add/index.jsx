@@ -1,7 +1,11 @@
 import {
     Box,
     Button,
+    Checkbox,
     Fab,
+    FormControlLabel,
+    Grid,
+    Link,
     Modal,
     styled,
     TextField,
@@ -10,6 +14,7 @@ import {
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import React, { useState } from 'react';
+import axios from "axios";
 
 const StyledModal = styled(Modal)({
     display: 'flex',
@@ -17,17 +22,40 @@ const StyledModal = styled(Modal)({
     justifyContent: 'center',
 });
 
-const UserBox = styled(Box)({
-    display: 'flex',
-    alignItems: 'center',
-    gap: '10px',
-    marginBottom: '20px',
-});
-
-const drawerWidth = 240;
 
 const Add = () => {
     const [open, setOpen] = useState(false);
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+
+        const docName = data.get("docName");
+        const docDescription = data.get("docDescription");
+        const docFalculty = data.get("docFalculty");
+        const docMajor = data.get("docMajor");
+        const docLecturer = data.get("docLecturer");
+        const docSubject = data.get("docSubject");
+        const docType = data.get("docType");
+        const docYear = data.get("docYear");
+
+        try {
+            const res = await axios.post("http://localhost:2002/register", {
+                docName,
+                docDescription,
+                docFalculty,
+                docMajor,
+                docLecturer,
+                docSubject,
+                docType,
+                docYear,
+            });
+            console.log(res.data);
+        } catch (e) {
+            console.log(e.response.data);
+        }
+    };
+
     return (
         <>
             <Tooltip
@@ -63,29 +91,96 @@ const Add = () => {
                     <Typography variant="h6" color="gray" textAlign="left">
                         Create new document
                     </Typography>
-                    {/* <UserBox>
-                        <Avatar
-                            src="https://images.pexels.com/photos/2383750/pexels-photo-2383750.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-                            sx={{ width: 30, height: 30 }}
-                        />
-                        <Typography fontWeight={500} variant="span">
-                            Nadet LAMBI-BIDZIMOU
-                        </Typography>
-                    </UserBox> */}
                     <Box sx={{ display: 'flex', flexDirection: 'row', top: 52 }}>
                         <Box
-                            component="nav"
-                            sx={{ width: { sm: 500 }, pt: 1, flexShrink: { sm: 0 } }}
+                            component="form"
+                            noValidate
+                            onSubmit={handleSubmit}
+                            sx={{ width: { sm: 500 }, pt: 1, flexShrink: { sm: 0 }, mt: 1 }}
                             aria-label="mailbox folders"
                         >
-                            <TextField
-                                sx={{ width: '100%' }}
-                                id="standard-multiline-static"
-                                multiline
-                                rows={3}
-                                placeholder="Type something"
-                                variant="standard"
-                            />
+                            <Grid container spacing={1}>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        required
+                                        fullWidth
+                                        label="Document Name"
+                                        id="docName"
+                                        name="docName"
+                                        type="text"
+                                        autoFocus
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        required
+                                        fullWidth
+                                        label="Description"
+                                        id="docDescription"
+                                        name="docDescription"
+                                        type="text"
+                                        row="3"
+                                    />
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <TextField
+                                        required
+                                        fullWidth
+                                        label="Khoa"
+                                        id="docFalculty"
+                                        name="docFalculty"
+                                        type="text"
+                                        row="3"
+                                    />
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <TextField
+                                        required
+                                        fullWidth 
+                                        label="Ngành"
+                                        id="docMajor"
+                                        name="docMajor"
+                                        type="text"
+                                        row="3"
+                                    />
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <TextField
+                                        fullWidth
+                                        label="Giảng viên"
+                                        id="docLecturer"
+                                        name="docLecturer"
+                                        type="text"
+                                    />
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <TextField
+                                        fullWidth
+                                        label="Môn"
+                                        id="docSubject"
+                                        name="docSubject"
+                                        type="text"
+                                    />
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <TextField
+                                        fullWidth
+                                        label="Loại"
+                                        id="docType"
+                                        name="docType"
+                                        type="text"
+                                    />
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <TextField
+                                        fullWidth
+                                        label="Năm"
+                                        id="docYear"
+                                        name="docYear"
+                                        type="text"
+                                    />
+                                </Grid>
+                            </Grid>
                         </Box>
                         <Box
                             component="main"
@@ -100,25 +195,17 @@ const Add = () => {
                             abaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                             abaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                             baaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                            {/* </Box> */}
                         </Box>
-                    </Box>
-                    {/* <Box sx={{
-                        
-                    }}> */}
-                        <Button variant="contained" sx={{
-                            borderRadius: 2,
-                            width: '100px',
-                            bottom: 20,
-                            right: 20,
-                            position: 'absolute',
-
-                            // left: "50% - 500px",
-                            // marginLeft: -100,
-                        }}>
-                            POST
-                        </Button>
-                    {/* </Box> */}
+                    </Box>                        
+                    <Button variant="contained" sx={{
+                        borderRadius: 2,
+                        width: '100px',
+                        bottom: 20,
+                        right: 20,
+                        position: 'absolute',
+                    }}>
+                        POST
+                    </Button>
                 </Box>
             </StyledModal>
         </>
