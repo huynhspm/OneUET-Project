@@ -1,0 +1,18 @@
+.pagination {
+    /* align-items: right; */
+    justify-content: right;
+}
+
+.flex {
+    display: flex;
+}
+
+#close-icon {
+    cursor: 'pointer';
+    float: 'right';
+    margin-top: '5px';
+    width: '20px';
+    /* position: absolute; */
+    /* align-self: right; */
+}
+
