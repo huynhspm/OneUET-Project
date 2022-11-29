@@ -1,26 +1,21 @@
-import Card from '@mui/material/Card';
-import Grid from '@mui/material/Grid'
-import IconButton from '@mui/material/IconButton'
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
-import CloseIcon from '@mui/icons-material/Close';
-import InsertCommentIcon from '@mui/icons-material/InsertComment';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Link } from "react-router-dom";
-import { Modal, Box, Button, Divider, TextField, Hidden } from '@mui/material';
+import { Modal, Box, Button, Divider, TextField, Hidden, styled, Card, CardActions, CardContent } from '@mui/material';
 import OptionsDialog from '../OpitonsDialog';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
 import HTMLEllipsis from "react-lines-ellipsis/lib/html";
 
 import { useState } from 'react';
 import './styles.css'
-
-
-
 import { defaultPost } from '../data';
+
+const StyledModal = styled(Modal)({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+});
 
 const DocumentCard = (props) => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -70,72 +65,72 @@ const DocumentCard = (props) => {
                 <CardActions>
                     <Link class="btn" onClick={handleClick}><RemoveRedEyeIcon />Xem tài liệu</Link>
                 </CardActions>
-
-                <Modal
+                <StyledModal
                     open={open}
                     onClose={handleClose}
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
                 >
-                    <Box sx={style} >
-                        <article
-                            class="article"
-                            style={{ marginBottom: 30 }}
-                        >
-                            {/* Feed Post Header */}
-                            <div className="postHeader">
-                                {props.title}
-                                <MoreVertIcon
-                                    className="moreIcon"
-                                    onClick={() => setOptionsDialog(true)}
-                                />
-                            </div>
-                            {/* Feed Post Image */}
-                            <div>
-                                <img src={props.src_img} alt="Post media" className="image" />
-                            </div>
-                            {/* Feed Post Buttons */}
-                            <div>
-                                <div className="postButtons">
-                                    <Link to={`/p/${id}`}>
-                                    </Link>
+                    <Box
+                        bgcolor={'background.default'}
+                        color={'text.primary'}
+                        width={1000}
+                        height={600}
+                        p={3}
+                        borderRadius={2}
+                        sx={{
+                            position: 'relative'
+                        }}
+                    >
+                        <Typography variant="h6" color="gray" textAlign="left">
+                            {props.title}
+                        </Typography>
+                        {/* <UserBox>
+                        <Avatar
+                            src="https://images.pexels.com/photos/2383750/pexels-photo-2383750.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                            sx={{ width: 30, height: 30 }}
+                        />
+                        <Typography fontWeight={500} variant="span">
+                            Nadet LAMBI-BIDZIMOU
+                        </Typography>
+                    </UserBox> */}
+                        <Box sx={{ display: 'flex', flexDirection: 'row', top: 52 }}>
+                            <Box
+                                // component="nav"
+                                sx={{ width: { sm: 500 }, pt: 1, flexShrink: { sm: 0 } }}
+                                aria-label="mailbox folders"
+                            >
+                                <div>
+                                    <img src={props.src_img} alt="Post media" className="image" />
                                 </div>
-
-                                {/* <div className={"showCaption" ? classes.expanded : classes.collapsed}> */}
-                                <div className="showCaption">
-                                    <Link to={`/${user.username}`}>
-                                        <Typography
-                                            variant="subtitle2"
-                                            component="span"
-                                            className="username"
-                                        >
-                                            {user.username}
-                                        </Typography>
-                                    </Link>
-                                    {"showCaption" ? (
-                                        <Typography
-                                            variant="body2"
-                                            component="span"
-                                            dangerouslySetInnerHTML={{ __html: caption }}
+                            </Box>
+                            <Box
+                                sx={{ flexGrow: 1, pl: 2, pt: 1, width: { sm: 500 }, position: 'relative' }}
+                            >
+                                <Typography>
+                                    {props.description}
+                                </Typography>
+                                {"showCaption" ? (
+                                    <Typography
+                                        variant="body2"
+                                        component="span"
+                                        dangerouslySetInnerHTML={{ __html: caption }}
+                                    />
+                                ) : (
+                                    <div className="captionWrapper">
+                                        <HTMLEllipsis
+                                            unsafeHTML={caption}
+                                            className="caption"
+                                            maxLine="0"
+                                            ellipsis="..."
+                                            basedOn="letters"
                                         />
-                                    ) : (
-                                        <div className="captionWrapper">
-                                            <HTMLEllipsis
-                                                unsafeHTML={caption}
-                                                className="caption"
-                                                maxLine="0"
-                                                ellipsis="..."
-                                                basedOn="letters"
-                                            />
-                                            <Button
-                                                className="moreButton"
-                                                onClick={() => setCaption(true)}
-                                            >
-                                                more
-                                            </Button>
-                                        </div>
-                                    )}
-                                </div>
+                                    </div>
+                                )}
+                                <Divider />
+                                <Typography color="textSecondary" className="datePosted" sx={{pt:1}}>
+                                    5 DAYS AGO
+                                </Typography>
                                 <Link to={`/p/${id}`}>
                                     <Typography
                                         className="commentsLink"
@@ -156,25 +151,28 @@ const DocumentCard = (props) => {
                                                 {comment.user.username}
                                             </Typography>{" "}
                                             <Typography variant="body2" component="span">
-                                                {comment.contet}
+                                                {comment.content}
                                             </Typography>
                                         </Link>
                                     </div>
                                 ))}
-                                <Typography color="textSecondary" className="datePosted">
-                                    5 DAYS AGO
-                                </Typography>
-                            </div>
-                            <Hidden xsDown>
-                                <Divider />
-                                <Comment />
-                            </Hidden>
-                        </article>
+
+                                <Box sx={{
+                                    position: 'absolute',
+                                    bottom: 0,
+                                    width: '100%'
+                                }}>
+                                    <Divider />
+                                    <Comment />
+                                </Box>
+                            </Box>
+                        </Box>
+
                         {showOptionsDialog && (
                             <OptionsDialog onClose={() => setOptionsDialog(false)} />
                         )}
                     </Box>
-                </Modal>
+                </StyledModal>
             </Card >
         </>
     )

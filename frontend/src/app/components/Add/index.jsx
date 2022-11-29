@@ -56,6 +56,9 @@ const Add = () => {
                     height={600}
                     p={3}
                     borderRadius={2}
+                    sx={{
+                        position: 'relative'
+                    }}
                 >
                     <Typography variant="h6" color="gray" textAlign="left">
                         Create new document
@@ -101,13 +104,14 @@ const Add = () => {
                         </Box>
                     </Box>
                     {/* <Box sx={{
-                        position: 'sticky'
+                        
                     }}> */}
                         <Button variant="contained" sx={{
                             borderRadius: 2,
                             width: '100px',
-                            bottom: 0,
-                            position: 'fixed',
+                            bottom: 20,
+                            right: 20,
+                            position: 'absolute',
 
                             // left: "50% - 500px",
                             // marginLeft: -100,
