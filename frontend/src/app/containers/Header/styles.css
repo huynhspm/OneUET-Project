@@ -1,4 +1,10 @@
 .header {
+    /* position: fixed;  */
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1300;
+    flex: auto;
     background-color: #f1f1f1;
     display: flex;
     justify-content: space-between;
