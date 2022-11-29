@@ -22,7 +22,6 @@ const StyledModal = styled(Modal)({
     justifyContent: 'center',
 });
 
-
 const Add = () => {
     const [open, setOpen] = useState(false);
 
