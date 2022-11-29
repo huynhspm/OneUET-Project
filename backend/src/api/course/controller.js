@@ -1,51 +1,131 @@
 const service = require("./service");
+const ResponseCode = require("../../utils/constant/ResponseCode");
 
+// POST: /
 const createCourse = async (req, res) => {
-	console.log(req.body);
-	const result = await service.createCourse(req.body);
-	const { data, message, status } = result;
+	try {
+		const result = await service.createCourse(req);
+		const { data, message, status } = result;
 
-	res.status(status).json({
-		data: data,
-		message: message,
-		status: status,
-	});
+		res.status(status).json({
+			data: data,
+			message: message,
+			status: status,
+		});
+	} catch (e) {
+		res.status(ResponseCode.Bad_Request).json({
+			data: e,
+			message: "Error",
+			status: ResponseCode.Bad_Request,
+		});
+	}
 };
 
-const getCourses = async (req, res) => {
-	const result = await service.getCourses(req.body);
-	const { data, message, status } = result;
+// GET: /
+const getAllCourses = async (req, res) => {
+	try {
+		const result = await service.getAllCourses(req);
+		const { data, message, status } = result;
 
-	res.status(status).json({
-		data: data,
-		message: message,
-		status: status,
-	});
+		res.status(status).json({
+			data: data,
+			message: message,
+			status: status,
+		});
+	} catch (e) {
+		res.status(ResponseCode.Bad_Request).json({
+			data: e,
+			message: "Error",
+			status: ResponseCode.Bad_Request,
+		});
+	}
 };
 
+// GET: /:id
+const getCourseById = async (req, res) => {
+	try {
+		const result = await service.getCourseById(req);
+		const { data, message, status } = result;
+
+		res.status(status).json({
+			data: data,
+			message: message,
+			status: status,
+		});
+	} catch (e) {
+		res.status(ResponseCode.Bad_Request).json({
+			data: e,
+			message: "Error",
+			status: ResponseCode.Bad_Request,
+		});
+	}
+};
+
+// PUT: /:id
 const updateCourse = async (req, res) => {
-	const result = await service.updateCourse(req.body);
-	const { message, status } = result;
+	try {
+		const result = await service.updateCourse(req);
+		const { data, message, status } = result;
 
-	res.status(status).json({
-		message: message,
-		status: status,
-	});
+		res.status(status).json({
+			data: data,
+			message: message,
+			status: status,
+		});
+	} catch (e) {
+		res.status(ResponseCode.Bad_Request).json({
+			data: e,
+			message: "Error",
+			status: ResponseCode.Bad_Request,
+		});
+	}
 };
 
+// DELETE: /:id
 const deleteCourse = async (req, res) => {
-	const result = await service.deleteCourse(req.body);
-	const { message, status } = result;
+	try {
+		const result = await service.deleteCourse(req);
+		const { data, message, status } = result;
 
-	res.status(status).json({
-		message: message,
-		status: status,
-	});
+		res.status(status).json({
+			data: data,
+			message: message,
+			status: status,
+		});
+	} catch (e) {
+		res.status(ResponseCode.Bad_Request).json({
+			data: e,
+			message: "Error",
+			status: ResponseCode.Bad_Request,
+		});
+	}
+};
+
+// GET: /:id/class
+const getAllClasses = async (req, res) => {
+	try {
+		const result = await service.getAllClasses(req);
+		const { data, message, status } = result;
+
+		res.status(status).json({
+			data: data,
+			message: message,
+			status: status,
+		});
+	} catch (e) {
+		res.status(ResponseCode.Bad_Request).json({
+			data: e,
+			message: "Error",
+			status: ResponseCode.Bad_Request,
+		});
+	}
 };
 
 module.exports = {
 	createCourse,
-	getCourses,
+	getAllCourses,
+	getCourseById,
 	updateCourse,
 	deleteCourse,
+	getAllClasses,
 };

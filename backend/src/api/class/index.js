@@ -4,8 +4,15 @@ const controller = require("./controller");
 const router = Router();
 
 router.post("/", controller.createClass);
-router.get("/", controller.getClasses);
-router.put("/", controller.updateClass);
-router.delete("/", controller.deleteClass);
+router.get("/", controller.getAllClasses);
+
+router.get("/:id", controller.getClassById);
+router.put("/:id", controller.updateClass);
+router.delete("/:id", controller.deleteClass);
+
+router.post("/:id/teacher", controller.addTeacher);
+router.get("/:id/teacher", controller.getAllTeachers);
+
+router.get("/:id/course", controller.getCourse);
 
 module.exports = router;

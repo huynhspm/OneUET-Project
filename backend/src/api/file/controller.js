@@ -1,8 +1,8 @@
 const service = require("./service");
 
+// POST: /
 const createFile = async (req, res) => {
-	console.log(req.body);
-	const result = await service.createFile(req.body);
+	const result = await service.createFile(req);
 	const { data, message, status } = result;
 
 	res.status(status).json({
@@ -12,8 +12,9 @@ const createFile = async (req, res) => {
 	});
 };
 
-const getFiles = async (req, res) => {
-	const result = await service.getFiles(req.body);
+// GET: /
+const getAllFiles = async (req, res) => {
+	const result = await service.getAllFiles(req);
 	const { data, message, status } = result;
 
 	res.status(status).json({
@@ -22,22 +23,38 @@ const getFiles = async (req, res) => {
 		status: status,
 	});
 };
+
+// GET: /:id
+const getFileById = async (req, res) => {
+	const result = await service.getFileById(req);
+	const { data, message, status } = result;
+
+	res.status(status).json({
+		data: data,
+		message: message,
+		status: status,
+	});
+};
+// PUT: /:id
 
 const updateFile = async (req, res) => {
-	const result = await service.updateFile(req.body);
-	const { message, status } = result;
+	const result = await service.updateFile(req);
+	const { data, message, status } = result;
 
 	res.status(status).json({
+		data: data,
 		message: message,
 		status: status,
 	});
 };
 
+// DELETE: /:id
 const deleteFile = async (req, res) => {
-	const result = await service.deleteFile(req.body);
-	const { message, status } = result;
+	const result = await service.deleteFile(req);
+	const { data, message, status } = result;
 
 	res.status(status).json({
+		data: data,
 		message: message,
 		status: status,
 	});
@@ -45,7 +62,8 @@ const deleteFile = async (req, res) => {
 
 module.exports = {
 	createFile,
-	getFiles,
+	getAllFiles,
+	getFileById,
 	updateFile,
 	deleteFile,
 };
