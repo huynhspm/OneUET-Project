@@ -1,10 +1,8 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../");
 
-const Class = require("./Class");
-
 const Course = sequelize.define(
-	"Course",
+	"course",
 	{
 		id: {
 			allowNull: false,
@@ -14,11 +12,16 @@ const Course = sequelize.define(
 		},
 		name: {
 			allowNull: false,
-			type: DataTypes.TEXT,
+			unique: true,
+			type: DataTypes.STRING,
 		},
 		code: {
 			allowNull: false,
+			unique: true,
 			type: DataTypes.STRING,
+		},
+		credit: {
+			type: DataTypes.INTEGER,
 		},
 	},
 	{

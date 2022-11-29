@@ -5,7 +5,7 @@ const Class = require("./Class");
 const User = require("./User");
 
 const UserClass = sequelize.define(
-	"UserClass",
+	"userClass",
 	{
 		id: {
 			allowNull: false,
@@ -21,11 +21,11 @@ const UserClass = sequelize.define(
 		},
 	},
 	{
-		tableName: "user_class",
+		tableName: "userClass",
 	}
 );
 
-User.belongsToMany(Class, { through: UserClass });
-Class.belongsToMany(User, { through: UserClass });
+User.belongsToMany(Class, { through: UserClass, uniqueKey: true });
+Class.belongsToMany(User, { through: UserClass, uniqueKey: true });
 
 module.exports = UserClass;

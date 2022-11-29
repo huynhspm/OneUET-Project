@@ -1,51 +1,110 @@
 const service = require("./service");
+const ResponseCode = require("../../utils/constant/ResponseCode");
 
+// POST: /
 const createDocument = async (req, res) => {
-	console.log(req.body);
-	const result = await service.createDocument(req.body);
-	const { data, message, status } = result;
+	try {
+		const result = await service.createDocument(req);
+		const { data, message, status } = result;
 
-	res.status(status).json({
-		data: data,
-		message: message,
-		status: status,
-	});
+		res.status(status).json({
+			data: data,
+			message: message,
+			status: status,
+		});
+	} catch (e) {
+		res.status(ResponseCode.Bad_Request).json({
+			data: e,
+			message: "Error",
+			status: ResponseCode.Bad_Request,
+		});
+	}
 };
 
-const getDocuments = async (req, res) => {
-	const result = await service.getDocuments(req.body);
-	const { data, message, status } = result;
+// GET: /
+const getAllDocuments = async (req, res) => {
+	try {
+		const result = await service.getAllDocuments(req);
+		const { data, message, status } = result;
 
-	res.status(status).json({
-		data: data,
-		message: message,
-		status: status,
-	});
+		res.status(status).json({
+			data: data,
+			message: message,
+			status: status,
+		});
+	} catch (e) {
+		res.status(ResponseCode.Bad_Request).json({
+			data: e,
+			message: "Error",
+			status: ResponseCode.Bad_Request,
+		});
+	}
 };
 
+// GET: /:id
+const getDocumentById = async (req, res) => {
+	try {
+		const result = await service.getDocumentById(req);
+		const { data, message, status } = result;
+
+		res.status(status).json({
+			data: data,
+			message: message,
+			status: status,
+		});
+	} catch (e) {
+		res.status(ResponseCode.Bad_Request).json({
+			data: e,
+			message: "Error",
+			status: ResponseCode.Bad_Request,
+		});
+	}
+};
+
+// PUT: /:id
 const updateDocument = async (req, res) => {
-	const result = await service.updateDocument(req.body);
-	const { message, status } = result;
+	try {
+		const result = await service.updateDocument(req);
+		const { data, message, status } = result;
 
-	res.status(status).json({
-		message: message,
-		status: status,
-	});
+		res.status(status).json({
+			data: data,
+			message: message,
+			status: status,
+		});
+	} catch (e) {
+		res.status(ResponseCode.Bad_Request).json({
+			data: e,
+			message: "Error",
+			status: ResponseCode.Bad_Request,
+		});
+	}
 };
 
+// DELETE: /:id
 const deleteDocument = async (req, res) => {
-	const result = await service.deleteDocument(req.body);
-	const { message, status } = result;
+	try {
+		const result = await service.deleteDocument(req);
+		const { data, message, status } = result;
 
-	res.status(status).json({
-		message: message,
-		status: status,
-	});
+		res.status(status).json({
+			data: data,
+			message: message,
+			status: status,
+		});
+	} catch (e) {
+		res.status(ResponseCode.Bad_Request).json({
+			data: e,
+			message: "Error",
+			status: ResponseCode.Bad_Request,
+		});
+	}
 };
 
 module.exports = {
 	createDocument,
-	getDocuments,
+	getAllDocuments,
+	getDocumentById,
 	updateDocument,
 	deleteDocument,
 };

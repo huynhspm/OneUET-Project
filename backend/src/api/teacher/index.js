@@ -4,8 +4,12 @@ const controller = require("./controller");
 const router = Router();
 
 router.post("/", controller.createTeacher);
-router.get("/", controller.getTeachers);
-router.put("/", controller.updateTeacher);
-router.delete("/", controller.deleteTeacher);
+router.get("/", controller.getAllTeachers);
+
+router.get("/:id", controller.getTeacherById);
+router.put("/:id", controller.updateTeacher);
+router.delete("/:id", controller.deleteTeacher);
+
+router.get("/:id/course", controller.getCourses);
 
 module.exports = router;
