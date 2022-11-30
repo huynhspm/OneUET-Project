@@ -1,60 +1,9 @@
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { Link } from "react-router-dom";
-import { Modal, Box, Button, Divider, TextField, Hidden, styled, Card, CardActions, CardContent } from '@mui/material';
-import OptionsDialog from '../OpitonsDialog';
-
-import { useState } from 'react';
-import './styles.css'
-import { defaultPost } from '../data';
-
-const StyledModal = styled(Modal)({
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-});
-
-const DocumentCard = (props) => {
-    const [anchorEl, setAnchorEl] = useState(null);
-
-    const [showCaption, setCaption] = useState(false);
-    const [showOptionsDialog, setOptionsDialog] = useState(false);
-    const { id, media, likes, user, caption, comments } = defaultPost;
-
-    const open = Boolean(anchorEl);
-
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
 
 
+const PreviewDocument = (props) => {
     return (
         <>
-            < Card class="doc_card" >
-                <CardMedia
-                    component="img"
-                    height={props.height}
-                    image={props.src_img}
-                    alt="sorry about error"
-                />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                        {props.title}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                        {props.description}
-                    </Typography>
-                </CardContent>
-                <CardActions>
-                    <Link class="btn" onClick={handleClick}><RemoveRedEyeIcon />Xem tài liệu</Link>
-                </CardActions>
-            </Card >
-            <StyledModal
+            <Modal
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
@@ -89,6 +38,23 @@ const DocumentCard = (props) => {
                             <Typography>
                                 {props.description}
                             </Typography>
+                            {"showCaption" ? (
+                                <Typography
+                                    variant="body2"
+                                    component="span"
+                                    dangerouslySetInnerHTML={{ __html: caption }}
+                                />
+                            ) : (
+                                <div className="captionWrapper">
+                                    <HTMLEllipsis
+                                        unsafeHTML={caption}
+                                        className="caption"
+                                        maxLine="0"
+                                        ellipsis="..."
+                                        basedOn="letters"
+                                    />
+                                </div>
+                            )}
                             <Divider />
                             <Typography color="textSecondary" className="datePosted" sx={{ pt: 1 }}>
                                 5 DAYS AGO
@@ -134,41 +100,9 @@ const DocumentCard = (props) => {
                         <OptionsDialog onClose={() => setOptionsDialog(false)} />
                     )}
                 </Box>
-            </StyledModal>
+            </Modal>
         </>
-    )
-}
-
-function Comment() {
-    const [content, setContent] = useState("");
-
-    return (
-        <div class="commentContainer">
-            <TextField
-                fullWidth
-                value={content}
-                placeholder="Add a comment..."
-                multiline
-                rowsMax={2}
-                rows={1}
-                onChange={event => setContent(event.target.value)}
-                class="textField"
-                InputProps={{
-                    classes: {
-                        root: ".root",
-                        underline: "underline"
-                    }
-                }}
-            />
-            <Button
-                color="primary"
-                disabled={!content.trim()}
-            >
-                Post
-            </Button>
-        </div>
     );
-}
+};
 
-export default DocumentCard;
-
+export default PreviewDocument;

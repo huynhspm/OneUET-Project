@@ -24,7 +24,7 @@ const HomePage = () => {
 		<>
 			<h1>Có thể bạn thích??????</h1>
 			<Pagination count={cards_json.length - 3} color="primary" onChange={onPageChangeRec}/>
-			<HorizontalDocumentList data={cards_json.slice(currentPageRec - 1, currentPageRec + 3)} height="140px"/>
+			<HorizontalDocumentList data={cards_json.slice(currentPageRec - 1, currentPageRec + 3)} height="200px"/>
 			<h1>Bạn đã xem những tài liệu này????</h1>
 			<Pagination count={cards_json.length - 3} color="primary" onChange={onPageChangeSeen}/>
 			<HorizontalDocumentList data={cards_json.slice(currentPageSeen - 1, currentPageSeen + 3)} height="140px"/>
