@@ -1,0 +1,22 @@
+[
+    {
+        "email": "orange",
+        "password": "1234"
+    },
+    {
+        "email": "apple",
+        "password": "12345"
+    },
+    {
+        "email": "mango",
+        "password": "123456"
+    },
+    {
+        "email": "grape",
+        "password": "1234567"
+    },
+    {
+        "email": "lemon",
+        "password": "12345678"
+    }
+]

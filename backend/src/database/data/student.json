@@ -1,0 +1,22 @@
+[
+    {
+        "class": "K65C-CLC",
+        "code": "20020054",
+        "name": "Trịnh Ngọc Huỳnh",
+        "classId": [
+            "1",
+            "2",
+            "3"
+        ]
+    },
+    {
+        "class": "K65C-CLC",
+        "code": "20020066",
+        "name": "Phạm Quang Phong",
+        "classId": [
+            "4",
+            "5",
+            "6"
+        ]
+    }
+]
