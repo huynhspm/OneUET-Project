@@ -3,6 +3,7 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../");
 
 const RoleCode = require("../../utils/constant/RoleCode");
+const Student = require("./Student");
 
 const User = sequelize.define(
 	"user",
@@ -46,13 +47,12 @@ const User = sequelize.define(
 	}
 );
 
+Student.belongsTo(User);
+User.hasOne(Student);
+
 User.beforeCreate(
 	(user) => (user.password = bcrypt.hashSync(user.password, 10))
 );
-
-User.beforeBulkCreate((users) => {
-	users.forEach((user) => (user.password = bcrypt.hashSync(user.password, 10)));
-});
 
 User.beforeUpdate((user) => {
 	const hashedPassword = bcrypt.hashSync(user.password, 10);
@@ -61,10 +61,6 @@ User.beforeUpdate((user) => {
 
 User.afterCreate(async (user) => {
 	await user.addRole(RoleCode.User);
-});
-
-User.afterBulkCreate((users) => {
-	users.forEach(async (user) => await user.addRole(RoleCode.User));
 });
 
 module.exports = User;

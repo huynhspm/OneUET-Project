@@ -1,8 +1,8 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../");
 
-const Teacher = sequelize.define(
-	"teacher",
+const Student = sequelize.define(
+	"student",
 	{
 		id: {
 			allowNull: false,
@@ -10,23 +10,18 @@ const Teacher = sequelize.define(
 			primaryKey: true,
 			type: DataTypes.INTEGER,
 		},
-		email: {
+		class: {
+			type: DataTypes.STRING,
+		},
+		code: {
+			allowNull: false,
 			unique: true,
-			type: DataTypes.STRING,
-		},
-		name: {
-			type: DataTypes.STRING,
-		},
-		level: {
-			type: DataTypes.STRING,
-		},
-		faculty: {
 			type: DataTypes.STRING,
 		},
 	},
 	{
-		tableName: "teacher",
+		tableName: "student",
 	}
 );
 
-module.exports = Teacher;
+module.exports = Student;
