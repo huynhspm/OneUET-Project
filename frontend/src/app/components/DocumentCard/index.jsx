@@ -1,12 +1,10 @@
 import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Link } from "react-router-dom";
-import { Modal, Box, Button, Divider, TextField, Hidden, styled, Card, CardActions, CardContent } from '@mui/material';
+import { Modal, Box, Button, Divider, TextField, Hidden, styled, Card, CardActions, CardContent, Typography } from '@mui/material';
 import OptionsDialog from '../OpitonsDialog';
+import React, { useState } from 'react';
 
-import { useState } from 'react';
 import './styles.css'
 import { defaultPost } from '../data';
 
@@ -31,7 +29,6 @@ const DocumentCard = (props) => {
     const handleClose = () => {
         setAnchorEl(null);
     };
-
 
     return (
         <>
