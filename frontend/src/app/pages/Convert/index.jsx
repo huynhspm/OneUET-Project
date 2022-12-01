@@ -1,21 +1,33 @@
-import React, { useState } from 'react';
-import { Document, Page } from 'react-pdf';
-import { pdfjs } from 'react-pdf';
-import { Worker } from '@react-pdf-viewer/core';
+// Core viewer
+import { Viewer } from '@react-pdf-viewer/core';
+
+// Plugins
+import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
+
+// Import styles
+import '@react-pdf-viewer/core/lib/styles/index.css';
+import '@react-pdf-viewer/default-layout/lib/styles/index.css';
+
+// Create new plugin instance
+
 
 const Convert = (props) => {
-    const [numPages, setNumPages] = useState(null);
-    const [pageNumber, setPageNumber] = useState(1);
-
-    function onDocumentLoadSuccess({ numPages }) {
-        setNumPages(numPages);
-        setNumPages(1);
-    }
+    const defaultLayoutPluginInstance = defaultLayoutPlugin();
+    
 
     return (
         <>
             <div>
-                <Worker workerUrl={`https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`}>
+                {/* <Viewer fileUrl="" />; */}
+                <Viewer
+                    fileUrl="https://arxiv.org/pdf/2003.13401.pdf"
+                    plugins={[
+                        // Register plugins
+                        defaultLayoutPluginInstance
+                        // ...
+                    ]}
+                />
+                {/* <Worker workerUrl={`https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`}>
                     <Document
                         file="file.pdf"
                         onLoadSuccess={onDocumentLoadSuccess}
@@ -24,7 +36,7 @@ const Convert = (props) => {
                         <Page height="600" pageNumber={pageNumber} />
                     </Document>
                 </Worker>
-                <p>Page {pageNumber} of {numPages}</p>
+                <p>Page {pageNumber} of {numPages}</p> */}
             </div>
 
         </>

@@ -1,13 +1,9 @@
 import {
     Box,
     Button,
-    Checkbox,
     Fab,
-    FormControlLabel,
     Grid,
-    Link,
-    Modal,
-    styled,
+    Input,
     TextField,
     Tooltip,
     Typography,
@@ -15,13 +11,7 @@ import {
 import AddIcon from '@mui/icons-material/Add';
 import React, { useState } from 'react';
 import axios from "axios";
-
-const StyledModal = styled(Modal)({
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-});
-
+import { CenterModal, InputBox, InputButton } from './styles';
 
 const Add = () => {
     const [open, setOpen] = useState(false);
@@ -71,7 +61,7 @@ const Add = () => {
                     <AddIcon />
                 </Fab>
             </Tooltip>
-            <StyledModal
+            <CenterModal
                 open={open}
                 onClose={(e) => setOpen(false)}
                 aria-labelledby="modal-modal-title"
@@ -136,7 +126,7 @@ const Add = () => {
                                 <Grid item xs={6}>
                                     <TextField
                                         required
-                                        fullWidth 
+                                        fullWidth
                                         label="Ngành"
                                         id="docMajor"
                                         name="docMajor"
@@ -182,21 +172,22 @@ const Add = () => {
                                 </Grid>
                             </Grid>
                         </Box>
-                        <Box
-                            component="main"
-                            sx={{ flexGrow: 1, pl: 2, pt: 1, width: { sm: 500 } }}
-                        >
-                            abaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                            abaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                            baaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                            abaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                            abaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                            baaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                            abaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                            abaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                            baaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                        <Box sx={{ flexGrow: 1, pt: 2, pl: 2, height: 350 }}>
+                            <InputBox>
+                                <InputButton
+                                    variant="outlined"
+                                    component="label"
+                                    fullWidth="true"
+                                >
+                                    Upload File
+                                    <input
+                                        type="file"
+                                        hidden
+                                    />
+                                </InputButton>
+                            </InputBox>
                         </Box>
-                    </Box>                        
+                    </Box>
                     <Button variant="contained" sx={{
                         borderRadius: 2,
                         width: '100px',
@@ -207,7 +198,7 @@ const Add = () => {
                         POST
                     </Button>
                 </Box>
-            </StyledModal>
+            </CenterModal>
         </>
     );
 };
