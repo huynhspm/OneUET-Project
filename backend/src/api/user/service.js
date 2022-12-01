@@ -1,4 +1,4 @@
-const { User } = require("../../database/models");
+const { User, Student, Class } = require("../../database/models");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 
 const getAllUsers = async (req) => {
@@ -79,14 +79,21 @@ const deleteUser = async (req) => {
 	}
 };
 
+const addUser = async (req) => {};
+
 const getAllClasses = async (req) => {
 	try {
 		let { data, message, status } = await getUserById(req);
 
+		console.log(data);
 		if (data) {
-			data = await data.getClasses();
-			message = "Get all classes of user successfully";
-			status = ResponseCode.OK;
+			const studentId = data.studentId;
+
+			data = await Student.findByPk(studentId, {
+				include: {
+					model: Class,
+				},
+			});
 		}
 
 		return {
@@ -124,6 +131,7 @@ module.exports = {
 	getUserById,
 	updateUser,
 	deleteUser,
+	addUser,
 	getAllClasses,
 	getAllDocuments,
 };

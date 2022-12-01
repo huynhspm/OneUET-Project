@@ -2,75 +2,86 @@ const models = require("../database/models");
 const courses = require("../database/data/course.json");
 const classes = require("../database/data/class.json");
 const teachers = require("../database/data/teacher.json");
+const teachersClasses = require("../database/data/teacherClass.json");
 const students = require("../database/data/student.json");
+const studentsClasses = require("../database/data/studentClass.json");
 const roles = require("../database/data/role.json");
 const users = require("../database/data/user.json");
 const files = require("../database/data/file.json");
 const documents = require("../database/data/document.json");
 
 async function createCourse() {
-	courses.forEach(async (course) => {
+	for (let course of courses) {
 		await models.Course.create(course);
-	});
-	// await models.Course.findOrCreate({
-	// 	where: { code: course.code },
-	// 	defaults: { ...course },
-	// });
+	}
 }
 
 async function createClass() {
-	classes.forEach(async (cur_class) => {
+	for (let cur_class of classes) {
 		await models.Class.create(cur_class);
-	});
+	}
 }
 
 async function createTeacher() {
-	teachers.forEach(async (teacher) => {
-		const newTeacher = await models.Teacher.create(teacher);
-		newTeacher.addClasses(teacher.classId);
-	});
+	for (let teacher of teachers) {
+		await models.Teacher.create(teacher);
+	}
+}
+
+async function createTeachersClasses() {
+	for (let teacherClass of teachersClasses) {
+		models.TeacherClass.create(teacherClass);
+	}
 }
 
 async function createStudent() {
-	students.forEach(async (student) => {
+	for (let student of students) {
 		const newStudent = await models.Student.create(student);
-		newStudent.addClasses(student.classId);
-	});
+		await newStudent.addClasses(student.classId);
+	}
+}
+
+async function createStudentsClasses() {
+	for (let studentClass of studentsClasses) {
+		models.StudentClass.create(studentClass);
+	}
 }
 
 async function createRole() {
-	roles.forEach(async (role) => {
+	for (let role of roles) {
 		await models.Role.create(role);
-	});
+	}
 }
 
 async function createUser() {
-	users.forEach(async (user) => {
+	for (let user of users) {
 		await models.User.create(user);
-	});
+	}
 }
 
 async function createFile() {
-	files.forEach(async (file) => {
+	for (let file of files) {
 		await models.File.create(file);
-	});
+	}
 }
 
 async function createDocument() {
-	documents.forEach(async (document) => {
+	for (let document of documents) {
 		await models.Document.create(document);
-	});
+	}
 }
 
 async function createData() {
-	// await createCourse();
-	// await createClass();
-	// await createTeacher();
-	// await createStudent();
-	// await createRole();
-	// await createUser();
-	// await createFile();
-	// await createDocument();
+	await createCourse();
+	await createClass();
+	await createTeacher();
+	await createTeachersClasses();
+	await createStudent();
+	await createStudentsClasses();
+	await createRole();
+	await createUser();
+	await createFile();
+	await createDocument();
 }
 
 module.exports = createData;

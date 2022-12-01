@@ -1,0 +1,142 @@
+[
+    {
+        "id": 1,
+        "studentId": 1,
+        "classId": 1,
+        "finish": true,
+        "grade": null
+    },
+    {
+        "id": 2,
+        "studentId": 1,
+        "classId": 2,
+        "finish": true,
+        "grade": null
+    },
+    {
+        "id": 3,
+        "studentId": 2,
+        "classId": 3,
+        "finish": true,
+        "grade": null
+    },
+    {
+        "id": 4,
+        "studentId": 2,
+        "classId": 4,
+        "finish": true,
+        "grade": null
+    },
+    {
+        "id": 5,
+        "studentId": 2,
+        "classId": 5,
+        "finish": true,
+        "grade": null
+    },
+    {
+        "id": 6,
+        "studentId": 6,
+        "classId": 6,
+        "finish": true,
+        "grade": null
+    },
+    {
+        "id": 7,
+        "studentId": 7,
+        "classId": 6,
+        "finish": true,
+        "grade": null
+    },
+    {
+        "id": 8,
+        "studentId": 8,
+        "classId": 7,
+        "finish": true,
+        "grade": null
+    },
+    {
+        "id": 9,
+        "studentId": 9,
+        "classId": 7,
+        "finish": true,
+        "grade": null
+    },
+    {
+        "id": 10,
+        "studentId": 10,
+        "classId": 8,
+        "finish": true,
+        "grade": null
+    },
+    {
+        "id": 11,
+        "studentId": 11,
+        "classId": 9,
+        "finish": true,
+        "grade": null
+    },
+    {
+        "id": 12,
+        "studentId": 12,
+        "classId": 9,
+        "finish": true,
+        "grade": null
+    },
+    {
+        "id": 13,
+        "studentId": 13,
+        "classId": 9,
+        "finish": true,
+        "grade": null
+    },
+    {
+        "id": 14,
+        "studentId": 14,
+        "classId": 9,
+        "finish": true,
+        "grade": null
+    },
+    {
+        "id": 15,
+        "studentId": 15,
+        "classId": 9,
+        "finish": true,
+        "grade": null
+    },
+    {
+        "id": 16,
+        "studentId": 16,
+        "classId": 9,
+        "finish": true,
+        "grade": null
+    },
+    {
+        "id": 17,
+        "studentId": 17,
+        "classId": 9,
+        "finish": true,
+        "grade": null
+    },
+    {
+        "id": 18,
+        "studentId": 18,
+        "classId": 9,
+        "finish": true,
+        "grade": null
+    },
+    {
+        "id": 19,
+        "studentId": 19,
+        "classId": 9,
+        "finish": true,
+        "grade": null
+    },
+    {
+        "id": 20,
+        "studentId": 20,
+        "classId": 9,
+        "finish": true,
+        "grade": null
+    }
+]

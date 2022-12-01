@@ -21,7 +21,7 @@ const createTeacher = async (req) => {
 const getAllTeachers = async (req) => {
 	try {
 		const data = await Teacher.findAll();
-		const message = "Get all teachers Successfully";
+		const message = "Get all teachers successfully";
 		const status = ResponseCode.OK;
 
 		return {
@@ -40,11 +40,10 @@ const getTeacherById = async (req) => {
 		let data, message, status;
 		data = await Teacher.findByPk(id);
 
-		if(!data){
+		if (!data) {
 			message = "Teacher not existed";
 			status = ResponseCode.Not_Found;
-		}
-		else{
+		} else {
 			message = "Get teacher successfully";
 			status = ResponseCode.OK;
 		}
@@ -94,6 +93,8 @@ const deleteTeacher = async (req) => {
 	}
 };
 
+const addTeacher = async (req) => {};
+
 function unique(value, index, self) {
 	const firstId = self.map((element) => element.id).indexOf(value.id);
 	return firstId === index;
@@ -134,5 +135,6 @@ module.exports = {
 	getTeacherById,
 	updateTeacher,
 	deleteTeacher,
+	addTeacher,
 	getCourses,
 };

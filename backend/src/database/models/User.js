@@ -23,16 +23,10 @@ const User = sequelize.define(
 			allowNull: false,
 			type: DataTypes.STRING,
 		},
-		name: {
-			type: DataTypes.STRING,
-		},
 		birthday: {
 			type: DataTypes.DATE,
 		},
 		gender: {
-			type: DataTypes.STRING,
-		},
-		class: {
 			type: DataTypes.STRING,
 		},
 		avatar: {
@@ -41,14 +35,21 @@ const User = sequelize.define(
 		history: {
 			type: DataTypes.STRING,
 		},
+		active: {
+			type: DataTypes.BOOLEAN,
+			defaultValue: false,
+		},
+		otp: {
+			type: DataTypes.INTEGER,
+		},
 	},
 	{
 		tableName: "user",
 	}
 );
 
-Student.belongsTo(User);
-User.hasOne(Student);
+User.belongsTo(Student);
+Student.hasOne(User);
 
 User.beforeCreate(
 	(user) => (user.password = bcrypt.hashSync(user.password, 10))
@@ -61,6 +62,10 @@ User.beforeUpdate((user) => {
 
 User.afterCreate(async (user) => {
 	await user.addRole(RoleCode.User);
+	const student = await Student.findOne({
+		where: { code: user.email.slice(0, 8) },
+	});
+	await user.update({ studentId: student.id });
 });
 
 module.exports = User;

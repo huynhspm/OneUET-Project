@@ -1,33 +1,33 @@
 const jwt = require("jsonwebtoken");
-const config = require("../../config");
 const { User } = require("../../database/models");
 const ResponseCode = require("../../utils/constant/ResponseCode");
+
+const verifyEmail = async (email) => {
+	return await User.findOne({ where: { email } });
+};
 
 const register = async (req) => {
 	const newUser = req.body;
 	let data, message, status;
 
-	try {
-		console.log(newUser);
-		const user = await User.create(newUser);
-		console.log(newUser);
-		const roles = await user.getRoles();
-		const roleIds = roles.map((role) => role.id);
+	const user = await verifyEmail(newUser.email);
 
-		const token = jwt.sign({ userId: user.id, roleIds }, config.secret_key, {
-			expiresIn: config.expires_in,
-		});
+	console.log(user, "...................");
 
-		data = {
-			user,
-			token,
-		};
-		message = "Register successfully!";
+	if (user) {
+		if (user.active) {
+			data = null;
+			message = "Email existed";
+			status = ResponseCode.Bad_Request;
+		} else {
+			await user.update(newUser);
+			message = "Register successfully but not active!";
+			status = ResponseCode.Created;
+		}
+	} else {
+		data = await User.create(newUser);
+		message = "Register successfully but not active!";
 		status = ResponseCode.Created;
-	} catch (error) {
-		data = null;
-		message = "Email existed";
-		status = ResponseCode.Bad_Request;
 	}
 
 	return {
