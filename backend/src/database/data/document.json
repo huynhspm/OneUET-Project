@@ -1,0 +1,32 @@
+[
+	{
+		"year": 2022,
+		"category": "Giáo trình",
+		"fileId": 1,
+		"userId": 1
+	},
+	{
+		"year": 2021,
+		"category": "Đề thi",
+		"fileId": 2,
+		"userId": 1
+	},
+	{
+		"year": 2020,
+		"category": "Đề thi",
+		"fileId": 3,
+		"userId": 2
+	},
+	{
+		"year": 2022,
+		"category": "Đề thi",
+		"fileId": 4,
+		"userId": 2
+	},
+	{
+		"year": 2021,
+		"category": "Giáo trình",
+		"fileId": 5,
+		"userId": 3
+	}
+]

@@ -1,46 +1,71 @@
-// Core viewer
-import { Viewer } from '@react-pdf-viewer/core';
+import { useState, useRef } from 'react';
+import preprocessImage from './preprocess';
+import Tesseract from 'tesseract.js';
+import './styles.css';
 
-// Plugins
-import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
+function Convert() {
+  const [image, setImage] = useState("");
+  const [text, setText] = useState("");
+  // const [pin, setPin] = useState("");
+  const canvasRef = useRef(null);
+  const imageRef = useRef(null);
+ 
+  const handleChange = (event) => {
+    setImage(URL.createObjectURL(event.target.files[0]))
+    // setImage(`${window.location.origin}/${event.target.files[0].name}`);
+    // const image = preprocessImage(canvasObj, event.target.files[0]);
+  }
 
-// Import styles
-import '@react-pdf-viewer/core/lib/styles/index.css';
-import '@react-pdf-viewer/default-layout/lib/styles/index.css';
-
-// Create new plugin instance
-
-
-const Convert = (props) => {
-    const defaultLayoutPluginInstance = defaultLayoutPlugin();
+  const handleClick = () => {
     
+    const canvas = canvasRef.current;
+    canvas.width = imageRef.current.width;
+    canvas.height = imageRef.current.height;
+    const ctx = canvas.getContext('2d');
 
-    return (
-        <>
-            <div>
-                {/* <Viewer fileUrl="" />; */}
-                <Viewer
-                    fileUrl="https://arxiv.org/pdf/2003.13401.pdf"
-                    plugins={[
-                        // Register plugins
-                        defaultLayoutPluginInstance
-                        // ...
-                    ]}
-                />
-                {/* <Worker workerUrl={`https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`}>
-                    <Document
-                        file="file.pdf"
-                        onLoadSuccess={onDocumentLoadSuccess}
-                        onLoadError={console.error}
-                    >
-                        <Page height="600" pageNumber={pageNumber} />
-                    </Document>
-                </Worker>
-                <p>Page {pageNumber} of {numPages}</p> */}
-            </div>
+    ctx.drawImage(imageRef.current, 0, 0);
+    ctx.putImageData(preprocessImage(canvas),0,0);
+    const dataUrl = canvas.toDataURL("image/jpeg");
+  
+    Tesseract.recognize(
+      dataUrl,'eng+vie',
+      { 
+        logger: m => console.log(m) 
+      }
+    )
+    .catch (err => {
+      console.error(err);
+    })
+    .then(result => {
+      // Get Confidence score
+      let confidence = result.confidence
+      // Get full output
+      let text = result.text
+  
+      setText(text);
+      // setPin(patterns);
+    })
+  }
 
-        </>
-    );
-};
+  return (
+    <div className="App">
+      <main className="App-main">
+        <h3>Actual image uploaded</h3>
+        <img 
+           src={image} className="App-logo" alt="logo"
+           ref={imageRef} 
+           />
+        <h3>Canvas</h3>
+        <canvas ref={canvasRef} width={700} height={300}></canvas>
+          <h3>Extracted text</h3>
+        {/* <div className="pin-box"> */}
+          <p> {text} </p>
+        {/* </div> */}
+        <input type="file" onChange={handleChange} />
+        <button onClick={handleClick} style={{height:50}}>Convert to text</button>
+      </main>
+    </div>
+  );
+}
 
 export default Convert;

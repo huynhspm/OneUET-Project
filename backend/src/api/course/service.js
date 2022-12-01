@@ -40,12 +40,12 @@ const getCourseById = async (req) => {
 		let data, message, status;
 		data = await Course.findByPk(id);
 
-		if (!data) {
-			message = "Course not existed";
-			status = ResponseCode.Not_Found;
-		} else {
+		if (data) {
 			message = "Get course successfully";
 			status = ResponseCode.OK;
+		} else {
+			message = "Course not existed";
+			status = ResponseCode.Not_Found;
 		}
 
 		return {
@@ -60,11 +60,14 @@ const getCourseById = async (req) => {
 
 const updateCourse = async (req) => {
 	try {
-		const { id } = req.params;
-		const updatedCourse = req.body;
-		const data = await Course.update(updatedCourse, { where: { id } });
-		const message = "Update course successfully";
-		const status = ResponseCode.OK;
+		let { data, message, status } = await getCourseById(req);
+
+		if (data) {
+			const updatedCourse = req.body;
+			data = await data.update(updatedCourse);
+			message = "Update course successfully";
+			status = ResponseCode.OK;
+		}
 
 		return {
 			data,
@@ -78,10 +81,13 @@ const updateCourse = async (req) => {
 
 const deleteCourse = async (req) => {
 	try {
-		const { id } = req.params;
-		const data = await Course.destroy({ where: { id } });
-		const message = "Delete course successfully";
-		const status = ResponseCode.OK;
+		let { data, message, status } = await getCourseById(req);
+
+		if (data) {
+			data = await data.destroy();
+			message = "Delete course successfully";
+			status = ResponseCode.OK;
+		}
 
 		return {
 			data,
@@ -92,6 +98,8 @@ const deleteCourse = async (req) => {
 		throw e;
 	}
 };
+
+const addCourse = async (req) => {};
 
 const getAllClasses = async (req) => {
 	try {
@@ -119,5 +127,6 @@ module.exports = {
 	getCourseById,
 	updateCourse,
 	deleteCourse,
+	addCourse,
 	getAllClasses,
 };

@@ -11,12 +11,7 @@ import {
 import AddIcon from '@mui/icons-material/Add';
 import React, { useState } from 'react';
 import axios from "axios";
-
-const StyledModal = styled(Modal)({
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-});
+import { CenterModal, InputBox, InputButton } from './styles';
 
 const Add = () => {
     const [open, setOpen] = useState(false);

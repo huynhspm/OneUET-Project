@@ -1,7 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../");
 
-const Course = require("./Course");
 const User = require("./User");
 const File = require("./File");
 
@@ -15,14 +14,12 @@ const Document = sequelize.define(
 			type: DataTypes.INTEGER,
 		},
 		year: {
-			allowNull: false,
 			type: DataTypes.INTEGER,
 		},
 		category: {
-			allowNull: false,
 			type: DataTypes.STRING,
 		},
-		startVote: {
+		star: {
 			type: DataTypes.INTEGER,
 			defaultValue: 0,
 		},

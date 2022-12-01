@@ -1,7 +1,7 @@
 const service = require("./service");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 
-// POST: /
+// POST: /document
 const createDocument = async (req, res) => {
 	try {
 		const result = await service.createDocument(req);
@@ -14,14 +14,14 @@ const createDocument = async (req, res) => {
 		});
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
-			data: e,
-			message: "Error",
+			data: e.message,
+			message: "Couldn't create document",
 			status: ResponseCode.Bad_Request,
 		});
 	}
 };
 
-// GET: /
+// GET: /document
 const getAllDocuments = async (req, res) => {
 	try {
 		const result = await service.getAllDocuments(req);
@@ -34,14 +34,14 @@ const getAllDocuments = async (req, res) => {
 		});
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
-			data: e,
-			message: "Error",
+			data: e.message,
+			message: "Couldn't get all documents",
 			status: ResponseCode.Bad_Request,
 		});
 	}
 };
 
-// GET: /:id
+// GET: /document/:id
 const getDocumentById = async (req, res) => {
 	try {
 		const result = await service.getDocumentById(req);
@@ -54,14 +54,14 @@ const getDocumentById = async (req, res) => {
 		});
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
-			data: e,
-			message: "Error",
+			data: e.message,
+			message: "Couldn't get document",
 			status: ResponseCode.Bad_Request,
 		});
 	}
 };
 
-// PUT: /:id
+// PUT: /document/:id
 const updateDocument = async (req, res) => {
 	try {
 		const result = await service.updateDocument(req);
@@ -74,14 +74,14 @@ const updateDocument = async (req, res) => {
 		});
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
-			data: e,
-			message: "Error",
+			data: e.message,
+			message: "Couldn't update document",
 			status: ResponseCode.Bad_Request,
 		});
 	}
 };
 
-// DELETE: /:id
+// DELETE: /document/:id
 const deleteDocument = async (req, res) => {
 	try {
 		const result = await service.deleteDocument(req);
@@ -94,8 +94,8 @@ const deleteDocument = async (req, res) => {
 		});
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
-			data: e,
-			message: "Error",
+			data: e.message,
+			message: "Couldn't delete document",
 			status: ResponseCode.Bad_Request,
 		});
 	}

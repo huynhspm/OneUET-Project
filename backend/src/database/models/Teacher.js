@@ -11,14 +11,13 @@ const Teacher = sequelize.define(
 			type: DataTypes.INTEGER,
 		},
 		email: {
-			allowNull: false,
 			unique: true,
 			type: DataTypes.STRING,
 		},
 		name: {
 			type: DataTypes.STRING,
 		},
-		academicLevel: {
+		level: {
 			type: DataTypes.STRING,
 		},
 		faculty: {
