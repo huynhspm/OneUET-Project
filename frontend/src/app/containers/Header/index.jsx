@@ -51,11 +51,11 @@ const Header = (props) => {
           </IconButton>
         </div>
         <div>
-          <List>
+          <List disablePadding>
             <ListItem disablePadding>
               <ListItemButton component="a" href="#home">
                 <ListItemIcon>
-                  <ModeNight />
+                  <ModeNight disablePadding />
                 </ListItemIcon>
                 <Switch
                   onChange={(e) =>
