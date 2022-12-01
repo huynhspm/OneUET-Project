@@ -1,10 +1,10 @@
 const service = require("./service");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 
-// POST: /course
-const createCourse = async (req, res) => {
+// POST: /student
+const createStudent = async (req, res) => {
 	try {
-		const result = await service.createCourse(req);
+		const result = await service.createStudent(req);
 		const { data, message, status } = result;
 
 		res.status(status).json({
@@ -15,16 +15,16 @@ const createCourse = async (req, res) => {
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
 			data: e.message,
-			message: "Couldn't create course",
+			message: "Couldn't create student",
 			status: ResponseCode.Bad_Request,
 		});
 	}
 };
 
-// GET: /course
-const getAllCourses = async (req, res) => {
+// GET: /student
+const getAllStudents = async (req, res) => {
 	try {
-		const result = await service.getAllCourses(req);
+		const result = await service.getAllStudents(req);
 		const { data, message, status } = result;
 
 		res.status(status).json({
@@ -35,16 +35,16 @@ const getAllCourses = async (req, res) => {
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
 			data: e.message,
-			message: "Couldn't get all courses",
+			message: "Couldn't get all students",
 			status: ResponseCode.Bad_Request,
 		});
 	}
 };
 
-// GET: /course/:id
-const getCourseById = async (req, res) => {
+// GET: /student/:id
+const getStudentById = async (req, res) => {
 	try {
-		const result = await service.getCourseById(req);
+		const result = await service.getStudentById(req);
 		const { data, message, status } = result;
 
 		res.status(status).json({
@@ -55,16 +55,16 @@ const getCourseById = async (req, res) => {
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
 			data: e.message,
-			message: "Couldn't get course",
+			message: "Couldn't get student",
 			status: ResponseCode.Bad_Request,
 		});
 	}
 };
 
-// PUT: /course/:id
-const updateCourse = async (req, res) => {
+// PUT: /student/:id
+const updateStudent = async (req, res) => {
 	try {
-		const result = await service.updateCourse(req);
+		const result = await service.updateStudent(req);
 		const { data, message, status } = result;
 
 		res.status(status).json({
@@ -75,16 +75,16 @@ const updateCourse = async (req, res) => {
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
 			data: e.message,
-			message: "Couldn't update course",
+			message: "Couldn't update student",
 			status: ResponseCode.Bad_Request,
 		});
 	}
 };
 
-// DELETE: /course/:id
-const deleteCourse = async (req, res) => {
+// DELETE: /student/:id
+const deleteStudent = async (req, res) => {
 	try {
-		const result = await service.deleteCourse(req);
+		const result = await service.deleteStudent(req);
 		const { data, message, status } = result;
 
 		res.status(status).json({
@@ -95,13 +95,13 @@ const deleteCourse = async (req, res) => {
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
 			data: e.message,
-			message: "Couldn't delete course",
+			message: "Couldn't delete student",
 			status: ResponseCode.Bad_Request,
 		});
 	}
 };
 
-// GET: /course/:id/class
+// GET: /student/:id/class
 const getAllClasses = async (req, res) => {
 	try {
 		const result = await service.getAllClasses(req);
@@ -122,10 +122,10 @@ const getAllClasses = async (req, res) => {
 };
 
 module.exports = {
-	createCourse,
-	getAllCourses,
-	getCourseById,
-	updateCourse,
-	deleteCourse,
+	createStudent,
+	getAllStudents,
+	getStudentById,
+	updateStudent,
+	deleteStudent,
 	getAllClasses,
 };

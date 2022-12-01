@@ -1,7 +1,7 @@
 const service = require("./service");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 
-// POST: /
+// POST: /class
 const createClass = async (req, res) => {
 	try {
 		const result = await service.createClass(req);
@@ -14,14 +14,14 @@ const createClass = async (req, res) => {
 		});
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
-			data: e,
-			message: "Error",
+			data: e.message,
+			message: "Couldn't create class",
 			status: ResponseCode.Bad_Request,
 		});
 	}
 };
 
-// GET: /
+// GET: /class
 const getAllClasses = async (req, res) => {
 	try {
 		const result = await service.getAllClasses(req);
@@ -34,14 +34,14 @@ const getAllClasses = async (req, res) => {
 		});
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
-			data: e,
-			message: "Error",
+			data: e.message,
+			message: "Couldn't get all classes",
 			status: ResponseCode.Bad_Request,
 		});
 	}
 };
 
-// GET: /:id
+// GET: /class/:id
 const getClassById = async (req, res) => {
 	try {
 		const result = await service.getClassById(req);
@@ -54,14 +54,14 @@ const getClassById = async (req, res) => {
 		});
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
-			data: e,
-			message: "Error",
+			data: e.message,
+			message: "Couldn't get class",
 			status: ResponseCode.Bad_Request,
 		});
 	}
 };
 
-// PUT: /:id
+// PUT: /class/:id
 const updateClass = async (req, res) => {
 	try {
 		const result = await service.updateClass(req);
@@ -74,14 +74,14 @@ const updateClass = async (req, res) => {
 		});
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
-			data: e,
-			message: "Error",
+			data: e.message,
+			message: "Couldn't update class",
 			status: ResponseCode.Bad_Request,
 		});
 	}
 };
 
-// DELETE: /:id
+// DELETE: /class/:id
 const deleteClass = async (req, res) => {
 	try {
 		const result = await service.deleteClass(req);
@@ -94,17 +94,17 @@ const deleteClass = async (req, res) => {
 		});
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
-			data: e,
-			message: "Error",
+			data: e.message,
+			message: "Couldn't delete class",
 			status: ResponseCode.Bad_Request,
 		});
 	}
 };
 
-// POST: /:id/teacher
-const addTeacher = async (req, res) => {
+// POST: class/:id
+const addClass = async (req, res) => {
 	try {
-		const result = await service.addTeacher(req);
+		const result = await service.addClass(req);
 		const { data, message, status } = result;
 
 		res.status(status).json({
@@ -114,14 +114,14 @@ const addTeacher = async (req, res) => {
 		});
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
-			data: e,
-			message: "Error",
+			data: e.message,
+			message: "Couldn't add  class",
 			status: ResponseCode.Bad_Request,
 		});
 	}
 };
 
-// GET: /:id/teacher
+// GET: class/:id/teacher
 const getAllTeachers = async (req, res) => {
 	try {
 		const result = await service.getAllTeachers(req);
@@ -134,14 +134,34 @@ const getAllTeachers = async (req, res) => {
 		});
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
-			data: e,
-			message: "Error",
+			data: e.message,
+			message: "Couldn't get all teachers of class",
 			status: ResponseCode.Bad_Request,
 		});
 	}
 };
 
-// GET: /:id/course
+// GET: class/:id/student
+const getAllStudents = async (req, res) => {
+	try {
+		const result = await service.getAllStudents(req);
+		const { data, message, status } = result;
+
+		res.status(status).json({
+			data: data,
+			message: message,
+			status: status,
+		});
+	} catch (e) {
+		res.status(ResponseCode.Bad_Request).json({
+			data: e.message,
+			message: "Couldn't get all students of class",
+			status: ResponseCode.Bad_Request,
+		});
+	}
+};
+
+// GET: class/:id/course
 const getCourse = async (req, res) => {
 	try {
 		const result = await service.getCourse(req);
@@ -154,8 +174,8 @@ const getCourse = async (req, res) => {
 		});
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
-			data: e,
-			message: "Error",
+			data: e.message,
+			message: "Couldn't get course of class",
 			status: ResponseCode.Bad_Request,
 		});
 	}
@@ -167,7 +187,8 @@ module.exports = {
 	getClassById,
 	updateClass,
 	deleteClass,
-	addTeacher,
+	addClass,
 	getAllTeachers,
+	getAllStudents,
 	getCourse,
 };

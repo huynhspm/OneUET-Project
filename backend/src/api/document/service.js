@@ -86,10 +86,13 @@ const deleteDocument = async (req) => {
 	}
 };
 
+const addDocument = async (req) => {};
+
 module.exports = {
 	createDocument,
 	getAllDocuments,
 	getDocumentById,
 	updateDocument,
+	addDocument,
 	deleteDocument,
 };

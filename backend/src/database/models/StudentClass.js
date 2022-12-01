@@ -21,7 +21,7 @@ const StudentClass = sequelize.define(
 		},
 	},
 	{
-		tableName: "studentClass",
+		tableName: "student_class",
 	}
 );
 
