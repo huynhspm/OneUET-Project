@@ -16,8 +16,12 @@ import Information from "../pages/Profile/Information";
 import Schedule from "../pages/Profile/Schedule";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import Grade from "../pages/Grade";
+import Convert from "../pages/Convert"
+import GradeCourses from "../pages/GradeCourses";
 
 const RootLayout = () => {
+
   const [mode, setMode] = useState("light");
   const darkTheme = createTheme({
     palette: {
@@ -37,11 +41,11 @@ const RootLayout = () => {
             <Route path="/homepage" element={<HomePage />} />
             <Route path="/convert" element={<Convert />} />
             <Route path="/document" element={<Document />} />
-            <Route path="/grade" element={<Header />} />
+            <Route path="/grade" element={<GradeCourses />} />
             <Route path="/validation-document" element={<ValidationPage />} />
             <Route path="/profile/information" element={<Information />} />
             <Route path="/profile/schedule" element={<Schedule />} />
-            <Route path="/profile/learning-result" element={<Header />} />
+            <Route path="/profile/learning-result" element={<Grade />} />
             <Route path="/profile/private-document" element={<Header />} />
             <Route path="/profile/change-password" element={<Header />} />
             <Route path="/profile/login" element={<Header />} />
