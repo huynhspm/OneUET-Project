@@ -17,6 +17,24 @@ const Class = sequelize.define(
 			unique: true,
 			type: DataTypes.STRING,
 		},
+		semester: {
+			type: DataTypes.STRING,
+		},
+		group: {
+			type: DataTypes.STRING,
+		},
+		quantity: {
+			type: DataTypes.INTEGER,
+		},
+		date: {
+			type: DataTypes.TEXT,
+		},
+		section: {
+			type: DataTypes.TEXT,
+		},
+		classroom: {
+			type: DataTypes.TEXT,
+		},
 	},
 	{
 		tableName: "class",

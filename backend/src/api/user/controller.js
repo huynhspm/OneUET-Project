@@ -1,6 +1,7 @@
 const service = require("./service");
+const ResponseCode = require("../../utils/constant/ResponseCode");
 
-// GET: /
+// GET: /user
 const getAllUsers = async (req, res) => {
 	try {
 		const result = await service.getAllUsers(req);
@@ -20,7 +21,7 @@ const getAllUsers = async (req, res) => {
 	}
 };
 
-// GET: /:id
+// GET: /user/:id
 const getUserById = async (req, res) => {
 	try {
 		const result = await service.getUserById(req);
@@ -33,14 +34,14 @@ const getUserById = async (req, res) => {
 		});
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
-			data: e,
+			data: e.message,
 			message: "Error",
 			status: ResponseCode.Bad_Request,
 		});
 	}
 };
 
-// PUT: /:id
+// PUT: /user/:id
 const updateUser = async (req, res) => {
 	try {
 		const result = await service.updateUser(req);
@@ -60,6 +61,7 @@ const updateUser = async (req, res) => {
 	}
 };
 
+// DELETE: /user/:id
 const deleteUser = async (req, res) => {
 	try {
 		const result = await service.deleteUser(req);
@@ -79,6 +81,7 @@ const deleteUser = async (req, res) => {
 	}
 };
 
+// GET: /user/:id/class
 const getAllClasses = async (req, res) => {
 	try {
 		const result = await service.getAllClasses(req);
@@ -91,13 +94,14 @@ const getAllClasses = async (req, res) => {
 		});
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
-			data: e,
+			data: e.message,
 			message: "Error",
 			status: ResponseCode.Bad_Request,
 		});
 	}
 };
 
+// GET: /user/:id/document
 const getAllDocuments = async (req, res) => {
 	try {
 		const result = await service.getAllDocuments(req);
@@ -116,6 +120,8 @@ const getAllDocuments = async (req, res) => {
 		});
 	}
 };
+
+// GET: /user/:id/grade
 
 module.exports = {
 	getAllUsers,

@@ -15,7 +15,7 @@ const UserRole = sequelize.define(
 		},
 	},
 	{
-		tableName: "userRole",
+		tableName: "user_role",
 	}
 );
 

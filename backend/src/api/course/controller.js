@@ -1,7 +1,7 @@
 const service = require("./service");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 
-// POST: /
+// POST: /course
 const createCourse = async (req, res) => {
 	try {
 		const result = await service.createCourse(req);
@@ -14,14 +14,14 @@ const createCourse = async (req, res) => {
 		});
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
-			data: e,
-			message: "Error",
+			data: e.message,
+			message: "Couldn't create course",
 			status: ResponseCode.Bad_Request,
 		});
 	}
 };
 
-// GET: /
+// GET: /course
 const getAllCourses = async (req, res) => {
 	try {
 		const result = await service.getAllCourses(req);
@@ -34,14 +34,14 @@ const getAllCourses = async (req, res) => {
 		});
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
-			data: e,
-			message: "Error",
+			data: e.message,
+			message: "Couldn't get all courses",
 			status: ResponseCode.Bad_Request,
 		});
 	}
 };
 
-// GET: /:id
+// GET: /course/:id
 const getCourseById = async (req, res) => {
 	try {
 		const result = await service.getCourseById(req);
@@ -54,14 +54,14 @@ const getCourseById = async (req, res) => {
 		});
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
-			data: e,
-			message: "Error",
+			data: e.message,
+			message: "Couldn't get course",
 			status: ResponseCode.Bad_Request,
 		});
 	}
 };
 
-// PUT: /:id
+// PUT: /course/:id
 const updateCourse = async (req, res) => {
 	try {
 		const result = await service.updateCourse(req);
@@ -74,14 +74,14 @@ const updateCourse = async (req, res) => {
 		});
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
-			data: e,
-			message: "Error",
+			data: e.message,
+			message: "Couldn't update course",
 			status: ResponseCode.Bad_Request,
 		});
 	}
 };
 
-// DELETE: /:id
+// DELETE: /course/:id
 const deleteCourse = async (req, res) => {
 	try {
 		const result = await service.deleteCourse(req);
@@ -94,14 +94,14 @@ const deleteCourse = async (req, res) => {
 		});
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
-			data: e,
-			message: "Error",
+			data: e.message,
+			message: "Couldn't delete course",
 			status: ResponseCode.Bad_Request,
 		});
 	}
 };
 
-// GET: /:id/class
+// GET: /course/:id/class
 const getAllClasses = async (req, res) => {
 	try {
 		const result = await service.getAllClasses(req);
@@ -114,8 +114,8 @@ const getAllClasses = async (req, res) => {
 		});
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
-			data: e,
-			message: "Error",
+			data: e.message,
+			message: "Couldn't get all classes of class",
 			status: ResponseCode.Bad_Request,
 		});
 	}

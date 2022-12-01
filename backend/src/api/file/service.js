@@ -80,10 +80,13 @@ const deleteFile = async (req) => {
 	};
 };
 
+const addFile = async (req) => {};
+
 module.exports = {
 	createFile,
 	getAllFiles,
 	getFileById,
 	updateFile,
 	deleteFile,
+	addFile,
 };
