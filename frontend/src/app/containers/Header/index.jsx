@@ -40,7 +40,7 @@ const Header = (props) => {
           <Link className="grade-button btn" to="/grade">
             <SchoolIcon /> Grade
           </Link>
-          <Link className="validation-button btn" to="/validation">
+          <Link className="validation-button btn" to="/validation-document">
             <FactCheckIcon /> Validation Document
           </Link>
         </div>
