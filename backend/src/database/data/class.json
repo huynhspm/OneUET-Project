@@ -1,0 +1,222 @@
+[
+    {
+        "id": 1,
+        "id_course": 1,
+        "semester": "2022-2023-1",
+        "code": "PHI1002 2",
+        "group": "CL",
+        "quantity": 37,
+        "date": "2",
+        "section": "1-2",
+        "classroom": "313-GĐ2"
+    },
+    {
+        "id": 2,
+        "id_course": 2,
+        "semester": "2022-2023-1",
+        "code": "PES1017 51",
+        "group": "CL",
+        "quantity": 50,
+        "date": "2",
+        "section": "1-2",
+        "classroom": "Sân bãi ĐHNN"
+    },
+    {
+        "id": 3,
+        "id_course": 3,
+        "semester": "2022-2023-1",
+        "code": "INT3306 6",
+        "group": "CL",
+        "quantity": 29,
+        "date": "2",
+        "section": "1-2",
+        "classroom": "302-GĐ2"
+    },
+    {
+        "id": 4,
+        "id_course": 3,
+        "semester": "2022-2023-1",
+        "code": "INT3306 4",
+        "group": "1",
+        "quantity": 29,
+        "date": "2",
+        "section": "1-2",
+        "classroom": "PM 208-G2"
+    },
+    {
+        "id": 5,
+        "id_course": 4,
+        "semester": "2022-2023-1",
+        "code": "ELT3996 1",
+        "group": "1",
+        "quantity": 18,
+        "date": "2",
+        "section": "1-2",
+        "classroom": "210-G2"
+    },
+    {
+        "id": 6,
+        "id_course": 5,
+        "semester": "2022-2023-1",
+        "code": "PES1003 9",
+        "group": "CL",
+        "quantity": 36,
+        "date": "2",
+        "section": "1-2",
+        "classroom": "Sân bãi ĐHNN"
+    },
+    {
+        "id": 7,
+        "id_course": 1,
+        "semester": "2022-2023-1",
+        "code": "PHI1002 7",
+        "group": "CL",
+        "quantity": 34,
+        "date": "2",
+        "section": "1-2",
+        "classroom": "307-GĐ2"
+    },
+    {
+        "id": 8,
+        "id_course": 6,
+        "semester": "2022-2023-1",
+        "code": "EMA2050 3",
+        "group": "1",
+        "quantity": 35,
+        "date": "2",
+        "section": "1-2",
+        "classroom": "303-GĐ2"
+    },
+    {
+        "id": 9,
+        "id_course": 7,
+        "semester": "2022-2023-1",
+        "code": "INT3403 1",
+        "group": "2",
+        "quantity": 28,
+        "date": "2",
+        "section": "1-2",
+        "classroom": "PM 207-G2"
+    },
+    {
+        "id": 10,
+        "id_course": 8,
+        "semester": "2022-2023-1",
+        "code": "CTE3019 1",
+        "group": "CL",
+        "quantity": 32,
+        "date": "2",
+        "section": "1-2",
+        "classroom": "213-GĐ3"
+    },
+    {
+        "id": 11,
+        "id_course": 9,
+        "semester": "2022-2023-1",
+        "code": "ELT3241 1",
+        "group": "CL",
+        "quantity": 70,
+        "date": "2",
+        "section": "1-2",
+        "classroom": "308-G2"
+    },
+    {
+        "id": 12,
+        "id_course": 10,
+        "semester": "2022-2023-1",
+        "code": "EMA2021 1",
+        "group": "CL",
+        "quantity": 58,
+        "date": "2",
+        "section": "1-2",
+        "classroom": "405-VCH"
+    },
+    {
+        "id": 13,
+        "id_course": 11,
+        "semester": "2022-2023-1",
+        "code": "EMA 2027 20",
+        "group": "2",
+        "quantity": 35,
+        "date": "2",
+        "section": "1-2",
+        "classroom": "312-GĐ2"
+    },
+    {
+        "id": 14,
+        "id_course": 12,
+        "semester": "2022-2023-1",
+        "code": "POL1001 21",
+        "group": "CL",
+        "quantity": 62,
+        "date": "2",
+        "section": "1-2",
+        "classroom": "206-GĐ3"
+    },
+    {
+        "id": 15,
+        "id_course": 13,
+        "semester": "2022-2023-1",
+        "code": "PES1025 5",
+        "group": "CL",
+        "quantity": 48,
+        "date": "2",
+        "section": "1-2",
+        "classroom": "Sân bãi ĐHNN"
+    },
+    {
+        "id": 16,
+        "id_course": 1,
+        "semester": "2022-2023-1",
+        "code": "PHI1002 3",
+        "group": "CL",
+        "quantity": 80,
+        "date": "2",
+        "section": "1-2",
+        "classroom": "301-G2"
+    },
+    {
+        "id": 17,
+        "id_course": 14,
+        "semester": "2022-2023-1",
+        "code": "EET3005 1",
+        "group": "CL",
+        "quantity": 20,
+        "date": "2",
+        "section": "1-2",
+        "classroom": "306-GĐ2"
+    },
+    {
+        "id": 18,
+        "id_course": 15,
+        "semester": "2022-2023-1",
+        "code": "EMA2032 1",
+        "group": "2",
+        "quantity": 31,
+        "date": "2",
+        "section": "1-2",
+        "classroom": "PM 313-G2"
+    },
+    {
+        "id": 19,
+        "id_course": 16,
+        "semester": "2022-2023-1",
+        "code": "INT3139 1",
+        "group": "CL",
+        "quantity": 79,
+        "date": "2",
+        "section": "1-2",
+        "classroom": "304-G2"
+    },
+    {
+        "id": 20,
+        "id_course": 17,
+        "semester": "2022-2023-1",
+        "code": "MAT1041 26",
+        "group": "CL",
+        "quantity": 68,
+        "date": "2",
+        "section": "1-2",
+        "classroom": "101-G2"
+    }
+]

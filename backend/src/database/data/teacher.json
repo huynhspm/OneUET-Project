@@ -1,0 +1,42 @@
+[
+    {
+        "email": "a",
+        "name": "a",
+        "classId": [
+            "2",
+            "3"
+        ]
+    },
+    {
+        "email": "b",
+        "name": "b",
+        "classId": [
+            "3",
+            "4"
+        ]
+    },
+    {
+        "email": "c",
+        "name": "c",
+        "classId": [
+            "4",
+            "5"
+        ]
+    },
+    {
+        "email": "d",
+        "name": "d",
+        "classId": [
+            "5",
+            "4"
+        ]
+    },
+    {
+        "email": "e",
+        "name": "e",
+        "classId": [
+            "3",
+            "4"
+        ]
+    }
+]
