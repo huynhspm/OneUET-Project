@@ -11,17 +11,18 @@ import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import SchoolIcon from "@mui/icons-material/School";
 import FactCheckIcon from "@mui/icons-material/FactCheck";
 import AvatarDropdown from "../../components/AvatarDropdown";
-import "./styles.css";
 import {
   List,
+  Switch,
   ListItem,
   ListItemButton,
   ListItemIcon,
-  Switch,
 } from "@mui/material";
 import { ModeNight } from "@mui/icons-material";
 
-const Header = ({ mode, setMode }) => {
+import "./styles.css";
+
+const Header = (props) => {
   return (
     <>
       <div className="header">
@@ -38,7 +39,7 @@ const Header = ({ mode, setMode }) => {
           <Link className="grade-button btn" to="/grade">
             <SchoolIcon /> Grade
           </Link>
-          <Link className="validation-button btn" to="/validation-document">
+          <Link className="validation-button btn" to="/validation">
             <FactCheckIcon /> Validation Document
           </Link>
         </div>
@@ -56,7 +57,9 @@ const Header = ({ mode, setMode }) => {
                   <ModeNight />
                 </ListItemIcon>
                 <Switch
-                  onChange={(e) => setMode(mode === "light" ? "dark" : "light")}
+                  onChange={(e) =>
+                    props.setMode(props.mode === "light" ? "dark" : "light")
+                  }
                 />
               </ListItemButton>
             </ListItem>

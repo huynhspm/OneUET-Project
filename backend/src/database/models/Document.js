@@ -1,10 +1,11 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../");
 
-const Course = require("./Course");
+const User = require("./User");
+const File = require("./File");
 
 const Document = sequelize.define(
-	"Document",
+	"document",
 	{
 		id: {
 			allowNull: false,
@@ -13,14 +14,12 @@ const Document = sequelize.define(
 			type: DataTypes.INTEGER,
 		},
 		year: {
-			allowNull: false,
 			type: DataTypes.INTEGER,
 		},
 		category: {
-			allowNull: false,
 			type: DataTypes.STRING,
 		},
-		startVote: {
+		star: {
 			type: DataTypes.INTEGER,
 			defaultValue: 0,
 		},
@@ -34,7 +33,10 @@ const Document = sequelize.define(
 	}
 );
 
-Document.belongsTo(Course);
-Course.hasMany(Document);
+Document.belongsTo(User);
+User.hasMany(Document);
+
+Document.belongsTo(File);
+File.hasOne(Document);
 
 module.exports = Document;

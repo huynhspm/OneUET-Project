@@ -50,7 +50,6 @@ const HomePage = () => {
   const onPageChangeSeen = (event, value) => {
     setCurrentPageSeen(value);
   };
-
   return (
     <>
       <h1>Có thể bạn thích??????</h1>
@@ -61,7 +60,7 @@ const HomePage = () => {
       />
       <HorizontalDocumentList
         data={cards_json.slice(currentPageRec - 1, currentPageRec + 3)}
-        height="140px"
+        height="200px"
       />
       <h1>Bạn đã xem những tài liệu này????</h1>
       <Pagination

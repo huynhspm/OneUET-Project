@@ -1,0 +1,122 @@
+[
+    {
+        "id": 1,
+        "code": "PHI1002",
+        "name": "Chủ nghĩa xã hội khoa học",
+        "credit": 2
+    },
+    {
+        "id": 2,
+        "code": "PES1017",
+        "name": "Bóng chuyền hơi",
+        "credit": 1
+    },
+    {
+        "id": 3,
+        "code": "INT3306",
+        "name": "Phát triển ứng dụng Web",
+        "credit": 3
+    },
+    {
+        "id": 4,
+        "code": "ELT3996",
+        "name": "Điện tử công suất và điều khiển",
+        "credit": 3
+    },
+    {
+        "id": 5,
+        "code": "PES1003",
+        "name": "Điền kinh",
+        "credit": 1
+    },
+    {
+        "id": 6,
+        "code": "EMA2050",
+        "name": "Xác suất thống kê ứng dụng",
+        "credit": 3
+    },
+    {
+        "id": 7,
+        "code": "INT3403",
+        "name": "Đồ họa máy tính",
+        "credit": 3
+    },
+    {
+        "id": 8,
+        "code": "CTE3019",
+        "name": "Kỹ thuật và tổ chức thi công nhà bê tông cốt thép",
+        "credit": 3
+    },
+    {
+        "id": 9,
+        "code": "ELT3241",
+        "name": "Các vấn đề hiện đại của kỹ thuật máy tính",
+        "credit": 2
+    },
+    {
+        "id": 10,
+        "code": "EMA2021",
+        "name": "Linh kiện bán dẫn và vi mạch",
+        "credit": 2
+    },
+    {
+        "id": 11,
+        "code": "EMA 2027",
+        "name": "Nhập môn cơ điện tử",
+        "credit": 3
+    },
+    {
+        "id": 12,
+        "code": "POL1001",
+        "name": "Tư tưởng Hồ Chí Minh",
+        "credit": 2
+    },
+    {
+        "id": 13,
+        "code": "PES1025",
+        "name": "Bóng đá",
+        "credit": 1
+    },
+    {
+        "id": 14,
+        "code": "EET3005",
+        "name": "Hệ thống quang điện",
+        "credit": 2
+    },
+    {
+        "id": 15,
+        "code": "EMA2032",
+        "name": "Hình họa kỹ thuật và CAD",
+        "credit": 2
+    },
+    {
+        "id": 16,
+        "code": "INT3139",
+        "name": "Thực hành phát triển phần mềm",
+        "credit": 3
+    },
+    {
+        "id": 17,
+        "code": "MAT1041",
+        "name": "Giải tích 1",
+        "credit": 4
+    },
+    {
+        "id": 18,
+        "code": "ELT3056",
+        "name": "Truyền thông vô tuyến",
+        "credit": 3
+    },
+    {
+        "id": 19,
+        "code": "AER3015",
+        "name": "Nhập môn viễn thám",
+        "credit": 3
+    },
+    {
+        "id": 20,
+        "code": "EMA3119",
+        "name": "Các phương pháp số trong cơ học vật liệu và kết cấu",
+        "credit": 4
+    }
+]

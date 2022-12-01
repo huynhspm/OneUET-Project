@@ -7,7 +7,6 @@ const teacherRouter = require("./teacher");
 const documentRouter = require("./document");
 const fileRouter = require("./file");
 const courseRouter = require("./course");
-
 const router = Router();
 
 router.use("/login", loginRouter);

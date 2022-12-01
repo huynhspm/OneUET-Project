@@ -1,10 +1,12 @@
 const { File } = require("../../database/models");
+const ResponseCode = require("../../utils/constant/ResponseCode");
 
-const createFile = async (newFile) => {
+const createFile = async (req) => {
+	const newFile = req.body;
 	const data = await File.create(newFile);
 
-	const message = "Add File successfully!";
-	const status = 200;
+	const message = "Create file successfully!";
+	const status = ResponseCode.Created;
 
 	return {
 		data,
@@ -13,11 +15,11 @@ const createFile = async (newFile) => {
 	};
 };
 
-const getFiles = async () => {
+const getAllFiles = async (req) => {
 	const data = await File.findAll();
 
-	const message = "Get Files successfully";
-	const status = 200;
+	const message = "Get all files successfully";
+	const status = ResponseCode.OK;
 
 	return {
 		data,
@@ -26,36 +28,62 @@ const getFiles = async () => {
 	};
 };
 
-const updateFile = async (updatedFile) => {
-	await File.update(updatedFile, {
-		where: {
-			id: updatedFile.id,
-		},
-	});
+const getFileById = async (req) => {
+	const { id } = req.params;
+	const data = await File.findByPk(id);
 
-	const message = "Update File successfully";
-	const status = 200;
+	const message = "Get files successfully";
+	const status = ResponseCode.OK;
 
 	return {
+		data,
 		message,
 		status,
 	};
 };
 
-const deleteFile = async (deletedFile) => {
-	await File.destroy({
+const updateFile = async (req) => {
+	const { id } = req.params;
+	const updatedFile = req.body;
+
+	const data = await File.update(updatedFile, {
 		where: {
-			id: deletedFile.id,
+			id,
 		},
 	});
 
-	const message = "Delete File successfully";
-	const status = 200;
+	const message = "Update file successfully";
+	const status = ResponseCode.OK;
 
 	return {
+		data,
 		message,
 		status,
 	};
 };
 
-module.exports = { createFile, getFiles, updateFile, deleteFile };
+const deleteFile = async (req) => {
+	const { id } = req.params;
+	const data = await File.destroy({
+		where: {
+			id,
+		},
+	});
+
+	const message = "Delete file successfully";
+	const status = ResponseCode.OK;
+
+	return {
+		data,
+		message,
+		status,
+	};
+};
+
+module.exports = {
+	createFile,
+	getAllFiles,
+	getFileById,
+	updateFile,
+	deleteFile,
+};

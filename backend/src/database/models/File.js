@@ -1,10 +1,8 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../");
 
-const Document = require("./Document");
-
 const File = sequelize.define(
-	"File",
+	"file",
 	{
 		id: {
 			allowNull: false,
@@ -25,8 +23,5 @@ const File = sequelize.define(
 		tableName: "file",
 	}
 );
-
-Document.hasOne(File);
-File.belongsTo(Document);
 
 module.exports = File;

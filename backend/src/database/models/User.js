@@ -2,10 +2,11 @@ const bcrypt = require("bcrypt");
 const { DataTypes } = require("sequelize");
 const sequelize = require("../");
 
-const RoleCode = require("../../utils/constant/Role");
+const RoleCode = require("../../utils/constant/RoleCode");
+const Student = require("./Student");
 
 const User = sequelize.define(
-	"User",
+	"user",
 	{
 		id: {
 			allowNull: false,
@@ -15,7 +16,6 @@ const User = sequelize.define(
 		},
 		email: {
 			allowNull: false,
-
 			unique: true,
 			type: DataTypes.STRING,
 		},
@@ -24,16 +24,22 @@ const User = sequelize.define(
 			type: DataTypes.STRING,
 		},
 		name: {
-			type: DataTypes.TEXT,
+			type: DataTypes.STRING,
 		},
-		avatar: {
+		birthday: {
+			type: DataTypes.DATE,
+		},
+		gender: {
 			type: DataTypes.STRING,
 		},
 		class: {
 			type: DataTypes.STRING,
 		},
+		avatar: {
+			type: DataTypes.STRING,
+		},
 		history: {
-			type: DataTypes.TEXT,
+			type: DataTypes.STRING,
 		},
 	},
 	{
@@ -41,10 +47,12 @@ const User = sequelize.define(
 	}
 );
 
-User.beforeCreate((user) => {
-	const hashedPassword = bcrypt.hashSync(user.password, 10);
-	user.password = hashedPassword;
-});
+Student.belongsTo(User);
+User.hasOne(Student);
+
+User.beforeCreate(
+	(user) => (user.password = bcrypt.hashSync(user.password, 10))
+);
 
 User.beforeUpdate((user) => {
 	const hashedPassword = bcrypt.hashSync(user.password, 10);
