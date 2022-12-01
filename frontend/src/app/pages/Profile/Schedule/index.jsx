@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import LeftDrawer from "../../../components/LeftDrawer";
 
@@ -16,7 +16,8 @@ const Schedule = () => {
             <Box
                 component="main"
                 sx={{ flexGrow: 1, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
-            ></Box>
+            >
+            </Box>
         </Box>
     );
 };
