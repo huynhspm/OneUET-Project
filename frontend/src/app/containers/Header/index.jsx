@@ -27,7 +27,7 @@ const Header = () => {
 				<div className="search-group">
 					<InputBase className="input-search" placeholder="Search"/>
 					<IconButton type="button" aria-label="search">
-						<SearchIcon />
+						<SearchIcon/>
 					</IconButton>
 				</div>
 				<div className="profile-group">

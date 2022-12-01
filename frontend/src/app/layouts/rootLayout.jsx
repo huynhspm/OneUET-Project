@@ -7,6 +7,8 @@ import HomePage from "../pages/HomePage";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Grade from "../pages/Grade";
+import Convert from "../pages/Convert"
+import GradeCourses from "../pages/GradeCourses";
 
 const RootLayout = () => {
 	return (
@@ -16,9 +18,9 @@ const RootLayout = () => {
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/homepage" element={<HomePage />} />
-				<Route path="/convert" element={<Header />} />
-				<Route path="/document" element={<Header />} />
-				<Route path="/grade" element={<Grade />} />
+				<Route path="/Convert" element={<Convert />} />
+				<Route path="/document" element={<Grade />} />
+				<Route path="/grade" element={<GradeCourses />} />
 				<Route path="/validation-document" element={<Header />} />
 				<Route path="/profile/information" element={<Header />} />
 				<Route path="/profile/schedule" element={<Header />} />
