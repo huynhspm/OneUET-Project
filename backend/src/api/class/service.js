@@ -1,6 +1,7 @@
 const { Class } = require("../../database/models");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 
+// ok
 const createClass = async (req) => {
 	try {
 		const newClass = req.body;
@@ -18,6 +19,7 @@ const createClass = async (req) => {
 	}
 };
 
+// ok
 const getAllClasses = async (req) => {
 	try {
 		const data = await Class.findAll();
@@ -34,6 +36,7 @@ const getAllClasses = async (req) => {
 	}
 };
 
+// ok
 const getClassById = async (req) => {
 	try {
 		const { id } = req.params;
@@ -59,6 +62,7 @@ const getClassById = async (req) => {
 	}
 };
 
+// ok
 const updateClass = async (req) => {
 	try {
 		let { data, message, status } = await getClassById(req);
@@ -80,6 +84,7 @@ const updateClass = async (req) => {
 	}
 };
 
+// ok
 const deleteClass = async (req) => {
 	try {
 		let { data, message, status } = await getClassById(req);
@@ -100,7 +105,6 @@ const deleteClass = async (req) => {
 	}
 };
 
-// not check
 const addClass = async (req) => {
 	try {
 		const { teacherId, courseId, studentId } = req.body;
@@ -108,9 +112,9 @@ const addClass = async (req) => {
 		let data = null;
 
 		if (curClass) {
-			if (teacherId) await curClass.setTeacher(teacherId);
+			if (teacherId) await curClass.addTeacher(teacherId);
 			if (courseId) await curClass.setCourse(courseId);
-			if (studentId) await curClass.setStudent(studentId);
+			if (studentId) await curClass.addStudent(studentId);
 
 			message = "Add class successfully";
 			status = ResponseCode.OK;
@@ -128,6 +132,7 @@ const addClass = async (req) => {
 	}
 };
 
+// ok
 const getAllTeachers = async (req) => {
 	try {
 		let { data, message, status } = await getClassById(req);
@@ -148,6 +153,7 @@ const getAllTeachers = async (req) => {
 	}
 };
 
+// ok
 const getAllStudents = async (req) => {
 	try {
 		let { data, message, status } = await getClassById(req);
@@ -168,13 +174,13 @@ const getAllStudents = async (req) => {
 	}
 };
 
-// not check
+// ok
 const getCourse = async (req) => {
 	try {
 		let { data, message, status } = await getClassById(req);
 
 		if (data) {
-			data = data.getCourse();
+			data = await data.getCourse();
 			message = "Get course of class successfully";
 			status = ResponseCode.OK;
 		}

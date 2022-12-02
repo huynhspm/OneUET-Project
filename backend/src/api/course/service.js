@@ -1,6 +1,7 @@
 const { Course } = require("../../database/models");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 
+// ok
 const createCourse = async (req) => {
 	try {
 		const newCourse = req.body;
@@ -18,6 +19,7 @@ const createCourse = async (req) => {
 	}
 };
 
+// ok
 const getAllCourses = async (req) => {
 	try {
 		const data = await Course.findAll();
@@ -34,6 +36,7 @@ const getAllCourses = async (req) => {
 	}
 };
 
+// ok
 const getCourseById = async (req) => {
 	try {
 		const { id } = req.params;
@@ -58,6 +61,7 @@ const getCourseById = async (req) => {
 	}
 };
 
+// ok
 const updateCourse = async (req) => {
 	try {
 		let { data, message, status } = await getCourseById(req);
@@ -79,6 +83,7 @@ const updateCourse = async (req) => {
 	}
 };
 
+// ok
 const deleteCourse = async (req) => {
 	try {
 		let { data, message, status } = await getCourseById(req);
@@ -98,7 +103,7 @@ const deleteCourse = async (req) => {
 		throw e;
 	}
 };
-
+// ok
 const addCourse = async (req) => {};
 
 const getAllClasses = async (req) => {

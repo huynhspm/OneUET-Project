@@ -121,8 +121,6 @@ const getAllDocuments = async (req, res) => {
 	}
 };
 
-// GET: /user/:id/grade
-
 module.exports = {
 	getAllUsers,
 	getUserById,

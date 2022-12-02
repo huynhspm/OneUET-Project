@@ -65,7 +65,9 @@ User.afterCreate(async (user) => {
 	const student = await Student.findOne({
 		where: { code: user.email.slice(0, 8) },
 	});
-	await user.update({ studentId: student.id });
+	if (student) {
+		await user.update({ studentId: student.id });
+	}
 });
 
 module.exports = User;

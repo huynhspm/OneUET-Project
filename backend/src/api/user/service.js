@@ -1,6 +1,7 @@
-const { User, Student, Class } = require("../../database/models");
+const { User, Class } = require("../../database/models");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 
+// ok
 const getAllUsers = async (req) => {
 	try {
 		const data = await User.findAll();
@@ -16,17 +17,44 @@ const getAllUsers = async (req) => {
 		throw e;
 	}
 };
+
+// ok
 const getUserById = async (req) => {
 	try {
 		const { id } = req.params;
 		let data, message, status;
 		data = await User.findByPk(id);
 
-		if (!data) {
+		if (data) {
+			message = "Get user successfully";
+			status = ResponseCode.OK;
+		} else {
 			message = "User not existed";
 			status = ResponseCode.Not_Found;
-		} else {
-			message = "Get user successfully";
+		}
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
+// ok
+const updateUser = async (req) => {
+	try {
+		let { data, message, status } = await getUserById(req);
+
+		if (data) {
+			const updatedUser = req.body;
+			data = await data.update(updatedUser, {
+				individualHooks: true,
+			});
+
+			message = "Update user successfully";
 			status = ResponseCode.OK;
 		}
 
@@ -40,34 +68,16 @@ const getUserById = async (req) => {
 	}
 };
 
-const updateUser = async (req) => {
-	try {
-		const { id } = req.params;
-		const updatedUser = req.body;
-		const data = await User.update(updatedUser, {
-			where: { id },
-			individualHooks: true,
-		});
-
-		const message = "Update user successfully";
-		const status = ResponseCode.OK;
-
-		return {
-			data,
-			message,
-			status,
-		};
-	} catch (e) {
-		throw e;
-	}
-};
-
+// ok
 const deleteUser = async (req) => {
 	try {
-		const { id } = req.params;
-		const data = await User.destroy({ where: { id } });
-		const message = "Delete user successfully";
-		const status = ResponseCode.OK;
+		let { data, message, status } = await getUserById(req);
+
+		if (data) {
+			data = await data.destroy();
+			message = "Delete user successfully";
+			status = ResponseCode.OK;
+		}
 
 		return {
 			data,
@@ -81,19 +91,17 @@ const deleteUser = async (req) => {
 
 const addUser = async (req) => {};
 
+// ok
 const getAllClasses = async (req) => {
 	try {
 		let { data, message, status } = await getUserById(req);
 
-		console.log(data);
 		if (data) {
-			const studentId = data.studentId;
-
-			data = await Student.findByPk(studentId, {
-				include: {
-					model: Class,
-				},
+			data = await data.getStudent({
+				include: Class,
 			});
+			message = "Get all classes successfully";
+			status = ResponseCode.OK;
 		}
 
 		return {
@@ -106,6 +114,7 @@ const getAllClasses = async (req) => {
 	}
 };
 
+// ok
 const getAllDocuments = async (req) => {
 	try {
 		let { data, message, status } = await getUserById(req);

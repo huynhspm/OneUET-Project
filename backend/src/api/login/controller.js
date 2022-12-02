@@ -11,7 +11,7 @@ const login = async (req, res) => {
 	});
 };
 
-//
+// POST: /login/verify
 const verify = async (req, res) => {
 	const result = await service.verify(req);
 	const { data, message, status } = result;
@@ -22,4 +22,4 @@ const verify = async (req, res) => {
 	});
 };
 
-module.exports = { login };
+module.exports = { login, verify };

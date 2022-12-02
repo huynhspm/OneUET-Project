@@ -1,6 +1,7 @@
 const { Student } = require("../../database/models");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 
+// ok
 const createStudent = async (req) => {
 	try {
 		const newStudent = req.body;
@@ -18,6 +19,7 @@ const createStudent = async (req) => {
 	}
 };
 
+// ok
 const getAllStudents = async (req) => {
 	try {
 		const data = await Student.findAll();
@@ -34,6 +36,7 @@ const getAllStudents = async (req) => {
 	}
 };
 
+// ok
 const getStudentById = async (req) => {
 	try {
 		const { id } = req.params;
@@ -58,13 +61,17 @@ const getStudentById = async (req) => {
 	}
 };
 
+// ok
 const updateStudent = async (req) => {
 	try {
-		const { id } = req.params;
-		const updatedStudent = req.body;
-		const data = await Student.update(updatedStudent, { where: { id } });
-		const message = "Update student successfully";
-		const status = ResponseCode.OK;
+		let { data, message, status } = await getStudentById(req);
+
+		if (data) {
+			const updatedStudent = req.body;
+			data = await data.update(updatedStudent);
+			message = "Update student successfully";
+			status = ResponseCode.OK;
+		}
 
 		return {
 			data,
@@ -76,12 +83,16 @@ const updateStudent = async (req) => {
 	}
 };
 
+// ok
 const deleteStudent = async (req) => {
 	try {
-		const { id } = req.params;
-		const data = await Student.destroy({ where: { id } });
-		const message = "Delete student successfully";
-		const status = ResponseCode.OK;
+		let { data, message, status } = await getStudentById(req);
+
+		if (data) {
+			data = await data.destroy();
+			message = "Delete student successfully";
+			status = ResponseCode.OK;
+		}
 
 		return {
 			data,
