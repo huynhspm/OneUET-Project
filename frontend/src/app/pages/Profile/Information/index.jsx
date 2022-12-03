@@ -1,13 +1,17 @@
-import React from "react";
+import React from 'react';
 import Box from '@mui/material/Box';
 import LeftDrawer from "../../../components/LeftDrawer";
+import Basic from './Basic';
+import Education from './Education';
+import Activities from './Activities';
 import Divider from '@mui/material/Divider';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
 
 const drawerWidth = 240;
 
 const Information = () => {
+
     return (
         <Box sx={{ display: 'flex' }}>
             <Box
@@ -22,27 +26,47 @@ const Information = () => {
             >
                 <Divider />
                 <Box
-                    sx={{ flexGrow: 1, p: 2 }}
+                    component="div"
+                    sx={{ flexGrow: 1, p: 1, m: 1 }}
                 >
-                    <Typography variant="h6" component="div">Cập nhật Thông tin</Typography>
-                </Box>
-                <Box
-                    component="form"
-                    sx={{
-                        '& .MuiTextField-root': { m: 1, width: '25ch' },
-                    }}
-                >
-                    <div>
-                        <TextField
-                            required
-                            id="outlined-required"
-                            label="Họ và tên"
-                            defaultValue=""
-                        />
-                    </div>
+                    <Grid container spacing={3}>
+                        <Grid item xs={12}>
+                            <Paper
+                                sx={{
+                                    p: 2,
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                }}
+                            >
+                                <Basic />
+                            </Paper>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Paper
+                                sx={{
+                                    p: 2,
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                }}
+                            >
+                                <Education />
+                            </Paper>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Paper
+                                sx={{
+                                    p: 2,
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                }}
+                            >
+                                <Activities />
+                            </Paper>
+                        </Grid>
+                    </Grid>
                 </Box>
             </Box>
-        </Box>
+        </Box >
     );
 };
 
