@@ -1,11 +1,7 @@
 import React from "react";
-import { Dialog, Zoom, Button, Divider, createTheme, ThemeProvider } from "@mui/material";
-import { Link } from "react-router-dom";
-import { defaultPost } from "../data";
+import { Dialog, Zoom, Button, Divider } from "@mui/material";
 import './styles.css'
 import { typography } from "@mui/system";
-import { styled } from "@mui/material/styles";
-import MuiButton from "@mui/material/Button"
 
 function OptionsDialog({ onClose }) {
     return (
