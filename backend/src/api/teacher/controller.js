@@ -41,26 +41,6 @@ const getAllTeachers = async (req, res) => {
 	}
 };
 
-// GET: /teacher/:id
-const getTeacherById = async (req, res) => {
-	try {
-		const result = await service.getTeacherById(req);
-		const { data, message, status } = result;
-
-		res.status(status).json({
-			data: data,
-			message: message,
-			status: status,
-		});
-	} catch (e) {
-		res.status(ResponseCode.Bad_Request).json({
-			data: e.message,
-			message: "Couldn't get teacher",
-			status: ResponseCode.Bad_Request,
-		});
-	}
-};
-
 // PUT: /teacher/:id
 const updateTeacher = async (req, res) => {
 	try {
@@ -101,10 +81,10 @@ const deleteTeacher = async (req, res) => {
 	}
 };
 
-// GET: /:id/course
-const getCourses = async (req, res) => {
+// GET: /teacher/:id
+const getTeacher = async (req, res) => {
 	try {
-		const result = await service.getCourses(req);
+		const result = await service.getTeacher(req);
 		const { data, message, status } = result;
 
 		res.status(status).json({
@@ -115,17 +95,19 @@ const getCourses = async (req, res) => {
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
 			data: e.message,
-			message: "Couldn't get all courses of teacher",
+			message: "Couldn't get teacher",
 			status: ResponseCode.Bad_Request,
 		});
 	}
 };
 
+const addTeacher = async (req, res) => {};
+
 module.exports = {
 	createTeacher,
 	getAllTeachers,
-	getTeacherById,
 	updateTeacher,
 	deleteTeacher,
-	getCourses,
+	getTeacher,
+	addTeacher,
 };

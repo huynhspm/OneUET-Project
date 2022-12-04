@@ -23,6 +23,10 @@ const User = sequelize.define(
 			allowNull: false,
 			type: DataTypes.STRING,
 		},
+		otherEmail: {
+			unique: true,
+			type: DataTypes.STRING,
+		},
 		birthday: {
 			type: DataTypes.DATE,
 		},
@@ -30,6 +34,18 @@ const User = sequelize.define(
 			type: DataTypes.STRING,
 		},
 		avatar: {
+			type: DataTypes.STRING,
+		},
+		program: {
+			type: DataTypes.STRING,
+		},
+		academicYear: {
+			type: DataTypes.STRING,
+		},
+		major: {
+			type: DataTypes.STRING,
+		},
+		club: {
 			type: DataTypes.STRING,
 		},
 		history: {

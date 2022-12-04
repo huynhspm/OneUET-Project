@@ -5,9 +5,11 @@ const ResponseCode = require("../../utils/constant/ResponseCode");
 const createClass = async (req) => {
 	try {
 		const newClass = req.body;
-		const data = await Class.create(newClass);
+		const curClass = await Class.create(newClass);
+
 		const message = "Create class successfully!";
 		const status = ResponseCode.Created;
+		const data = { curClass };
 
 		return {
 			data,
@@ -22,9 +24,11 @@ const createClass = async (req) => {
 // ok
 const getAllClasses = async (req) => {
 	try {
-		const data = await Class.findAll();
+		const classes = await Class.findAll();
 		const message = "Get all classes successfully";
 		const status = ResponseCode.OK;
+
+		const data = { classes };
 
 		return {
 			data,
@@ -37,23 +41,22 @@ const getAllClasses = async (req) => {
 };
 
 // ok
-const getClassById = async (req) => {
+const verifyClass = async (req) => {
 	try {
 		const { id } = req.params;
-		let data, message, status;
-		data = await Class.findByPk(id);
+		let curClass, message, status;
+		curClass = await Class.findByPk(id);
 
-		if (data) {
+		if (curClass) {
 			message = "Get class successfully";
 			status = ResponseCode.OK;
 		} else {
-			data = null;
 			message = "Class not existed";
 			status = ResponseCode.OK;
 		}
 
 		return {
-			data,
+			curClass,
 			message,
 			status,
 		};
@@ -65,14 +68,16 @@ const getClassById = async (req) => {
 // ok
 const updateClass = async (req) => {
 	try {
-		let { data, message, status } = await getClassById(req);
+		let { curClass, message, status } = await verifyClass(req);
 
-		if (data) {
+		if (curClass) {
 			const updatedClass = req.body;
-			data = await data.update(updatedClass);
+			curClass = await curClass.update(updatedClass);
 			message = "Update class successfully";
 			status = ResponseCode.OK;
 		}
+
+		const data = { curClass };
 
 		return {
 			data,
@@ -87,13 +92,47 @@ const updateClass = async (req) => {
 // ok
 const deleteClass = async (req) => {
 	try {
-		let { data, message, status } = await getClassById(req);
+		let { curClass, message, status } = await verifyClass(req);
 
-		if (data) {
-			data = await data.destroy();
+		if (curClass) {
+			curClass = await curClass.destroy();
 			message = "Delete class successfully";
 			status = ResponseCode.OK;
 		}
+
+		const data = { curClass };
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
+// ok
+const getClass = async (req) => {
+	try {
+		let { curClass, message, status } = await verifyClass(req);
+		let teachers, students, course;
+
+		if (curClass) {
+			teachers = await curClass.getTeachers();
+			students = await curClass.getStudents();
+			course = await curClass.getCourse();
+
+			message = "Get class successfully";
+			status = ResponseCode.OK;
+		}
+
+		const data = {
+			curClass,
+			teachers,
+			students,
+			course,
+		};
 
 		return {
 			data,
@@ -132,77 +171,11 @@ const addClass = async (req) => {
 	}
 };
 
-// ok
-const getAllTeachers = async (req) => {
-	try {
-		let { data, message, status } = await getClassById(req);
-
-		if (data) {
-			data = await data.getTeachers();
-			message = "Get all teachers of class successfully";
-			status = ResponseCode.OK;
-		}
-
-		return {
-			data,
-			message,
-			status,
-		};
-	} catch (e) {
-		throw e;
-	}
-};
-
-// ok
-const getAllStudents = async (req) => {
-	try {
-		let { data, message, status } = await getClassById(req);
-
-		if (data) {
-			data = await data.getStudents();
-			message = "Get all students of class successfully";
-			status = ResponseCode.OK;
-		}
-
-		return {
-			data,
-			message,
-			status,
-		};
-	} catch (e) {
-		throw e;
-	}
-};
-
-// ok
-const getCourse = async (req) => {
-	try {
-		let { data, message, status } = await getClassById(req);
-
-		if (data) {
-			data = await data.getCourse();
-			message = "Get course of class successfully";
-			status = ResponseCode.OK;
-		}
-
-		return {
-			data,
-			message,
-			status,
-		};
-	} catch (e) {
-		throw e;
-	}
-};
-
 module.exports = {
 	createClass,
 	getAllClasses,
-	getClassById,
 	updateClass,
 	deleteClass,
+	getClass,
 	addClass,
-	getAllTeachers,
-	getAllStudents,
-	getCourse,
 };
