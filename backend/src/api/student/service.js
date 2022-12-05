@@ -1,12 +1,15 @@
 const { Student } = require("../../database/models");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 
+// ok
 const createStudent = async (req) => {
 	try {
 		const newStudent = req.body;
-		data = await Student.create(newStudent);
+		const student = await Student.create(newStudent);
+
 		const message = "Create Student successfully!";
 		const status = ResponseCode.Created;
+		const data = { student };
 
 		return {
 			data,
@@ -18,11 +21,14 @@ const createStudent = async (req) => {
 	}
 };
 
+// ok
 const getAllStudents = async (req) => {
 	try {
-		const data = await Student.findAll();
+		const students = await Student.findAll();
+
 		const message = "Get all students successfully";
 		const status = ResponseCode.OK;
+		const data = { students };
 
 		return {
 			data,
@@ -34,18 +40,40 @@ const getAllStudents = async (req) => {
 	}
 };
 
-const getStudentById = async (req) => {
+const verifyStudent = async (req) => {
 	try {
 		const { id } = req.params;
-		let data, message, status;
-		data = await Student.findByPk(id);
+		let student, message, status;
+		student = await Student.findByPk(id);
 
-		if (data) {
+		if (student) {
 			message = "Get student successfully";
 			status = ResponseCode.OK;
 		} else {
 			message = "Student not existed";
 			status = ResponseCode.Not_Found;
+		}
+
+		return {
+			student,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
+// ok
+const updateStudent = async (req) => {
+	try {
+		let { student, message, status } = await verifyStudent(req);
+
+		if (student) {
+			const updatedStudent = req.body;
+			student = await student.update(updatedStudent);
+			message = "Update student successfully";
+			status = ResponseCode.OK;
 		}
 
 		return {
@@ -58,13 +86,16 @@ const getStudentById = async (req) => {
 	}
 };
 
-const updateStudent = async (req) => {
+// ok
+const deleteStudent = async (req) => {
 	try {
-		const { id } = req.params;
-		const updatedStudent = req.body;
-		const data = await Student.update(updatedStudent, { where: { id } });
-		const message = "Update student successfully";
-		const status = ResponseCode.OK;
+		let { data, message, status } = await verifyStudent(req);
+
+		if (data) {
+			data = await data.destroy();
+			message = "Delete student successfully";
+			status = ResponseCode.OK;
+		}
 
 		return {
 			data,
@@ -76,12 +107,22 @@ const updateStudent = async (req) => {
 	}
 };
 
-const deleteStudent = async (req) => {
+// ok
+const getStudent = async (req) => {
 	try {
-		const { id } = req.params;
-		const data = await Student.destroy({ where: { id } });
-		const message = "Delete student successfully";
-		const status = ResponseCode.OK;
+		let { student, message, status } = await verifyStudent(req);
+		let classes;
+
+		if (student) {
+			classes = await student.getClasses();
+			message = "Get student successfully";
+			status = ResponseCode.OK;
+		}
+
+		const data = {
+			student,
+			classes,
+		};
 
 		return {
 			data,
@@ -95,32 +136,11 @@ const deleteStudent = async (req) => {
 
 const addStudent = async (req) => {};
 
-const getAllClasses = async (req) => {
-	try {
-		let { data, message, status } = await getStudentById(req);
-
-		if (data) {
-			data = await data.getClasses();
-			message = "Get all classes of student successfully";
-			status = ResponseCode.OK;
-		}
-
-		return {
-			data,
-			message,
-			status,
-		};
-	} catch (e) {
-		throw e;
-	}
-};
-
 module.exports = {
 	createStudent,
 	getAllStudents,
-	getStudentById,
 	updateStudent,
 	deleteStudent,
+	getStudent,
 	addStudent,
-	getAllClasses,
 };

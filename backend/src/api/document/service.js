@@ -4,9 +4,11 @@ const ResponseCode = require("../../utils/constant/ResponseCode");
 const createDocument = async (req) => {
 	try {
 		const newDocument = req.body;
-		const data = await Document.create(newDocument);
+		const document = await Document.create(newDocument);
+
 		const message = "Create document successfully!";
 		const status = ResponseCode.Created;
+		const data = { document };
 
 		return {
 			data,
@@ -20,9 +22,11 @@ const createDocument = async (req) => {
 
 const getAllDocuments = async (req) => {
 	try {
-		const data = await Document.findAll();
+		const documents = await Document.findAll();
+
 		const message = "Get all documents successfully";
 		const status = ResponseCode.OK;
+		const data = { documents };
 
 		return {
 			data,
@@ -34,15 +38,22 @@ const getAllDocuments = async (req) => {
 	}
 };
 
-const getDocumentById = async (req) => {
+const verifyDocument = async (req) => {
 	try {
 		const { id } = req.params;
-		data = await Document.findByPk(id);
-		const message = "Get document successfully";
-		const status = ResponseCode.OK;
+		let document, message, status;
+		document = await Document.findByPk(id);
+
+		if (document) {
+			message = "Get document successfully";
+			status = ResponseCode.OK;
+		} else {
+			message = "Document not existed";
+			status = ResponseCode.Not_Found;
+		}
 
 		return {
-			data,
+			document,
 			message,
 			status,
 		};
@@ -53,11 +64,16 @@ const getDocumentById = async (req) => {
 
 const updateDocument = async (req) => {
 	try {
-		const { id } = req.params;
-		const updatedDocument = req.body;
-		const data = await Document.update(updatedDocument, { where: { id } });
-		const message = "Update document successfully";
-		const status = ResponseCode.OK;
+		let { document, message, status } = await verifyDocument(req);
+
+		if (document) {
+			const updatedDocument = req.body;
+			document = await document.update(updatedDocument);
+			message = "Update document successfully";
+			status = ResponseCode.OK;
+		}
+
+		const data = { document };
 
 		return {
 			data,
@@ -71,10 +87,15 @@ const updateDocument = async (req) => {
 
 const deleteDocument = async (req) => {
 	try {
-		const { id } = req.params;
-		const data = await Document.destroy({ where: { id } });
-		const message = "Delete class successfully";
-		const status = ResponseCode.OK;
+		let { document, message, status } = await verifyDocument(req);
+
+		if (document) {
+			document = document.destroy();
+			message = "Delete document successfully";
+			status = ResponseCode.OK;
+		}
+
+		const data = { document };
 
 		return {
 			data,
@@ -86,13 +107,41 @@ const deleteDocument = async (req) => {
 	}
 };
 
-const addDocument = async (req) => {};
+const getDocument = async (req) => {
+	try {
+		let { document, message, status } = await verifyDocument(req);
+		let course, teacher, file;
+
+		if (document) {
+			course = await document.getCourse();
+			teacher = await document.getTeacher();
+			file = await document.getFile();
+
+			message = "Get document successfully";
+			status = ResponseCode.OK;
+		}
+
+		const data = {
+			document,
+			course,
+			teacher,
+			file,
+		};
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
 
 module.exports = {
 	createDocument,
 	getAllDocuments,
-	getDocumentById,
 	updateDocument,
-	addDocument,
 	deleteDocument,
+	getDocument,
 };

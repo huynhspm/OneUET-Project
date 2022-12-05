@@ -1,13 +1,19 @@
 const nodemailer = require("nodemailer");
 const config = require("../config");
 
-const sendOTP = async (email, subject, otp) => {
+const createOTP = () => {
+	let min = 100000;
+	let max = 999999;
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+const sendOTP = async (email, otp) => {
 	try {
 		const transporter = nodemailer.createTransport(config.mail_setting);
 		const mailOptions = {
 			from: config.mail_setting.auth.user,
 			to: email,
-			subject: subject,
+			subject: "Verify email with OTP code",
 			html: `
 			<div
 			  class="container"
@@ -26,4 +32,4 @@ const sendOTP = async (email, subject, otp) => {
 	}
 };
 
-module.exports = sendOTP;
+module.exports = { sendOTP, createOTP };

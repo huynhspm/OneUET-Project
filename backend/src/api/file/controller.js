@@ -24,19 +24,7 @@ const getAllFiles = async (req, res) => {
 	});
 };
 
-// GET: /:id
-const getFileById = async (req, res) => {
-	const result = await service.getFileById(req);
-	const { data, message, status } = result;
-
-	res.status(status).json({
-		data: data,
-		message: message,
-		status: status,
-	});
-};
 // PUT: /:id
-
 const updateFile = async (req, res) => {
 	const result = await service.updateFile(req);
 	const { data, message, status } = result;
@@ -60,10 +48,22 @@ const deleteFile = async (req, res) => {
 	});
 };
 
+// GET: /:id
+const getFile = async (req, res) => {
+	const result = await service.getFileById(req);
+	const { data, message, status } = result;
+
+	res.status(status).json({
+		data: data,
+		message: message,
+		status: status,
+	});
+};
+
 module.exports = {
 	createFile,
 	getAllFiles,
-	getFileById,
+	getFile,
 	updateFile,
 	deleteFile,
 };

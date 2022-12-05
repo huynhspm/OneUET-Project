@@ -3,6 +3,8 @@ const sequelize = require("../");
 
 const User = require("./User");
 const File = require("./File");
+const Course = require("./Course");
+const Teacher = require("./Teacher");
 
 const Document = sequelize.define(
 	"document",
@@ -38,5 +40,11 @@ User.hasMany(Document);
 
 Document.belongsTo(File);
 File.hasOne(Document);
+
+Document.belongsTo(Course);
+Course.hasMany(Document);
+
+Document.belongsTo(Teacher);
+Teacher.hasMany(Document);
 
 module.exports = Document;
