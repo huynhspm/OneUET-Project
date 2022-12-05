@@ -2,6 +2,7 @@
 	{
 		"year": 2022,
 		"category": "Giáo trình",
+		"name": "abcd",
 		"fileId": 1,
 		"userId": 1,
 		"teacherId": 2,
@@ -10,6 +11,7 @@
 	{
 		"year": 2021,
 		"category": "Đề thi",
+		"name": "abcde",
 		"fileId": 2,
 		"userId": 1,
 		"teacherId": 1,
@@ -18,6 +20,7 @@
 	{
 		"year": 2020,
 		"category": "Đề thi",
+		"name": "abcdef",
 		"fileId": 3,
 		"userId": 2,
 		"teacherId": 4,
@@ -26,6 +29,7 @@
 	{
 		"year": 2022,
 		"category": "Đề thi",
+		"name": "abcdefg",
 		"fileId": 4,
 		"userId": 2,
 		"teacherId": 5,
@@ -34,6 +38,7 @@
 	{
 		"year": 2021,
 		"category": "Giáo trình",
+		"name": "abcdefgh",
 		"fileId": 5,
 		"userId": 3,
 		"teacherId": 5,
