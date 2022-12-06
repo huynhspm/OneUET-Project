@@ -7,6 +7,7 @@ import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 
 import OptionsDialog from '../OpitonsDialog';
 import './styles.css';
+import Tags from '../Tags';
 
 const StyledModal = styled(Modal)({
     display: 'flex',
@@ -25,6 +26,11 @@ const PreviewDocument = (props) => {
     const handleClose = () => {
         props.setOpen(false);
     }
+
+    let t1 = "https://docs.google.com/viewer?srcid="; 
+    let t2 = "&pid=explorer&efh=false&a=v&chrome=false&embedded=true"; 
+
+    const pdf_link = t1.concat('1pRHDGYar6n85cSndPP0XYuBKNcBlqEqd', t2);
 
     return (
         <>
@@ -54,12 +60,13 @@ const PreviewDocument = (props) => {
                             aria-label="mailbox folders"
                         >
                             <div class='pdf-viewer'>
-                                <Viewer
+                                {/* <Viewer
                                     fileUrl="https://arxiv.org/pdf/2003.13401.pdf"
                                     plugins={[
                                         defaultLayoutPluginInstance
                                     ]}
-                                />
+                                /> */}
+                                <iframe src={pdf_link} width="600px" height="500px"></iframe>
                             </div>
                         </Box>
                         <Box
@@ -69,6 +76,7 @@ const PreviewDocument = (props) => {
                                 {props.description}
                             </Typography>
                             <Divider />
+                            <Tags data="Khoa"></Tags>
                             <Typography color="textSecondary" className="datePosted" sx={{ pt: 1 }}>
                                 5 DAYS AGO
                             </Typography>
@@ -132,6 +140,9 @@ function Comment() {
                 rows={1}
                 onChange={event => setContent(event.target.value)}
                 class="textField"
+                sx={{
+                    pb: 0
+                }}
                 InputProps={{
                     classes: {
                         root: ".root",
