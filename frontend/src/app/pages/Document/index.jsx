@@ -11,6 +11,8 @@ import Add from '../../components/Add';
 import Pagination from '@mui/material/Pagination';
 import HorizontalDocumentList from "../../components/HorizontalDocumentList";
 import { useState } from 'react';
+import { FilterBox, CategoryBox } from './styles';
+// import CssBaseline from '@mui/material';
 import './styles.css'
 
 const drawerWidth = 240;
@@ -46,36 +48,36 @@ const Document = (props) => {
 	const drawer = (
 		<div>
 			<List>
-				<ListItem >
-					<Box sx={{ height: 21, fontSize: 18, fontWeight: 'bold', fontFamily: 'Canva Sans,Noto Sans Variable,Noto Sans,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif' }}>Filter</Box>
+				<ListItem>
+					<FilterBox> Filter </FilterBox>
 				</ListItem>
 			</List>
 			<Divider />
 			<List>
 				<ListItem disablePadding>
-					<Box sx={{ pl:2, height: 21, fontSize: 14, fontWeight: 'bold', fontFamily: 'Canva Sans,Noto Sans Variable,Noto Sans,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif' }}>Category</Box>
+					<CategoryBox> Khoa </CategoryBox>
 				</ListItem>
 			</List>
-			<FormGroup sx={{ml:2}}>
+			<FormGroup sx={{ ml: 2 }}>
 				{['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-					<FormControlLabel 
-						label={<Typography sx = {{fontSize:14}}>{text}</Typography>}
-						control={<Checkbox sx={{ '& .MuiSvgIcon-root': { fontSize: 16 } }} /> }  
-						sx ={{pl:1}}/>
+					<FormControlLabel
+						label={<Typography sx={{ fontSize: 14 }}>{text}</Typography>}
+						control={<Checkbox sx={{ '& .MuiSvgIcon-root': { fontSize: 16 } }} />}
+						sx={{ pl: 1 }} />
 				))}
 			</FormGroup>
 			<Divider />
 			<List>
 				<ListItem disablePadding>
-					<Box sx={{ pl:2, height: 21, fontSize: 14, fontWeight: 'bold', fontFamily: 'Canva Sans,Noto Sans Variable,Noto Sans,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif' }}>Category</Box>
+					<CategoryBox> Ngành </CategoryBox>
 				</ListItem>
 			</List>
-			<FormGroup sx={{ml:2}}>
+			<FormGroup sx={{ ml: 2 }}>
 				{['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-					<FormControlLabel 
-						label={<Typography sx = {{fontSize:14}}>{text}</Typography>}
-						control={<Checkbox sx={{ '& .MuiSvgIcon-root': { fontSize: 16 } }} /> }  
-						sx ={{pl:1}}/>
+					<FormControlLabel
+						label={<Typography sx={{ fontSize: 14 }}>{text}</Typography>}
+						control={<Checkbox sx={{ '& .MuiSvgIcon-root': { fontSize: 16 } }} />}
+						sx={{ pl: 1 }} />
 				))}
 			</FormGroup>
 		</div >
@@ -83,17 +85,17 @@ const Document = (props) => {
 
 	return (
 		<>
-			<Box sx={{ display: 'flex', flexDirection: 'row', top:52 }}>
+			<Box sx={{ display: 'flex', flexDirection: 'row'}}>
 				{/* <CssBaseline /> */}
 				<Box
 					component="nav"
 					sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-					aria-label="mailbox folders"
+					// aria-label="mailbox folders"
 				>
 					<Drawer
 						variant="permanent"
 						sx={{
-							display: { xs: 'none', sm: 'block', display: 'flex', flexDirection: 'row'  },
+							display: { xs: 'none', sm: 'block', display: 'flex', flexDirection: 'row' },
 							'& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
 						}}
 						open

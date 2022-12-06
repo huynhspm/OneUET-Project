@@ -41,26 +41,6 @@ const getAllDocuments = async (req, res) => {
 	}
 };
 
-// GET: /document/:id
-const getDocumentById = async (req, res) => {
-	try {
-		const result = await service.getDocumentById(req);
-		const { data, message, status } = result;
-
-		res.status(status).json({
-			data: data,
-			message: message,
-			status: status,
-		});
-	} catch (e) {
-		res.status(ResponseCode.Bad_Request).json({
-			data: e.message,
-			message: "Couldn't get document",
-			status: ResponseCode.Bad_Request,
-		});
-	}
-};
-
 // PUT: /document/:id
 const updateDocument = async (req, res) => {
 	try {
@@ -101,10 +81,30 @@ const deleteDocument = async (req, res) => {
 	}
 };
 
+// GET: /document/:id
+const getDocument = async (req, res) => {
+	try {
+		const result = await service.getDocument(req);
+		const { data, message, status } = result;
+
+		res.status(status).json({
+			data: data,
+			message: message,
+			status: status,
+		});
+	} catch (e) {
+		res.status(ResponseCode.Bad_Request).json({
+			data: e.message,
+			message: "Couldn't get document",
+			status: ResponseCode.Bad_Request,
+		});
+	}
+};
+
 module.exports = {
 	createDocument,
 	getAllDocuments,
-	getDocumentById,
 	updateDocument,
 	deleteDocument,
+	getDocument,
 };

@@ -6,13 +6,9 @@ const router = Router();
 router.post("/", controller.createClass);
 router.get("/", controller.getAllClasses);
 
-router.get("/:id", controller.getClassById);
 router.put("/:id", controller.updateClass);
 router.delete("/:id", controller.deleteClass);
+router.get("/:id", controller.getClass);
 router.post("/:id", controller.addClass);
-
-router.get("/:id/teacher", controller.getAllTeachers);
-router.get("/:id/student", controller.getAllStudents);
-router.get("/:id/course", controller.getCourse);
 
 module.exports = router;
