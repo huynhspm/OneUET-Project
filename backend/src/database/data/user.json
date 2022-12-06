@@ -1,11 +1,13 @@
 [
     {
         "email": "18020133@vnu.edu.vn",
-        "password": "12345678"
+        "password": "12345678",
+        "active": true
     },
     {
         "email": "18020179@vnu.edu.vn",
-        "password": "12345678"
+        "password": "12345678",
+        "active": "true"
     },
     {
         "email": "18020200@vnu.edu.vn",
@@ -14,12 +16,10 @@
     },
     {
         "email": "18020227@vnu.edu.vn",
-        "password": "12345678",
-        "active": "true"
+        "password": "12345678"
     },
     {
         "email": "18020388@vnu.edu.vn",
-        "password": "12345678",
-        "active": "true"
+        "password": "12345678"
     }
 ]

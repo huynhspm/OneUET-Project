@@ -21,7 +21,7 @@ const getAllUsers = async (req, res) => {
 	}
 };
 
-// PUT: /user/:id
+// PUT: /user/me
 const updateUser = async (req, res) => {
 	try {
 		const result = await service.updateUser(req);

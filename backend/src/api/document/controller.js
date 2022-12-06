@@ -22,9 +22,9 @@ const createDocument = async (req, res) => {
 };
 
 // GET: /document
-const getAllDocuments = async (req, res) => {
+const getPublicDocuments = async (req, res) => {
 	try {
-		const result = await service.getAllDocuments(req);
+		const result = await service.getPublicDocuments(req);
 		const { data, message, status } = result;
 
 		res.status(status).json({
@@ -35,7 +35,27 @@ const getAllDocuments = async (req, res) => {
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
 			data: e.message,
-			message: "Couldn't get all documents",
+			message: "Couldn't get public documents",
+			status: ResponseCode.Bad_Request,
+		});
+	}
+};
+
+// GET: /document/me
+const getMyDocuments = async (req, res) => {
+	try {
+		const result = await service.getMyDocuments(req);
+		const { data, message, status } = result;
+
+		res.status(status).json({
+			data: data,
+			message: message,
+			status: status,
+		});
+	} catch (e) {
+		res.status(ResponseCode.Bad_Request).json({
+			data: e.message,
+			message: "Couldn't get my documents",
 			status: ResponseCode.Bad_Request,
 		});
 	}
@@ -103,7 +123,8 @@ const getDocument = async (req, res) => {
 
 module.exports = {
 	createDocument,
-	getAllDocuments,
+	getPublicDocuments,
+	getMyDocuments,
 	updateDocument,
 	deleteDocument,
 	getDocument,

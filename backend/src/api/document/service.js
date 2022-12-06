@@ -1,4 +1,5 @@
 const { Document } = require("../../database/models");
+const { verifyUser } = require("../user/service");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 
 const createDocument = async (req) => {
@@ -20,14 +21,34 @@ const createDocument = async (req) => {
 	}
 };
 
-const getAllDocuments = async (req) => {
+const getPublicDocuments = async (req) => {
 	try {
-		const documents = await Document.findAll();
+		const documents = await Document.findAll({ where: { status: "public" } });
 
-		const message = "Get all documents successfully";
+		const message = "Get public documents successfully";
 		const status = ResponseCode.OK;
 		const data = { documents };
 
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
+const getMyDocuments = async (req) => {
+	try {
+		let { user, message, status } = await verifyUser(req.user.id);
+		if (user) {
+			const documents = await user.getDocuments();
+
+			message = "Get my documents successfully";
+			status = ResponseCode.OK;
+			data = { documents };
+		}
 		return {
 			data,
 			message,
@@ -70,6 +91,28 @@ const updateDocument = async (req) => {
 			const updatedDocument = req.body;
 			document = await document.update(updatedDocument);
 			message = "Update document successfully";
+			status = ResponseCode.OK;
+		}
+
+		const data = { document };
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
+const deleteMyDocument = async (req) => {
+	try {
+		let { document, message, status } = await verifyDocument(req);
+
+		if (document) {
+			document = document.destroy();
+			message = "Delete document successfully";
 			status = ResponseCode.OK;
 		}
 
@@ -140,8 +183,11 @@ const getDocument = async (req) => {
 
 module.exports = {
 	createDocument,
-	getAllDocuments,
+	getPublicDocuments,
+	getMyDocuments,
 	updateDocument,
+	// deleteMyDocument,
+	// getMyDocument,
 	deleteDocument,
 	getDocument,
 };

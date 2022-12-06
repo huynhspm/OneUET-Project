@@ -21,9 +21,8 @@ const getAllUsers = async (req) => {
 };
 
 // ok
-const verifyUser = async (req) => {
+const verifyUser = async (id) => {
 	try {
-		const { id } = req.params;
 		let user, message, status;
 		user = await User.findByPk(id);
 
@@ -31,7 +30,7 @@ const verifyUser = async (req) => {
 			message = "User existed";
 			status = ResponseCode.OK;
 		} else {
-			message = "user not existed";
+			message = "User not existed";
 			status = ResponseCode.OK;
 		}
 
@@ -46,59 +45,9 @@ const verifyUser = async (req) => {
 };
 
 // ok
-const updateUser = async (req) => {
-	try {
-		let { user, message, status } = await verifyUser(req);
-
-		if (user) {
-			const updatedUser = req.body;
-			user = await user.update(updatedUser, {
-				individualHooks: true,
-			});
-
-			message = "Update user successfully";
-			status = ResponseCode.OK;
-		}
-
-		const data = { user };
-
-		return {
-			data,
-			message,
-			status,
-		};
-	} catch (e) {
-		throw e;
-	}
-};
-
-// ok
-const deleteUser = async (req) => {
-	try {
-		let { user, message, status } = await verifyUser(req);
-
-		if (user) {
-			user = await user.destroy();
-			message = "Delete user successfully";
-			status = ResponseCode.OK;
-		}
-
-		const data = { user };
-
-		return {
-			data,
-			message,
-			status,
-		};
-	} catch (e) {
-		throw e;
-	}
-};
-
-// ok
 const getUser = async (req) => {
 	try {
-		let { user, message, status } = await verifyUser(req);
+		let { user, message, status } = await verifyUser(req.params.id);
 		let classes, documents;
 
 		if (user) {
@@ -125,10 +74,61 @@ const getUser = async (req) => {
 	}
 };
 
+// ok
+const updateUser = async (req) => {
+	try {
+		let { user, message, status } = await verifyUser(req.user.id);
+
+		if (user) {
+			const updatedUser = req.body;
+			user = await user.update(updatedUser, {
+				individualHooks: true,
+			});
+
+			message = "Update user successfully";
+			status = ResponseCode.OK;
+		}
+
+		const data = { user };
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
+// ok
+const deleteUser = async (req) => {
+	try {
+		let { user, message, status } = await verifyUser(req.params.id);
+
+		if (user) {
+			user = await user.destroy();
+			message = "Delete user successfully";
+			status = ResponseCode.OK;
+		}
+
+		const data = { user };
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
 const addUser = async (req) => {};
 
 module.exports = {
 	getAllUsers,
+	verifyUser,
 	updateUser,
 	deleteUser,
 	getUser,

@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+const jwt = require("jsonwebtoken");
 const config = require("../config");
 
 const RoleCode = require("../utils/constant/RoleCode");
@@ -24,13 +24,13 @@ const verifyToken = (req, res, next) => {
 			});
 		}
 
-		res.locals = decode;
+		req.user = decode;
 		next();
 	});
 };
 
 const verifyAdmin = async (req, res, next) => {
-	const token = res.locals;
+	const token = req.user;
 	if (!token || !token.roleIds.includes(RoleCode.Admin)) {
 		return res.status(ResponseCode.Unauthorized).json({
 			data: null,
@@ -42,7 +42,7 @@ const verifyAdmin = async (req, res, next) => {
 };
 
 const verifyUser = async (req, res, next) => {
-	const token = res.locals;
+	const token = req.user;
 	if (!token || !token.roleIds.includes(RoleCode.User)) {
 		return res.status(ResponseCode.Unauthorized).json({
 			data: null,
@@ -53,4 +53,4 @@ const verifyUser = async (req, res, next) => {
 	next();
 };
 
-exports.module = { verifyToken, verifyAdmin, verifyUser };
+module.exports = { verifyToken, verifyAdmin, verifyUser };

@@ -1,6 +1,12 @@
 const Router = require("express");
 const controller = require("./controller");
 
+const {
+	verifyToken,
+	verifyUser,
+	verifyAdmin,
+} = require("../../middleware/service");
+
 const router = Router();
 
 router.post("/", controller.createTeacher);

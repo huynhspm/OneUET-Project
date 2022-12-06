@@ -33,19 +33,16 @@ const login = async (req) => {
 			if (user.active) {
 				const roles = await user.getRoles();
 				const roleIds = roles.map((role) => role.id);
-
+				
 				const token = jwt.sign(
-					{ userId: user.id, roleIds },
+					{ id: user.id, roleIds },
 					config.secret_key,
 					{
 						expiresIn: config.expires_in,
 					}
 				);
 
-				data = {
-					user,
-					token,
-				};
+				data = { token };
 				message = "Login successfully!";
 				status = ResponseCode.OK;
 			} else {

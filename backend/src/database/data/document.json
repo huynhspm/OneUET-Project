@@ -43,5 +43,35 @@
 		"userId": 3,
 		"teacherId": 5,
 		"courseId": 5
+	},
+	{
+		"year": 2020,
+		"category": "Giáo trình",
+		"name": "spm",
+		"fileId": 6,
+		"userId": 3,
+		"teacherId": 5,
+		"courseId": 5,
+		"status": "public"
+	},
+	{
+		"year": 2021,
+		"category": "Giáo trình",
+		"name": "spm",
+		"fileId": 7,
+		"userId": 3,
+		"teacherId": 5,
+		"courseId": 5,
+		"status": "public"
+	},
+	{
+		"year": 2021,
+		"category": "Giáo trình",
+		"name": "spm",
+		"fileId": 8,
+		"userId": 3,
+		"teacherId": 5,
+		"courseId": 5,
+		"status": "public"
 	}
 ]
