@@ -1,92 +1,137 @@
 const { File } = require("../../database/models");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 
+// ok
 const createFile = async (req) => {
-	const newFile = req.body;
-	const data = await File.create(newFile);
+	try {
+		const newFile = req.body;
+		const file = await File.create(newFile);
 
-	const message = "Create file successfully!";
-	const status = ResponseCode.Created;
+		const message = "Create file successfully!";
+		const status = ResponseCode.Created;
+		const data = { file };
 
-	return {
-		data,
-		message,
-		status,
-	};
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
 };
 
+// ok
 const getAllFiles = async (req) => {
-	const data = await File.findAll();
+	try {
+		const files = await File.findAll();
 
-	const message = "Get all files successfully";
-	const status = ResponseCode.OK;
+		const message = "Get all files successfully";
+		const status = ResponseCode.OK;
+		const data = { files };
 
-	return {
-		data,
-		message,
-		status,
-	};
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+// ok
+const verifyFile = async (req) => {
+	try {
+		const { id } = req.params;
+		let file, message, status;
+		file = await File.findByPk(id);
+
+		if (file) {
+			message = "Get file successfully";
+			status = ResponseCode.OK;
+		} else {
+			message = "File not existed";
+			status = ResponseCode.Not_Found;
+		}
+
+		return {
+			file,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
 };
 
-const getFileById = async (req) => {
-	const { id } = req.params;
-	const data = await File.findByPk(id);
-
-	const message = "Get files successfully";
-	const status = ResponseCode.OK;
-
-	return {
-		data,
-		message,
-		status,
-	};
-};
-
+// ok
 const updateFile = async (req) => {
-	const { id } = req.params;
-	const updatedFile = req.body;
+	try {
+		let { file, message, status } = await verifyFile(req);
 
-	const data = await File.update(updatedFile, {
-		where: {
-			id,
-		},
-	});
+		if (file) {
+			const updatedFile = req.body;
+			file = await file.update(updatedFile);
+			message = "Update file successfully";
+			status = ResponseCode.OK;
+		}
 
-	const message = "Update file successfully";
-	const status = ResponseCode.OK;
+		const data = { file };
 
-	return {
-		data,
-		message,
-		status,
-	};
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
 };
 
+// ok
 const deleteFile = async (req) => {
-	const { id } = req.params;
-	const data = await File.destroy({
-		where: {
-			id,
-		},
-	});
+	try {
+		let { file, message, status } = await verifyFile(req);
 
-	const message = "Delete file successfully";
-	const status = ResponseCode.OK;
+		if (file) {
+			file = file.destroy();
+			message = "Delete file successfully";
+			status = ResponseCode.OK;
+		}
 
-	return {
-		data,
-		message,
-		status,
-	};
+		const data = { file };
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
 };
 
-const addFile = async (req) => {};
+// ok
+const getFile = async (req) => {
+	try {
+		let { file, message, status } = await verifyFile(req);
+
+		const data = { file };
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
 
 module.exports = {
 	createFile,
 	getAllFiles,
-	getFileById,
 	updateFile,
 	deleteFile,
-	addFile,
+	getFile,
 };

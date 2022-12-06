@@ -3,11 +3,7 @@ const jwt = require("jsonwebtoken");
 const config = require("../../config");
 const { User } = require("../../database/models");
 const ResponseCode = require("../../utils/constant/ResponseCode");
-const sendOTP = require("../../utils/email");
-
-const getOTP = (min, max) => {
-	return Math.floor(Math.random() * (max - min + 1)) + min;
-};
+const { sendOTP, createOTP } = require("../../utils/email");
 
 const verifyEmail = async (email) => {
 	return await User.findOne({ where: { email } });
@@ -53,10 +49,10 @@ const login = async (req) => {
 				message = "Login successfully!";
 				status = ResponseCode.OK;
 			} else {
-				const subject = "Verify email with OTP code";
-				const otp = getOTP();
-				await sendOTP(user.email, subject, otp);
-				user.update({ otp });
+				const otp = createOTP();
+				// await sendOTP(user.email, otp);
+				console.log("sendOTP");
+				await user.update({ otp });
 
 				data = user.id;
 				message = "Login successfully but not active!";
@@ -76,9 +72,10 @@ const verify = async (req, res) => {
 	const { id, otp } = req.body;
 	let data, message, status;
 
-	const user = User.findByPk(id);
+	const user = await User.findByPk(id);
 
-	if (otp === user.otp) {
+	if (parseInt(otp) === user.otp) {
+		await user.update({ active: true });
 		const roles = await user.getRoles();
 		const roleIds = roles.map((role) => role.id);
 
@@ -90,13 +87,19 @@ const verify = async (req, res) => {
 			user,
 			token,
 		};
-		message = "OTP validation Successful!";
+		message = "OTP validation successful!";
 		status = ResponseCode.OK;
 	} else {
 		data = null;
 		message = "Invalid OTP";
 		status = ResponseCode.Unauthorized;
 	}
+
+	return {
+		data,
+		message,
+		status,
+	};
 };
 
 module.exports = { login, verify };
