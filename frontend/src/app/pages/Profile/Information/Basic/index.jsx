@@ -13,7 +13,7 @@ const Submit = () => {
     console.log("Basic Information submited!");
 }
 
-const Basic = () => {
+const Basic = (props) => {
     const [editable, setEditable] = React.useState(false);
 
     const [avatar, setAvatar] = React.useState("https://randomuser.me/api/portraits/women/79.jpg");

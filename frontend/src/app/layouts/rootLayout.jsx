@@ -12,13 +12,10 @@ import { Box, ThemeProvider } from "@mui/system";
 
 import Document from "../pages/Document";
 import Convert from "../pages/Convert";
-import PrivateDocument from "../pages/Profile/PrivateDocument"
-import Information from "../pages/Profile/Information";
-import Schedule from "../pages/Profile/Schedule";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
-import Grade from "../pages/Grade";
 import GradeCourses from "../pages/GradeCourses";
+import Profile from "../pages/Profile";
 
 const RootLayout = () => {
 
@@ -43,13 +40,10 @@ const RootLayout = () => {
             <Route path="/document" element={<Document />} />
             <Route path="/grade" element={<GradeCourses />} />
             <Route path="/validation-document" element={<ValidationPage />} />
-            <Route path="/profile/information" element={<Information />} />
-            <Route path="/profile/schedule" element={<Schedule />} />
-            <Route path="/profile/learning-result" element={<Grade />} />
-            <Route path="/profile/private-document" element={<PrivateDocument />} />
-            <Route path="/profile/change-password" element={<Header />} />
-            <Route path="/profile/login" element={<Header />} />
+            <Route extract path="/profile" element={<Profile />} />
+            <Route path="/profile/:type" element={<Profile />} />
           </Routes>
+
           <Footer />
         </BrowserRouter>
       </Box>
