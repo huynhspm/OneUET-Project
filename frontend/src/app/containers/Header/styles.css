@@ -20,6 +20,6 @@
 .btn {
     margin: auto;
 }
-/* .profile-group {
-    direction: rtl;
-} */
+.search-input {
+    width: 100%;
+}
