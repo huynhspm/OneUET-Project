@@ -19,7 +19,7 @@ const Submit = () => {
     console.log("Activities Information submited!");
 }
 
-const Activities = () => {
+const Activities = (props) => {
     const [editable, setEditable] = React.useState(false);
 
     const [doanVien, setDoanVien] = React.useState(true);

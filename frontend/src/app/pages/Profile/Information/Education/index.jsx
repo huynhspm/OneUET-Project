@@ -8,7 +8,7 @@ const Submit = () => {
     console.log("Education Information submited!");
 }
 
-const Education = () => {
+const Education = (props) => {
     const [editable, setEditable] = React.useState(false);
 
     const [program, setProgram] = React.useState(0);
