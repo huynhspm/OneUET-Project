@@ -23,11 +23,12 @@ export default function Login() {
 		const password = data.get("password");
 
 		try {
-			const res = await axios.post("http://localhost:2002/login", {
-				email: email,
-				password: password,
-			});
-			console.log(res.data);
+			// 	const res = await axios.post("http://localhost:2002/login", {
+			// 		email: email,
+			// 		password: password,
+			// 	});
+			const res = await axios.get("http://localhost:2002/document");
+			console.log(res);
 		} catch (e) {
 			console.log(e.response.data);
 		}
