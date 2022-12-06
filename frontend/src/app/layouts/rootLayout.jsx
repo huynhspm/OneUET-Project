@@ -12,6 +12,7 @@ import { Box, ThemeProvider } from "@mui/system";
 
 import Document from "../pages/Document";
 import Convert from "../pages/Convert";
+import PrivateDocument from "../pages/Profile/PrivateDocument"
 import Information from "../pages/Profile/Information";
 import Schedule from "../pages/Profile/Schedule";
 import Login from "../pages/Login";
@@ -45,7 +46,7 @@ const RootLayout = () => {
             <Route path="/profile/information" element={<Information />} />
             <Route path="/profile/schedule" element={<Schedule />} />
             <Route path="/profile/learning-result" element={<Grade />} />
-            <Route path="/profile/private-document" element={<Header />} />
+            <Route path="/profile/private-document" element={<PrivateDocument />} />
             <Route path="/profile/change-password" element={<Header />} />
             <Route path="/profile/login" element={<Header />} />
           </Routes>
