@@ -1,5 +1,12 @@
 import { Box, Button, Modal, styled } from "@mui/material";
 
+
+export const CenterModal = styled(Modal)({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+});
+
 export const FilterBox = styled(Box)({
     height: 21, 
     fontSize: 18, 
