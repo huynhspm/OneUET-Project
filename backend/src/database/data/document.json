@@ -5,7 +5,11 @@
 		"fileId": 1,
 		"userId": 1,
 		"teacherId": 2,
-		"courseId": 1
+		"courseId": 1,
+		"title": "Suzuki",
+		"description": "description",
+		"faculty": "suzuki_faculty",
+		"major": "suzuki_major"
 	},
 	{
 		"year": 2021,
@@ -13,7 +17,11 @@
 		"fileId": 2,
 		"userId": 1,
 		"teacherId": 1,
-		"courseId": 1
+		"courseId": 1,
+		"title": "But bi",
+		"description": "desicritonp",
+		"faculty": "but_bi_faculty",
+		"major": "but_bi_major"
 	},
 	{
 		"year": 2020,
@@ -21,7 +29,11 @@
 		"fileId": 3,
 		"userId": 2,
 		"teacherId": 4,
-		"courseId": 2
+		"courseId": 2,
+		"title": "But may",
+		"description": "donescritip",
+		"faculty": "but_may_faculty",
+		"major": "but_may_major"
 	},
 	{
 		"year": 2022,
@@ -29,7 +41,11 @@
 		"fileId": 4,
 		"userId": 2,
 		"teacherId": 5,
-		"courseId": 3
+		"courseId": 3,
+		"title": "Cari",
+		"description": "nesdoctipri",
+		"faculty": "cari_faculty",
+		"major": "cari_major"
 	},
 	{
 		"year": 2021,
@@ -37,6 +53,10 @@
 		"fileId": 5,
 		"userId": 3,
 		"teacherId": 5,
-		"courseId": 5
+		"courseId": 5,
+		"title": "ALBABA",
+		"description": "noctpriesdi",
+		"faculty": "albaba_faculty",
+		"major": "albaba_major"
 	}
 ]

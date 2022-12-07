@@ -29,6 +29,20 @@ const Document = sequelize.define(
 			type: DataTypes.STRING,
 			defaultValue: "private",
 		},
+		title: {
+			type: DataTypes.STRING,
+		},
+		description: {
+			type: DataTypes.STRING,
+		},
+		faculty: {
+			type: DataTypes.STRING,
+			defaultValue: "faculty"
+		},
+		major: {
+			type: DataTypes.STRING,
+			defaultValue: "major"
+		}
 	},
 	{
 		tableName: "document",
