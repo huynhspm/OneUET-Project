@@ -15,6 +15,10 @@ const Document = sequelize.define(
 			primaryKey: true,
 			type: DataTypes.INTEGER,
 		},
+		name: {
+			allowNull: false,
+			type: DataTypes.STRING,
+		},
 		year: {
 			type: DataTypes.INTEGER,
 		},
