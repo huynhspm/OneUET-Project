@@ -48,13 +48,14 @@ const verifyUser = async (id) => {
 const getMyUser = async (req) => {
 	try {
 		let { user, message, status } = await verifyUser(req.user.id);
-		let classes, documents;
+		let classes, documents, student;
 
 		if (user) {
 			classes = await user.getStudent({
 				include: Class,
 			});
 			documents = await user.getDocuments();
+			student = await user.getStudent();
 			message = "Get my user successfully";
 			status = ResponseCode.OK;
 		}
@@ -63,6 +64,7 @@ const getMyUser = async (req) => {
 			user,
 			classes,
 			documents,
+			student,
 		};
 
 		return {
@@ -129,13 +131,14 @@ const deleteUser = async (req) => {
 const getUser = async (req) => {
 	try {
 		let { user, message, status } = await verifyUser(req.id);
-		let classes, documents;
+		let classes, documents, student;
 
 		if (user) {
 			classes = await user.getStudent({
 				include: Class,
 			});
 			documents = await user.getDocuments();
+			student = await user.getStudent();
 			message = "Get user successfully";
 			status = ResponseCode.OK;
 		}
@@ -144,6 +147,7 @@ const getUser = async (req) => {
 			user,
 			classes,
 			documents,
+			student,
 		};
 
 		return {
