@@ -21,9 +21,8 @@ const getAllUsers = async (req) => {
 };
 
 // ok
-const verifyUser = async (req) => {
+const verifyUser = async (id) => {
 	try {
-		const { id } = req.params;
 		let user, message, status;
 		user = await User.findByPk(id);
 
@@ -31,7 +30,7 @@ const verifyUser = async (req) => {
 			message = "User existed";
 			status = ResponseCode.OK;
 		} else {
-			message = "user not existed";
+			message = "User not existed";
 			status = ResponseCode.OK;
 		}
 
@@ -46,9 +45,40 @@ const verifyUser = async (req) => {
 };
 
 // ok
-const updateUser = async (req) => {
+const getMyUser = async (req) => {
 	try {
-		let { user, message, status } = await verifyUser(req);
+		let { user, message, status } = await verifyUser(req.user.id);
+		let classes, documents;
+
+		if (user) {
+			classes = await user.getStudent({
+				include: Class,
+			});
+			documents = await user.getDocuments();
+			message = "Get my user successfully";
+			status = ResponseCode.OK;
+		}
+
+		const data = {
+			user,
+			classes,
+			documents,
+		};
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
+// ok
+const updateMyUser = async (req) => {
+	try {
+		let { user, message, status } = await verifyUser(req.user.id);
 
 		if (user) {
 			const updatedUser = req.body;
@@ -56,7 +86,7 @@ const updateUser = async (req) => {
 				individualHooks: true,
 			});
 
-			message = "Update user successfully";
+			message = "Update my user successfully";
 			status = ResponseCode.OK;
 		}
 
@@ -75,7 +105,7 @@ const updateUser = async (req) => {
 // ok
 const deleteUser = async (req) => {
 	try {
-		let { user, message, status } = await verifyUser(req);
+		let { user, message, status } = await verifyUser(req.id);
 
 		if (user) {
 			user = await user.destroy();
@@ -98,7 +128,7 @@ const deleteUser = async (req) => {
 // ok
 const getUser = async (req) => {
 	try {
-		let { user, message, status } = await verifyUser(req);
+		let { user, message, status } = await verifyUser(req.id);
 		let classes, documents;
 
 		if (user) {
@@ -111,6 +141,7 @@ const getUser = async (req) => {
 		}
 
 		const data = {
+			user,
 			classes,
 			documents,
 		};
@@ -129,7 +160,9 @@ const addUser = async (req) => {};
 
 module.exports = {
 	getAllUsers,
-	updateUser,
+	verifyUser,
+	getMyUser,
+	updateMyUser,
 	deleteUser,
 	getUser,
 	addUser,

@@ -1,4 +1,5 @@
 const { Document } = require("../../database/models");
+const { verifyUser } = require("../user/service");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 
 const createDocument = async (req) => {
@@ -20,14 +21,34 @@ const createDocument = async (req) => {
 	}
 };
 
-const getAllDocuments = async (req) => {
+const getPublicDocuments = async (req) => {
 	try {
-		const documents = await Document.findAll();
+		const documents = await Document.findAll({ where: { status: "public" } });
 
-		const message = "Get all documents successfully";
+		const message = "Get public documents successfully";
 		const status = ResponseCode.OK;
 		const data = { documents };
 
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
+const getMyDocuments = async (req) => {
+	try {
+		let { user, message, status } = await verifyUser(req.user.id);
+		if (user) {
+			const documents = await user.getDocuments();
+
+			message = "Get my documents successfully";
+			status = ResponseCode.OK;
+			data = { documents };
+		}
 		return {
 			data,
 			message,
@@ -62,18 +83,89 @@ const verifyDocument = async (req) => {
 	}
 };
 
-const updateDocument = async (req) => {
+const updateMyDocument = async (req) => {
 	try {
 		let { document, message, status } = await verifyDocument(req);
 
 		if (document) {
-			const updatedDocument = req.body;
-			document = await document.update(updatedDocument);
-			message = "Update document successfully";
-			status = ResponseCode.OK;
+			if (document.userId === req.user.id) {
+				const updatedDocument = req.body;
+				document = await document.update(updatedDocument);
+				message = "Update document successfully";
+				status = ResponseCode.OK;
+			} else {
+				document = null;
+				message = "Document not belongs to you, Not permission";
+				status = ResponseCode.Unauthorized;
+			}
 		}
 
 		const data = { document };
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
+const deleteMyDocument = async (req) => {
+	try {
+		let { document, message, status } = await verifyDocument(req);
+
+		if (document) {
+			if (document.userId === req.user.id) {
+				document = await document.destroy();
+				message = "Delete document successfully";
+				status = ResponseCode.OK;
+			} else {
+				document = null;
+				message = "Document not belongs to you, Not permission";
+				status = ResponseCode.Unauthorized;
+			}
+		}
+
+		const data = { document };
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
+const getMyDocument = async (req) => {
+	try {
+		let { document, message, status } = await verifyDocument(req);
+		let course, teacher, file;
+
+		if (document) {
+			if (document.userId === req.user.id) {
+				course = await document.getCourse();
+				teacher = await document.getTeacher();
+				file = await document.getFile();
+
+				message = "Get document successfully";
+				status = ResponseCode.OK;
+			} else {
+				document = null;
+				message = "Document not belongs to you, Not permission";
+				status = ResponseCode.Unauthorized;
+			}
+		}
+
+		const data = {
+			document,
+			course,
+			teacher,
+			file,
+		};
 
 		return {
 			data,
@@ -90,7 +182,7 @@ const deleteDocument = async (req) => {
 		let { document, message, status } = await verifyDocument(req);
 
 		if (document) {
-			document = document.destroy();
+			document = await document.destroy();
 			message = "Delete document successfully";
 			status = ResponseCode.OK;
 		}
@@ -140,8 +232,11 @@ const getDocument = async (req) => {
 
 module.exports = {
 	createDocument,
-	getAllDocuments,
-	updateDocument,
+	getPublicDocuments,
+	getMyDocuments,
+	updateMyDocument,
+	deleteMyDocument,
+	getMyDocument,
 	deleteDocument,
 	getDocument,
 };
