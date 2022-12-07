@@ -1,5 +1,6 @@
 const { User } = require("../../database/models");
 const ResponseCode = require("../../utils/constant/ResponseCode");
+const RoleCode = require("../../utils/constant/RoleCode");
 const { sendOTP, createOTP } = require("../../utils/email");
 
 const verifyEmail = async (email) => {
@@ -33,6 +34,7 @@ const register = async (req) => {
 		// await sendOTP(user.email, otp);
 		console.log("sendOTP");
 		newUser["otp"] = otp;
+		newUser["roleId"] = RoleCode.User;
 		data = await User.create(newUser);
 
 		data = data.id;

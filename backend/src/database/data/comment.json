@@ -1,0 +1,22 @@
+[
+    {
+        "content": "hay lắm",
+        "userId": 1,
+        "documentId": 1
+    },
+    {
+        "content": "hay bình thường",
+        "userId": 2,
+        "documentId": 1
+    },
+    {
+        "content": "không hay",
+        "userId": 1,
+        "documentId": 2
+    },
+    {
+        "content": "tệ",
+        "userId": 2,
+        "documentId": 2
+    }
+]

@@ -5,13 +5,10 @@ const { verifyToken, verifyAdmin } = require("../../middleware/service");
 
 const router = Router();
 
-router.get("/", [verifyToken, verifyAdmin], controller.getAllUsers);
-
 router.get("/me", [verifyToken], controller.getMyUser);
 router.put("/me", [verifyToken], controller.updateMyUser);
 
-router.delete("/:id", [verifyToken, verifyAdmin], controller.deleteUser);
+router.get("/", [verifyToken, verifyAdmin], controller.getUsers);
 router.get("/:id", [verifyToken, verifyAdmin], controller.getUser);
-router.post(":/id", [verifyToken, verifyAdmin], controller.addUser);
-
+router.delete("/:id", [verifyToken, verifyAdmin], controller.deleteUser);
 module.exports = router;

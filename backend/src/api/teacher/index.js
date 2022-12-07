@@ -6,10 +6,9 @@ const { verifyToken, verifyAdmin } = require("../../middleware/service");
 const router = Router();
 
 router.post("/", [verifyToken, verifyAdmin], controller.createTeacher);
-router.get("/", [verifyToken], controller.getAllTeachers);
-
+router.get("/", [verifyToken, verifyAdmin], controller.getTeachers);
+router.get("/:id", [verifyToken, verifyAdmin], controller.getTeacher);
 router.put("/:id", [verifyToken, verifyAdmin], controller.updateTeacher);
 router.delete("/:id", [verifyToken, verifyAdmin], controller.deleteTeacher);
-router.get("/:id", [verifyToken], controller.getTeacher);
-router.post("/:id", [verifyToken, verifyAdmin], controller.addTeacher);
+
 module.exports = router;

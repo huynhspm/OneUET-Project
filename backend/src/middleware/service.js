@@ -31,7 +31,7 @@ const verifyToken = (req, res, next) => {
 
 const verifyAdmin = async (req, res, next) => {
 	const token = req.user;
-	if (!token || !token.roleIds.includes(RoleCode.Admin)) {
+	if (!token || !token.roleId === RoleCode.Admin) {
 		return res.status(ResponseCode.Unauthorized).json({
 			data: null,
 			message: "You are not admin, Not permission",

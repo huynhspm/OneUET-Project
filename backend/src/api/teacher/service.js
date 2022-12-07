@@ -1,46 +1,11 @@
 const { Teacher, Course, Class } = require("../../database/models");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 
-// ok
-const createTeacher = async (req) => {
-	try {
-		const newTeacher = req.body;
-		const teacher = await Teacher.create(newTeacher);
+function unique(value, index, self) {
+	const firstId = self.map((element) => element.id).indexOf(value.id);
+	return firstId === index;
+}
 
-		const message = "Create teacher successfully!";
-		const status = ResponseCode.Created;
-		const data = { teacher };
-
-		return {
-			data,
-			message,
-			status,
-		};
-	} catch (e) {
-		throw e;
-	}
-};
-
-// ok
-const getAllTeachers = async (req) => {
-	try {
-		const teachers = await Teacher.findAll();
-
-		const message = "Get all teachers successfully";
-		const status = ResponseCode.OK;
-		const data = { teachers };
-
-		return {
-			data,
-			message,
-			status,
-		};
-	} catch (e) {
-		throw e;
-	}
-};
-
-// ok
 const verifyTeacher = async (req) => {
 	try {
 		const { id } = req.params;
@@ -65,18 +30,13 @@ const verifyTeacher = async (req) => {
 	}
 };
 
-// ok
-const updateTeacher = async (req) => {
+const createTeacher = async (req) => {
 	try {
-		let { teacher, message, status } = await verifyTeacher(req);
+		const newTeacher = req.body;
+		const teacher = await Teacher.create(newTeacher);
 
-		if (teacher) {
-			const updatedTeacher = req.body;
-			teacher = await teacher.update(updatedTeacher);
-			message = "Update teacher successfully";
-			status = ResponseCode.OK;
-		}
-
+		const message = "Create teacher successfully!";
+		const status = ResponseCode.Created;
 		const data = { teacher };
 
 		return {
@@ -89,18 +49,13 @@ const updateTeacher = async (req) => {
 	}
 };
 
-// ok
-const deleteTeacher = async (req) => {
+const getTeachers = async (req) => {
 	try {
-		let { teacher, message, status } = await verifyTeacher(req);
+		const teachers = await Teacher.findAll();
 
-		if (teacher) {
-			teacher = await teacher.destroy();
-			message = "Delete teacher successfully";
-			status = ResponseCode.OK;
-		}
-
-		const data = { teacher };
+		const message = "Get teachers successfully";
+		const status = ResponseCode.OK;
+		const data = { teachers };
 
 		return {
 			data,
@@ -112,12 +67,6 @@ const deleteTeacher = async (req) => {
 	}
 };
 
-function unique(value, index, self) {
-	const firstId = self.map((element) => element.id).indexOf(value.id);
-	return firstId === index;
-}
-
-// ok
 const getTeacher = async (req) => {
 	try {
 		let { teacher, message, status } = await verifyTeacher(req);
@@ -151,13 +100,55 @@ const getTeacher = async (req) => {
 	}
 };
 
-const addTeacher = async (req) => {};
+const updateTeacher = async (req) => {
+	try {
+		let { teacher, message, status } = await verifyTeacher(req);
+
+		if (teacher) {
+			const updatedTeacher = req.body;
+			teacher = await teacher.update(updatedTeacher);
+			message = "Update teacher successfully";
+			status = ResponseCode.OK;
+		}
+
+		const data = { teacher };
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
+const deleteTeacher = async (req) => {
+	try {
+		let { teacher, message, status } = await verifyTeacher(req);
+
+		if (teacher) {
+			teacher = await teacher.destroy();
+			message = "Delete teacher successfully";
+			status = ResponseCode.OK;
+		}
+
+		const data = { teacher };
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
 
 module.exports = {
 	createTeacher,
-	getAllTeachers,
+	getTeachers,
+	getTeacher,
 	updateTeacher,
 	deleteTeacher,
-	getTeacher,
-	addTeacher,
 };

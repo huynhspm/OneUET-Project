@@ -1,26 +1,6 @@
 const service = require("./service");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 
-// GET: /user
-const getAllUsers = async (req, res) => {
-	try {
-		const result = await service.getAllUsers(req);
-		const { data, message, status } = result;
-
-		res.status(status).json({
-			data: data,
-			message: message,
-			status: status,
-		});
-	} catch (e) {
-		res.status(ResponseCode.Bad_Request).json({
-			data: e,
-			message: "Error",
-			status: ResponseCode.Bad_Request,
-		});
-	}
-};
-
 // GET: /user/me
 const getMyUser = async (req, res) => {
 	try {
@@ -61,10 +41,10 @@ const updateMyUser = async (req, res) => {
 	}
 };
 
-// DELETE: /user/:id
-const deleteUser = async (req, res) => {
+// GET: /user
+const getUsers = async (req, res) => {
 	try {
-		const result = await service.deleteUser(req);
+		const result = await service.getUsers(req);
 		const { data, message, status } = result;
 
 		res.status(status).json({
@@ -101,13 +81,30 @@ const getUser = async (req, res) => {
 	}
 };
 
-const addUser = async (req, res) => {};
+// DELETE: /user/:id
+const deleteUser = async (req, res) => {
+	try {
+		const result = await service.deleteUser(req);
+		const { data, message, status } = result;
+
+		res.status(status).json({
+			data: data,
+			message: message,
+			status: status,
+		});
+	} catch (e) {
+		res.status(ResponseCode.Bad_Request).json({
+			data: e,
+			message: "Error",
+			status: ResponseCode.Bad_Request,
+		});
+	}
+};
 
 module.exports = {
-	getAllUsers,
 	getMyUser,
 	updateMyUser,
-	deleteUser,
+	getUsers,
 	getUser,
-	addUser,
+	deleteUser,
 };

@@ -22,9 +22,9 @@ const createStudent = async (req, res) => {
 };
 
 // GET: /student
-const getAllStudents = async (req, res) => {
+const getStudents = async (req, res) => {
 	try {
-		const result = await service.getAllStudents(req);
+		const result = await service.getStudents(req);
 		const { data, message, status } = result;
 
 		res.status(status).json({
@@ -36,6 +36,26 @@ const getAllStudents = async (req, res) => {
 		res.status(ResponseCode.Bad_Request).json({
 			data: e.message,
 			message: "Couldn't get all students",
+			status: ResponseCode.Bad_Request,
+		});
+	}
+};
+
+// GET: /student/:id
+const getStudent = async (req, res) => {
+	try {
+		const result = await service.getStudent(req);
+		const { data, message, status } = result;
+
+		res.status(status).json({
+			data: data,
+			message: message,
+			status: status,
+		});
+	} catch (e) {
+		res.status(ResponseCode.Bad_Request).json({
+			data: e.message,
+			message: "Couldn't get student",
 			status: ResponseCode.Bad_Request,
 		});
 	}
@@ -81,34 +101,10 @@ const deleteStudent = async (req, res) => {
 	}
 };
 
-// GET: /student/:id
-const getStudent = async (req, res) => {
-	try {
-		const result = await service.getStudent(req);
-		const { data, message, status } = result;
-
-		res.status(status).json({
-			data: data,
-			message: message,
-			status: status,
-		});
-	} catch (e) {
-		res.status(ResponseCode.Bad_Request).json({
-			data: e.message,
-			message: "Couldn't get student",
-			status: ResponseCode.Bad_Request,
-		});
-	}
-};
-
-// POST: /student/:id
-const addStudent = async (req, res) => {};
-
 module.exports = {
 	createStudent,
-	getAllStudents,
+	getStudents,
+	getStudent,
 	updateStudent,
 	deleteStudent,
-	getStudent,
-	addStudent,
 };
