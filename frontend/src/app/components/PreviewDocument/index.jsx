@@ -1,40 +1,30 @@
-import { Modal, Box, Button, Divider, TextField, Hidden, styled, Card, CardActions, CardContent, Typography } from '@mui/material';
+import { Modal, Box, Button, Divider, TextField, Hidden, Card, CardActions, CardContent, Typography } from '@mui/material';
 import { Link } from "react-router-dom";
 import React, { useState } from 'react';
-import { defaultPost } from '../data';
-import { Viewer } from '@react-pdf-viewer/core';
-import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
-
 import OptionsDialog from '../OpitonsDialog';
 import './styles.css';
 import Tags from '../Tags';
-
-const StyledModal = styled(Modal)({
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-});
+import { CenterModal } from '../../utils/styles';
 
 const PreviewDocument = (props) => {
     const [showOptionsDialog, setOptionsDialog] = useState(false);
-    
-    const { id, media, likes, user, caption, comments } = defaultPost;
-
-    const open = props.open;
-    const defaultLayoutPluginInstance = defaultLayoutPlugin();
-
     const handleClose = () => {
         props.setOpen(false);
     }
 
-    let t1 = "https://docs.google.com/viewer?srcid="; 
-    let t2 = "&pid=explorer&efh=false&a=v&chrome=false&embedded=true"; 
+    // const { id, media, likes, user, caption, comments } = defaultPost;
+    const comments = ['abc', 'def', 'ghi'];
+
+    const open = props.open;
+
+    let t1 = "https://docs.google.com/viewer?srcid=";
+    let t2 = "&pid=explorer&efh=false&a=v&chrome=false&embedded=true";
 
     const pdf_link = t1.concat('1pRHDGYar6n85cSndPP0XYuBKNcBlqEqd', t2);
 
     return (
         <>
-            <StyledModal
+            <CenterModal
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
@@ -60,12 +50,6 @@ const PreviewDocument = (props) => {
                             aria-label="mailbox folders"
                         >
                             <div class='pdf-viewer'>
-                                {/* <Viewer
-                                    fileUrl="https://arxiv.org/pdf/2003.13401.pdf"
-                                    plugins={[
-                                        defaultLayoutPluginInstance
-                                    ]}
-                                /> */}
                                 <iframe src={pdf_link} width="600px" height="500px"></iframe>
                             </div>
                         </Box>
@@ -76,11 +60,11 @@ const PreviewDocument = (props) => {
                                 {props.description}
                             </Typography>
                             <Divider />
-                            <Tags data="Khoa"></Tags>
+                            <Tags data={props.tags}></Tags>
                             <Typography color="textSecondary" className="datePosted" sx={{ pt: 1 }}>
                                 5 DAYS AGO
                             </Typography>
-                            <Link to={`/p/${id}`}>
+                            {/* <Link to={`/p/${id}`}>
                                 <Typography
                                     className="commentsLink"
                                     variant="body2"
@@ -88,22 +72,15 @@ const PreviewDocument = (props) => {
                                 >
                                     View all {comments.length} comments
                                 </Typography>
-                            </Link>
+                            </Link> */}
+                            <Divider />
                             {comments.map(comment => (
-                                <div key={comment.id}>
-                                    <Link to={`/${comment.user.username}`}>
-                                        <Typography
-                                            variant="subtitle2"
-                                            component="span"
-                                            className="commentUsername"
-                                        >
-                                            {comment.user.username}
-                                        </Typography>{" "}
-                                        <Typography variant="body2" component="span">
-                                            {comment.content}
-                                        </Typography>
-                                    </Link>
-                                </div>
+                                <Box sx={{}}>
+                                    <Typography variant="body2" component="span">
+                                        {comment}
+                                    </Typography>
+                                    <Divider />
+                                </Box>
                             ))}
 
                             <Box sx={{
@@ -121,7 +98,7 @@ const PreviewDocument = (props) => {
                         <OptionsDialog onClose={() => setOptionsDialog(false)} />
                     )}
                 </Box>
-            </StyledModal>
+            </CenterModal>
         </>
     );
 };

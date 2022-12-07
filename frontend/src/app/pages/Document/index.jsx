@@ -1,97 +1,76 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
-import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import { Checkbox, FormGroup, FormControlLabel } from '@mui/material';
+import {
+	Box,
+	Drawer,
+	Toolbar
+} from '@mui/material';
+import DocumentCard from '../../components/DocumentCard';
+import FilterSidebar from '../../components/FilterSidebar';
 import Add from '../../components/Add';
-import Pagination from '@mui/material/Pagination';
-import HorizontalDocumentList from "../../components/HorizontalDocumentList";
-import { useState } from 'react';
-import { FilterBox, CategoryBox } from './styles';
-// import CssBaseline from '@mui/material';
+import { useState, useEffect } from 'react';
+
+import { drawerWidth, documentCardHeight } from '../../utils/constant';
+import axios from "axios";
 import './styles.css'
 
-const drawerWidth = 240;
 
 const Document = (props) => {
+	const [data, setData] = React.useState([]);
+	const [card, setCard] = React.useState([]);
+	// const [filter, setFilter] = React.useState([]);
 
-	const cards_json = [
-		{ title: "Du", description: "đẹp trai", src_img: "https://randomuser.me/api/portraits/women/79.jpg", link: "/convert" },
-		{ title: "Linh", description: "xấu", src_img: "https://randomuser.me/api/portraits/women/78.jpg", link: "/document" },
-		{ title: "Huỳnh", description: "xấu", src_img: "https://randomuser.me/api/portraits/women/77.jpg", link: "/document" },
-		{ title: "Bá", description: "xấu", src_img: "https://randomuser.me/api/portraits/women/76.jpg", link: "/document" },
-		{ title: "Lộc", description: "xấu", src_img: "https://randomuser.me/api/portraits/women/75.jpg", link: "/document" },
-		{ title: "Hà", description: "xấu", src_img: "https://randomuser.me/api/portraits/women/74.jpg", link: "/document" },
-	];
-
-	const [currentPageRec, setCurrentPageRec] = useState(1)
-	const [currentPageSeen, setCurrentPageSeen] = useState(1)
-
-	const onPageChangeRec = (event, value) => {
-		setCurrentPageRec(value);
-	}
-	const onPageChangeSeen = (event, value) => {
-		setCurrentPageSeen(value);
+	function getDocuments(data) {
+		let docs = data.data;
+		return docs?.documents;
 	}
 
-	const { window } = props;
+	useEffect(() => {
+		fetchData();
+	}, []);
+
+	const fetchData = async () => {
+		try {
+			await axios
+				.get("http://localhost:2002/document")
+				.then((res) => {
+					let docs = getDocuments(res.data);
+					console.log(res);
+					let tmp = [];
+					for (let id in docs) {
+						let element = {
+							title: docs[id].title,
+							description: docs[id].description,
+							src_img: "https://randomuser.me/api/portraits/women/2.jpg",
+							faculty: docs[id].faculty,
+							major: docs[id].major,
+						}
+						tmp.push(element);
+					}
+					// console.log("--fetchData() - Document--");
+					// console.log(tmp);
+					// console.log("-------------------------");
+					setCard(tmp);
+				});
+		} catch (e) {
+			console.log(e.response.data);
+		}
+	}
+
 	const [mobileOpen, setMobileOpen] = React.useState(false);
 
 	const handleDrawerToggle = () => {
 		setMobileOpen(!mobileOpen);
 	};
 
-	const drawer = (
-		<div>
-			<List>
-				<ListItem>
-					<FilterBox> Filter </FilterBox>
-				</ListItem>
-			</List>
-			<Divider />
-			<List>
-				<ListItem disablePadding>
-					<CategoryBox> Khoa </CategoryBox>
-				</ListItem>
-			</List>
-			<FormGroup sx={{ ml: 2 }}>
-				{['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-					<FormControlLabel
-						label={<Typography sx={{ fontSize: 14 }}>{text}</Typography>}
-						control={<Checkbox sx={{ '& .MuiSvgIcon-root': { fontSize: 16 } }} />}
-						sx={{ pl: 1 }} />
-				))}
-			</FormGroup>
-			<Divider />
-			<List>
-				<ListItem disablePadding>
-					<CategoryBox> Ngành </CategoryBox>
-				</ListItem>
-			</List>
-			<FormGroup sx={{ ml: 2 }}>
-				{['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-					<FormControlLabel
-						label={<Typography sx={{ fontSize: 14 }}>{text}</Typography>}
-						control={<Checkbox sx={{ '& .MuiSvgIcon-root': { fontSize: 16 } }} />}
-						sx={{ pl: 1 }} />
-				))}
-			</FormGroup>
-		</div >
-	);
+	const filterData = {
+		Khoa: ['Inbox', 'Starred', 'Send email', 'Drafts'],
+		Ngành: ['Công nghệ thông tin', 'Khoa học máy tính', 'Send email', 'Drafts', "Nganh A"]
+	}
 
 	return (
 		<>
-			<Box sx={{ display: 'flex', flexDirection: 'row'}}>
-				{/* <CssBaseline /> */}
-				<Box
-					component="nav"
-					sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-					// aria-label="mailbox folders"
-				>
+			<Box sx={{ display: 'flex', flexDirection: 'row' }}>
+				<Box sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }} >
 					<Drawer
 						variant="permanent"
 						sx={{
@@ -101,20 +80,31 @@ const Document = (props) => {
 						open
 					>
 						<Toolbar variant="dense" sx={{}} />
-						{drawer}
+						<FilterSidebar filterData={filterData} />
 					</Drawer>
 				</Box>
 				<Box
 					component="main"
 					sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
 				>
-					<div className='flex'>
-						<Pagination className='pagination' count={cards_json.length - 3} color="primary" variant="outlined" shape="rounded" onChange={onPageChangeRec} />
-					</div>
-					<HorizontalDocumentList data={cards_json.slice(currentPageRec - 1, currentPageRec + 3)} height="200px" />
-					<HorizontalDocumentList data={cards_json.slice(currentPageRec - 1, currentPageRec + 3)} height="200px" />
-					<HorizontalDocumentList data={cards_json.slice(currentPageRec - 1, currentPageRec + 3)} height="200px" />
-					<HorizontalDocumentList data={cards_json.slice(currentPageRec - 1, currentPageRec + 3)} height="200px" />
+					{
+						card.length > 0 &&
+						<div>
+							<Box sx={{ display: 'flex', flexWrap: "wrap", }}>
+								{card.map((card, index) => (
+									<DocumentCard
+										height={documentCardHeight}
+										src_img={card.src_img}
+										title={card.title}
+										description={card.description}
+										faculty={card.faculty}
+										major={card.major}
+										index={index} />
+								))}
+							</Box>
+						</div>
+					}
+
 				</Box>
 			</Box>
 			<Add></Add>
