@@ -1,17 +1,16 @@
 import { Cancel } from "@mui/icons-material";
 import { FormControl, Stack, TextField, Typography, List, Grid } from "@mui/material";
 import { Box } from "@mui/system";
+import { useEffect } from "react";
 import { useRef, useState } from "react";
 
-const Tags = () => {
+const Tags = (props) => {
     return (
-        <Box sx={{ flexGrow: 1, display: "flex" }}>
-            {['Khoa', 'Ngành', 'Giảng viên', 'Môn', 'Loại', 'Năm'].map((tag, index) => (
+        <Box sx={{ flexGrow: 1, display: "flex", flexWrap: "wrap" }}>
+            {props.data.map((tag, index) => (
                 <Typography
                     sx={{
-                        maxWidth: '50%',
                         borderRadius: 50,
-                        flexWrap: "wrap",
                         background: "#283240",
                         display: "inline-block",
                         paddingTop: "0.1rem",
@@ -23,7 +22,7 @@ const Tags = () => {
                         alignContent: "center",
                         color: "#ffffff",
                     }}
-                noWrap
+                    noWrap
                 >
                     {tag}
                 </Typography>
