@@ -12,9 +12,10 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import './styles.css'
+import LeftDrawer from "../../components/LeftDrawer";
+import './styles.css';
 
-
+const drawerWidth = 240;
 
 function createData(
   code,
@@ -47,15 +48,15 @@ function Row(props) {
   return (
     <React.Fragment>
       <TableRow sx={{ '& > *': { borderTop: 0 } }}>
-        <TableCell sx = {{borderLeft:1}} align ="center" component="th" scope="row">
+        <TableCell sx={{ borderLeft: 1 }} align="center" component="th" scope="row">
           {row.code}
         </TableCell>
-        <TableCell sx = {{borderLeft:1}} align="left">{row.subject}</TableCell>
-        <TableCell sx = {{borderLeft:1}} align="center">{row.num}</TableCell>
-        <TableCell sx = {{borderLeft:1}} align="center">{row.grade_10}</TableCell>
-        <TableCell sx = {{borderLeft:1}} align="center">{row.grade_text}</TableCell>
-        <TableCell sx = {{borderLeft:1}} align="center">{row.grade_4}</TableCell>
-        <TableCell sx = {{borderLeft:1}} align="center">
+        <TableCell sx={{ borderLeft: 1 }} align="left">{row.subject}</TableCell>
+        <TableCell sx={{ borderLeft: 1 }} align="center">{row.num}</TableCell>
+        <TableCell sx={{ borderLeft: 1 }} align="center">{row.grade_10}</TableCell>
+        <TableCell sx={{ borderLeft: 1 }} align="center">{row.grade_text}</TableCell>
+        <TableCell sx={{ borderLeft: 1 }} align="center">{row.grade_4}</TableCell>
+        <TableCell sx={{ borderLeft: 1 }} align="center">
           <IconButton
             aria-label="expand row"
             size="small"
@@ -66,7 +67,7 @@ function Row(props) {
         </TableCell>
       </TableRow>
       <TableRow>
-        <TableCell style={{ padding: 0}} colSpan={8}>
+        <TableCell style={{ padding: 0 }} colSpan={8}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 0 }}>
               <Typography variant="h6" gutterBottom component="div">
@@ -99,68 +100,79 @@ function Row(props) {
 }
 
 const rows = [
-    createData('HIS1101', 'Lịch sử Đảng Cộng sản Việt Nam', 2, 7.3, 'B', 3),
-    createData('POL1001', 'Tư tưởng Hồ Chí Minh', 2, 7, 'B', 3),
-    createData('INT2208', 'Công nghệ phần mềm', 3, 9, 'A+', 4),
-    createData('BSA2002', 'Nguyên lý marketing', 3, 9.6, 'A+', 4),
-    createData('INT2211', 'Cơ sở dữ liệu', 4, 9.2, 'A+', 4),
-    createData('INT2213', 'Mạng máy tính', 4, 9.6, 'A+', 4),
-    createData('HIS1101', 'Lịch sử Đảng Cộng sản Việt Nam', 2, 7.3, 'B', 3),
-    createData('POL1001', 'Tư tưởng Hồ Chí Minh', 2, 7, 'B', 3),
-    createData('INT2208', 'Công nghệ phần mềm', 3, 9, 'A+', 4),
-    createData('BSA2002', 'Nguyên lý marketing', 3, 9.6, 'A+', 4),
-    createData('INT2211', 'Cơ sở dữ liệu', 4, 9.2, 'A+', 4),
-    createData('HIS1101', 'Lịch sử Đảng Cộng sản Việt Nam', 2, 7.3, 'B', 3),
-    createData('POL1001', 'Tư tưởng Hồ Chí Minh', 2, 7, 'B', 3),
-    createData('INT2208', 'Công nghệ phần mềm', 3, 9, 'A+', 4),
-    createData('BSA2002', 'Nguyên lý marketing', 3, 9.6, 'A+', 4),
-    createData('INT2211', 'Cơ sở dữ liệu', 4, 9.2, 'A+', 4),
+  createData('HIS1101', 'Lịch sử Đảng Cộng sản Việt Nam', 2, 7.3, 'B', 3),
+  createData('POL1001', 'Tư tưởng Hồ Chí Minh', 2, 7, 'B', 3),
+  createData('INT2208', 'Công nghệ phần mềm', 3, 9, 'A+', 4),
+  createData('BSA2002', 'Nguyên lý marketing', 3, 9.6, 'A+', 4),
+  createData('INT2211', 'Cơ sở dữ liệu', 4, 9.2, 'A+', 4),
+  createData('INT2213', 'Mạng máy tính', 4, 9.6, 'A+', 4),
+  createData('HIS1101', 'Lịch sử Đảng Cộng sản Việt Nam', 2, 7.3, 'B', 3),
+  createData('POL1001', 'Tư tưởng Hồ Chí Minh', 2, 7, 'B', 3),
+  createData('INT2208', 'Công nghệ phần mềm', 3, 9, 'A+', 4),
+  createData('BSA2002', 'Nguyên lý marketing', 3, 9.6, 'A+', 4),
+  createData('INT2211', 'Cơ sở dữ liệu', 4, 9.2, 'A+', 4),
+  createData('HIS1101', 'Lịch sử Đảng Cộng sản Việt Nam', 2, 7.3, 'B', 3),
+  createData('POL1001', 'Tư tưởng Hồ Chí Minh', 2, 7, 'B', 3),
+  createData('INT2208', 'Công nghệ phần mềm', 3, 9, 'A+', 4),
+  createData('BSA2002', 'Nguyên lý marketing', 3, 9.6, 'A+', 4),
+  createData('INT2211', 'Cơ sở dữ liệu', 4, 9.2, 'A+', 4),
 ];
 
 export default function Grade() {
   return (
-    <>
-    <Typography variant="h6">
-        Sinh viên:
-    </Typography>
-    <Typography variant="h6">
-        Mã số sinh viên:
-    </Typography>
-    <Typography variant="h6"> 
-        Lớp quản lý:
-    </Typography>
-    <Typography variant="h4" align = "center">
-        Bảng điểm học tập
-    </Typography>
-    <br/>
-    <br/>
-    <TableContainer sx={{ maxHeight: 700 }} component={Paper}>
-      <Table stickyHeader aria-label="grade_table">
-        <TableHead>
-          <TableRow sx={{ '& > *': { borderBottom: 0.5, borderLeft: 0.5, borderTop: 0.5, backgroundColor: "lightblue" } }}>
-            <TableCell align="center">Mã môn học</TableCell>
-            <TableCell align="left">Môn học</TableCell>
-            <TableCell align="center">Số tín chỉ</TableCell>
-            <TableCell align="center">Điểm hệ 10</TableCell>
-            <TableCell align="center">Điểm chữ</TableCell>
-            <TableCell align="center">Điểm hệ 4</TableCell>
-            <TableCell align="center"> Chi tiết</TableCell>
-          </TableRow>
-        </TableHead>
-      
-            <TableRow>
-              <TableCell sx = {{borderBottom:1, borderTop:1}} align="center" colSpan={8}>
-                Học kỳ 2 - Năm học 2022 - 2023
-              </TableCell>
-            </TableRow>
+      <Box sx={{ display: 'flex' }}>
+        <Box
+          component="nav"
+          sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+        >
+          <LeftDrawer />
+        </Box>
+        <Box
+          component="main"
+          sx={{ flexGrow: 1, p: 1, m: 5, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+        >
+          <Typography variant="h6">
+            Sinh viên:
+          </Typography>
+          <Typography variant="h6">
+            Mã số sinh viên:
+          </Typography>
+          <Typography variant="h6">
+            Lớp quản lý:
+          </Typography>
+          <Typography variant="h4" align="center">
+            Bảng điểm học tập
+          </Typography>
+          <br />
+          <br />
+          <TableContainer sx={{ maxHeight: 700 }} component={Paper}>
+            <Table stickyHeader aria-label="grade_table">
+              <TableHead>
+                <TableRow sx={{ '& > *': { borderBottom: 0.5, borderLeft: 0.5, borderTop: 0.5, backgroundColor: "lightblue" } }}>
+                  <TableCell align="center">Mã môn học</TableCell>
+                  <TableCell align="left">Môn học</TableCell>
+                  <TableCell align="center">Số tín chỉ</TableCell>
+                  <TableCell align="center">Điểm hệ 10</TableCell>
+                  <TableCell align="center">Điểm chữ</TableCell>
+                  <TableCell align="center">Điểm hệ 4</TableCell>
+                  <TableCell align="center"> Chi tiết</TableCell>
+                </TableRow>
+              </TableHead>
 
-        <TableBody>
-          {rows.map((row) => (
-            <Row key={row.code} row={row} />
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  </>
+              <TableRow>
+                <TableCell sx={{ borderBottom: 1, borderTop: 1 }} align="center" colSpan={8}>
+                  Học kỳ 2 - Năm học 2022 - 2023
+                </TableCell>
+              </TableRow>
+
+              <TableBody>
+                {rows.map((row) => (
+                  <Row key={row.code} row={row} />
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+      </Box>
+    </Box>
   );
 }

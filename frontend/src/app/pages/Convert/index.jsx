@@ -3,7 +3,7 @@ import preprocessImage from './preprocess';
 import Tesseract from 'tesseract.js';
 import './styles.css';
 
-function Convert() {
+const Convert = () => {
   const [image, setImage] = useState("");
   const [text, setText] = useState("");
   // const [pin, setPin] = useState("");
