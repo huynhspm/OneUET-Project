@@ -9,12 +9,13 @@ const {
 
 const router = Router();
 
-router.get("/", controller.getAllUsers);
+router.get("/", [verifyToken, verifyAdmin], controller.getAllUsers);
 
-router.get("/me", controller.getUser);
-router.put("/me", controller.updateUser);
+router.get("/me", [verifyToken], controller.getMyUser);
+router.put("/me", [verifyToken], controller.updateMyUser);
 
-router.delete("/:id", controller.deleteUser);
-router.post(":/id", controller.addUser);
+router.delete("/:id", [verifyToken, verifyAdmin], controller.deleteUser);
+router.get("/:id", [verifyToken, verifyAdmin], controller.getUser);
+router.post(":/id", [verifyToken, verifyAdmin], controller.addUser);
 
 module.exports = router;

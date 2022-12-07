@@ -45,9 +45,9 @@ const verifyUser = async (id) => {
 };
 
 // ok
-const getUser = async (req) => {
+const getMyUser = async (req) => {
 	try {
-		let { user, message, status } = await verifyUser(req.params.id);
+		let { user, message, status } = await verifyUser(req.user.id);
 		let classes, documents;
 
 		if (user) {
@@ -55,11 +55,12 @@ const getUser = async (req) => {
 				include: Class,
 			});
 			documents = await user.getDocuments();
-			message = "Get user successfully";
+			message = "Get my user successfully";
 			status = ResponseCode.OK;
 		}
 
 		const data = {
+			user,
 			classes,
 			documents,
 		};
@@ -75,7 +76,7 @@ const getUser = async (req) => {
 };
 
 // ok
-const updateUser = async (req) => {
+const updateMyUser = async (req) => {
 	try {
 		let { user, message, status } = await verifyUser(req.user.id);
 
@@ -85,7 +86,7 @@ const updateUser = async (req) => {
 				individualHooks: true,
 			});
 
-			message = "Update user successfully";
+			message = "Update my user successfully";
 			status = ResponseCode.OK;
 		}
 
@@ -104,7 +105,7 @@ const updateUser = async (req) => {
 // ok
 const deleteUser = async (req) => {
 	try {
-		let { user, message, status } = await verifyUser(req.params.id);
+		let { user, message, status } = await verifyUser(req.id);
 
 		if (user) {
 			user = await user.destroy();
@@ -124,12 +125,44 @@ const deleteUser = async (req) => {
 	}
 };
 
+// ok
+const getUser = async (req) => {
+	try {
+		let { user, message, status } = await verifyUser(req.id);
+		let classes, documents;
+
+		if (user) {
+			classes = await user.getStudent({
+				include: Class,
+			});
+			documents = await user.getDocuments();
+			message = "Get user successfully";
+			status = ResponseCode.OK;
+		}
+
+		const data = {
+			user,
+			classes,
+			documents,
+		};
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
 const addUser = async (req) => {};
 
 module.exports = {
 	getAllUsers,
 	verifyUser,
-	updateUser,
+	getMyUser,
+	updateMyUser,
 	deleteUser,
 	getUser,
 	addUser,

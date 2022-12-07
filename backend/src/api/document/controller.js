@@ -61,10 +61,11 @@ const getMyDocuments = async (req, res) => {
 	}
 };
 
-// PUT: /document/:id
-const updateDocument = async (req, res) => {
+// PUT: /document/me/:id
+const updateMyDocument = async (req, res) => {
 	try {
-		const result = await service.updateDocument(req);
+		console.log(req.user);
+		const result = await service.updateMyDocument(req);
 		const { data, message, status } = result;
 
 		res.status(status).json({
@@ -75,7 +76,47 @@ const updateDocument = async (req, res) => {
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
 			data: e.message,
-			message: "Couldn't update document",
+			message: "Couldn't update my document",
+			status: ResponseCode.Bad_Request,
+		});
+	}
+};
+
+// DELETE: /document/me/:id
+const deleteMyDocument = async (req, res) => {
+	try {
+		const result = await service.deleteMyDocument(req);
+		const { data, message, status } = result;
+
+		res.status(status).json({
+			data: data,
+			message: message,
+			status: status,
+		});
+	} catch (e) {
+		res.status(ResponseCode.Bad_Request).json({
+			data: e.message,
+			message: "Couldn't delete my document",
+			status: ResponseCode.Bad_Request,
+		});
+	}
+};
+
+// GET: /document/me/:id
+const getMyDocument = async (req, res) => {
+	try {
+		const result = await service.getMyDocument(req);
+		const { data, message, status } = result;
+
+		res.status(status).json({
+			data: data,
+			message: message,
+			status: status,
+		});
+	} catch (e) {
+		res.status(ResponseCode.Bad_Request).json({
+			data: e.message,
+			message: "Couldn't get my document",
 			status: ResponseCode.Bad_Request,
 		});
 	}
@@ -125,7 +166,9 @@ module.exports = {
 	createDocument,
 	getPublicDocuments,
 	getMyDocuments,
-	updateDocument,
+	updateMyDocument,
+	deleteMyDocument,
+	getMyDocument,
 	deleteDocument,
 	getDocument,
 };

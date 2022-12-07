@@ -34,7 +34,7 @@ const verifyAdmin = async (req, res, next) => {
 	if (!token || !token.roleIds.includes(RoleCode.Admin)) {
 		return res.status(ResponseCode.Unauthorized).json({
 			data: null,
-			message: "Not permission",
+			message: "You are not admin, Not permission",
 			status: ResponseCode.Unauthorized,
 		});
 	}
@@ -46,7 +46,7 @@ const verifyUser = async (req, res, next) => {
 	if (!token || !token.roleIds.includes(RoleCode.User)) {
 		return res.status(ResponseCode.Unauthorized).json({
 			data: null,
-			message: "Not permission",
+			message: "You are not user, Not permission",
 			status: ResponseCode.Unauthorized,
 		});
 	}

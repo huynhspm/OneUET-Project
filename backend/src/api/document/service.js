@@ -83,15 +83,21 @@ const verifyDocument = async (req) => {
 	}
 };
 
-const updateDocument = async (req) => {
+const updateMyDocument = async (req) => {
 	try {
 		let { document, message, status } = await verifyDocument(req);
 
 		if (document) {
-			const updatedDocument = req.body;
-			document = await document.update(updatedDocument);
-			message = "Update document successfully";
-			status = ResponseCode.OK;
+			if (document.userId === req.user.id) {
+				const updatedDocument = req.body;
+				document = await document.update(updatedDocument);
+				message = "Update document successfully";
+				status = ResponseCode.OK;
+			} else {
+				document = null;
+				message = "Document not belongs to you, Not permission";
+				status = ResponseCode.Unauthorized;
+			}
 		}
 
 		const data = { document };
@@ -111,12 +117,55 @@ const deleteMyDocument = async (req) => {
 		let { document, message, status } = await verifyDocument(req);
 
 		if (document) {
-			document = document.destroy();
-			message = "Delete document successfully";
-			status = ResponseCode.OK;
+			if (document.userId === req.user.id) {
+				document = await document.destroy();
+				message = "Delete document successfully";
+				status = ResponseCode.OK;
+			} else {
+				document = null;
+				message = "Document not belongs to you, Not permission";
+				status = ResponseCode.Unauthorized;
+			}
 		}
 
 		const data = { document };
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
+const getMyDocument = async (req) => {
+	try {
+		let { document, message, status } = await verifyDocument(req);
+		let course, teacher, file;
+
+		if (document) {
+			if (document.userId === req.user.id) {
+				course = await document.getCourse();
+				teacher = await document.getTeacher();
+				file = await document.getFile();
+
+				message = "Get document successfully";
+				status = ResponseCode.OK;
+			} else {
+				document = null;
+				message = "Document not belongs to you, Not permission";
+				status = ResponseCode.Unauthorized;
+			}
+		}
+
+		const data = {
+			document,
+			course,
+			teacher,
+			file,
+		};
 
 		return {
 			data,
@@ -133,7 +182,7 @@ const deleteDocument = async (req) => {
 		let { document, message, status } = await verifyDocument(req);
 
 		if (document) {
-			document = document.destroy();
+			document = await document.destroy();
 			message = "Delete document successfully";
 			status = ResponseCode.OK;
 		}
@@ -185,9 +234,9 @@ module.exports = {
 	createDocument,
 	getPublicDocuments,
 	getMyDocuments,
-	updateDocument,
-	// deleteMyDocument,
-	// getMyDocument,
+	updateMyDocument,
+	deleteMyDocument,
+	getMyDocument,
 	deleteDocument,
 	getDocument,
 };

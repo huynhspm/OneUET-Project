@@ -21,10 +21,30 @@ const getAllUsers = async (req, res) => {
 	}
 };
 
-// PUT: /user/me
-const updateUser = async (req, res) => {
+// GET: /user/me
+const getMyUser = async (req, res) => {
 	try {
-		const result = await service.updateUser(req);
+		const result = await service.getMyUser(req);
+		const { data, message, status } = result;
+
+		res.status(status).json({
+			data: data,
+			message: message,
+			status: status,
+		});
+	} catch (e) {
+		res.status(ResponseCode.Bad_Request).json({
+			data: e.message,
+			message: "Error",
+			status: ResponseCode.Bad_Request,
+		});
+	}
+};
+
+// PUT: /user/me
+const updateMyUser = async (req, res) => {
+	try {
+		const result = await service.updateMyUser(req);
 		const { data, message, status } = result;
 
 		res.status(status).json({
@@ -85,7 +105,8 @@ const addUser = async (req, res) => {};
 
 module.exports = {
 	getAllUsers,
-	updateUser,
+	getMyUser,
+	updateMyUser,
 	deleteUser,
 	getUser,
 	addUser,
