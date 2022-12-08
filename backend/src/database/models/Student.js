@@ -10,12 +10,15 @@ const Student = sequelize.define(
 			primaryKey: true,
 			type: DataTypes.INTEGER,
 		},
-		class: {
-			type: DataTypes.STRING,
-		},
 		code: {
 			allowNull: false,
 			unique: true,
+			type: DataTypes.STRING,
+		},
+		class: {
+			type: DataTypes.STRING,
+		},
+		name: {
 			type: DataTypes.STRING,
 		},
 	},

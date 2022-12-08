@@ -1,26 +1,6 @@
 const { User, Class } = require("../../database/models");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 
-// ok
-const getAllUsers = async (req) => {
-	try {
-		const users = await User.findAll();
-
-		const message = "Get all users successfully";
-		const status = ResponseCode.OK;
-		const data = { users };
-
-		return {
-			data,
-			message,
-			status,
-		};
-	} catch (e) {
-		throw e;
-	}
-};
-
-// ok
 const verifyUser = async (id) => {
 	try {
 		let user, message, status;
@@ -44,17 +24,17 @@ const verifyUser = async (id) => {
 	}
 };
 
-// ok
 const getMyUser = async (req) => {
 	try {
 		let { user, message, status } = await verifyUser(req.user.id);
-		let classes, documents;
+		let classes, documents, student;
 
 		if (user) {
 			classes = await user.getStudent({
 				include: Class,
 			});
 			documents = await user.getDocuments();
+			student = await user.getStudent();
 			message = "Get my user successfully";
 			status = ResponseCode.OK;
 		}
@@ -63,6 +43,7 @@ const getMyUser = async (req) => {
 			user,
 			classes,
 			documents,
+			student,
 		};
 
 		return {
@@ -75,7 +56,6 @@ const getMyUser = async (req) => {
 	}
 };
 
-// ok
 const updateMyUser = async (req) => {
 	try {
 		let { user, message, status } = await verifyUser(req.user.id);
@@ -102,7 +82,54 @@ const updateMyUser = async (req) => {
 	}
 };
 
-// ok
+const getUsers = async (req) => {
+	try {
+		const users = await User.findAll();
+
+		const message = "Get all users successfully";
+		const status = ResponseCode.OK;
+		const data = { users };
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
+const getUser = async (req) => {
+	try {
+		let { user, message, status } = await verifyUser(req.id);
+		let classes, documents, student;
+
+		if (user) {
+			classes = await student.getClasses();
+			documents = await user.getDocuments();
+			student = await user.getStudent();
+			message = "Get user successfully";
+			status = ResponseCode.OK;
+		}
+
+		const data = {
+			user,
+			classes,
+			documents,
+			student,
+		};
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
 const deleteUser = async (req) => {
 	try {
 		let { user, message, status } = await verifyUser(req.id);
@@ -125,45 +152,10 @@ const deleteUser = async (req) => {
 	}
 };
 
-// ok
-const getUser = async (req) => {
-	try {
-		let { user, message, status } = await verifyUser(req.id);
-		let classes, documents;
-
-		if (user) {
-			classes = await user.getStudent({
-				include: Class,
-			});
-			documents = await user.getDocuments();
-			message = "Get user successfully";
-			status = ResponseCode.OK;
-		}
-
-		const data = {
-			user,
-			classes,
-			documents,
-		};
-
-		return {
-			data,
-			message,
-			status,
-		};
-	} catch (e) {
-		throw e;
-	}
-};
-
-const addUser = async (req) => {};
-
 module.exports = {
-	getAllUsers,
+	getUsers,
 	verifyUser,
 	getMyUser,
 	updateMyUser,
 	deleteUser,
-	getUser,
-	addUser,
 };
