@@ -39,7 +39,7 @@ const meetingRooms = {
 
 const compareById = matchingItem => item => matchingItem.id === item.id;
 
-const RoomScheduler = props => {
+const RoomScheduler = (props) => {
   const [data, setData] = useState([]);
 
   const onDataChange = ({ created, updated, deleted }) => {
@@ -59,6 +59,7 @@ const RoomScheduler = props => {
         return acc;
       }, newItemsWithIds)
     );
+    console.log(data);
   };
 
   return (
