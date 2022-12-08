@@ -31,18 +31,30 @@ const User = sequelize.define(
 			type: DataTypes.DATE,
 		},
 		gender: {
-			type: DataTypes.STRING,
+			type: DataTypes.INTEGER,
 		},
 		avatar: {
 			type: DataTypes.STRING,
 		},
 		program: {
-			type: DataTypes.STRING,
+			type: DataTypes.INTEGER,
 		},
 		academicYear: {
-			type: DataTypes.STRING,
+			type: DataTypes.INTEGER,
 		},
 		unit: {
+			type: DataTypes.INTEGER,
+		},
+		unionJoint: {
+			type: DataTypes.BOOLEAN,
+		},
+		partyJoint: {
+			type: DataTypes.BOOLEAN,
+		},
+		unionPossition: {
+			type: DataTypes.STRING,
+		},
+		associationPossition: {
 			type: DataTypes.STRING,
 		},
 		club: {

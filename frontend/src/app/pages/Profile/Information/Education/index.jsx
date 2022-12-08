@@ -1,20 +1,44 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Title from '../../../../components/Title';
 import { Box, Grid, FormControl, Select, MenuItem, InputLabel, IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import CheckIcon from '@mui/icons-material/Check';
 
-const Submit = () => {
-    console.log("Education Information submited!");
+const ControlValue = (value) => {
+    if (value === undefined || value === null) {
+        return '';
+    }
+    return value;
+}
+
+const Extract = (classID, classIDs) => {
+    for (let ac = 0; ac < classIDs.length; ac++) {
+        for (let u = 0; u < classIDs[ac].length; u++) {
+            for (let pr = 0; pr < classIDs[ac][u].length; pr++) {
+                for (let cl = 0; cl < classIDs[ac][u][pr].length; cl++) {
+                    if (classIDs[ac][u][pr][cl] === classID) {
+                        return [ac, u, pr, cl];
+                    }
+                }
+            }
+        }
+    }
+    return [undefined, undefined, undefined, undefined];
 }
 
 const Education = (props) => {
     const [editable, setEditable] = React.useState(false);
 
-    const [program, setProgram] = React.useState(0);
-    const [academicYear, setAcademicYear] = React.useState(0);
-    const [unit, setUnit] = React.useState(0);
-    const [classID, setClassID] = React.useState(2);
+    const [classIndex, setClassIndex] = React.useState();
+
+    const Submit = () => {
+        console.log("Education Information submited!");
+        props.updateUserData(props.token, {
+            program: props.program,
+            academicYear: props.academicYear,
+            unit: props.unit
+        });
+    }
 
     const programs = [
         "Chuẩn",
@@ -114,6 +138,35 @@ const Education = (props) => {
         }
     }
 
+    const getClassIDs = (academicYear, unit, program) => {
+        if (academicYear !== null && unit !== null && program !== null) {
+            return classIDs[academicYear][unit][program];
+        } else {
+            return ["Khác"];
+        }
+    }
+
+    useEffect(() => {
+        if (props.academicYear == null && props.unit == null && props.program == null) {
+            const [ac, u, pr, cl] = Extract(props.classID, classIDs);
+            if (cl !== undefined) {
+                if (ac !== props.academicYear) {
+                    props.setAcademicYear(ac);
+                }
+                if (u !== props.unit) {
+                    props.setUnit(u);
+                }
+                if (pr !== props.program) {
+                    props.setProgram(pr);
+                }
+                setClassIndex(cl);
+            }
+        } else {
+            const result = Extract(props.classID, classIDs);
+            setClassIndex(result[3]);
+        }
+    }, [classIndex, props]);
+
     return (
         <React.Fragment>
             <Box sx={{ p: 1 }}>
@@ -160,11 +213,11 @@ const Education = (props) => {
                                 disabled={!editable}
                                 labelId="program-label"
                                 id="program"
-                                value={program}
+                                value={ControlValue(props.program)}
                                 label="Chương trình đào tạo"
                                 onChange={(event) => {
-                                    setProgram(event.target.value);
-                                    setClassID(undefined);
+                                    props.setProgram(event.target.value);
+                                    setClassIndex(undefined);
                                 }}
                             >
                                 {programs.map((name, index) => (
@@ -182,11 +235,11 @@ const Education = (props) => {
                                 disabled={!editable}
                                 labelId="academic-year-label"
                                 id="academic-year"
-                                value={academicYear}
+                                value={ControlValue(props.academicYear)}
                                 label="Khoá"
                                 onChange={(event) => {
-                                    setAcademicYear(event.target.value);
-                                    setClassID(undefined);
+                                    props.setAcademicYear(event.target.value);
+                                    setClassIndex(undefined);
                                 }}
                             >
                                 {academicYears.map((name, index) => (
@@ -204,11 +257,11 @@ const Education = (props) => {
                                 disabled={!editable}
                                 labelId="unit-label"
                                 id="unit"
-                                value={unit}
+                                value={ControlValue(props.unit)}
                                 label="Ngành đào tạo"
                                 onChange={(event) => {
-                                    setUnit(event.target.value);
-                                    setClassID(undefined);
+                                    props.setUnit(event.target.value);
+                                    setClassIndex(undefined);
                                 }}
                             >
                                 {units.map((name, index) => (
@@ -226,17 +279,19 @@ const Education = (props) => {
                                 disabled={!editable}
                                 labelId="class-label"
                                 id="class"
-                                value={classID}
+                                value={ControlValue(classIndex)}
                                 label="Lớp quản lý"
                                 onChange={(event) => {
-                                    setClassID(event.target.value);
+                                    setClassIndex(event.target.value);
                                 }}
                             >
-                                {classIDs[academicYear][unit][program].map((name, index) => (
-                                    <MenuItem key={name} value={index}>
-                                        {name}
-                                    </MenuItem>
-                                ))}
+                                {
+                                    getClassIDs(props.academicYear, props.unit, props.program).map((name, index) => (
+                                        <MenuItem key={name} value={index}>
+                                            {name}
+                                        </MenuItem>
+                                    ))
+                                }
                             </Select>
                         </FormControl>
                     </Grid>
