@@ -62,7 +62,7 @@ const DocumentCard = (props) => {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Link class="btn" onClick={handleClick}><RemoveRedEyeIcon />Xem tài liệu</Link>
+                    <Link class="btn" onClick={handleClick} to="document/1pRHDGYar6n85cSndPP0XYuBKNcBlqEqd"><RemoveRedEyeIcon />Xem tài liệu</Link>
                 </CardActions>
             </Card >
             <PreviewDocument
