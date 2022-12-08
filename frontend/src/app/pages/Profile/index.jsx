@@ -7,6 +7,7 @@ import LeftDrawer from '../../components/LeftDrawer';
 import Information from './Information';
 import Schedule from './Schedule';
 import Grade from '../Grade';
+import PrivateDocument from './PrivateDocument';
 
 const drawerWidth = 240;
 
@@ -29,7 +30,7 @@ const Profile = () => {
                 {type === 'information' && <Information />}
                 {type === 'schedule' && <Schedule />}
                 {type === 'learning-result' && <Grade />}
-                {type === 'private-document' && <Header />}
+                {type === 'private-document' && <PrivateDocument />}
                 {type === 'change-password' && <Header />}
                 {type === 'login' && <Header />}
             </Box>

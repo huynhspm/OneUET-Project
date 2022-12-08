@@ -14,7 +14,6 @@ const Class = sequelize.define(
 		},
 		code: {
 			allowNull: false,
-			unique: true,
 			type: DataTypes.STRING,
 		},
 		semester: {

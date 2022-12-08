@@ -31,11 +31,10 @@ const login = async (req) => {
 			status = ResponseCode.Forbidden;
 		} else {
 			if (user.active) {
-				const roles = await user.getRoles();
-				const roleIds = roles.map((role) => role.id);
-				
+				const role = await user.getRole();
+
 				const token = jwt.sign(
-					{ id: user.id, roleIds },
+					{ id: user.id, roleId: role.id },
 					config.secret_key,
 					{
 						expiresIn: config.expires_in,

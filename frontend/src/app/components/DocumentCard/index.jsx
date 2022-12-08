@@ -4,17 +4,41 @@ import { Viewer } from '@react-pdf-viewer/core';
 import { Link } from "react-router-dom";
 import React, { useState } from 'react';
 import PreviewDocument from '../PreviewDocument';
-// Import styles
+import axios from 'axios';
 import './styles.css'
-
-
 
 const DocumentCard = (props) => {
     const [open, setOpen] = useState(null);
+    const [tags, setTags] = useState([]);
 
     const handleClick = (event) => {
         setOpen(event.currentTarget);
+        fetchData()
     };
+
+    const fetchData = async () => {
+        try {
+            await axios
+                .get("http://localhost:2002/document/" + String(props.index + 1))
+                .then((res) => {
+                    // console.log('--fetchData() - DocumentCard--');
+                    // console.log(String(props.index));
+                    // console.log(res);
+                    // console.log('------------------------------');
+                    
+                    let tmp = [
+                        props.faculty,
+                        props.major,
+                    ];
+                    setTags(tmp);
+                })
+                .then(() => {
+                    console.log(tags);
+                });
+        } catch (e) {
+            console.log(e.response);
+        }
+    }
 
     const handleClose = () => {
         setOpen(null);
@@ -38,7 +62,7 @@ const DocumentCard = (props) => {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Link class="btn" onClick={handleClick}><RemoveRedEyeIcon />Xem tài liệu</Link>
+                    <Link class="btn" onClick={handleClick} to="document/1pRHDGYar6n85cSndPP0XYuBKNcBlqEqd"><RemoveRedEyeIcon />Xem tài liệu</Link>
                 </CardActions>
             </Card >
             <PreviewDocument
@@ -46,6 +70,8 @@ const DocumentCard = (props) => {
                 setOpen={setOpen}
                 description={props.description}
                 title={props.title}
+                index={props.index}
+                tags={tags}
             />
         </>
     )

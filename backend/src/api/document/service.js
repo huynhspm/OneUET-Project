@@ -2,6 +2,30 @@ const { Document } = require("../../database/models");
 const { verifyUser } = require("../user/service");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 
+const verifyDocument = async (req) => {
+	try {
+		const { id } = req.params;
+		let document, message, status;
+		document = await Document.findByPk(id);
+
+		if (document) {
+			message = "Get document successfully";
+			status = ResponseCode.OK;
+		} else {
+			message = "Document not existed";
+			status = ResponseCode.Not_Found;
+		}
+
+		return {
+			document,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
 const createDocument = async (req) => {
 	try {
 		const newDocument = req.body;
@@ -39,16 +63,35 @@ const getPublicDocuments = async (req) => {
 	}
 };
 
-const getMyDocuments = async (req) => {
+const getPublicDocument = async (req) => {
 	try {
-		let { user, message, status } = await verifyUser(req.user.id);
-		if (user) {
-			const documents = await user.getDocuments();
+		let { document, message, status } = await verifyDocument(req);
+		let course, teacher, file, comments;
 
-			message = "Get my documents successfully";
-			status = ResponseCode.OK;
-			data = { documents };
+		if (document) {
+			if (document.status === "public") {
+				course = await document.getCourse();
+				teacher = await document.getTeacher();
+				file = await document.getFile();
+				comments = await document.getComments();
+
+				message = "Get public document successfully";
+				status = ResponseCode.OK;
+			} else {
+				document = null;
+				message = "Document not public";
+				status = ResponseCode.Unauthorized;
+			}
 		}
+
+		const data = {
+			document,
+			course,
+			teacher,
+			file,
+			comments,
+		};
+
 		return {
 			data,
 			message,
@@ -59,22 +102,56 @@ const getMyDocuments = async (req) => {
 	}
 };
 
-const verifyDocument = async (req) => {
+const getMyDocuments = async (req) => {
 	try {
-		const { id } = req.params;
-		let document, message, status;
-		document = await Document.findByPk(id);
+		const userId = req.user.id;
+		const documents = await Document.findAll({ where: { userId } });
 
-		if (document) {
-			message = "Get document successfully";
-			status = ResponseCode.OK;
-		} else {
-			message = "Document not existed";
-			status = ResponseCode.Not_Found;
-		}
+		const message = "Get my documents successfully";
+		const status = ResponseCode.OK;
+		const data = { documents };
 
 		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
+const getMyDocument = async (req) => {
+	try {
+		let { document, message, status } = await verifyDocument(req);
+		let course, teacher, file, comments;
+
+		if (document) {
+			if (document.userId === req.user.id) {
+				course = await document.getCourse();
+				teacher = await document.getTeacher();
+				file = await document.getFile();
+				comments = await document.getComments();
+
+				message = "Get my document successfully";
+				status = ResponseCode.OK;
+			} else {
+				document = null;
+				message = "Document not belongs to you";
+				status = ResponseCode.Unauthorized;
+			}
+		}
+
+		const data = {
 			document,
+			course,
+			teacher,
+			file,
+			comments,
+		};
+
+		return {
+			data,
 			message,
 			status,
 		};
@@ -91,11 +168,11 @@ const updateMyDocument = async (req) => {
 			if (document.userId === req.user.id) {
 				const updatedDocument = req.body;
 				document = await document.update(updatedDocument);
-				message = "Update document successfully";
+				message = "Update my document successfully";
 				status = ResponseCode.OK;
 			} else {
 				document = null;
-				message = "Document not belongs to you, Not permission";
+				message = "Document not belongs to you";
 				status = ResponseCode.Unauthorized;
 			}
 		}
@@ -119,11 +196,11 @@ const deleteMyDocument = async (req) => {
 		if (document) {
 			if (document.userId === req.user.id) {
 				document = await document.destroy();
-				message = "Delete document successfully";
+				message = "Delete my document successfully";
 				status = ResponseCode.OK;
 			} else {
 				document = null;
-				message = "Document not belongs to you, Not permission";
+				message = "Document not belongs to you";
 				status = ResponseCode.Unauthorized;
 			}
 		}
@@ -140,24 +217,37 @@ const deleteMyDocument = async (req) => {
 	}
 };
 
-const getMyDocument = async (req) => {
+const getDocuments = async (req) => {
+	try {
+		const documents = await Document.findAll();
+
+		const message = "Get documents successfully";
+		const status = ResponseCode.OK;
+		const data = { documents };
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
+const getDocument = async (req) => {
 	try {
 		let { document, message, status } = await verifyDocument(req);
-		let course, teacher, file;
+		let course, teacher, file, comments;
 
 		if (document) {
-			if (document.userId === req.user.id) {
-				course = await document.getCourse();
-				teacher = await document.getTeacher();
-				file = await document.getFile();
+			course = await document.getCourse();
+			teacher = await document.getTeacher();
+			file = await document.getFile();
+			comments = await document.getComments();
 
-				message = "Get document successfully";
-				status = ResponseCode.OK;
-			} else {
-				document = null;
-				message = "Document not belongs to you, Not permission";
-				status = ResponseCode.Unauthorized;
-			}
+			message = "Get document successfully";
+			status = ResponseCode.OK;
 		}
 
 		const data = {
@@ -199,44 +289,15 @@ const deleteDocument = async (req) => {
 	}
 };
 
-const getDocument = async (req) => {
-	try {
-		let { document, message, status } = await verifyDocument(req);
-		let course, teacher, file;
-
-		if (document) {
-			course = await document.getCourse();
-			teacher = await document.getTeacher();
-			file = await document.getFile();
-
-			message = "Get document successfully";
-			status = ResponseCode.OK;
-		}
-
-		const data = {
-			document,
-			course,
-			teacher,
-			file,
-		};
-
-		return {
-			data,
-			message,
-			status,
-		};
-	} catch (e) {
-		throw e;
-	}
-};
-
 module.exports = {
 	createDocument,
 	getPublicDocuments,
+	getPublicDocument,
 	getMyDocuments,
+	getMyDocument,
 	updateMyDocument,
 	deleteMyDocument,
-	getMyDocument,
-	deleteDocument,
+	getDocuments,
 	getDocument,
+	deleteDocument,
 };

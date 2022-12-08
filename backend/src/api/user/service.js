@@ -1,26 +1,6 @@
 const { User, Class } = require("../../database/models");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 
-// ok
-const getAllUsers = async (req) => {
-	try {
-		const users = await User.findAll();
-
-		const message = "Get all users successfully";
-		const status = ResponseCode.OK;
-		const data = { users };
-
-		return {
-			data,
-			message,
-			status,
-		};
-	} catch (e) {
-		throw e;
-	}
-};
-
-// ok
 const verifyUser = async (id) => {
 	try {
 		let user, message, status;
@@ -44,7 +24,6 @@ const verifyUser = async (id) => {
 	}
 };
 
-// ok
 const getMyUser = async (req) => {
 	try {
 		let { user, message, status } = await verifyUser(req.user.id);
@@ -77,7 +56,6 @@ const getMyUser = async (req) => {
 	}
 };
 
-// ok
 const updateMyUser = async (req) => {
 	try {
 		let { user, message, status } = await verifyUser(req.user.id);
@@ -104,18 +82,13 @@ const updateMyUser = async (req) => {
 	}
 };
 
-// ok
-const deleteUser = async (req) => {
+const getUsers = async (req) => {
 	try {
-		let { user, message, status } = await verifyUser(req.id);
+		const users = await User.findAll();
 
-		if (user) {
-			user = await user.destroy();
-			message = "Delete user successfully";
-			status = ResponseCode.OK;
-		}
-
-		const data = { user };
+		const message = "Get all users successfully";
+		const status = ResponseCode.OK;
+		const data = { users };
 
 		return {
 			data,
@@ -127,16 +100,13 @@ const deleteUser = async (req) => {
 	}
 };
 
-// ok
 const getUser = async (req) => {
 	try {
 		let { user, message, status } = await verifyUser(req.id);
 		let classes, documents, student;
 
 		if (user) {
-			classes = await user.getStudent({
-				include: Class,
-			});
+			classes = await student.getClasses();
 			documents = await user.getDocuments();
 			student = await user.getStudent();
 			message = "Get user successfully";
@@ -160,14 +130,32 @@ const getUser = async (req) => {
 	}
 };
 
-const addUser = async (req) => {};
+const deleteUser = async (req) => {
+	try {
+		let { user, message, status } = await verifyUser(req.id);
+
+		if (user) {
+			user = await user.destroy();
+			message = "Delete user successfully";
+			status = ResponseCode.OK;
+		}
+
+		const data = { user };
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
 
 module.exports = {
-	getAllUsers,
+	getUsers,
 	verifyUser,
 	getMyUser,
 	updateMyUser,
 	deleteUser,
-	getUser,
-	addUser,
 };

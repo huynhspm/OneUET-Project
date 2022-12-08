@@ -11,7 +11,8 @@ import {
 import AddIcon from '@mui/icons-material/Add';
 import React, { useState } from 'react';
 import axios from "axios";
-import { CenterModal, InputBox, InputButton } from './styles';
+import { InputBox, InputButton } from './styles';
+import { CenterModal } from '../../utils/styles';
 
 const Add = () => {
     const [open, setOpen] = useState(false);
@@ -22,7 +23,7 @@ const Add = () => {
 
         const docName = data.get("docName");
         const docDescription = data.get("docDescription");
-        const docFalculty = data.get("docFalculty");
+        const docFaculty = data.get("docfaculty");
         const docMajor = data.get("docMajor");
         const docLecturer = data.get("docLecturer");
         const docSubject = data.get("docSubject");
@@ -30,10 +31,10 @@ const Add = () => {
         const docYear = data.get("docYear");
 
         try {
-            const res = await axios.post("http://localhost:2002/register", {
+            const res = await axios.post("http://localhost:2002/file", {
                 docName,
                 docDescription,
-                docFalculty,
+                docFaculty,
                 docMajor,
                 docLecturer,
                 docSubject,
@@ -117,8 +118,8 @@ const Add = () => {
                                         required
                                         fullWidth
                                         label="Khoa"
-                                        id="docFalculty"
-                                        name="docFalculty"
+                                        id="docFaculty"
+                                        name="docFaculty"
                                         type="text"
                                         row="3"
                                     />

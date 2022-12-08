@@ -22,9 +22,9 @@ const createTeacher = async (req, res) => {
 };
 
 // GET: /teacher
-const getAllTeachers = async (req, res) => {
+const getTeachers = async (req, res) => {
 	try {
-		const result = await service.getAllTeachers(req);
+		const result = await service.getTeachers(req);
 		const { data, message, status } = result;
 
 		res.status(status).json({
@@ -101,13 +101,10 @@ const getTeacher = async (req, res) => {
 	}
 };
 
-const addTeacher = async (req, res) => {};
-
 module.exports = {
 	createTeacher,
-	getAllTeachers,
+	getTeachers,
 	updateTeacher,
 	deleteTeacher,
 	getTeacher,
-	addTeacher,
 };

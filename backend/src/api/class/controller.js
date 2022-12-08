@@ -22,9 +22,9 @@ const createClass = async (req, res) => {
 };
 
 // GET: /class
-const getAllClasses = async (req, res) => {
+const getClasses = async (req, res) => {
 	try {
-		const result = await service.getAllClasses(req);
+		const result = await service.getClasses(req);
 		const { data, message, status } = result;
 
 		res.status(status).json({
@@ -36,6 +36,26 @@ const getAllClasses = async (req, res) => {
 		res.status(ResponseCode.Bad_Request).json({
 			data: e.message,
 			message: "Couldn't get all classes",
+			status: ResponseCode.Bad_Request,
+		});
+	}
+};
+
+// GET: /class/:id
+const getClass = async (req, res) => {
+	try {
+		const result = await service.getClass(req);
+		const { data, message, status } = result;
+
+		res.status(status).json({
+			data: data,
+			message: message,
+			status: status,
+		});
+	} catch (e) {
+		res.status(ResponseCode.Bad_Request).json({
+			data: e.message,
+			message: "Couldn't get class",
 			status: ResponseCode.Bad_Request,
 		});
 	}
@@ -81,51 +101,10 @@ const deleteClass = async (req, res) => {
 	}
 };
 
-// GET: /class/:id
-const getClass = async (req, res) => {
-	try {
-		const result = await service.getClass(req);
-		const { data, message, status } = result;
-
-		res.status(status).json({
-			data: data,
-			message: message,
-			status: status,
-		});
-	} catch (e) {
-		res.status(ResponseCode.Bad_Request).json({
-			data: e.message,
-			message: "Couldn't get class",
-			status: ResponseCode.Bad_Request,
-		});
-	}
-};
-
-// POST: class/:id
-const addClass = async (req, res) => {
-	try {
-		const result = await service.addClass(req);
-		const { data, message, status } = result;
-
-		res.status(status).json({
-			data: data,
-			message: message,
-			status: status,
-		});
-	} catch (e) {
-		res.status(ResponseCode.Bad_Request).json({
-			data: e.message,
-			message: "Couldn't add  class",
-			status: ResponseCode.Bad_Request,
-		});
-	}
-};
-
 module.exports = {
 	createClass,
-	getAllClasses,
+	getClasses,
+	getClass,
 	updateClass,
 	deleteClass,
-	addClass,
-	getClass,
 };
