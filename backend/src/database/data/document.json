@@ -2,12 +2,11 @@
 	{
 		"year": 2022,
 		"category": "Giáo trình",
-		"name": "abcd",
+		"name": "Suzuki",
 		"fileId": 1,
 		"userId": 1,
 		"teacherId": 2,
 		"courseId": 1,
-		"title": "Suzuki",
 		"description": "description",
 		"faculty": "suzuki_faculty",
 		"major": "suzuki_major"
@@ -15,12 +14,11 @@
 	{
 		"year": 2021,
 		"category": "Đề thi",
-		"name": "abcde",
+		"name": "But bi",
 		"fileId": 2,
 		"userId": 1,
 		"teacherId": 1,
 		"courseId": 1,
-		"title": "But bi",
 		"description": "desicritonp",
 		"faculty": "but_bi_faculty",
 		"major": "but_bi_major"
@@ -28,12 +26,11 @@
 	{
 		"year": 2020,
 		"category": "Đề thi",
-		"name": "abcdef",
+		"name": "But may",
 		"fileId": 3,
 		"userId": 2,
 		"teacherId": 4,
 		"courseId": 2,
-		"title": "But may",
 		"description": "donescritip",
 		"faculty": "but_may_faculty",
 		"major": "but_may_major"
@@ -41,12 +38,11 @@
 	{
 		"year": 2022,
 		"category": "Đề thi",
-		"name": "abcdefg",
+		"name": "Cari",
 		"fileId": 4,
 		"userId": 2,
 		"teacherId": 5,
 		"courseId": 3,
-		"title": "Cari",
 		"description": "nesdoctipri",
 		"faculty": "cari_faculty",
 		"major": "cari_major"
