@@ -9,15 +9,18 @@ import FilterSidebar from '../../../components/FilterSidebar';
 import Add from '../../../components/Add';
 import { useState, useEffect } from 'react';
 
-import { drawerWidth, documentCardHeight } from '../../../utils/constant';
+import { drawerWidth, documentCardHeight, faculties } from '../../../utils/constant';
 import axios from "axios";
 import '../styles.css'
 
 
-const Document = (props) => {
+const Main = (props) => {
 	const [data, setData] = React.useState([]);
 	const [card, setCard] = React.useState([]);
-	// const [filter, setFilter] = React.useState([]);
+	const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo'
+	const config = {
+		headers: { Authorization: `Bearer ${token}` }
+	};
 
 	function getDocuments(data) {
 		let docs = data.data;
@@ -31,14 +34,14 @@ const Document = (props) => {
 	const fetchData = async () => {
 		try {
 			await axios
-				.get("http://localhost:2002/document")
+				.get("http://localhost:2002/document", config)
 				.then((res) => {
 					let docs = getDocuments(res.data);
 					console.log(res);
 					let tmp = [];
 					for (let id in docs) {
 						let element = {
-							title: docs[id].title,
+							name: docs[id].name,
 							description: docs[id].description,
 							src_img: "https://randomuser.me/api/portraits/women/2.jpg",
 							faculty: docs[id].faculty,
@@ -46,9 +49,9 @@ const Document = (props) => {
 						}
 						tmp.push(element);
 					}
-					console.log("--fetchData() - Document--");
-					console.log(tmp);
-					console.log("-------------------------");
+					// console.log("--fetchData() - Document--");
+					// console.log(tmp);
+					// console.log("-------------------------");
 					setCard(tmp);
 				});
 		} catch (e) {
@@ -63,7 +66,7 @@ const Document = (props) => {
 	};
 
 	const filterData = {
-		Khoa: ['Inbox', 'Starred', 'Send email', 'Drafts'],
+		Khoa: faculties,
 		Ngành: ['Công nghệ thông tin', 'Khoa học máy tính', 'Send email', 'Drafts', "Nganh A"]
 	}
 
@@ -95,7 +98,7 @@ const Document = (props) => {
 									<DocumentCard
 										height={documentCardHeight}
 										src_img={card.src_img}
-										title={card.title}
+										name={card.name}
 										description={card.description}
 										faculty={card.faculty}
 										major={card.major}
@@ -112,4 +115,4 @@ const Document = (props) => {
 	);
 };
 
-export default Document;
+export default Main;
