@@ -12,6 +12,7 @@ import { FilterBox, CategoryBox } from "../../utils/styles";
 const FilterSidebar = (props) => {
     return (
         <>
+            <Divider />
             <List>
                 <ListItem>
                     <FilterBox> Filter </FilterBox>

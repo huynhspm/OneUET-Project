@@ -8,11 +8,19 @@ import Information from './Information';
 import Schedule from './Schedule';
 import Grade from '../Grade';
 import PrivateDocument from './PrivateDocument';
+import FilterSidebar from '../../components/FilterSidebar';
+import { faculties } from '../../utils/constant';
 
 const drawerWidth = 240;
 
 const Profile = () => {
     const { type } = useParams();
+
+    const filterData = {
+		Khoa: faculties,
+		Ngành: ['Công nghệ thông tin', 'Khoa học máy tính', 'Send email', 'Drafts']
+	}
+
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -21,6 +29,7 @@ const Profile = () => {
                 sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
             >
                 <LeftDrawer />
+                {type === 'private-document' && <FilterSidebar filterData={filterData} />}
             </Box>
             <Box
                 component="main"
