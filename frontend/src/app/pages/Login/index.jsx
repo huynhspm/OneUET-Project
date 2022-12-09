@@ -27,7 +27,6 @@ export default function Login() {
 				email: email,
 				password: password,
 			});
-			// const res = await axios.get("http://localhost:2002/document/1");
 			console.log(res);
 		} catch (e) {
 			console.log(e.response.data);

@@ -1,6 +1,6 @@
 import React from 'react';
 import Title from '../../../../components/Title';
-import { Box, Grid, IconButton, FormControl, FormGroup, FormLabel, FormControlLabel, Checkbox, Select, TextField, InputLabel, ListItemText, OutlinedInput, MenuItem  } from '@mui/material';
+import { Box, Grid, IconButton, FormControl, FormGroup, FormLabel, FormControlLabel, Checkbox, Select, TextField, InputLabel, ListItemText, OutlinedInput, MenuItem } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import CheckIcon from '@mui/icons-material/Check';
 
@@ -15,18 +15,32 @@ const MenuProps = {
     },
 };
 
-const Submit = () => {
-    console.log("Activities Information submited!");
+const ControlValue = (value, type = 0) => {
+    if (value === undefined || value == null) {
+        if (type === 0) {
+            return '';
+        }
+        if (type === 1) {
+            return false;
+        }
+    }
+    return value;
 }
 
 const Activities = (props) => {
     const [editable, setEditable] = React.useState(false);
-
-    const [doanVien, setDoanVien] = React.useState(true);
-    const [dangVien, setDangVien] = React.useState(false);
-    const [positionDoan, setPositionDoan] = React.useState("Phó Bí thư Chi đoàn K65CCLC");
-    const [positionHoi, setPositionHoi] = React.useState("Uỷ viên Ban chấp hành Hội Sinh viên Trường");
+    
     const [club, setClub] = React.useState([]);
+
+    const Submit = () => {
+        console.log("Activities Information submited!");
+        props.updateUserData(props.token, {
+            unionJoint: props.unionJoint,
+            partyJoint: props.partyJoint,
+            unionPossition: props.unionPossition,
+            associationPossition: props.associationPossition
+        });
+    }
 
     const ClubsList = [
         "Câu lạc bộ Thư viện Hội Sinh viên",
@@ -97,7 +111,7 @@ const Activities = (props) => {
                             <FormGroup>
                                 <FormControlLabel
                                     control={
-                                        <Checkbox checked={doanVien} onChange={(event) => {setDoanVien(event.target.checked);}} name="doan-vien" />
+                                        <Checkbox checked={ControlValue(props.unionJoint, 1)} onChange={(event) => { props.setUnionJoint(event.target.checked); }} name="doan-vien" />
                                     }
                                     label="Đoàn viên"
                                 />
@@ -105,7 +119,7 @@ const Activities = (props) => {
                             <FormGroup>
                                 <FormControlLabel
                                     control={
-                                        <Checkbox checked={dangVien} onChange={(event) => {setDangVien(event.target.checked);}} name="dang-vien" />
+                                        <Checkbox checked={ControlValue(props.partyJoint, 1)} onChange={(event) => { props.setPartyJoint(event.target.checked); }} name="dang-vien" />
                                     }
                                     label="Đảng viên"
                                 />
@@ -120,9 +134,9 @@ const Activities = (props) => {
                                     disabled={!editable}
                                     fullWidth
                                     label="Chức vụ cao nhất (Đoàn Thanh niên)"
-                                    value={positionDoan}
+                                    value={ControlValue(props.unionPossition)}
                                     onChange={(event) => {
-                                        setPositionDoan(event.target.value);
+                                        props.setUnionPossition(event.target.value);
                                     }}
                                     id="position-doan"
                                     type="text"
@@ -134,9 +148,9 @@ const Activities = (props) => {
                                     disabled={!editable}
                                     fullWidth
                                     label="Chức vụ cao nhất (Hội Sinh viên)"
-                                    value={positionHoi}
+                                    value={ControlValue(props.associationPossition)}
                                     onChange={(event) => {
-                                        setPositionHoi(event.target.value);
+                                        props.setAssociationPossition(event.target.value);
                                     }}
                                     id="position-hoi"
                                     type="text"

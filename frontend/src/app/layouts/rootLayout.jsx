@@ -42,7 +42,6 @@ const RootLayout = () => {
             <Route path="/document/:doc_id" element={<Document />} />
             <Route path="/grade" element={<GradeCourses />} />
             <Route path="/validation-document" element={<ValidationPage />} />
-            <Route extract path="/profile" element={<Profile />} />
             <Route path="/profile/:type" element={<Profile />} />
           </Routes>
 

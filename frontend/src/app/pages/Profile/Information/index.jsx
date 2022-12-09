@@ -6,53 +6,95 @@ import Activities from './Activities';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import axios from 'axios';
-import dayjs from 'dayjs';
 
-const getUserData = async id => {
+const getUserData = async token => {
+    const config = {
+        headers: { Authorization: `Bearer ${token}` }
+    }
     try {
-        const response = await axios.get("http://localhost:2002/user/" + String(id));
+        const response = await axios.get("http://localhost:2002/user/me", config);
         return response.data.data;
     } catch (e) {
         console.log(e.response);
     }
 }
 
-const Information = () => {
-    const id = 1;
-    const [userData, setUserData] = React.useState();
+const updateUserData = async (token, data) => {
+    const config = {
+        headers: { Authorization: `Bearer ${token}` }
+    }
+    console.log(data);
+    try {
+        const response = await axios.put("http://localhost:2002/user/me", data, config);
+        console.log(response);
+    } catch (e) {
+        console.log(e.response);
+    }
+}
 
-    
+const Information = () => {
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6WzJdLCJpYXQiOjE2NzAzODM4NTYsImV4cCI6MTY3Mjk3NTg1Nn0.yKUfiftTqgvRrQDkS8LJIjHXxnqowOvMpCcaleYlOmA";
+
     // Basic
     const [avatar, setAvatar] = React.useState("https://randomuser.me/api/portraits/women/79.jpg");
-    
-    const [studentID, setStudentID] = React.useState("20020001");
-    const [name, setName] = React.useState("Lương Sơn Bá");
-    const [birthday, setBirthday] = React.useState(dayjs('2002-07-08'));
-    const [gender, setGender] = React.useState(0);
-    const [emailVNU, setEmailVNU] = React.useState("20020001@vnu.edu.vn");
-    const [email, setEmail] = React.useState("luongsonba270@gmail.com");
-    
+
+    const [code, setCode] = React.useState(null);
+    const [name, setName] = React.useState(null);
+    const [birthday, setBirthday] = React.useState(null);
+    const [gender, setGender] = React.useState(null);
+    const [emailVNU, setEmailVNU] = React.useState(null);
+    const [email, setEmail] = React.useState(null);
+
     // Education
-    const [program, setProgram] = React.useState(0);
-    const [academicYear, setAcademicYear] = React.useState(0);
-    const [unit, setUnit] = React.useState(0);
-    const [classID, setClassID] = React.useState(2);
-    
+    const [program, setProgram] = React.useState(null);
+    const [academicYear, setAcademicYear] = React.useState(null);
+    const [unit, setUnit] = React.useState(null);
+    const [classID, setClassID] = React.useState(null);
+
     // Activites
-    const [doanVien, setDoanVien] = React.useState(true);
-    const [dangVien, setDangVien] = React.useState(false);
-    const [positionDoan, setPositionDoan] = React.useState("Phó Bí thư Chi đoàn K65CCLC");
-    const [positionHoi, setPositionHoi] = React.useState("Uỷ viên Ban chấp hành Hội Sinh viên Trường");
-    const [club, setClub] = React.useState([]);
-    
+    const [unionJoint, setUnionJoint] = React.useState(null);
+    const [partyJoint, setPartyJoint] = React.useState(null);
+    const [unionPossition, setUnionPossition] = React.useState(null);
+    const [associationPossition, setAssociationPossition] = React.useState(null);
+    const [club, setClub] = React.useState(null);
+
+    const fetchData = () => {
+        getUserData(token).then((data) => {
+            const user = data.user;
+            const student = data.student;
+
+            // Basic
+            setAvatar(user.avatar);
+            setCode(student.code);
+            setName(user.name);
+            setBirthday(user.birthday);
+            setGender(user.gender);
+            setEmailVNU(user.email);
+            setEmail(user.otherEmail);
+
+            // Education
+            setProgram(user.program);
+            setAcademicYear(user.academicYear);
+            setUnit(user.unit);
+            setClassID(student.class);
+
+            // Activities
+            setUnionJoint(user.unionJoint || false);
+            setPartyJoint(user.partyJoint || false);
+            setUnionPossition(user.unionPossition);
+            setAssociationPossition(user.associationPossition);
+            setClub(user.club);
+        });
+    }
+
     useEffect(() => {
-        getUserData(id).then(value => {console.log(value); setUserData(value);});
+        fetchData();
     }, []);
 
     return (
         <Box
-        component="div"
-        sx={{ flexGrow: 1, p: 1, m: 1 }}
+            component="div"
+            sx={{ flexGrow: 1, p: 1, m: 1 }}
         >
             <Grid container spacing={3}>
                 <Grid item xs={12}>
@@ -63,11 +105,11 @@ const Information = () => {
                             flexDirection: 'column',
                         }}
                     >
-                        <Basic 
+                        <Basic
                             avatar={avatar}
                             setAvatar={setAvatar}
-                            studentID={studentID}
-                            setStudentID={setStudentID}
+                            code={code}
+                            setCode={setCode}
                             name={name}
                             setName={setName}
                             birthday={birthday}
@@ -78,6 +120,8 @@ const Information = () => {
                             setEmailVNU={setEmailVNU}
                             email={email}
                             setEmail={setEmail}
+                            token={token}
+                            updateUserData={updateUserData}
                         />
                     </Paper>
                 </Grid>
@@ -89,7 +133,7 @@ const Information = () => {
                             flexDirection: 'column',
                         }}
                     >
-                        <Education 
+                        <Education
                             program={program}
                             setProgram={setProgram}
                             academicYear={academicYear}
@@ -98,6 +142,8 @@ const Information = () => {
                             setUnit={setUnit}
                             classID={classID}
                             setClassID={setClassID}
+                            token={token}
+                            updateUserData={updateUserData}
                         />
                     </Paper>
                 </Grid>
@@ -109,17 +155,19 @@ const Information = () => {
                             flexDirection: 'column',
                         }}
                     >
-                        <Activities 
-                            doanVien={doanVien}
-                            setDoanVien={setDoanVien}
-                            dangVien={dangVien}
-                            setDangVien={setDangVien}
-                            positionDoan={positionDoan}
-                            setPositionDoan={setPositionDoan}
-                            positionHoi={positionHoi}
-                            setPositionHoi={setPositionHoi}
+                        <Activities
+                            unionJoint={unionJoint}
+                            setUnionJoint={setUnionJoint}
+                            partyJoint={partyJoint}
+                            setPartyJoint={setPartyJoint}
+                            unionPossition={unionPossition}
+                            setUnionPossition={setUnionPossition}
+                            associationPossition={associationPossition}
+                            setAssociationPossition={setAssociationPossition}
                             club={club}
                             setClub={setClub}
+                            token={token}
+                            updateUserData={updateUserData}
                         />
                     </Paper>
                 </Grid>
