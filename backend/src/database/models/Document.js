@@ -33,9 +33,6 @@ const Document = sequelize.define(
 			type: DataTypes.STRING,
 			defaultValue: "private",
 		},
-		title: {
-			type: DataTypes.STRING,
-		},
 		description: {
 			type: DataTypes.STRING,
 		},
