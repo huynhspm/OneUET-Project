@@ -22,9 +22,9 @@ const createStudent = async (req, res) => {
 };
 
 // GET: /student
-const getAllStudents = async (req, res) => {
+const getStudents = async (req, res) => {
 	try {
-		const result = await service.getAllStudents(req);
+		const result = await service.getStudents(req);
 		const { data, message, status } = result;
 
 		res.status(status).json({
@@ -42,9 +42,9 @@ const getAllStudents = async (req, res) => {
 };
 
 // GET: /student/:id
-const getStudentById = async (req, res) => {
+const getStudent = async (req, res) => {
 	try {
-		const result = await service.getStudentById(req);
+		const result = await service.getStudent(req);
 		const { data, message, status } = result;
 
 		res.status(status).json({
@@ -101,31 +101,10 @@ const deleteStudent = async (req, res) => {
 	}
 };
 
-// GET: /student/:id/class
-const getAllClasses = async (req, res) => {
-	try {
-		const result = await service.getAllClasses(req);
-		const { data, message, status } = result;
-
-		res.status(status).json({
-			data: data,
-			message: message,
-			status: status,
-		});
-	} catch (e) {
-		res.status(ResponseCode.Bad_Request).json({
-			data: e.message,
-			message: "Couldn't get all classes of class",
-			status: ResponseCode.Bad_Request,
-		});
-	}
-};
-
 module.exports = {
 	createStudent,
-	getAllStudents,
-	getStudentById,
+	getStudents,
+	getStudent,
 	updateStudent,
 	deleteStudent,
-	getAllClasses,
 };

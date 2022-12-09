@@ -1,25 +1,60 @@
 [
     {
+        "email": "20020001@vnu.edu.vn",
+        "password": "12345678",
+        "active": true,
+        "roleId": 2
+    },
+    {
+        "email": "20020203@vnu.edu.vn",
+        "password": "12345678",
+        "active": true,
+        "roleId": 2
+    },
+    {
+        "email": "20020054@vnu.edu.vn",
+        "password": "12345678",
+        "active": true,
+        "roleId": 1
+    },
+    {
+        "email": "20020057@vnu.edu.vn",
+        "password": "12345678",
+        "active": true,
+        "roleId": 2
+    },
+    {
+        "email": "20020066@vnu.edu.vn",
+        "password": "12345678",
+        "active": true,
+        "roleId": 2
+    },
+    {
         "email": "18020133@vnu.edu.vn",
-        "password": "12345678"
+        "password": "12345678",
+        "active": true,
+        "roleId": 2
     },
     {
         "email": "18020179@vnu.edu.vn",
-        "password": "12345678"
+        "password": "12345678",
+        "active": "true",
+        "roleId": 2
     },
     {
         "email": "18020200@vnu.edu.vn",
         "password": "12345678",
-        "active": "true"
+        "active": "true",
+        "roleId": 2
     },
     {
         "email": "18020227@vnu.edu.vn",
         "password": "12345678",
-        "active": "true"
+        "roleId": 2
     },
     {
         "email": "18020388@vnu.edu.vn",
         "password": "12345678",
-        "active": "true"
+        "roleId": 2
     }
 ]

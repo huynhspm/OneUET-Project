@@ -5,7 +5,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-
+import { Link } from "react-router-dom";
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
@@ -27,7 +27,7 @@ const LeftDrawer = () => {
       <Divider />
       <List>
         {UpperTexts.map((text, index) => (
-          <ListItem button component="a" href={UpperHrefs[index]} key={text} disablePadding>
+          <ListItem button component={Link} to={UpperHrefs[index]} key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 {UpperIcons[index]}
@@ -40,7 +40,7 @@ const LeftDrawer = () => {
       <Divider variant="middle" />
       <List>
         {LowerTexts.map((text, index) => (
-          <ListItem button component="a" href={LowerHrefs[index]} key={text} disablePadding>
+          <ListItem button component={Link} to={UpperHrefs[index]} key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 {LowerIcons[index]}

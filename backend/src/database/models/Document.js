@@ -3,6 +3,8 @@ const sequelize = require("../");
 
 const User = require("./User");
 const File = require("./File");
+const Course = require("./Course");
+const Teacher = require("./Teacher");
 
 const Document = sequelize.define(
 	"document",
@@ -12,6 +14,10 @@ const Document = sequelize.define(
 			autoIncrement: true,
 			primaryKey: true,
 			type: DataTypes.INTEGER,
+		},
+		name: {
+			allowNull: false,
+			type: DataTypes.STRING,
 		},
 		year: {
 			type: DataTypes.INTEGER,
@@ -27,6 +33,17 @@ const Document = sequelize.define(
 			type: DataTypes.STRING,
 			defaultValue: "private",
 		},
+		description: {
+			type: DataTypes.STRING,
+		},
+		faculty: {
+			type: DataTypes.STRING,
+			defaultValue: "faculty"
+		},
+		major: {
+			type: DataTypes.STRING,
+			defaultValue: "major"
+		}
 	},
 	{
 		tableName: "document",
@@ -38,5 +55,11 @@ User.hasMany(Document);
 
 Document.belongsTo(File);
 File.hasOne(Document);
+
+Document.belongsTo(Course);
+Course.hasMany(Document);
+
+Document.belongsTo(Teacher);
+Teacher.hasMany(Document);
 
 module.exports = Document;

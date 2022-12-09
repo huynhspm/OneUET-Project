@@ -12,8 +12,6 @@ import { Box, ThemeProvider } from "@mui/system";
 
 import Document from "../pages/Document";
 import Convert from "../pages/Convert";
-import Information from "../pages/Profile/Information";
-import Schedule from "../pages/Profile/Schedule";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Grade from "../pages/Grade";
@@ -41,7 +39,8 @@ const RootLayout = () => {
             <Route path="/register" element={<Register />} />
             <Route path="/homepage" element={<HomePage />} />
             <Route path="/convert" element={<Convert />} />
-            <Route path="/document" element={<Document />} />
+            <Route extract path="/document" element={<Main />} />
+            <Route path="/document/:doc_id" element={<Document />} />
             <Route path="/grade" element={<GradeCourses />} />
             <Route path="/validation-document" element={<ValidationPage />} />
             <Route path="/validation-grade" element={<ValidationGrade />} />
@@ -53,6 +52,7 @@ const RootLayout = () => {
             <Route path="/profile/login" element={<Header />} />
             <Route path="/SearchCourses" element={<SearchCourses />} />
           </Routes>
+
           <Footer />
         </BrowserRouter>
       </Box>

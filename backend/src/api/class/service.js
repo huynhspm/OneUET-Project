@@ -1,53 +1,56 @@
 const { Class } = require("../../database/models");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 
-const createClass = async (req) => {
-	try {
-		const newClass = req.body;
-		const data = await Class.create(newClass);
-		const message = "Create class successfully!";
-		const status = ResponseCode.Created;
-
-		return {
-			data,
-			message,
-			status,
-		};
-	} catch (e) {
-		throw e;
-	}
-};
-
-const getAllClasses = async (req) => {
-	try {
-		const data = await Class.findAll();
-		const message = "Get all classes successfully";
-		const status = ResponseCode.OK;
-
-		return {
-			data,
-			message,
-			status,
-		};
-	} catch (e) {
-		throw e;
-	}
-};
-
-const getClassById = async (req) => {
+const verifyClass = async (req) => {
 	try {
 		const { id } = req.params;
-		let data, message, status;
-		data = await Class.findByPk(id);
+		let curClass, message, status;
+		curClass = await Class.findByPk(id);
 
-		if (data) {
+		if (curClass) {
 			message = "Get class successfully";
 			status = ResponseCode.OK;
 		} else {
-			data = null;
 			message = "Class not existed";
 			status = ResponseCode.OK;
 		}
+
+		return {
+			curClass,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
+const createClass = async (req) => {
+	try {
+		const newClass = req.body;
+		const curClass = await Class.create(newClass);
+
+		const message = "Create class successfully!";
+		const status = ResponseCode.Created;
+		const data = { curClass };
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
+const getClasses = async (req) => {
+	try {
+		const classes = await Class.findAll();
+		const message = "Get classes successfully";
+		const status = ResponseCode.OK;
+
+		const data = { classes };
 
 		return {
 			data,
@@ -61,14 +64,16 @@ const getClassById = async (req) => {
 
 const updateClass = async (req) => {
 	try {
-		let { data, message, status } = await getClassById(req);
+		let { curClass, message, status } = await verifyClass(req);
 
-		if (data) {
+		if (curClass) {
 			const updatedClass = req.body;
-			data = await data.update(updatedClass);
+			curClass = await curClass.update(updatedClass);
 			message = "Update class successfully";
 			status = ResponseCode.OK;
 		}
+
+		const data = { curClass };
 
 		return {
 			data,
@@ -82,14 +87,16 @@ const updateClass = async (req) => {
 
 const deleteClass = async (req) => {
 	try {
-		let { data, message, status } = await getClassById(req);
+		let { curClass, message, status } = await verifyClass(req);
 
-		if (data) {
-			data = await data.destroy();
+		if (curClass) {
+			curClass = await curClass.destroy();
 			message = "Delete class successfully";
 			status = ResponseCode.OK;
 		}
 
+		const data = { curClass };
+
 		return {
 			data,
 			message,
@@ -100,23 +107,26 @@ const deleteClass = async (req) => {
 	}
 };
 
-// not check
-const addClass = async (req) => {
+const getClass = async (req) => {
 	try {
-		const { teacherId, courseId, studentId } = req.body;
-		let { curClass, message, status } = await getClassById(req);
-		let data = null;
+		let { curClass, message, status } = await verifyClass(req);
+		let teachers, students, course;
 
 		if (curClass) {
-			if (teacherId) await curClass.setTeacher(teacherId);
-			if (courseId) await curClass.setCourse(courseId);
-			if (studentId) await curClass.setStudent(studentId);
+			teachers = await curClass.getTeachers();
+			students = await curClass.getStudents();
+			course = await curClass.getCourse();
 
-			message = "Add class successfully";
+			message = "Get class successfully";
 			status = ResponseCode.OK;
 		}
 
-		data = curClass;
+		const data = {
+			curClass,
+			teachers,
+			students,
+			course,
+		};
 
 		return {
 			data,
@@ -128,75 +138,37 @@ const addClass = async (req) => {
 	}
 };
 
-const getAllTeachers = async (req) => {
-	try {
-		let { data, message, status } = await getClassById(req);
+// const addClass = async (req) => {
+// 	try {
+// 		const { teacherId, courseId, studentId } = req.body;
+// 		let { curClass, message, status } = await getClassById(req);
+// 		let data = null;
 
-		if (data) {
-			data = await data.getTeachers();
-			message = "Get all teachers of class successfully";
-			status = ResponseCode.OK;
-		}
+// 		if (curClass) {
+// 			if (teacherId) await curClass.addTeacher(teacherId);
+// 			if (courseId) await curClass.setCourse(courseId);
+// 			if (studentId) await curClass.addStudent(studentId);
 
-		return {
-			data,
-			message,
-			status,
-		};
-	} catch (e) {
-		throw e;
-	}
-};
+// 			message = "Add class successfully";
+// 			status = ResponseCode.OK;
+// 		}
 
-const getAllStudents = async (req) => {
-	try {
-		let { data, message, status } = await getClassById(req);
+// 		data = curClass;
 
-		if (data) {
-			data = await data.getStudents();
-			message = "Get all students of class successfully";
-			status = ResponseCode.OK;
-		}
-
-		return {
-			data,
-			message,
-			status,
-		};
-	} catch (e) {
-		throw e;
-	}
-};
-
-// not check
-const getCourse = async (req) => {
-	try {
-		let { data, message, status } = await getClassById(req);
-
-		if (data) {
-			data = data.getCourse();
-			message = "Get course of class successfully";
-			status = ResponseCode.OK;
-		}
-
-		return {
-			data,
-			message,
-			status,
-		};
-	} catch (e) {
-		throw e;
-	}
-};
+// 		return {
+// 			data,
+// 			message,
+// 			status,
+// 		};
+// 	} catch (e) {
+// 		throw e;
+// 	}
+// };
 
 module.exports = {
 	createClass,
-	getAllClasses,
-	getClassById,
+	getClasses,
 	updateClass,
 	deleteClass,
-	addClass,
-	getAllTeachers,
-	getAllStudents,
-	getCourse,
+	getClass,
 };

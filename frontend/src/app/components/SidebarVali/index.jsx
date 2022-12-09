@@ -55,7 +55,7 @@ const Sidebar = (props) => {
               <ListItem disablePadding>
                 <ListItemButton>
                   <ListItemIcon>{item.icon}</ListItemIcon>
-                  <ListItemText primary={item.title} />
+                  <ListItemText primary={item.name} />
                 </ListItemButton>
               </ListItem>
             </div>

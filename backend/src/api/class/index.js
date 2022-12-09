@@ -1,18 +1,13 @@
 const Router = require("express");
 const controller = require("./controller");
 
+const { verifyToken, verifyAdmin } = require("../../middleware/service");
+
 const router = Router();
-
-router.post("/", controller.createClass);
-router.get("/", controller.getAllClasses);
-
-router.get("/:id", controller.getClassById);
-router.put("/:id", controller.updateClass);
-router.delete("/:id", controller.deleteClass);
-router.post("/:id", controller.addClass);
-
-router.get("/:id/teacher", controller.getAllTeachers);
-router.get("/:id/student", controller.getAllStudents);
-router.get("/:id/course", controller.getCourse);
+router.post("/", [verifyToken, verifyAdmin], controller.createClass);
+router.get("/", [verifyToken, verifyAdmin], controller.getClasses);
+router.get("/:id", [verifyToken, verifyAdmin], controller.getClass);
+router.put("/:id", [verifyToken, verifyAdmin], controller.updateClass);
+router.delete("/:id", [verifyToken, verifyAdmin], controller.deleteClass);
 
 module.exports = router;

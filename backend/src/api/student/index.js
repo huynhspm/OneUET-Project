@@ -1,13 +1,13 @@
 const Router = require("express");
 const controller = require("./controller");
 
-const router = Router();
-router.post("/", controller.createStudent);
-router.get("/", controller.getAllStudents);
+const { verifyToken, verifyAdmin } = require("../../middleware/service");
 
-router.get("/:id", controller.getStudentById);
-router.put("/:id", controller.updateStudent);
-router.delete("/:id", controller.deleteStudent);
-router.get("/:id/class", controller.getAllClasses);
+const router = Router();
+router.post("/", [verifyToken, verifyAdmin], controller.createStudent);
+router.get("/", [verifyToken, verifyAdmin], controller.getStudents);
+router.get("/:id", [verifyToken, verifyAdmin], controller.getStudent);
+router.put("/:id", [verifyToken, verifyAdmin], controller.updateStudent);
+router.delete("/:id", [verifyToken, verifyAdmin], controller.deleteStudent);
 
 module.exports = router;

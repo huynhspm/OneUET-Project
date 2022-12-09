@@ -1,13 +1,9 @@
 import {
     Box,
     Button,
-    Checkbox,
     Fab,
-    FormControlLabel,
     Grid,
-    Link,
-    Modal,
-    styled,
+    Input,
     TextField,
     Tooltip,
     Typography,
@@ -15,12 +11,8 @@ import {
 import AddIcon from '@mui/icons-material/Add';
 import React, { useState } from 'react';
 import axios from "axios";
-
-const StyledModal = styled(Modal)({
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-});
+import { InputBox, InputButton } from './styles';
+import { CenterModal } from '../../utils/styles';
 
 const Add = () => {
     const [open, setOpen] = useState(false);
@@ -31,7 +23,7 @@ const Add = () => {
 
         const docName = data.get("docName");
         const docDescription = data.get("docDescription");
-        const docFalculty = data.get("docFalculty");
+        const docFaculty = data.get("docfaculty");
         const docMajor = data.get("docMajor");
         const docLecturer = data.get("docLecturer");
         const docSubject = data.get("docSubject");
@@ -39,10 +31,10 @@ const Add = () => {
         const docYear = data.get("docYear");
 
         try {
-            const res = await axios.post("http://localhost:2002/register", {
+            const res = await axios.post("http://localhost:2002/file", {
                 docName,
                 docDescription,
-                docFalculty,
+                docFaculty,
                 docMajor,
                 docLecturer,
                 docSubject,
@@ -70,7 +62,7 @@ const Add = () => {
                     <AddIcon />
                 </Fab>
             </Tooltip>
-            <StyledModal
+            <CenterModal
                 open={open}
                 onClose={(e) => setOpen(false)}
                 aria-labelledby="modal-modal-title"
@@ -126,8 +118,8 @@ const Add = () => {
                                         required
                                         fullWidth
                                         label="Khoa"
-                                        id="docFalculty"
-                                        name="docFalculty"
+                                        id="docFaculty"
+                                        name="docFaculty"
                                         type="text"
                                         row="3"
                                     />
@@ -135,7 +127,7 @@ const Add = () => {
                                 <Grid item xs={6}>
                                     <TextField
                                         required
-                                        fullWidth 
+                                        fullWidth
                                         label="Ngành"
                                         id="docMajor"
                                         name="docMajor"
@@ -181,21 +173,22 @@ const Add = () => {
                                 </Grid>
                             </Grid>
                         </Box>
-                        <Box
-                            component="main"
-                            sx={{ flexGrow: 1, pl: 2, pt: 1, width: { sm: 500 } }}
-                        >
-                            abaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                            abaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                            baaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                            abaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                            abaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                            baaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                            abaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                            abaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                            baaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                        <Box sx={{ flexGrow: 1, pt: 2, pl: 2, height: 350 }}>
+                            <InputBox>
+                                <InputButton
+                                    variant="outlined"
+                                    component="label"
+                                    fullWidth="true"
+                                >
+                                    Upload File
+                                    <input
+                                        type="file"
+                                        hidden
+                                    />
+                                </InputButton>
+                            </InputBox>
                         </Box>
-                    </Box>                        
+                    </Box>
                     <Button variant="contained" sx={{
                         borderRadius: 2,
                         width: '100px',
@@ -206,7 +199,7 @@ const Add = () => {
                         POST
                     </Button>
                 </Box>
-            </StyledModal>
+            </CenterModal>
         </>
     );
 };

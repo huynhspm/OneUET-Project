@@ -26,3 +26,6 @@ const init = async () => {
 init();
 
 module.exports = app;
+
+// token admin: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2OTAzLCJleHAiOjE2NzMwMjg5MDN9.P24YIktlAWfNTZwY-aulJJRnEBpX13RGu56VFHn5ApY
+// token user: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo

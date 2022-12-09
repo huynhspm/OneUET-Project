@@ -9,6 +9,7 @@ const roles = require("../database/data/role.json");
 const users = require("../database/data/user.json");
 const files = require("../database/data/file.json");
 const documents = require("../database/data/document.json");
+const comments = require("../database/data/comment.json");
 
 async function createCourse() {
 	for (let course of courses) {
@@ -28,7 +29,7 @@ async function createTeacher() {
 	}
 }
 
-async function createTeachersClasses() {
+async function createTeacherClass() {
 	for (let teacherClass of teachersClasses) {
 		models.TeacherClass.create(teacherClass);
 	}
@@ -41,7 +42,7 @@ async function createStudent() {
 	}
 }
 
-async function createStudentsClasses() {
+async function createStudentClass() {
 	for (let studentClass of studentsClasses) {
 		models.StudentClass.create(studentClass);
 	}
@@ -71,17 +72,24 @@ async function createDocument() {
 	}
 }
 
+async function createComment() {
+	for (let comment of comments) {
+		await models.Comment.create(comment);
+	}
+}
+
 async function createData() {
 	await createCourse();
 	await createClass();
 	await createTeacher();
-	await createTeachersClasses();
+	await createTeacherClass();
 	await createStudent();
-	await createStudentsClasses();
+	await createStudentClass();
 	await createRole();
 	await createUser();
 	await createFile();
 	await createDocument();
+	await createComment();
 }
 
 module.exports = createData;

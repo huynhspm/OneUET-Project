@@ -22,9 +22,9 @@ const createCourse = async (req, res) => {
 };
 
 // GET: /course
-const getAllCourses = async (req, res) => {
+const getCourses = async (req, res) => {
 	try {
-		const result = await service.getAllCourses(req);
+		const result = await service.getCourses(req);
 		const { data, message, status } = result;
 
 		res.status(status).json({
@@ -42,9 +42,9 @@ const getAllCourses = async (req, res) => {
 };
 
 // GET: /course/:id
-const getCourseById = async (req, res) => {
+const getCourse = async (req, res) => {
 	try {
-		const result = await service.getCourseById(req);
+		const result = await service.getCourse(req);
 		const { data, message, status } = result;
 
 		res.status(status).json({
@@ -101,31 +101,10 @@ const deleteCourse = async (req, res) => {
 	}
 };
 
-// GET: /course/:id/class
-const getAllClasses = async (req, res) => {
-	try {
-		const result = await service.getAllClasses(req);
-		const { data, message, status } = result;
-
-		res.status(status).json({
-			data: data,
-			message: message,
-			status: status,
-		});
-	} catch (e) {
-		res.status(ResponseCode.Bad_Request).json({
-			data: e.message,
-			message: "Couldn't get all classes of class",
-			status: ResponseCode.Bad_Request,
-		});
-	}
-};
-
 module.exports = {
 	createCourse,
-	getAllCourses,
-	getCourseById,
+	getCourses,
+	getCourse,
 	updateCourse,
 	deleteCourse,
-	getAllClasses,
 };
