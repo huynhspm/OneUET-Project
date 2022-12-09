@@ -12,29 +12,23 @@ import { useState } from "react";
 
 import { guid } from "@progress/kendo-react-common";
 
-const meetingRooms = {
-  name: "Meeting Room",
-  data: [
-    {
-      text: "Blue room",
-      value: 1,
-      color: "blue",
-    },
-    {
-      text: "Red room",
-      value: 2,
-      color: "red",
-    },
-    {
-      text: "Green room",
-      value: 3,
-      color: "green",
-    },
-  ],
-  field: "RoomID",
-  valueField: "value",
-  textField: "text",
-  colorField: "color",
+const Schedule = () => {
+    return (
+        <Box sx={{ display: 'flex' }}>
+            <Box
+                component="nav"
+                sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+            >
+                <LeftDrawer />
+            </Box>
+            <Box
+                component="main"
+                sx={{ flexGrow: 1, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+            >
+                
+            </Box>
+        </Box>
+    );
 };
 
 const compareById = matchingItem => item => matchingItem.id === item.id;
