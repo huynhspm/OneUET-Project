@@ -21,10 +21,10 @@ const DocumentCard = (props) => {
             await axios
                 .get("http://localhost:2002/document/" + String(props.index + 1))
                 .then((res) => {
-                    // console.log('--fetchData() - DocumentCard--');
-                    // console.log(String(props.index));
-                    // console.log(res);
-                    // console.log('------------------------------');
+                    console.log('--fetchData() - DocumentCard--');
+                    console.log(String(props.index));
+                    console.log(res);
+                    console.log('------------------------------');
                     
                     let tmp = [
                         props.faculty,
@@ -55,21 +55,21 @@ const DocumentCard = (props) => {
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                        {props.title}
+                        {props.name}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
                         {props.description}
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Link class="btn" onClick={handleClick}><RemoveRedEyeIcon />Xem tài liệu</Link>
+                    <Link class="btn" onClick={handleClick} ><RemoveRedEyeIcon />Xem tài liệu</Link>
                 </CardActions>
             </Card >
             <PreviewDocument
                 open={open}
                 setOpen={setOpen}
                 description={props.description}
-                title={props.title}
+                name={props.name}
                 index={props.index}
                 tags={tags}
             />
@@ -77,6 +77,4 @@ const DocumentCard = (props) => {
     )
 }
 
-
 export default DocumentCard;
-

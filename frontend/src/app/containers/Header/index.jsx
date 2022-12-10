@@ -25,19 +25,19 @@ import { ModeNight } from "@mui/icons-material";
 import "./styles.css";
 
 const documents = [
-  { title: 'Giáo trình xử lý ảnh', link: "" },
-  { title: 'Giáo trình data mining', link: "" },
-  { title: 'Đề thi Vật lý đại cương kỳ 1 năm học 2021-2022', link: "" },
-  { title: 'Đề thi Vật lý đại cương kỳ 2 năm học 2021-2022', link: "" },
-  { title: 'Đề thi Vật lý đại cương kỳ 1 năm học 2020-2021', link: "" },
-  { title: 'Đề thi Vật lý đại cương kỳ 2 năm học 2020-2021', link: "" },
-  { title: 'Slide trí tuệ nhân tạo phần 1', link: "" },
-  { title: 'Slide trí tuệ nhân tạo phần 2', link: "" },
-  { title: 'Slide trí tuệ nhân tạo phần 3', link: "" },
-  { title: 'Slide trí tuệ nhân tạo phần 4', link: "" },
-  { title: 'Slide trí tuệ nhân tạo phần 5', link: "" },
-  { title: 'Slide trí tuệ nhân tạo phần 6', link: "" },
-  { title: 'Slide trí tuệ nhân tạo phần 7', link: "" },
+  { name: 'Giáo trình xử lý ảnh', link: "" },
+  { name: 'Giáo trình data mining', link: "" },
+  { name: 'Đề thi Vật lý đại cương kỳ 1 năm học 2021-2022', link: "" },
+  { name: 'Đề thi Vật lý đại cương kỳ 2 năm học 2021-2022', link: "" },
+  { name: 'Đề thi Vật lý đại cương kỳ 1 năm học 2020-2021', link: "" },
+  { name: 'Đề thi Vật lý đại cương kỳ 2 năm học 2020-2021', link: "" },
+  { name: 'Slide trí tuệ nhân tạo phần 1', link: "" },
+  { name: 'Slide trí tuệ nhân tạo phần 2', link: "" },
+  { name: 'Slide trí tuệ nhân tạo phần 3', link: "" },
+  { name: 'Slide trí tuệ nhân tạo phần 4', link: "" },
+  { name: 'Slide trí tuệ nhân tạo phần 5', link: "" },
+  { name: 'Slide trí tuệ nhân tạo phần 6', link: "" },
+  { name: 'Slide trí tuệ nhân tạo phần 7', link: "" },
 
 ];
 
@@ -67,7 +67,7 @@ const Header = (props) => {
           <Autocomplete
             className="search-input"
             freeSolo
-            getOptionLabel={(option) => option.title}
+            getOptionLabel={(option) => option.name}
             options={documents.map((option) => option)}
             onChange={(event, option) => {
               window.location.href = "/document";
@@ -103,3 +103,4 @@ const Header = (props) => {
 };
 
 export default Header;
+  

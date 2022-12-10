@@ -2,8 +2,9 @@ import { Modal, Box, Button, Divider, TextField, Hidden, Card, CardActions, Card
 import { Link } from "react-router-dom";
 import React, { useState } from 'react';
 import OptionsDialog from '../OpitonsDialog';
-import './styles.css';
+import '../../utils/styles.css';
 import Tags from '../Tags';
+import Comment from '../Comment';
 import { CenterModal } from '../../utils/styles';
 
 const PreviewDocument = (props) => {
@@ -33,67 +34,28 @@ const PreviewDocument = (props) => {
                 <Box
                     bgcolor={'background.default'}
                     color={'text.primary'}
-                    width={1200}
-                    height={600}
-                    p={3}
                     borderRadius={2}
                     sx={{
-                        position: 'relative'
+                        p: 3,
+                        position: 'relative',
+                        width: 'calc(60%)',
+                        height: 'calc(80%)',
+                        display: 'flex',
+                        flexDirection: 'column'
                     }}
                 >
-                    <Typography variant="h6" color="gray" textAlign="left">
-                        {props.title}
+                    <Typography variant="h6" color="black" textAlign="left">
+                        {props.name}
                     </Typography>
-                    <Box sx={{ display: 'flex', flexDirection: 'row', top: 52 }}>
-                        <Box
-                            sx={{ width: { sm: 600 }, pt: 1, flexShrink: { sm: 0 } }}
-                            aria-label="mailbox folders"
-                        >
-                            <div class='pdf-viewer'>
-                                <iframe src={pdf_link} width="600px" height="500px"></iframe>
-                            </div>
-                        </Box>
-                        <Box
-                            sx={{ flexGrow: 1, pl: 2, pt: 1, width: { sm: 500 }, position: 'relative' }}
-                        >
-                            <Typography>
-                                {props.description}
-                            </Typography>
-                            <Divider />
-                            <Tags data={props.tags}></Tags>
-                            <Typography color="textSecondary" className="datePosted" sx={{ pt: 1 }}>
-                                5 DAYS AGO
-                            </Typography>
-                            {/* <Link to={`/p/${id}`}>
-                                <Typography
-                                    className="commentsLink"
-                                    variant="body2"
-                                    component="div"
-                                >
-                                    View all {comments.length} comments
-                                </Typography>
-                            </Link> */}
-                            <Divider />
-                            {comments.map(comment => (
-                                <Box sx={{}}>
-                                    <Typography variant="body2" component="span">
-                                        {comment}
-                                    </Typography>
-                                    <Divider />
-                                </Box>
-                            ))}
-
-                            <Box sx={{
-                                position: 'absolute',
-                                bottom: 0,
-                                width: '100%'
-                            }}>
-                                <Divider />
-                                <Comment />
-                            </Box>
-                        </Box>
-                    </Box>
-
+                    <Typography>
+                        {props.description}
+                    </Typography>
+                    <Divider />
+                    <Typography color="textSecondary" className="datePosted" sx={{ pt: 1 }}>
+                        5 DAYS AGO
+                    </Typography>
+                    <iframe src={pdf_link} class='pdf-viewer'></iframe>
+                    <Button variant='contained' sx={{mt:3}} component={Link} to={"/document/" + String(props.index + 1)}>View Full Page</Button>
                     {showOptionsDialog && (
                         <OptionsDialog onClose={() => setOptionsDialog(false)} />
                     )}
@@ -102,40 +64,5 @@ const PreviewDocument = (props) => {
         </>
     );
 };
-
-function Comment() {
-    const [content, setContent] = useState("");
-
-    return (
-        <div class="commentContainer">
-            <TextField
-                fullWidth
-                value={content}
-                placeholder="Add a comment..."
-                multiline
-                rowsMax={2}
-                rows={1}
-                onChange={event => setContent(event.target.value)}
-                class="textField"
-                sx={{
-                    pb: 0
-                }}
-                InputProps={{
-                    classes: {
-                        root: ".root",
-                        underline: "underline"
-                    }
-                }}
-            />
-            <Button
-                color="primary"
-                disabled={!content.trim()}
-            >
-                Post
-            </Button>
-        </div>
-    );
-}
-
 
 export default PreviewDocument;

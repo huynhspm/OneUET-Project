@@ -7,23 +7,30 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Image from 'mui-image';
-import dayjs from 'dayjs';
-
-const Submit = () => {
-    console.log("Basic Information submited!");
-}
 
 const Basic = (props) => {
     const [editable, setEditable] = React.useState(false);
 
     const [avatar, setAvatar] = React.useState("https://randomuser.me/api/portraits/women/79.jpg");
 
-    const [studentID, setStudentID] = React.useState("20020001");
-    const [name, setName] = React.useState("Lương Sơn Bá");
-    const [birthday, setBirthday] = React.useState(dayjs('2002-07-08'));
-    const [gender, setGender] = React.useState(0);
-    const [emailVNU, setEmailVNU] = React.useState("20020001@vnu.edu.vn");
-    const [email, setEmail] = React.useState("luongsonba270@gmail.com");
+    const Submit = () => {
+        console.log("Basic Information submited!");
+        props.updateUserData(props.token, {
+            avatar: props.avatar,
+            name: props.name,
+            birthday: props.birthday,
+            gender: props.gender,
+            email: props.emailVNU,
+            otherEmail: props.email
+        });
+    }
+    
+    const ControlValue = (value) => {
+        if (value === undefined || value === null) {
+            return '';
+        }
+        return value;
+    }
 
     return (
         <React.Fragment>
@@ -88,9 +95,9 @@ const Basic = (props) => {
                                     disabled={!editable}
                                     fullWidth
                                     label="Mã số sinh viên"
-                                    value={studentID}
+                                    value={ControlValue(props.code)}
                                     onChange={(event) => {
-                                        setStudentID(event.target.value);
+                                        props.setCode(event.target.value);
                                     }}
                                     id="id"
                                     type="text"
@@ -102,9 +109,9 @@ const Basic = (props) => {
                                     disabled={!editable}
                                     fullWidth
                                     label="Họ và tên"
-                                    value={name}
+                                    value={ControlValue(props.name)}
                                     onChange={(event) => {
-                                        setName(event.target.value);
+                                        props.setName(event.target.value);
                                     }}
                                     id="name"
                                     type="text"
@@ -117,9 +124,9 @@ const Basic = (props) => {
                                         disabled={!editable}
                                         inputFormat="DD/MM/YYYY"
                                         views={['day', 'month', 'year']}
-                                        value={birthday}
+                                        value={ControlValue(props.birthday)}
                                         onChange={(newValue) => {
-                                            setBirthday(newValue);
+                                            props.setBirthday(newValue);
                                         }}
                                         renderInput={(params) => <TextField fullWidth disabled={!editable} {...params} />}
                                     />
@@ -132,9 +139,9 @@ const Basic = (props) => {
                                         disabled={!editable}
                                         labelId="gender-label"
                                         id="gender"
-                                        value={gender}
+                                        value={ControlValue(props.gender)}
                                         onChange={(event) => {
-                                            setGender(event.target.value);
+                                            props.setGender(event.target.value);
                                         }}
                                         label="Giới tính"
                                     >
@@ -150,9 +157,9 @@ const Basic = (props) => {
                                     disabled={!editable}
                                     fullWidth
                                     label="Địa chỉ Email ĐHQGHN"
-                                    value={emailVNU}
+                                    value={ControlValue(props.emailVNU)}
                                     onChange={(event) => {
-                                        setEmailVNU(event.target.value);
+                                        props.setEmailVNU(event.target.value);
                                     }}
                                     id="email-vnu"
                                     type="email"
@@ -164,9 +171,9 @@ const Basic = (props) => {
                                     disabled={!editable}
                                     fullWidth
                                     label="Địa chỉ Email khác"
-                                    value={email}
+                                    value={ControlValue(props.email)}
                                     onChange={(event) => {
-                                        setEmail(event.target.value);
+                                        props.setEmail(event.target.value);
                                     }}
                                     id="email"
                                     type="email"

@@ -1,41 +1,50 @@
 import HorizontalDocumentList from "../../components/HorizontalDocumentList";
 import Pagination from "@mui/material/Pagination";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const HomePage = () => {
+const HomePage = (props) => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    // console.log(props.token);
+    if (props.token == '') {
+      navigate('/login');
+    }
+  }, [props.token]);
+
   const cards_json = [
     {
-      title: "Du",
+      name: "Du",
       description: "đẹp trai",
       src_img: "https://randomuser.me/api/portraits/women/79.jpg",
       link: "/convert",
     },
     {
-      title: "Linh",
+      name: "Linh",
       description: "xấu",
       src_img: "https://randomuser.me/api/portraits/women/78.jpg",
       link: "/document",
     },
     {
-      title: "Huỳnh",
+      name: "Huỳnh",
       description: "xấu",
       src_img: "https://randomuser.me/api/portraits/women/77.jpg",
       link: "/document",
     },
     {
-      title: "Bá",
+      name: "Bá",
       description: "xấu",
       src_img: "https://randomuser.me/api/portraits/women/76.jpg",
       link: "/document",
     },
     {
-      title: "Lộc",
+      name: "Lộc",
       description: "xấu",
       src_img: "https://randomuser.me/api/portraits/women/75.jpg",
       link: "/document",
     },
     {
-      title: "Hà",
+      name: "Hà",
       description: "xấu",
       src_img: "https://randomuser.me/api/portraits/women/74.jpg",
       link: "/document",
