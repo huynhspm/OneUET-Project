@@ -24,7 +24,8 @@ const login = async (req) => {
 			loginData.password,
 			user.password
 		);
-
+		console.log(loginData.password);
+		console.log(verifyPassword);
 		if (!verifyPassword) {
 			data = null;
 			message = "Invalid password!";

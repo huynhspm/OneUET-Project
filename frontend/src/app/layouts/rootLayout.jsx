@@ -10,6 +10,7 @@ import { createTheme } from "@mui/material";
 
 import { Box, ThemeProvider } from "@mui/system";
 
+import Main from "../pages/Document/Main";
 import Document from "../pages/Document";
 import Convert from "../pages/Convert";
 import Login from "../pages/Login";
@@ -17,11 +18,14 @@ import Register from "../pages/Register";
 import Grade from "../pages/Grade";
 import GradeCourses from "../pages/GradeCourses";
 import ValidationGrade from "../pages/ValidationGrade";
+import Information from "../pages/Profile/Information";
+import Schedule from "../pages/Profile/Schedule"
 import SearchCourses from "../pages/SearchCourses";
 
 const RootLayout = () => {
 
   const [mode, setMode] = useState("light");
+  const [token, setToken] = useState('');
   const darkTheme = createTheme({
     palette: {
       mode: mode,
@@ -34,8 +38,8 @@ const RootLayout = () => {
           <Header setMode={setMode} mode={mode} />
 
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<HomePage token={token} />} />
+            <Route path="/login" element={<Login token={token} setToken={setToken} />} />
             <Route path="/register" element={<Register />} />
             <Route path="/homepage" element={<HomePage />} />
             <Route path="/convert" element={<Convert />} />
