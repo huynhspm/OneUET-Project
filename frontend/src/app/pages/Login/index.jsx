@@ -12,15 +12,58 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
+import validator from 'validator'
+import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme();
 
-export default function Login() {
+export default function Login(props) {
+	const navigate = useNavigate();
+	const [isValidEmail, setIsValidEmail] = React.useState(0);
+	const [isValidPassword, setIsValidPassword] = React.useState(0);
+
+	const EmailState = [
+		"",
+		"Please enter your email",
+		"Invalid Email"
+	]
+
+	const PasswordState = [
+		"",
+		"Please enter your password",
+		"Wrong password"
+	]
+
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
 		const email = data.get("email");
 		const password = data.get("password");
+
+		let validation = true;
+
+		// Validation
+		if (email === "") {
+			setIsValidEmail(1);
+			validation = false;
+		} else {
+			if (!validator.isEmail(email)) {
+				setIsValidEmail(2);
+				validation = false;
+			} else {
+				setIsValidEmail(0);
+			}
+		}
+		if (password === "") {
+			setIsValidPassword(1);
+			validation = false;
+		} else {
+			setIsValidPassword(0);
+		}
+
+		if (!validation) {
+			return;
+		}
 
 		try {
 			const res = await axios.post("http://localhost:2002/login", {
@@ -28,8 +71,15 @@ export default function Login() {
 				password: password,
 			});
 			console.log(res);
+			props.setToken(res.data.data.token);
+			navigate("/");
 		} catch (e) {
-			console.log(e.response.data);
+			if (e.response !== undefined) {
+				console.log(e.response.data);
+				if (e.response.data.message === "Invalid password!") {
+					setIsValidPassword(2);
+				}
+			}
 		}
 	};
 
@@ -61,6 +111,8 @@ export default function Login() {
 							// id="email"
 							label="Email Address"
 							name="email"
+							error={isValidEmail !== 0}
+							helperText={EmailState[isValidEmail]}
 							// autoComplete="email"
 							type="text"
 							autoFocus
@@ -72,6 +124,8 @@ export default function Login() {
 							label="Password"
 							// id="password"
 							name="password"
+							error={isValidPassword !== 0}
+							helperText={PasswordState[isValidPassword]}
 							// autoComplete="current-password"
 							type="password"
 						/>
