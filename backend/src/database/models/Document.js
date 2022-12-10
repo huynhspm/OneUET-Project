@@ -38,12 +38,10 @@ const Document = sequelize.define(
 		},
 		faculty: {
 			type: DataTypes.STRING,
-			defaultValue: "faculty"
 		},
 		major: {
 			type: DataTypes.STRING,
-			defaultValue: "major"
-		}
+		},
 	},
 	{
 		tableName: "document",

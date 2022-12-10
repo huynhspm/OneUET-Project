@@ -1,5 +1,4 @@
 const { Document } = require("../../database/models");
-const { verifyUser } = require("../user/service");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 
 const verifyDocument = async (req) => {

@@ -44,7 +44,43 @@ const createClass = async (req) => {
 	}
 };
 
-const getClasses = async (req) => {
+const getMyClasses = async (req) => {
+	try {
+		const classes = await Class.findAll();
+		const message = "Get my classes successfully";
+		const status = ResponseCode.OK;
+
+		const data = { classes };
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
+const getMyStudiedClasses = async (req) => {
+	try {
+		const classes = await Class.findAll({ where: {} });
+		const message = "Get classes successfully";
+		const status = ResponseCode.OK;
+
+		const data = { classes };
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
+const getMyStudyingClasses = async (req) => {
 	try {
 		const classes = await Class.findAll();
 		const message = "Get classes successfully";
@@ -62,18 +98,26 @@ const getClasses = async (req) => {
 	}
 };
 
-const updateClass = async (req) => {
+const getMyClass = async (req) => {
 	try {
 		let { curClass, message, status } = await verifyClass(req);
+		let teachers, students, course;
 
 		if (curClass) {
-			const updatedClass = req.body;
-			curClass = await curClass.update(updatedClass);
-			message = "Update class successfully";
+			teachers = await curClass.getTeachers();
+			students = await curClass.getStudents();
+			course = await curClass.getCourse();
+
+			message = "Get class successfully";
 			status = ResponseCode.OK;
 		}
 
-		const data = { curClass };
+		const data = {
+			curClass,
+			teachers,
+			students,
+			course,
+		};
 
 		return {
 			data,
@@ -85,17 +129,13 @@ const updateClass = async (req) => {
 	}
 };
 
-const deleteClass = async (req) => {
+const getClasses = async (req) => {
 	try {
-		let { curClass, message, status } = await verifyClass(req);
+		const classes = await Class.findAll();
+		const message = "Get classes successfully";
+		const status = ResponseCode.OK;
 
-		if (curClass) {
-			curClass = await curClass.destroy();
-			message = "Delete class successfully";
-			status = ResponseCode.OK;
-		}
-
-		const data = { curClass };
+		const data = { classes };
 
 		return {
 			data,
@@ -138,6 +178,52 @@ const getClass = async (req) => {
 	}
 };
 
+const updateClass = async (req) => {
+	try {
+		let { curClass, message, status } = await verifyClass(req);
+
+		if (curClass) {
+			const { updatedClass, courseId } = req.body;
+			curClass = await curClass.update(updatedClass);
+
+			message = "Update class successfully";
+			status = ResponseCode.OK;
+		}
+
+		const data = { curClass };
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
+const deleteClass = async (req) => {
+	try {
+		let { curClass, message, status } = await verifyClass(req);
+
+		if (curClass) {
+			curClass = await curClass.destroy();
+			message = "Delete class successfully";
+			status = ResponseCode.OK;
+		}
+
+		const data = { curClass };
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
 // const addClass = async (req) => {
 // 	try {
 // 		const { teacherId, courseId, studentId } = req.body;
@@ -167,8 +253,12 @@ const getClass = async (req) => {
 
 module.exports = {
 	createClass,
+	getMyClasses,
+	getMyStudiedClasses,
+	getMyStudyingClasses,
+	getMyClass,
 	getClasses,
+	getClass,
 	updateClass,
 	deleteClass,
-	getClass,
 };

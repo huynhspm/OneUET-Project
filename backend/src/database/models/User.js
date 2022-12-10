@@ -16,6 +16,7 @@ const User = sequelize.define(
 		},
 		email: {
 			allowNull: false,
+			primaryKey: true,
 			unique: true,
 			type: DataTypes.STRING,
 		},
@@ -42,8 +43,11 @@ const User = sequelize.define(
 		academicYear: {
 			type: DataTypes.INTEGER,
 		},
-		unit: {
-			type: DataTypes.INTEGER,
+		faculty: {
+			type: DataTypes.STRING,
+		},
+		major: {
+			type: DataTypes.STRING,
 		},
 		unionJoint: {
 			type: DataTypes.BOOLEAN,
@@ -51,10 +55,10 @@ const User = sequelize.define(
 		partyJoint: {
 			type: DataTypes.BOOLEAN,
 		},
-		unionPossition: {
+		unionPosition: {
 			type: DataTypes.STRING,
 		},
-		associationPossition: {
+		associationPosition: {
 			type: DataTypes.STRING,
 		},
 		club: {
@@ -92,9 +96,8 @@ User.beforeUpdate((user) => {
 });
 
 User.afterCreate(async (user) => {
-	const student = await Student.findOne({
-		where: { code: user.email.slice(0, 8) },
-	});
+	const code = user.email.slice(0, 8);
+	const student = await Student.findOne({ where: { code } });
 	if (student) {
 		await user.update({ studentId: student.id });
 	}

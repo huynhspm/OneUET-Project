@@ -15,6 +15,15 @@ app.use(cors());
 
 const createData = require("./utils/data");
 
+const fetch = require("cross-fetch");
+const getData = async () => {
+	const url = "https://itest.com.vn/lects/webappdev/fetch/data";
+	const response = await fetch(url);
+	const data = await response.json();
+	console.log(data);
+};
+// getData();
+
 const init = async () => {
 	await sequelize.sync();
 	console.log("Finish load database.");
@@ -27,5 +36,5 @@ init();
 
 module.exports = app;
 
-// token admin: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2OTAzLCJleHAiOjE2NzMwMjg5MDN9.P24YIktlAWfNTZwY-aulJJRnEBpX13RGu56VFHn5ApY
-// token user: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo
+// token admin: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZUlkIjoxLCJpYXQiOjE2NzA0ODk2ODEsImV4cCI6MTY3MzA4MTY4MX0.rSseHQSrXVyf_PyY3WAIoU07AKavd3-XP-RIXgXRgr4
+// token user: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkIjoyLCJpYXQiOjE2NzA0ODk2NDgsImV4cCI6MTY3MzA4MTY0OH0.kKVgxO566QaVpvGbqtKBmr_I_Sl8RSlEk8Nhr-GWM74

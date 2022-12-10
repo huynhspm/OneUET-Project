@@ -27,24 +27,51 @@ const verifyUser = async (id) => {
 const getMyUser = async (req) => {
 	try {
 		let { user, message, status } = await verifyUser(req.user.id);
-		let classes, documents, student;
+		let classes, documents, student, clubs;
 
 		if (user) {
-			classes = await user.getStudent({
-				include: Class,
-			});
-			documents = await user.getDocuments();
 			student = await user.getStudent();
+			classes = await student.getClasses();
+			documents = await user.getDocuments();
+			clubs = await user.getClubs();
 			message = "Get my user successfully";
 			status = ResponseCode.OK;
 		}
 
 		const data = {
 			user,
+			student,
 			classes,
 			documents,
-			student,
+			clubs,
 		};
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
+const updateMyPassword = async (req) => {
+	try {
+		let { user, message, status } = await verifyUser(req.user.id);
+
+		if (user) {
+			const updatedPassword = req.body;
+
+			user = await user.update(updatedPassword, {
+				individualHooks: true,
+			});
+
+			message = "Update my user successfully";
+			status = ResponseCode.OK;
+		}
+
+		const data = { user };
 
 		return {
 			data,
@@ -62,9 +89,13 @@ const updateMyUser = async (req) => {
 
 		if (user) {
 			const updatedUser = req.body;
-			user = await user.update(updatedUser, {
-				individualHooks: true,
-			});
+			updatedUser["email"] = user.email;
+			updatedUser["password"] = user.password;
+
+			const { clubIds } = req.body;
+			await user.setClubs(clubIds);
+
+			user = await user.update(updatedUser);
 
 			message = "Update my user successfully";
 			status = ResponseCode.OK;
@@ -102,22 +133,24 @@ const getUsers = async (req) => {
 
 const getUser = async (req) => {
 	try {
-		let { user, message, status } = await verifyUser(req.id);
-		let classes, documents, student;
+		let { user, message, status } = await verifyUser(req.params.id);
+		let classes, documents, student, clubs;
 
 		if (user) {
+			student = await user.getStudent();
 			classes = await student.getClasses();
 			documents = await user.getDocuments();
-			student = await user.getStudent();
+			clubs = await user.getClubs();
 			message = "Get user successfully";
 			status = ResponseCode.OK;
 		}
 
 		const data = {
 			user,
+			student,
 			classes,
 			documents,
-			student,
+			clubs,
 		};
 
 		return {
@@ -132,7 +165,7 @@ const getUser = async (req) => {
 
 const deleteUser = async (req) => {
 	try {
-		let { user, message, status } = await verifyUser(req.id);
+		let { user, message, status } = await verifyUser(req.params.id);
 
 		if (user) {
 			user = await user.destroy();
@@ -157,5 +190,6 @@ module.exports = {
 	verifyUser,
 	getMyUser,
 	updateMyUser,
+	getUser,
 	deleteUser,
 };
