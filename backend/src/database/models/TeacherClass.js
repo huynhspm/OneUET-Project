@@ -5,7 +5,7 @@ const Teacher = require("./Teacher");
 const Class = require("./Class");
 
 const TeacherClass = sequelize.define(
-	"TeacherClass",
+	"teacherClass",
 	{
 		id: {
 			allowNull: false,

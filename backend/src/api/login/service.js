@@ -72,12 +72,15 @@ const verify = async (req, res) => {
 
 	if (parseInt(otp) === user.otp) {
 		await user.update({ active: true });
-		const roles = await user.getRoles();
-		const roleIds = roles.map((role) => role.id);
+		const role = await user.getRoles();
 
-		const token = jwt.sign({ userId: user.id, roleIds }, config.secret_key, {
-			expiresIn: config.expires_in,
-		});
+		const token = jwt.sign(
+			{ id: user.id, roleId: role.id },
+			config.secret_key,
+			{
+				expiresIn: config.expires_in,
+			}
+		);
 
 		data = {
 			user,
