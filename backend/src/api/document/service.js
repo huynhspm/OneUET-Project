@@ -245,7 +245,7 @@ const getDocument = async (req) => {
 			teacher = await document.getTeacher();
 			file = await document.getFile();
 			comments = await document.getComments();
-
+			
 			message = "Get document successfully";
 			status = ResponseCode.OK;
 		}
@@ -255,6 +255,7 @@ const getDocument = async (req) => {
 			course,
 			teacher,
 			file,
+			comments,
 		};
 
 		return {

@@ -8,7 +8,7 @@
 		"teacherId": 2,
 		"courseId": 1,
 		"description": "description",
-		"faculty": "suzuki_faculty",
+		"faculty": "Khoa Công nghệ Thông tin",
 		"major": "suzuki_major"
 	},
 	{
@@ -32,7 +32,7 @@
 		"teacherId": 4,
 		"courseId": 2,
 		"description": "donescritip",
-		"faculty": "but_may_faculty",
+		"faculty": "Khoa Điện tử Viễn thông",
 		"major": "but_may_major"
 	},
 	{
@@ -44,7 +44,7 @@
 		"teacherId": 5,
 		"courseId": 3,
 		"description": "nesdoctipri",
-		"faculty": "cari_faculty",
+		"faculty": "Khoa Điện tử Viễn thông",
 		"major": "cari_major"
 	},
 	{

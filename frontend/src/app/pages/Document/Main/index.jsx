@@ -9,7 +9,7 @@ import FilterSidebar from '../../../components/FilterSidebar';
 import Add from '../../../components/Add';
 import { useState, useEffect } from 'react';
 
-import { drawerWidth, documentCardHeight, faculties } from '../../../utils/constant';
+import { drawerWidth, documentCardHeight, faculties, majors } from '../../../utils/constant';
 import axios from "axios";
 import '../styles.css'
 
@@ -67,7 +67,7 @@ const Main = (props) => {
 
 	const filterData = {
 		Khoa: faculties,
-		Ngành: ['Công nghệ thông tin', 'Khoa học máy tính', 'Send email', 'Drafts', "Nganh A"]
+		Ngành: majors,
 	}
 
 	return (

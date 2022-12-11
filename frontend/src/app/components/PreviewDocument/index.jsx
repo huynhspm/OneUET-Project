@@ -14,8 +14,6 @@ const PreviewDocument = (props) => {
     }
 
     // const { id, media, likes, user, caption, comments } = defaultPost;
-    const comments = ['abc', 'def', 'ghi'];
-
     const open = props.open;
 
     let t1 = "https://docs.google.com/viewer?srcid=";

@@ -128,7 +128,7 @@ const getMyComment = async (req) => {
 
 		if (comment) {
 			if (comment.userId === req.user.id) {
-				document = await Comment.getDocument();
+				document = await comment.getDocument();
 				message = "Get my comment successfully";
 				status = ResponseCode.OK;
 			} else {
@@ -174,7 +174,7 @@ const getComment = async (req) => {
 		let document;
 
 		if (comment) {
-			document = await Comment.getDocument();
+			document = await comment.getDocument();
 			message = "Get comment successfully";
 			status = ResponseCode.OK;
 		}

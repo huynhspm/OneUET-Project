@@ -1,7 +1,6 @@
-import { Modal, Box, Button, Divider, TextField, Hidden, Card, CardActions, CardContent, Typography } from '@mui/material';
+import { Box, Divider, Typography } from '@mui/material';
 import Tags from '../../../components/Tags';
 import Comment from '../../../components/Comment';
-import { Link } from "react-router-dom";
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
@@ -18,8 +17,7 @@ const DocumentView = (props) => {
     const [description, setDescription] = useState();
     const [tags, setTags] = useState([]);
     const [dateUploaded, setDateUploaded] = useState();
-
-    const comments = ['abc', 'def', 'ghi'];
+    const [comments, setComments] = useState([])
 
     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo'
     const config = {
@@ -47,8 +45,13 @@ const DocumentView = (props) => {
                         data.document.category,
                         data.document.year,
                     ]);
+                    let tmp_comments = []
+                    for (let property in data.comments) {
+                        tmp_comments.push(data.comments[property]);
+                    }
+                    setComments(tmp_comments);
                     setDateUploaded(data.document.updatedAt);
-                    console.log(tags);
+                    console.log(tmp_comments);
                 });
         } catch (e) {
             console.log(e.response.data);
@@ -65,17 +68,17 @@ const DocumentView = (props) => {
                 <Typography variant="h6" color="black" textAlign="left">
                     {name}
                 </Typography>
-                <Box sx={{ display: 'flex', flexDirection: 'row'}}>
+                <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                     <Box
                         sx={{
                             pt: 1,
                             position: 'relative',
                             width: 'calc(60%)',
                             display: 'flex',
-                            flexDirection: 'column', 
+                            flexDirection: 'column',
                         }}
                     >
-                        <iframe src={pdf_link}  height='700vh'/>
+                        <iframe src={pdf_link} height='700vh' />
                     </Box>
                     <Box
                         sx={{ flexGrow: 1, pl: 2, pt: 1, position: 'relative' }}
@@ -90,9 +93,9 @@ const DocumentView = (props) => {
                         </Typography>
                         <Divider />
                         {comments.map(comment => (
-                            <Box sx={{}}>
-                                <Typography variant="body2" component="span">
-                                    {comment}
+                            <Box>
+                                <Typography variant="body2" component="span" sx={{ p: 1 }}>
+                                    {<Typography variant="button">{comment.id}</Typography>} {comment.content}
                                 </Typography>
                                 <Divider />
                             </Box>
