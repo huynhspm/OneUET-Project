@@ -9,7 +9,7 @@ import FilterSidebar from '../../../components/FilterSidebar';
 import Add from '../../../components/Add';
 import { useState, useEffect } from 'react';
 
-import { drawerWidth, documentCardHeight, faculties, majors, facultiesAndMajors } from '../../../utils/constant';
+import { drawerWidth, documentCardHeight, units, majors, unitsAndMajors } from '../../../utils/constant';
 import axios from "axios";
 import '../styles.css'
 
@@ -34,7 +34,7 @@ const Main = (props) => {
 	const fetchData = async () => {
 		try {
 			await axios
-				.get("http://localhost:2002/document", config)
+				.get("http://localhost:2002/document/public", config)
 				.then((res) => {
 					let docs = getDocuments(res.data);
 					console.log(res);
@@ -44,7 +44,7 @@ const Main = (props) => {
 							name: docs[id].name,
 							description: docs[id].description,
 							src_img: "https://randomuser.me/api/portraits/women/2.jpg",
-							faculty: docs[id].faculty,
+							unit: docs[id].unit,
 							major: docs[id].major,
 							fileID: docs[id].fileId,
 							docID: docs[id].id,
@@ -101,7 +101,7 @@ const Main = (props) => {
 									src_img={card.src_img}
 									name={card.name}
 									description={card.description}
-									faculty={card.faculty}
+									unit={card.unit}
 									major={card.major}
 									key={index}
 									docID={card.docID} />

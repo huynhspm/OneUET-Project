@@ -20,11 +20,11 @@ import { FilterBox, CategoryBox } from "../../utils/styles";
 import { useEffect, useState } from "react";
 import React from "react";
 import axios from "axios";
-import { categories, faculties, majors } from "../../utils/constant";
+import { categories, units, majors } from "../../utils/constant";
 
 const FilterSidebar = (props) => {
     const [filterData, setFilterData] = useState({
-        Khoa: faculties, //Object.keys(facultiesAndMajors),
+        Khoa: units, //Object.keys(unitsAndMajors),
         Ngành: majors,
         "Giảng viên": [],
         Môn: [],
@@ -36,7 +36,7 @@ const FilterSidebar = (props) => {
         headers: { Authorization: `Bearer ${token}` }
     };
 
-    const [openFaculties, setOpenFaculties] = React.useState(false);
+    const [openUnits, setOpenUnits] = React.useState(false);
     const [openMajors, setOpenMajors] = React.useState(false);
     const [openTeachers, setOpenTeachers] = React.useState(false);
     const [openCourses, setOpenCourses] = React.useState(false);
@@ -44,7 +44,7 @@ const FilterSidebar = (props) => {
     const [openYears, setOpenYears] = React.useState(false);
 
     const open = [
-        openFaculties,
+        openUnits,
         openMajors,
         openTeachers,
         openCourses,
@@ -53,7 +53,7 @@ const FilterSidebar = (props) => {
     ];
 
     const setOpen = [
-        setOpenFaculties,
+        setOpenUnits,
         setOpenMajors,
         setOpenTeachers,
         setOpenCourses,

@@ -34,7 +34,7 @@ const DocumentView = (props) => {
     const fetchData = async () => {
         try {
             await axios
-                .get("http://localhost:2002/document/" + String(props.id), config)
+                .get("http://localhost:2002/document/public/" + String(props.id), config)
                 .then((res) => {
                     let data = res.data.data;
                     console.log(data);
@@ -42,7 +42,7 @@ const DocumentView = (props) => {
                     setName(data.document.name);
                     setDescription(data.document.description);
                     setTags([
-                        data.document.faculty,
+                        data.document.unit,
                         data.document.major,
                         data.course.name,
                         data.document.category,
