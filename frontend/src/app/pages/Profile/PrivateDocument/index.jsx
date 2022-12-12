@@ -38,6 +38,7 @@ const PrivateDocument = (props) => {
                             src_img: "https://randomuser.me/api/portraits/women/2.jpg",
                             faculty: docs[id].faculty,
                             major: docs[id].major,
+							fileID: docs[id].fileId,
                         }
                         tmp.push(element);
                     }
@@ -60,13 +61,14 @@ const PrivateDocument = (props) => {
                             <Box sx={{ display: 'flex', flexWrap: "wrap", }}>
                                 {card.map((card, index) => (
                                     <DocumentCard
+                                        key={index}
                                         height={documentCardHeight}
                                         src_img={card.src_img}
                                         name={card.name}
                                         description={card.description}
                                         faculty={card.faculty}
                                         major={card.major}
-                                        index={index} />
+                                        fileID={card.fileID} />
                                 ))}
                             </Box>
                         </div>

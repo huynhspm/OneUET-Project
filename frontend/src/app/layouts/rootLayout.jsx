@@ -23,20 +23,19 @@ import Schedule from "../pages/Profile/Schedule"
 import SearchCourses from "../pages/SearchCourses";
 
 const RootLayout = () => {
+  // const [mode, setMode] = useState("light");
+  // const darkTheme = createTheme({
+  //   palette: {
+  //     mode: mode,
+  //   },
+  // });
 
-  const [mode, setMode] = useState("light");
-  const [token, setToken] = useState('');
-  const darkTheme = createTheme({
-    palette: {
-      mode: mode,
-    },
-  });
   return (
-    <ThemeProvider theme={darkTheme}>
+    // <ThemeProvider theme={darkTheme}>
       <Box bgcolor={"background.default"} color={"text.primary"}>
         <BrowserRouter>
-          <Header setMode={setMode} mode={mode} />
-
+          {/* <Header setMode={setMode} mode={mode} /> */}
+          <Header />
           <Routes>
             <Route path="/" element={<HomePage token={token} />} />
             <Route path="/login" element={<Login token={token} setToken={setToken} />} />
@@ -56,11 +55,10 @@ const RootLayout = () => {
             <Route path="/profile/login" element={<Header />} />
             <Route path="/SearchCourses" element={<SearchCourses />} />
           </Routes>
-
           <Footer />
         </BrowserRouter>
       </Box>
-    </ThemeProvider>
+    // </ThemeProvider>
   );
 };
 

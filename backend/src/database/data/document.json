@@ -48,18 +48,9 @@
 		"major": "cari_major"
 	},
 	{
-		"year": 2021,
-		"category": "Giáo trình",
-		"name": "abcdefgh",
-		"fileId": 5,
-		"userId": 3,
-		"teacherId": 5,
-		"courseId": 5
-	},
-	{
 		"year": 2020,
 		"category": "Giáo trình",
-		"name": "spm",
+		"name": "spm1",
 		"fileId": 6,
 		"userId": 3,
 		"teacherId": 5,
@@ -69,7 +60,16 @@
 	{
 		"year": 2021,
 		"category": "Giáo trình",
-		"name": "spm",
+		"name": "abcdefgh",
+		"fileId": 5,
+		"userId": 3,
+		"teacherId": 5,
+		"courseId": 5
+	},
+	{
+		"year": 2021,
+		"category": "Giáo trình",
+		"name": "spm2",
 		"fileId": 7,
 		"userId": 3,
 		"teacherId": 5,
@@ -79,7 +79,7 @@
 	{
 		"year": 2021,
 		"category": "Giáo trình",
-		"name": "spm",
+		"name": "spm3",
 		"fileId": 8,
 		"userId": 3,
 		"teacherId": 5,

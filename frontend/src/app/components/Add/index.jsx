@@ -4,6 +4,10 @@ import {
     Fab,
     Grid,
     Input,
+    FormControl,
+    MenuItem,
+    InputLabel,
+    Select,
     TextField,
     Tooltip,
     Typography,
@@ -13,6 +17,7 @@ import React, { useState } from 'react';
 import axios from "axios";
 import { InputBox, InputButton } from './styles';
 import { CenterModal } from '../../utils/styles';
+import { faculties, majors, categories } from '../../utils/constant';
 
 const Add = () => {
     const [open, setOpen] = useState(false);
@@ -65,18 +70,18 @@ const Add = () => {
             <CenterModal
                 open={open}
                 onClose={(e) => setOpen(false)}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
             >
                 <Box
                     bgcolor={'background.default'}
                     color={'text.primary'}
-                    width={1000}
-                    height={600}
-                    p={3}
                     borderRadius={2}
                     sx={{
-                        position: 'relative'
+                        p: 3,
+                        position: 'relative',
+                        width: 'calc(60%)',
+                        height: 'calc(80%)',
+                        display: 'flex',
+                        flexDirection: 'column'
                     }}
                 >
                     <Typography variant="h6" color="gray" textAlign="left">
@@ -87,8 +92,7 @@ const Add = () => {
                             component="form"
                             noValidate
                             onSubmit={handleSubmit}
-                            sx={{ width: { sm: 500 }, pt: 1, flexShrink: { sm: 0 }, mt: 1 }}
-                            aria-label="mailbox folders"
+                            sx={{ width: '50%', pt: 1, flexShrink: { sm: 0 }, mt: 1 }}
                         >
                             <Grid container spacing={1}>
                                 <Grid item xs={12}>
@@ -114,26 +118,40 @@ const Add = () => {
                                     />
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <TextField
-                                        required
-                                        fullWidth
-                                        label="Khoa"
-                                        id="docFaculty"
-                                        name="docFaculty"
-                                        type="text"
-                                        row="3"
-                                    />
+                                    <FormControl fullWidth>
+                                        <InputLabel id="faculty-label">Khoa</InputLabel>
+                                        <Select
+                                            fullWidth
+                                            labelId="faculty-label"
+                                            id="docFaculty"
+                                            // value={age}
+                                            label="Khoa"
+                                        >
+                                            {faculties.map((faculty) => (
+                                                <MenuItem key={faculty}>
+                                                    {faculty}
+                                                </MenuItem>
+                                            ))}
+                                        </Select>
+                                    </FormControl>
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <TextField
-                                        required
-                                        fullWidth
-                                        label="Ngành"
-                                        id="docMajor"
-                                        name="docMajor"
-                                        type="text"
-                                        row="3"
-                                    />
+                                    <FormControl fullWidth>
+                                        <InputLabel id="major-label">Ngành</InputLabel>
+                                        <Select
+                                            fullWidth
+                                            labelId="major-label"
+                                            id="docMajor"
+                                            // value={age}
+                                            label="Ngành"
+                                        >
+                                            {majors.map((major) => (
+                                                <MenuItem key={major}>
+                                                    {major}
+                                                </MenuItem>
+                                            ))}
+                                        </Select>
+                                    </FormControl>
                                 </Grid>
                                 <Grid item xs={6}>
                                     <TextField
@@ -154,13 +172,22 @@ const Add = () => {
                                     />
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <TextField
-                                        fullWidth
-                                        label="Loại"
-                                        id="docType"
-                                        name="docType"
-                                        type="text"
-                                    />
+                                    <FormControl fullWidth>
+                                        <InputLabel id="category-label">Loại</InputLabel>
+                                        <Select
+                                            fullWidth
+                                            labelId="category-label"
+                                            id="docCategory"
+                                            // value={age}
+                                            label="Loại"
+                                        >
+                                            {categories.map((category) => (
+                                                <MenuItem key={category}>
+                                                    {category}
+                                                </MenuItem>
+                                            ))}
+                                        </Select>
+                                    </FormControl>
                                 </Grid>
                                 <Grid item xs={6}>
                                     <TextField
