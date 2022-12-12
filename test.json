@@ -1,0 +1,26 @@
+[
+    {
+        "codeClass": "INT3396",
+        "semester": "...",
+        "students": [
+            {
+                "code": 20020066,
+                "midterm": 1,
+                "final": 1,
+                "total": 1
+            },
+            {
+                "code": 20020066,
+                "midterm": 1,
+                "final": 1,
+                "total": 1
+            },
+            {
+                "code": 20020066,
+                "midterm": 1,
+                "final": 1,
+                "total": 1
+            }
+        ]
+    }
+]

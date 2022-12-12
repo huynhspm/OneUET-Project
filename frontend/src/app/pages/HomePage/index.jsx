@@ -1,8 +1,17 @@
 import HorizontalDocumentList from "../../components/HorizontalDocumentList";
 import Pagination from "@mui/material/Pagination";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const HomePage = () => {
+const HomePage = (props) => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    // console.log(props.token);
+    if (props.token == '') {
+      navigate('/login');
+    }
+  }, [props.token]);
+
   const cards_json = [
     {
       name: "Du",

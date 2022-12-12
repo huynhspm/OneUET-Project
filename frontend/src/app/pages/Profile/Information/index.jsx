@@ -33,7 +33,7 @@ const updateUserData = async (token, data) => {
 }
 
 const Information = () => {
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6WzJdLCJpYXQiOjE2NzAzODM4NTYsImV4cCI6MTY3Mjk3NTg1Nn0.yKUfiftTqgvRrQDkS8LJIjHXxnqowOvMpCcaleYlOmA";
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo";
 
     // Basic
     const [avatar, setAvatar] = React.useState("https://randomuser.me/api/portraits/women/79.jpg");

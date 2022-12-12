@@ -1,8 +1,8 @@
 const bcrypt = require("bcrypt");
+const config = require("../../config");
 const { DataTypes } = require("sequelize");
 const sequelize = require("../");
 const Role = require("./Role");
-
 const Student = require("./Student");
 
 const User = sequelize.define(
@@ -16,6 +16,7 @@ const User = sequelize.define(
 		},
 		email: {
 			allowNull: false,
+			primaryKey: true,
 			unique: true,
 			type: DataTypes.STRING,
 		},
@@ -31,7 +32,7 @@ const User = sequelize.define(
 			type: DataTypes.DATE,
 		},
 		gender: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.STRING,
 		},
 		avatar: {
 			type: DataTypes.STRING,
@@ -43,7 +44,10 @@ const User = sequelize.define(
 			type: DataTypes.INTEGER,
 		},
 		unit: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.STRING,
+		},
+		major: {
+			type: DataTypes.STRING,
 		},
 		unionJoint: {
 			type: DataTypes.BOOLEAN,
@@ -51,10 +55,10 @@ const User = sequelize.define(
 		partyJoint: {
 			type: DataTypes.BOOLEAN,
 		},
-		unionPossition: {
+		unionPosition: {
 			type: DataTypes.STRING,
 		},
-		associationPossition: {
+		associationPosition: {
 			type: DataTypes.STRING,
 		},
 		club: {
@@ -70,6 +74,9 @@ const User = sequelize.define(
 		otp: {
 			type: DataTypes.INTEGER,
 		},
+		expiredTime: {
+			type: DataTypes.DATE,
+		},
 	},
 	{
 		tableName: "user",
@@ -83,18 +90,12 @@ User.belongsTo(Role);
 Role.hasMany(User);
 
 User.beforeCreate(
-	(user) => (user.password = bcrypt.hashSync(user.password, 10))
+	(user) => (user.password = bcrypt.hashSync(user.password, config.salt))
 );
 
-User.beforeUpdate((user) => {
-	const hashedPassword = bcrypt.hashSync(user.password, 10);
-	user.password = hashedPassword;
-});
-
 User.afterCreate(async (user) => {
-	const student = await Student.findOne({
-		where: { code: user.email.slice(0, 8) },
-	});
+	const code = user.email.slice(0, 8);
+	const student = await Student.findOne({ where: { code } });
 	if (student) {
 		await user.update({ studentId: student.id });
 	}

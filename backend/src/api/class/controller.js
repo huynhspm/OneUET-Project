@@ -21,7 +21,7 @@ const createClass = async (req, res) => {
 	}
 };
 
-// GET: /class
+// GET: /class/
 const getClasses = async (req, res) => {
 	try {
 		const result = await service.getClasses(req);
@@ -35,7 +35,7 @@ const getClasses = async (req, res) => {
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
 			data: e.message,
-			message: "Couldn't get all classes",
+			message: "Couldn't get classes",
 			status: ResponseCode.Bad_Request,
 		});
 	}

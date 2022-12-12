@@ -6,6 +6,8 @@ const Student = require("./Student");
 const StudentClass = require("./StudentClass");
 const Role = require("./Role");
 const User = require("./User");
+const Club = require("./Club");
+const UserClub = require("./UserClub");
 const File = require("./File");
 const Document = require("./Document");
 const Comment = require("./Comment");
@@ -19,6 +21,8 @@ module.exports = {
 	StudentClass,
 	Role,
 	User,
+	Club,
+	UserClub,
 	File,
 	Document,
 	Comment,

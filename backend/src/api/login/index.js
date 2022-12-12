@@ -1,9 +1,11 @@
 const Router = require("express");
-const { login, verify } = require("./controller");
+const controller = require("./controller");
 
 const router = Router();
 
-router.post("/", login);
-router.post("/verify", verify);
+router.post("/", controller.login);
+router.post("/verify", controller.verifyOTP);
+router.post("/forget", controller.forgetPassword);
+router.post("/reset", controller.resetPassword);
 
 module.exports = router;

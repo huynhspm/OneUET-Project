@@ -1,5 +1,7 @@
-const { User, Class } = require("../../database/models");
+const { User, Class, Student, StudentClass } = require("../../database/models");
+const bcrypt = require("bcrypt");
 const ResponseCode = require("../../utils/constant/ResponseCode");
+const config = require("../../config");
 
 const verifyUser = async (id) => {
 	try {
@@ -27,24 +29,67 @@ const verifyUser = async (id) => {
 const getMyUser = async (req) => {
 	try {
 		let { user, message, status } = await verifyUser(req.user.id);
-		let classes, documents, student;
+		let profile, classes, documents;
 
 		if (user) {
-			classes = await user.getStudent({
-				include: Class,
+			let student = await user.getStudent();
+			let clubs = await user.getClubs();
+
+			profile = { user, student, clubs };
+
+			let studiedClasses = await student.getClasses({
+				where: { finish: true },
 			});
+
+			let studyingClasses = await student.getClasses({
+				where: { finish: false },
+			});
+
+			classes = { studiedClasses, studyingClasses };
+
 			documents = await user.getDocuments();
-			student = await user.getStudent();
-			message = "Get my user successfully";
+
+			message = "Get user successfully";
 			status = ResponseCode.OK;
 		}
 
 		const data = {
-			user,
+			profile,
 			classes,
 			documents,
-			student,
 		};
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
+const updateMyPassword = async (req) => {
+	try {
+		let { user, message, status } = await verifyUser(req.user.id);
+
+		if (user) {
+			const { oldPassword, newPassword } = req.body;
+
+			const verifyPassword = bcrypt.compareSync(oldPassword, user.password);
+			const hashNewPassword = bcrypt.hashSync(newPassword, config.salt);
+			if (verifyPassword) {
+				user = await user.update({ password: hashNewPassword });
+
+				message = "Update my password successfully";
+				status = ResponseCode.OK;
+			} else {
+				message = "Invalid oldPassword";
+				status = ResponseCode.Unauthorized;
+			}
+		}
+
+		const data = { user };
 
 		return {
 			data,
@@ -62,9 +107,12 @@ const updateMyUser = async (req) => {
 
 		if (user) {
 			const updatedUser = req.body;
-			user = await user.update(updatedUser, {
-				individualHooks: true,
-			});
+			updatedUser["password"] = undefined;
+
+			const { clubIds } = req.body;
+			await user.setClubs(clubIds);
+
+			user = await user.update(updatedUser);
 
 			message = "Update my user successfully";
 			status = ResponseCode.OK;
@@ -102,22 +150,21 @@ const getUsers = async (req) => {
 
 const getUser = async (req) => {
 	try {
-		let { user, message, status } = await verifyUser(req.id);
-		let classes, documents, student;
+		let { user, message, status } = await verifyUser(req.params.id);
+		let classes, documents, student, clubs;
 
 		if (user) {
-			classes = await student.getClasses();
-			documents = await user.getDocuments();
 			student = await user.getStudent();
+			clubs = await user.getClubs();
+
 			message = "Get user successfully";
 			status = ResponseCode.OK;
 		}
 
 		const data = {
 			user,
-			classes,
-			documents,
 			student,
+			clubs,
 		};
 
 		return {
@@ -132,7 +179,7 @@ const getUser = async (req) => {
 
 const deleteUser = async (req) => {
 	try {
-		let { user, message, status } = await verifyUser(req.id);
+		let { user, message, status } = await verifyUser(req.params.id);
 
 		if (user) {
 			user = await user.destroy();
@@ -156,6 +203,8 @@ module.exports = {
 	getUsers,
 	verifyUser,
 	getMyUser,
+	updateMyPassword,
 	updateMyUser,
+	getUser,
 	deleteUser,
 };

@@ -10,22 +10,26 @@ import { createTheme } from "@mui/material";
 
 import { Box, ThemeProvider } from "@mui/system";
 
+import Main from "../pages/Document/Main";
 import Document from "../pages/Document";
 import Convert from "../pages/Convert";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import Grade from "../pages/Grade";
 import GradeCourses from "../pages/GradeCourses";
-import Profile from "../pages/Profile";
-import Main from "../pages/Document/Main";
+import ValidationGrade from "../pages/ValidationGrade";
+import Information from "../pages/Profile/Information";
+import Schedule from "../pages/Profile/Schedule"
+import SearchCourses from "../pages/SearchCourses";
 
 const RootLayout = () => {
-
   // const [mode, setMode] = useState("light");
   // const darkTheme = createTheme({
   //   palette: {
   //     mode: mode,
   //   },
   // });
+
   return (
     // <ThemeProvider theme={darkTheme}>
       <Box bgcolor={"background.default"} color={"text.primary"}>
@@ -33,8 +37,8 @@ const RootLayout = () => {
           {/* <Header setMode={setMode} mode={mode} /> */}
           <Header />
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<HomePage token={token} />} />
+            <Route path="/login" element={<Login token={token} setToken={setToken} />} />
             <Route path="/register" element={<Register />} />
             <Route path="/homepage" element={<HomePage />} />
             <Route path="/convert" element={<Convert />} />
@@ -42,7 +46,14 @@ const RootLayout = () => {
             <Route path="/document/:doc_id" element={<Document />} />
             <Route path="/grade" element={<GradeCourses />} />
             <Route path="/validation-document" element={<ValidationPage />} />
-            <Route path="/profile/:type" element={<Profile />} />
+            <Route path="/validation-grade" element={<ValidationGrade />} />
+            <Route path="/profile/information" element={<Information />} />
+            <Route path="/profile/schedule" element={<Schedule />} />
+            <Route path="/profile/learning-result" element={<Grade />} />
+            <Route path="/profile/private-document" element={<Header />} />
+            <Route path="/profile/change-password" element={<Header />} />
+            <Route path="/profile/login" element={<Header />} />
+            <Route path="/SearchCourses" element={<SearchCourses />} />
           </Routes>
           <Footer />
         </BrowserRouter>

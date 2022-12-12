@@ -9,6 +9,7 @@ module.exports = {
 	mysql_database: process.env.MYSQL_DATABASE,
 	secret_key: process.env.SECRET_KEY,
 	expires_in: process.env.EXPIRES_IN,
+	salt: parseInt(process.env.SALT),
 	mail_setting: {
 		service: "gmail",
 		auth: {

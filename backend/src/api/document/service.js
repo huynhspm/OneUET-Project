@@ -1,5 +1,4 @@
 const { Document } = require("../../database/models");
-const { verifyUser } = require("../user/service");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 
 const verifyDocument = async (req) => {
@@ -47,7 +46,9 @@ const createDocument = async (req) => {
 
 const getPublicDocuments = async (req) => {
 	try {
-		const documents = await Document.findAll({ where: { status: "public" } });
+		const query = req.query;
+		query["status"] = "public";
+		const documents = await Document.findAll({ where: query });
 
 		const message = "Get public documents successfully";
 		const status = ResponseCode.OK;
@@ -91,25 +92,6 @@ const getPublicDocument = async (req) => {
 			file,
 			comments,
 		};
-
-		return {
-			data,
-			message,
-			status,
-		};
-	} catch (e) {
-		throw e;
-	}
-};
-
-const getMyDocuments = async (req) => {
-	try {
-		const userId = req.user.id;
-		const documents = await Document.findAll({ where: { userId } });
-
-		const message = "Get my documents successfully";
-		const status = ResponseCode.OK;
-		const data = { documents };
 
 		return {
 			data,
@@ -167,7 +149,15 @@ const updateMyDocument = async (req) => {
 		if (document) {
 			if (document.userId === req.user.id) {
 				const updatedDocument = req.body;
-				document = await document.update(updatedDocument);
+				const { link } = req.body;
+
+				file = await document.getFile();
+				await file.update(link);
+				await document.update(updatedDocument);
+				course = await document.getCourse();
+				teacher = await document.getTeacher();
+				comments = await document.getComments();
+
 				message = "Update my document successfully";
 				status = ResponseCode.OK;
 			} else {
@@ -177,7 +167,13 @@ const updateMyDocument = async (req) => {
 			}
 		}
 
-		const data = { document };
+		const data = {
+			document,
+			course,
+			teacher,
+			file,
+			comments,
+		};
 
 		return {
 			data,
@@ -219,7 +215,8 @@ const deleteMyDocument = async (req) => {
 
 const getDocuments = async (req) => {
 	try {
-		const documents = await Document.findAll();
+		const query = req.query;
+		const documents = await Document.findAll({ where: query });
 
 		const message = "Get documents successfully";
 		const status = ResponseCode.OK;
@@ -294,7 +291,6 @@ module.exports = {
 	createDocument,
 	getPublicDocuments,
 	getPublicDocument,
-	getMyDocuments,
 	getMyDocument,
 	updateMyDocument,
 	deleteMyDocument,
