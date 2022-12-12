@@ -20,7 +20,7 @@ const Teacher = sequelize.define(
 		level: {
 			type: DataTypes.STRING,
 		},
-		faculty: {
+		unit: {
 			type: DataTypes.STRING,
 		},
 	},

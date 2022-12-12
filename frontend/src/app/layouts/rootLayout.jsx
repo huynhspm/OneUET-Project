@@ -17,10 +17,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Grade from "../pages/Grade";
 import GradeCourses from "../pages/GradeCourses";
-import ValidationGrade from "../pages/ValidationGrade";
-import Information from "../pages/Profile/Information";
-import Schedule from "../pages/Profile/Schedule"
-import SearchCourses from "../pages/SearchCourses";
+import Profile from "../pages/Profile";
 
 const RootLayout = () => {
 
@@ -31,37 +28,29 @@ const RootLayout = () => {
   //     mode: mode,
   //   },
   // });
-  // theme={darkTheme}
   return (
-    <ThemeProvider>
-      <Box bgcolor={"background.default"} color={"text.primary"}>
-        <BrowserRouter>
-          {/* <Header setMode={setMode} mode={mode} /> */}
-          <Header/>
-          <Routes>
-            <Route path="/" element={<HomePage token={token} />} />
-            <Route path="/login" element={<Login token={token} setToken={setToken} />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/homepage" element={<HomePage />} />
-            <Route path="/convert" element={<Convert />} />
-            <Route extract path="/document" element={<Main />} />
-            <Route path="/document/:doc_id" element={<Document />} />
-            <Route path="/grade" element={<GradeCourses />} />
-            <Route path="/validation-document" element={<ValidationPage />} />
-            <Route path="/validation-grade" element={<ValidationGrade />} />
-            <Route path="/profile/information" element={<Information />} />
-            <Route path="/profile/schedule" element={<Schedule />} />
-            <Route path="/profile/learning-result" element={<Grade />} />
-            <Route path="/profile/private-document" element={<Header />} />
-            <Route path="/profile/change-password" element={<Header />} />
-            <Route path="/profile/login" element={<Header />} />
-            <Route path="/SearchCourses" element={<SearchCourses />} />
-          </Routes>
+    // <ThemeProvider theme={darkTheme}>
+    <Box bgcolor={"background.default"} color={"text.primary"}>
+      <BrowserRouter>
+        {/* <Header setMode={setMode} mode={mode} /> */}
+        <Header/>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/homepage" element={<HomePage />} />
+          <Route path="/convert" element={<Convert />} />
+          <Route extract path="/document" element={<Main />} />
+          <Route path="/document/:doc_id" element={<Document />} />
+          <Route path="/grade" element={<GradeCourses />} />
+          <Route path="/validation-document" element={<ValidationPage />} />
+          <Route path="/profile/:type" element={<Profile />} />
+        </Routes>
 
-          <Footer />
-        </BrowserRouter>
-      </Box>
-    </ThemeProvider>
+        <Footer />
+      </BrowserRouter>
+    </Box>
+    // </ThemeProvider>
   );
 };
 
