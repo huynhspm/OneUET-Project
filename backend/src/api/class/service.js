@@ -1,4 +1,4 @@
-const { Class } = require("../../database/models");
+const { Class, StudentClass } = require("../../database/models");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 
 const verifyClass = async (req) => {
@@ -33,91 +33,6 @@ const createClass = async (req) => {
 		const message = "Create class successfully!";
 		const status = ResponseCode.Created;
 		const data = { curClass };
-
-		return {
-			data,
-			message,
-			status,
-		};
-	} catch (e) {
-		throw e;
-	}
-};
-
-const getMyClasses = async (req) => {
-	try {
-		const classes = await Class.findAll();
-		const message = "Get my classes successfully";
-		const status = ResponseCode.OK;
-
-		const data = { classes };
-
-		return {
-			data,
-			message,
-			status,
-		};
-	} catch (e) {
-		throw e;
-	}
-};
-
-const getMyStudiedClasses = async (req) => {
-	try {
-		const classes = await Class.findAll({ where: {} });
-		const message = "Get classes successfully";
-		const status = ResponseCode.OK;
-
-		const data = { classes };
-
-		return {
-			data,
-			message,
-			status,
-		};
-	} catch (e) {
-		throw e;
-	}
-};
-
-const getMyStudyingClasses = async (req) => {
-	try {
-		const classes = await Class.findAll();
-		const message = "Get classes successfully";
-		const status = ResponseCode.OK;
-
-		const data = { classes };
-
-		return {
-			data,
-			message,
-			status,
-		};
-	} catch (e) {
-		throw e;
-	}
-};
-
-const getMyClass = async (req) => {
-	try {
-		let { curClass, message, status } = await verifyClass(req);
-		let teachers, students, course;
-
-		if (curClass) {
-			teachers = await curClass.getTeachers();
-			students = await curClass.getStudents();
-			course = await curClass.getCourse();
-
-			message = "Get class successfully";
-			status = ResponseCode.OK;
-		}
-
-		const data = {
-			curClass,
-			teachers,
-			students,
-			course,
-		};
 
 		return {
 			data,
@@ -178,19 +93,61 @@ const getClass = async (req) => {
 	}
 };
 
+const addStudent = async (req) => {
+	try {
+		let curClass, message, status;
+		const { codeClass, semester, codeStudent, midterm, final, total } =
+			req.body;
+		curClass = await Class.findOne({
+			where: { code: codeClass, semester: semester },
+		});
+
+		if (curClass) {
+			message = "Add student successfully";
+			status = ResponseCode.OK;
+		}
+
+		const data = {
+			curClass,
+			teachers,
+			students,
+			course,
+		};
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
 const updateClass = async (req) => {
 	try {
 		let { curClass, message, status } = await verifyClass(req);
+		let teachers, students, course;
 
 		if (curClass) {
-			const { updatedClass, courseId } = req.body;
-			curClass = await curClass.update(updatedClass);
+			const updatedClass = req.body;
+			const { teacherIds, studentIds } = req.body;
+
+			teachers = await curClass.setTeachers(teacherIds);
+			students = await curClass.setStudents(studentIds);
+			course = await curClass.setCourse();
+			await curClass.update(updatedClass);
 
 			message = "Update class successfully";
 			status = ResponseCode.OK;
 		}
 
-		const data = { curClass };
+		const data = {
+			curClass,
+			teachers,
+			students,
+			course,
+		};
 
 		return {
 			data,
@@ -224,39 +181,8 @@ const deleteClass = async (req) => {
 	}
 };
 
-// const addClass = async (req) => {
-// 	try {
-// 		const { teacherId, courseId, studentId } = req.body;
-// 		let { curClass, message, status } = await getClassById(req);
-// 		let data = null;
-
-// 		if (curClass) {
-// 			if (teacherId) await curClass.addTeacher(teacherId);
-// 			if (courseId) await curClass.setCourse(courseId);
-// 			if (studentId) await curClass.addStudent(studentId);
-
-// 			message = "Add class successfully";
-// 			status = ResponseCode.OK;
-// 		}
-
-// 		data = curClass;
-
-// 		return {
-// 			data,
-// 			message,
-// 			status,
-// 		};
-// 	} catch (e) {
-// 		throw e;
-// 	}
-// };
-
 module.exports = {
 	createClass,
-	getMyClasses,
-	getMyStudiedClasses,
-	getMyStudyingClasses,
-	getMyClass,
 	getClasses,
 	getClass,
 	updateClass,

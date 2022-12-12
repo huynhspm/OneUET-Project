@@ -36,7 +36,7 @@ const Document = sequelize.define(
 		description: {
 			type: DataTypes.STRING,
 		},
-		faculty: {
+		unit: {
 			type: DataTypes.STRING,
 		},
 		major: {

@@ -6,6 +6,7 @@ const { verifyToken, verifyAdmin } = require("../../middleware/service");
 const router = Router();
 
 router.get("/me", [verifyToken], controller.getMyUser);
+router.put("/me/password", [verifyToken], controller.updateMyPassword);
 router.put("/me", [verifyToken], controller.updateMyUser);
 
 router.get("/", [verifyToken, verifyAdmin], controller.getUsers);
