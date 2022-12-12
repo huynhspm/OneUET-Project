@@ -105,7 +105,7 @@ const getMyComment = async (req, res) => {
 // GET: /comment
 const getAllComments = async (req, res) => {
 	try {
-		const result = await service.getPublicComments(req);
+		const result = await service.getAllComments(req);
 		const { data, message, status } = result;
 
 		res.status(status).json({

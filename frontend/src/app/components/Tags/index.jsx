@@ -9,6 +9,7 @@ const Tags = (props) => {
         <Box sx={{ flexGrow: 1, display: "flex", flexWrap: "wrap" }}>
             {props.data.map((tag, index) => (
                 <Typography
+                    key={index}
                     sx={{
                         borderRadius: 50,
                         background: "#283240",

@@ -6,7 +6,9 @@ const teachersClasses = require("../database/data/teacherClass.json");
 const students = require("../database/data/student.json");
 const studentsClasses = require("../database/data/studentClass.json");
 const roles = require("../database/data/role.json");
+const clubs = require("../database/data/club.json");
 const users = require("../database/data/user.json");
+const usersClubs = require("../database/data/userClub.json");
 const files = require("../database/data/file.json");
 const documents = require("../database/data/document.json");
 const comments = require("../database/data/comment.json");
@@ -54,9 +56,21 @@ async function createRole() {
 	}
 }
 
+async function createClub() {
+	for (let club of clubs) {
+		await models.Club.create(club);
+	}
+}
+
 async function createUser() {
 	for (let user of users) {
 		await models.User.create(user);
+	}
+}
+
+async function createUserClub() {
+	for (let userClub of usersClubs) {
+		await models.UserClub.create(userClub);
 	}
 }
 
@@ -86,7 +100,9 @@ async function createData() {
 	await createStudent();
 	await createStudentClass();
 	await createRole();
+	await createClub();
 	await createUser();
+	await createUserClub();
 	await createFile();
 	await createDocument();
 	await createComment();

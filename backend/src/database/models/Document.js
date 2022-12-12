@@ -36,14 +36,12 @@ const Document = sequelize.define(
 		description: {
 			type: DataTypes.STRING,
 		},
-		faculty: {
+		unit: {
 			type: DataTypes.STRING,
-			defaultValue: "faculty"
 		},
 		major: {
 			type: DataTypes.STRING,
-			defaultValue: "major"
-		}
+		},
 	},
 	{
 		tableName: "document",

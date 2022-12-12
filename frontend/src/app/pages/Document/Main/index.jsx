@@ -9,7 +9,7 @@ import FilterSidebar from '../../../components/FilterSidebar';
 import Add from '../../../components/Add';
 import { useState, useEffect } from 'react';
 
-import { drawerWidth, documentCardHeight, faculties } from '../../../utils/constant';
+import { drawerWidth, documentCardHeight, faculties, majors, facultiesAndMajors } from '../../../utils/constant';
 import axios from "axios";
 import '../styles.css'
 
@@ -46,12 +46,15 @@ const Main = (props) => {
 							src_img: "https://randomuser.me/api/portraits/women/2.jpg",
 							faculty: docs[id].faculty,
 							major: docs[id].major,
+							fileID: docs[id].fileId,
+							docID: docs[id].id,
 						}
 						tmp.push(element);
 					}
-					// console.log("--fetchData() - Document--");
-					// console.log(tmp);
-					// console.log("-------------------------");
+					console.log("--fetchData() - Document--");
+					console.log(tmp);
+					console.log("-------------------------");
+
 					setCard(tmp);
 				});
 		} catch (e) {
@@ -64,11 +67,6 @@ const Main = (props) => {
 	const handleDrawerToggle = () => {
 		setMobileOpen(!mobileOpen);
 	};
-
-	const filterData = {
-		Khoa: faculties,
-		Ngành: ['Công nghệ thông tin', 'Khoa học máy tính', 'Send email', 'Drafts', "Nganh A"]
-	}
 
 	return (
 		<>
@@ -83,31 +81,33 @@ const Main = (props) => {
 						open
 					>
 						<Toolbar variant="dense" sx={{}} />
-						<FilterSidebar filterData={filterData} />
+						<FilterSidebar />
 					</Drawer>
 				</Box>
 				<Box
 					component="main"
-					sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+					sx={{ 
+						flexGrow: 1, 
+						p: 3, 
+						width: { sm: `calc(100% - ${drawerWidth}px)` }, 
+						display: 'flex',  
+					}}
 				>
 					{
 						card.length > 0 &&
-						<div>
-							<Box sx={{ display: 'flex', flexWrap: "wrap", }}>
-								{card.map((card, index) => (
-									<DocumentCard
-										height={documentCardHeight}
-										src_img={card.src_img}
-										name={card.name}
-										description={card.description}
-										faculty={card.faculty}
-										major={card.major}
-										index={index} />
-								))}
-							</Box>
-						</div>
+						<Box sx={{ display: 'flex', flexWrap: "wrap", alignItems: 'center', justifyContent: 'flex-start', }}>
+							{card.map((card, index) => (
+								<DocumentCard
+									src_img={card.src_img}
+									name={card.name}
+									description={card.description}
+									faculty={card.faculty}
+									major={card.major}
+									key={index}
+									docID={card.docID} />
+							))}
+						</Box>
 					}
-
 				</Box>
 			</Box>
 			<Add></Add>

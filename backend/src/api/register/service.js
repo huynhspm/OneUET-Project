@@ -19,10 +19,11 @@ const register = async (req) => {
 			message = "Email existed";
 			status = ResponseCode.Bad_Request;
 		} else {
-			const otp = createOTP();
-			// await sendOTP(user.email, otp);
+			const { otp, expiredTime } = createOTP();
+			// sendOTP(user.email, otp);
 			console.log("sendOTP");
 			newUser["otp"] = otp;
+			newUser["expiredTime"] = expiredTime;
 			data = await user.update(newUser);
 
 			data = data.id;
@@ -30,10 +31,11 @@ const register = async (req) => {
 			status = ResponseCode.Created;
 		}
 	} else {
-		const otp = createOTP();
-		// await sendOTP(user.email, otp);
+		const { otp, expiredTime } = createOTP();
+		// sendOTP(user.email, otp);
 		console.log("sendOTP");
 		newUser["otp"] = otp;
+		newUser["expiredTime"] = expiredTime;
 		newUser["roleId"] = RoleCode.User;
 		data = await User.create(newUser);
 

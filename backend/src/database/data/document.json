@@ -8,7 +8,7 @@
 		"teacherId": 2,
 		"courseId": 1,
 		"description": "description",
-		"faculty": "suzuki_faculty",
+		"unit": "Công nghệ thông tin",
 		"major": "suzuki_major"
 	},
 	{
@@ -20,7 +20,7 @@
 		"teacherId": 1,
 		"courseId": 1,
 		"description": "desicritonp",
-		"faculty": "but_bi_faculty",
+		"unit": "Công nghệ thông tin",
 		"major": "but_bi_major"
 	},
 	{
@@ -32,7 +32,7 @@
 		"teacherId": 4,
 		"courseId": 2,
 		"description": "donescritip",
-		"faculty": "but_may_faculty",
+		"unit": "but_may_unit",
 		"major": "but_may_major"
 	},
 	{
@@ -44,8 +44,18 @@
 		"teacherId": 5,
 		"courseId": 3,
 		"description": "nesdoctipri",
-		"faculty": "cari_faculty",
+		"unit": "cari_unit",
 		"major": "cari_major"
+	},
+	{
+		"year": 2020,
+		"category": "Giáo trình",
+		"name": "spm1",
+		"fileId": 6,
+		"userId": 3,
+		"teacherId": 5,
+		"courseId": 5,
+		"status": "public"
 	},
 	{
 		"year": 2021,
@@ -57,19 +67,9 @@
 		"courseId": 5
 	},
 	{
-		"year": 2020,
-		"category": "Giáo trình",
-		"name": "spm",
-		"fileId": 6,
-		"userId": 3,
-		"teacherId": 5,
-		"courseId": 5,
-		"status": "public"
-	},
-	{
 		"year": 2021,
 		"category": "Giáo trình",
-		"name": "spm",
+		"name": "spm2",
 		"fileId": 7,
 		"userId": 3,
 		"teacherId": 5,
@@ -79,7 +79,7 @@
 	{
 		"year": 2021,
 		"category": "Giáo trình",
-		"name": "spm",
+		"name": "spm3",
 		"fileId": 8,
 		"userId": 3,
 		"teacherId": 5,

@@ -8,16 +8,6 @@ import Comment from '../Comment';
 import { CenterModal } from '../../utils/styles';
 
 const PreviewDocument = (props) => {
-    const [showOptionsDialog, setOptionsDialog] = useState(false);
-    const handleClose = () => {
-        props.setOpen(false);
-    }
-
-    // const { id, media, likes, user, caption, comments } = defaultPost;
-    const comments = ['abc', 'def', 'ghi'];
-
-    const open = props.open;
-
     let t1 = "https://docs.google.com/viewer?srcid=";
     let t2 = "&pid=explorer&efh=false&a=v&chrome=false&embedded=true";
 
@@ -26,10 +16,8 @@ const PreviewDocument = (props) => {
     return (
         <>
             <CenterModal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
+                open={props.open}
+                onClose={props.onClose}
             >
                 <Box
                     bgcolor={'background.default'}
@@ -54,11 +42,8 @@ const PreviewDocument = (props) => {
                     <Typography color="textSecondary" className="datePosted" sx={{ pt: 1 }}>
                         5 DAYS AGO
                     </Typography>
-                    <iframe src={pdf_link} class='pdf-viewer'></iframe>
-                    <Button variant='contained' sx={{mt:3}} component={Link} to={"/document/" + String(props.index + 1)}>View Full Page</Button>
-                    {showOptionsDialog && (
-                        <OptionsDialog onClose={() => setOptionsDialog(false)} />
-                    )}
+                    <iframe src={pdf_link} className='pdf-viewer'></iframe>
+                    <Button variant='contained' sx={{mt:3}} component={Link} to={"/document/" + String(props.docID)}>View Full Page</Button>
                 </Box>
             </CenterModal>
         </>

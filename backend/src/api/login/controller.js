@@ -22,9 +22,9 @@ const login = async (req, res) => {
 };
 
 // POST: /login/verify
-const verify = async (req, res) => {
+const verifyOTP = async (req, res) => {
 	try {
-		const result = await service.verify(req);
+		const result = await service.verifyOTP(req);
 		const { data, message, status } = result;
 
 		res.status(status).json({
@@ -41,4 +41,44 @@ const verify = async (req, res) => {
 	}
 };
 
-module.exports = { login, verify };
+// POST: /login/forget
+const forgetPassword = async (req, res) => {
+	try {
+		const result = await service.forgetPassword(req);
+		const { data, message, status } = result;
+
+		res.status(status).json({
+			data: data,
+			message: message,
+			status: status,
+		});
+	} catch (e) {
+		res.status(ResponseCode.Bad_Request).json({
+			data: e.message,
+			message: "Couldn't forget password",
+			status: ResponseCode.Bad_Request,
+		});
+	}
+};
+
+// POST: /login/forget
+const resetPassword = async (req, res) => {
+	try {
+		const result = await service.resetPassword(req);
+		const { data, message, status } = result;
+
+		res.status(status).json({
+			data: data,
+			message: message,
+			status: status,
+		});
+	} catch (e) {
+		res.status(ResponseCode.Bad_Request).json({
+			data: e.message,
+			message: "Couldn't reset password",
+			status: ResponseCode.Bad_Request,
+		});
+	}
+};
+
+module.exports = { login, verifyOTP, forgetPassword, resetPassword };

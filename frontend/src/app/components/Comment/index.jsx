@@ -1,22 +1,19 @@
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, Box } from "@mui/material";
 import { useState } from "react";
 
 const Comment = (props) => {
     const [content, setContent] = useState("");
 
     return (
-        <div class="commentContainer">
+        <Box sx={{ display: 'flex' }}>
             <TextField
-                fullWidth
                 value={content}
                 placeholder="Add a comment..."
                 multiline
-                rowsMax={2}
-                rows={1}
                 onChange={event => setContent(event.target.value)}
-                class="textField"
                 sx={{
-                    pb: 0
+                    pb: 0,
+                    width: 'calc(100%)',
                 }}
                 InputProps={{
                     classes: {
@@ -31,7 +28,7 @@ const Comment = (props) => {
             >
                 Post
             </Button>
-        </div>
+        </Box>
     );
 }
 

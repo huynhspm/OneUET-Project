@@ -19,6 +19,9 @@ const Class = sequelize.define(
 		semester: {
 			type: DataTypes.STRING,
 		},
+		finish: {
+			type: DataTypes.BOOLEAN,
+		},
 		group: {
 			type: DataTypes.STRING,
 		},
