@@ -25,10 +25,12 @@ const Document = (props) => {
                 .get("http://localhost:2002/document", config)
                 .then((res) => {
                     let docs = res.data.data.documents;
+                    console.log(docs)
                     let tmp = [];
-                    for (let id in docs) {
-                        tmp.push(id)
+                    for (let index in docs) {
+                        tmp.push(docs[index].id) //docs[index].id
                     }
+                    console.log(tmp);
                     setDoc_ids(tmp);
                 });
         } catch (e) {
@@ -38,12 +40,11 @@ const Document = (props) => {
 
     const { doc_id } = useParams();
 
-
     return (
         <>
             {doc_id === "" && <Main />}
             {doc_ids.map((id, index) => (
-                doc_id === id && <DocumentView id={id} />
+                doc_id === String(id) && <DocumentView key={index} id={id} />
             ))}
         </>
     );

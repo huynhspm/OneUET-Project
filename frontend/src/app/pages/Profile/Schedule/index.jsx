@@ -1,4 +1,4 @@
-import React, { startTransition } from 'react';
+import React, { startTransition, useRef } from 'react';
 import {
   Scheduler,
   TimelineView,
@@ -12,31 +12,8 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 import { guid } from "@progress/kendo-react-common";
 import { sectionMap } from '../../../utils/constant';
-
-const meetingRooms = {
-  name: "Meeting Room",
-  data: [
-    {
-      text: "Blue room",
-      value: 1,
-      color: "blue",
-    },
-    {
-      text: "Red room",
-      value: 2,
-      color: "red",
-    },
-    {
-      text: "Green room",
-      value: 3,
-      color: "green",
-    },
-  ],
-  field: "RoomID",
-  valueField: "value",
-  textField: "text",
-  colorField: "color",
-};
+import { Button } from '@mui/material';
+import { PDFExport, savePDF } from '@progress/kendo-react-pdf';
 
 const compareById = matchingItem => item => matchingItem.id === item.id;
 
@@ -51,6 +28,16 @@ const RoomScheduler = (props) => {
     fetchData();
   }, []);
 
+  function extractSemester(semester) {
+    let semesters = semester.split('-');
+    let sems = [['-08-29T', '-11-12T'], ['-01-30T', '-05-14T']];
+    let sem_index = parseInt(semesters[2]) - 1;
+    return {
+      "start": String(parseInt(semesters[sem_index]) + 1) + sems[sem_index][0],
+      "end": String(parseInt(semesters[sem_index]) + 1) + sems[sem_index][1],
+    }
+  }
+
   const fetchData = async () => {
     try {
       await axios
@@ -62,11 +49,15 @@ const RoomScheduler = (props) => {
           for (let index in classes) {
             console.log(classes[index]);
             let sections = classes[index].section.split("-");
+            let semesters = extractSemester(classes[index].semester);
+            console.log(semesters);
             tmp_data.push({
               "id": classes[index].id,
-              "start": new Date("2022-12-05T" + sectionMap[sections[0]]),
-              "end": new Date("2022-12-05T" + sectionMap[parseInt(sections[1]) + 1]),
+              "start": new Date(semesters.start + sectionMap[sections[0]]),
+              "end": new Date(semesters.start + sectionMap[parseInt(sections[1]) + 1]),
               "isAllDay": false,
+              "recurrenceRule": "FREQ=WEEKLY;BYDAY=TU;WKST=TU;COUNT=15",
+              "recurrenceExceptions": [],
               "title": classes[index].code,
               "RoomID": undefined
             });
@@ -100,18 +91,34 @@ const RoomScheduler = (props) => {
     console.log(data);
   };
 
+  const pdfExportComponent = useRef(null);
+  const handleExportWithComponent = (event) => {
+    pdfExportComponent.current.save();
+  }
+
   return (
     <div className="k-my-8">
       <div className="k-mb-4 k-font-weight-bold">Book a room</div>
-      <Scheduler
-        // editable
-        data={data}
-        // onDataChange={onDataChange}
-        // resources={[meetingRooms]}
-      >
-        <WeekView />
-        <DayView />
-      </Scheduler>
+      <Button onClick={handleExportWithComponent}>EXPORT SCHEDULE</Button>
+      <PDFExport ref={pdfExportComponent} papersize="A4">
+        <Scheduler
+          // editable
+          data={data}
+          // onDataChange={onDataChange}
+          // resources={[meetingRooms]}
+          // height={38*15}
+          // footer="false"
+          defaultView="week"
+        >
+          <WeekView
+            startTime={"07:00"}
+            endTime={"19:00"}
+            slotDivisions={1}
+          />
+          <DayView />
+        </Scheduler>
+
+      </PDFExport>
     </div>
   );
 };

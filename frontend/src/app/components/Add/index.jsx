@@ -17,7 +17,7 @@ import React, { useState } from 'react';
 import axios from "axios";
 import { InputBox, InputButton } from './styles';
 import { CenterModal } from '../../utils/styles';
-import { faculties, majors } from '../../utils/constant';
+import { faculties, majors, categories } from '../../utils/constant';
 
 const Add = () => {
     const [open, setOpen] = useState(false);
@@ -172,13 +172,22 @@ const Add = () => {
                                     />
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <TextField
-                                        fullWidth
-                                        label="Loại"
-                                        id="docType"
-                                        name="docType"
-                                        type="text"
-                                    />
+                                    <FormControl fullWidth>
+                                        <InputLabel id="category-label">Loại</InputLabel>
+                                        <Select
+                                            fullWidth
+                                            labelId="category-label"
+                                            id="docCategory"
+                                            // value={age}
+                                            label="Loại"
+                                        >
+                                            {categories.map((category) => (
+                                                <MenuItem key={category}>
+                                                    {category}
+                                                </MenuItem>
+                                            ))}
+                                        </Select>
+                                    </FormControl>
                                 </Grid>
                                 <Grid item xs={6}>
                                     <TextField

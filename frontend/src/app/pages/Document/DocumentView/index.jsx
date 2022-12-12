@@ -1,16 +1,19 @@
-import { Box, Divider, Typography } from '@mui/material';
+import { Box, Divider, Typography, Button } from '@mui/material';
 import Tags from '../../../components/Tags';
 import Comment from '../../../components/Comment';
+import OptionsDialog from '../../../components/OpitonsDialog';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 import "../../../utils/styles.css"
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 const DocumentView = (props) => {
 
     // let t1 = "https://docs.google.com/viewer?srcid=";
     // let t2 = "&pid=explorer&efh=false&a=v&chrome=false&embedded=true";
     // const pdf_link = t1.concat(String(props.id), t2);
+    const [showOptionsDialog, setShowOptionsDialog] = useState(false);
 
     const [pdf_link, set_pdf_link] = useState();
     const [name, setName] = useState();
@@ -51,7 +54,6 @@ const DocumentView = (props) => {
                     }
                     setComments(tmp_comments);
                     setDateUploaded(data.document.updatedAt);
-                    console.log(tmp_comments);
                 });
         } catch (e) {
             console.log(e.response.data);
@@ -60,14 +62,13 @@ const DocumentView = (props) => {
 
     return (
         <>
-            <Box
-                bgcolor={'background.default'}
-                color={'text.primary'}
-                p={3}
-            >
-                <Typography variant="h6" color="black" textAlign="left">
-                    {name}
-                </Typography>
+            <Box p={3}>
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Typography variant="h6" color="black" textAlign="left">
+                        {name}
+                    </Typography>
+                    <Button onClick={() => setShowOptionsDialog(true)} sx={{ position: 'absolute', right: 24, }}> <MoreVertIcon fontSize='large' /> </Button>
+                </Box>
                 <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                     <Box
                         sx={{
@@ -93,7 +94,7 @@ const DocumentView = (props) => {
                         </Typography>
                         <Divider />
                         {comments.map(comment => (
-                            <Box>
+                            <Box key={comment.id}>
                                 <Typography variant="body2" component="span" sx={{ p: 1 }}>
                                     {<Typography variant="button">{comment.id}</Typography>} {comment.content}
                                 </Typography>
@@ -112,6 +113,9 @@ const DocumentView = (props) => {
                     </Box>
                 </Box>
             </Box>
+            {showOptionsDialog && (
+                <OptionsDialog documentID = {props.id} onClose={() => setShowOptionsDialog(false)} />
+            )}
         </>
     );
 };

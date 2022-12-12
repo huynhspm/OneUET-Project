@@ -15,7 +15,6 @@ export const FilterBox = styled(Box)({
 });
 
 export const CategoryBox = styled(Box)({
-    paddingLeft: 16, 
     height: 21, 
     fontSize: 14, 
     fontWeight: 'bold', 

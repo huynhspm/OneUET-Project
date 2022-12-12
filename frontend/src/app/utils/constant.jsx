@@ -1,5 +1,41 @@
-export const documentCardHeight = 270;
+export const documentCardHeight = 250;
 export const drawerWidth = 270;
+
+// export const facultiesAndMajors = {
+//     "Khoa Công nghệ Thông tin": [
+//         "Công nghệ thông tin",
+//         "Công nghệ thông tin định hướng thị trường Nhật Bản",
+//         "Hệ thống thông tin",
+//         "Mạng máy tính và truyền thông dữ liệu",
+//         "Khoa học máy tính",
+//     ],
+//     "Khoa Điện tử Viễn thông": [
+//         "Kỹ thuật Robot",
+//         "Kỹ thuật máy tính",
+//         "Công nghệ kỹ thuật điện tử viễn thông"
+//     ],
+//     "Khoa Vật lý kỹ thuật & Công nghệ Nano": [
+//         "Kỹ thuật năng lượng",
+//         "Vật lý kỹ thuật",
+//         "Cơ kỹ thuật",
+//     ],
+//     "Khoa Cơ học kỹ thuật & Tự động hoá": [
+//         "Kỹ thuật điều khiển và tự động hóa",
+//         "Công nghệ kỹ thuật cơ điện tử",
+//     ],
+//     "Khoa Công nghệ Nông nghiệp": [
+//         "Công nghệ nông nghiệp",
+//     ],
+//     "Khoa Công nghệ Xây dựng - Giao thông": [
+//         "Công nghệ kỹ thuật xây dựng",
+//     ],
+//     "Viện Công nghệ Hàng không Vũ trụ": [
+//         "Công nghệ Hàng không vũ trụ",
+//     ],
+//     "Viện Trí tuệ Nhân tạo": [
+//         "Trí tuệ nhân tạo",
+//     ]
+// }
 
 export const faculties = [
     "Khoa Công nghệ Thông tin",
@@ -12,8 +48,13 @@ export const faculties = [
     "Viện Trí tuệ Nhân tạo"
 ];
 
+export const categories = [
+    "Giáo trình",
+    "Đề thi"
+]
+
 export const majors = [
-    "Công nghệ thông tin",	
+    "Công nghệ thông tin",
     "Công nghệ nông nghiệp",
     "Kỹ thuật điều khiển và tự động hóa",
     "Trí tuệ nhân tạo",
@@ -21,7 +62,7 @@ export const majors = [
     "Công nghệ thông tin định hướng thị trường Nhật Bản",
     "Kỹ thuật Robot",
     "Kỹ thuật máy tính",
-    "Vật lý kỹ thuật",	
+    "Vật lý kỹ thuật",
     "Cơ kỹ thuật",
     "Công nghệ kỹ thuật xây dựng",
     "Công nghệ Hàng không vũ trụ",

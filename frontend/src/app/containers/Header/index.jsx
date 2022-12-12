@@ -46,7 +46,7 @@ const Header = (props) => {
   return (
     <>
       <div className="header">
-        <div class="btn-group button-group">
+        <div className="btn-group button-group">
           <Link className="homepage-button btn" to="/">
             <HomeIcon /> Trang chủ
           </Link>
@@ -78,7 +78,7 @@ const Header = (props) => {
             <SearchIcon />
           </Link>
         </div>
-        <div>
+        {/* <div>
           <List disablePadding>
             <ListItem disablePadding>
               <ListItemButton component="a" href="#home">
@@ -93,7 +93,7 @@ const Header = (props) => {
               </ListItemButton>
             </ListItem>
           </List>
-        </div>
+        </div> */}
         <div className="profile-group">
           <AvatarDropdown />
         </div>
