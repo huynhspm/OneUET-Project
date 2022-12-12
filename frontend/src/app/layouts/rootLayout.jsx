@@ -35,8 +35,8 @@ const RootLayout = () => {
         {/* <Header setMode={setMode} mode={mode} /> */}
         <Header/>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<HomePage setToken={setToken} />} />
+          <Route path="/login" element={<Login token={token} setToken={setToken} />} />
           <Route path="/register" element={<Register />} />
           <Route path="/homepage" element={<HomePage />} />
           <Route path="/convert" element={<Convert />} />
