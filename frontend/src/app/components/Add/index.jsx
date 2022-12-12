@@ -17,7 +17,7 @@ import React, { useState } from 'react';
 import axios from "axios";
 import { InputBox, InputButton } from './styles';
 import { CenterModal } from '../../utils/styles';
-import { faculties, majors, categories } from '../../utils/constant';
+import { units, majors, categories } from '../../utils/constant';
 
 const Add = () => {
     const [open, setOpen] = useState(false);
@@ -28,7 +28,7 @@ const Add = () => {
 
         const docName = data.get("docName");
         const docDescription = data.get("docDescription");
-        const docFaculty = data.get("docfaculty");
+        const docUnit = data.get("docUnit");
         const docMajor = data.get("docMajor");
         const docLecturer = data.get("docLecturer");
         const docSubject = data.get("docSubject");
@@ -39,7 +39,7 @@ const Add = () => {
             const res = await axios.post("http://localhost:2002/file", {
                 docName,
                 docDescription,
-                docFaculty,
+                docUnit,
                 docMajor,
                 docLecturer,
                 docSubject,
@@ -119,17 +119,17 @@ const Add = () => {
                                 </Grid>
                                 <Grid item xs={6}>
                                     <FormControl fullWidth>
-                                        <InputLabel id="faculty-label">Khoa</InputLabel>
+                                        <InputLabel id="unit-label">Khoa</InputLabel>
                                         <Select
                                             fullWidth
-                                            labelId="faculty-label"
-                                            id="docFaculty"
+                                            labelId="unit-label"
+                                            id="docunit"
                                             // value={age}
                                             label="Khoa"
                                         >
-                                            {faculties.map((faculty) => (
-                                                <MenuItem key={faculty}>
-                                                    {faculty}
+                                            {units.map((unit) => (
+                                                <MenuItem key={unit}>
+                                                    {unit}
                                                 </MenuItem>
                                             ))}
                                         </Select>

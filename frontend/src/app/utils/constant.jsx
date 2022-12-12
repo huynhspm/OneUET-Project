@@ -1,7 +1,7 @@
 export const documentCardHeight = 250;
 export const drawerWidth = 270;
 
-// export const facultiesAndMajors = {
+// export const unitsAndMajors = {
 //     "Khoa Công nghệ Thông tin": [
 //         "Công nghệ thông tin",
 //         "Công nghệ thông tin định hướng thị trường Nhật Bản",
@@ -37,7 +37,7 @@ export const drawerWidth = 270;
 //     ]
 // }
 
-export const faculties = [
+export const units = [
     "Khoa Công nghệ Thông tin",
     "Khoa Điện tử Viễn thông",
     "Khoa Vật lý kỹ thuật & Công nghệ Nano",

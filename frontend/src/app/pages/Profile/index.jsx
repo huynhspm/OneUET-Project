@@ -9,7 +9,7 @@ import Schedule from './Schedule';
 import Grade from '../Grade';
 import PrivateDocument from './PrivateDocument';
 import FilterSidebar from '../../components/FilterSidebar';
-import { faculties } from '../../utils/constant';
+import { units } from '../../utils/constant';
 
 const drawerWidth = 240;
 
@@ -17,7 +17,7 @@ const Profile = () => {
     const { type } = useParams();
 
     const filterData = {
-		Khoa: faculties,
+		Khoa: units,
 		Ngành: ['Công nghệ thông tin', 'Khoa học máy tính', 'Send email', 'Drafts']
 	}
 
