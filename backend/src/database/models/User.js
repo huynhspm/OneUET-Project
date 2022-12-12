@@ -1,8 +1,8 @@
 const bcrypt = require("bcrypt");
+const config = require("../../config");
 const { DataTypes } = require("sequelize");
 const sequelize = require("../");
 const Role = require("./Role");
-
 const Student = require("./Student");
 
 const User = sequelize.define(
@@ -32,7 +32,7 @@ const User = sequelize.define(
 			type: DataTypes.DATE,
 		},
 		gender: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.STRING,
 		},
 		avatar: {
 			type: DataTypes.STRING,
@@ -43,7 +43,7 @@ const User = sequelize.define(
 		academicYear: {
 			type: DataTypes.INTEGER,
 		},
-		faculty: {
+		unit: {
 			type: DataTypes.STRING,
 		},
 		major: {
@@ -74,6 +74,9 @@ const User = sequelize.define(
 		otp: {
 			type: DataTypes.INTEGER,
 		},
+		expiredTime: {
+			type: DataTypes.DATE,
+		},
 	},
 	{
 		tableName: "user",
@@ -87,13 +90,8 @@ User.belongsTo(Role);
 Role.hasMany(User);
 
 User.beforeCreate(
-	(user) => (user.password = bcrypt.hashSync(user.password, 10))
+	(user) => (user.password = bcrypt.hashSync(user.password, config.salt))
 );
-
-User.beforeUpdate((user) => {
-	const hashedPassword = bcrypt.hashSync(user.password, 10);
-	user.password = hashedPassword;
-});
 
 User.afterCreate(async (user) => {
 	const code = user.email.slice(0, 8);

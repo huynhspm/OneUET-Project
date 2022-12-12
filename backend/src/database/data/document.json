@@ -8,7 +8,7 @@
 		"teacherId": 2,
 		"courseId": 1,
 		"description": "description",
-		"faculty": "suzuki_faculty",
+		"unit": "Công nghệ thông tin",
 		"major": "suzuki_major"
 	},
 	{
@@ -20,7 +20,7 @@
 		"teacherId": 1,
 		"courseId": 1,
 		"description": "desicritonp",
-		"faculty": "but_bi_faculty",
+		"unit": "Công nghệ thông tin",
 		"major": "but_bi_major"
 	},
 	{
@@ -32,7 +32,7 @@
 		"teacherId": 4,
 		"courseId": 2,
 		"description": "donescritip",
-		"faculty": "but_may_faculty",
+		"unit": "but_may_unit",
 		"major": "but_may_major"
 	},
 	{
@@ -44,7 +44,7 @@
 		"teacherId": 5,
 		"courseId": 3,
 		"description": "nesdoctipri",
-		"faculty": "cari_faculty",
+		"unit": "cari_unit",
 		"major": "cari_major"
 	},
 	{

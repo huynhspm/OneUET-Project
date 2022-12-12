@@ -15,7 +15,27 @@ const getMyUser = async (req, res) => {
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
 			data: e.message,
-			message: "Error",
+			message: "Couldn't get my user",
+			status: ResponseCode.Bad_Request,
+		});
+	}
+};
+
+// PUT: /user//me/password
+const updateMyPassword = async (req, res) => {
+	try {
+		const result = await service.updateMyPassword(req);
+		const { data, message, status } = result;
+
+		res.status(status).json({
+			data: data,
+			message: message,
+			status: status,
+		});
+	} catch (e) {
+		res.status(ResponseCode.Bad_Request).json({
+			data: e,
+			message: "Couldn't update my password",
 			status: ResponseCode.Bad_Request,
 		});
 	}
@@ -35,7 +55,7 @@ const updateMyUser = async (req, res) => {
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
 			data: e,
-			message: "Error",
+			message: "Couldn't update my user",
 			status: ResponseCode.Bad_Request,
 		});
 	}
@@ -55,7 +75,7 @@ const getUsers = async (req, res) => {
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
 			data: e,
-			message: "Error",
+			message: "Couldn't get users",
 			status: ResponseCode.Bad_Request,
 		});
 	}
@@ -75,7 +95,7 @@ const getUser = async (req, res) => {
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
 			data: e.message,
-			message: "Error",
+			message: "Couldn't get user",
 			status: ResponseCode.Bad_Request,
 		});
 	}
@@ -95,7 +115,7 @@ const deleteUser = async (req, res) => {
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
 			data: e,
-			message: "Error",
+			message: "Couldn't delete user",
 			status: ResponseCode.Bad_Request,
 		});
 	}
@@ -103,6 +123,7 @@ const deleteUser = async (req, res) => {
 
 module.exports = {
 	getMyUser,
+	updateMyPassword,
 	updateMyUser,
 	getUsers,
 	getUser,
