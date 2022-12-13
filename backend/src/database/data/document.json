@@ -8,7 +8,7 @@
 		"teacherId": 2,
 		"courseId": 1,
 		"description": "description",
-		"unit": "Công nghệ thông tin",
+		"unit": "Khoa Công nghệ Thông tin",
 		"major": "suzuki_major"
 	},
 	{
@@ -20,7 +20,7 @@
 		"teacherId": 1,
 		"courseId": 1,
 		"description": "desicritonp",
-		"unit": "Công nghệ thông tin",
+		"unit": "Khoa Công nghệ Thông tin",
 		"major": "but_bi_major"
 	},
 	{
@@ -44,7 +44,7 @@
 		"teacherId": 5,
 		"courseId": 3,
 		"description": "nesdoctipri",
-		"unit": "cari_unit",
+		"unit": "Khoa Công nghệ Thông tin",
 		"major": "cari_major"
 	},
 	{
@@ -55,7 +55,9 @@
 		"userId": 3,
 		"teacherId": 5,
 		"courseId": 5,
-		"status": "public"
+		"status": "public",
+		"unit": "Khoa Công nghệ Thông tin",
+		"major": "Khoa học máy tính"
 	},
 	{
 		"year": 2021,
@@ -64,7 +66,9 @@
 		"fileId": 5,
 		"userId": 3,
 		"teacherId": 5,
-		"courseId": 5
+		"courseId": 5,
+		"unit": "Khoa Công nghệ Thông tin",
+		"major": "Khoa học máy tính"
 	},
 	{
 		"year": 2021,
@@ -74,7 +78,9 @@
 		"userId": 3,
 		"teacherId": 5,
 		"courseId": 5,
-		"status": "public"
+		"status": "public",
+		"unit": "Khoa Công nghệ Thông tin",
+		"major": "Khoa học máy tính"
 	},
 	{
 		"year": 2021,
@@ -84,6 +90,8 @@
 		"userId": 3,
 		"teacherId": 5,
 		"courseId": 5,
-		"status": "public"
+		"status": "public",
+		"unit": "Khoa Điện tử Viễn thông",
+		"major": "Kỹ thuật máy tính"
 	}
 ]
