@@ -40,7 +40,7 @@ const LeftDrawer = () => {
       <Divider variant="middle" />
       <List>
         {LowerTexts.map((text, index) => (
-          <ListItem button component={Link} to={UpperHrefs[index]} key={text} disablePadding>
+          <ListItem button component={Link} to={LowerHrefs[index]} key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 {LowerIcons[index]}
