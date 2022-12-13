@@ -53,7 +53,9 @@ const OtpModal = (props) => {
                     <Typography variant='p'>
                         OTP not received?
                     </Typography>
-                    <Button>
+                    <Button
+                        onClick={props.resendOTP}
+                    >
                         RESEND
                     </Button>
                 </Box>
@@ -61,16 +63,7 @@ const OtpModal = (props) => {
                     fullWidth
                     variant="contained"
                     onClick={() => {
-                        props.handleOtp();
-                        if (props.active) {
-                            setIsError(0);
-                        } else {
-                            if (props.otp == '') {
-                                setIsError(1);
-                            } else {
-                                setIsError(2);
-                            }
-                        }
+                        props.handleOTP(setIsError);
                     }}
                 >
                     SUBMIT

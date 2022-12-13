@@ -32,14 +32,24 @@ export default function Login(props) {
 
 	// Modal
 	const [open, setOpen] = React.useState(false);
-	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
 
 	const EmailState = ["", "Please enter your email", "Invalid Email"];
 
 	const PasswordState = ["", "Please enter your password", "Wrong password"];
 
-	const handleOTP = async () => {
+	const resendOTP = async () => {
+		try {
+			const res = await axios.post("http://localhost:2002/login/forget", {
+				email: email
+			});
+			console.log(res);
+		} catch (e) {
+			console.log(e.response);
+		}
+	}
+
+	const handleOTP = async (setError) => {
 		console.log(otp);
 		try {
 			const res = await axios.post("http://localhost:2002/login/verify", {
@@ -47,10 +57,17 @@ export default function Login(props) {
 				otp: otp,
 			});
 			console.log(res.data);
+			props.setToken(res.data.data.token);
+			setError(0);
 			setActive(true);
 		} catch (e) {
 			console.log(e.response.data.message);
 			if (e.response.data.message === "Invalid OTP") {
+				if (otp == '') {
+					setError(1);
+				} else {
+					setError(2);
+				}
 			}
 		}
 	};
@@ -120,14 +137,7 @@ export default function Login(props) {
 
 	return (
 		<React.Fragment>
-			<OtpModal
-				open={open}
-				handleClose={handleClose}
-				active={active}
-				otp={otp}
-				setOtp={setOtp}
-				handleOtp={handleOTP}
-			/>
+			<OtpModal open={open} handleClose={handleClose} active={active} otp={otp} setOtp={setOtp} handleOTP={handleOTP} resendOTP={resendOTP} />
 			<ThemeProvider theme={theme}>
 				<Container component="main" maxWidth="xs">
 					<CssBaseline />
