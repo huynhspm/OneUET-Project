@@ -5,7 +5,7 @@ const router = Router();
 
 router.post("/", controller.login);
 router.post("/verify", controller.verifyOTP);
-router.post("/forget", controller.forgetPassword);
+router.post("/forget", controller.sendOTP);
 router.post("/reset", controller.resetPassword);
 
 module.exports = router;

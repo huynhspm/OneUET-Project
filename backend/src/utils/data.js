@@ -12,6 +12,7 @@ const usersClubs = require("../database/data/userClub.json");
 const files = require("../database/data/file.json");
 const documents = require("../database/data/document.json");
 const comments = require("../database/data/comment.json");
+const students_classes = require("../database/data/student_class.json");
 
 async function createCourse() {
 	for (let course of courses) {
