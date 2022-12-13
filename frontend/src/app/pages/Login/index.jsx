@@ -54,9 +54,13 @@ export default function Login(props) {
 				email: email,
 				otp: otp,
 			});
-			console.log(res);
+			console.log(res.data);
+			setActive(true);
 		} catch (e) {
-			console.log(e.response);
+			console.log(e.response.data.message);
+			if (e.response.data.message === "Invalid OTP") {
+
+			}
 		}
 	}
 
@@ -98,7 +102,10 @@ export default function Login(props) {
 			setActive(true);
 		} catch (e) {
 			if (e.response !== undefined) {
-				console.log(e.response.data);
+				console.log(e.response.data.message);
+				if (e.response.data.message === "Invalid email") {
+					setIsValidEmail(2);
+				}
 				if (e.response.data.message === "Invalid password!") {
 					setIsValidPassword(2);
 				}
@@ -112,7 +119,6 @@ export default function Login(props) {
 
 	React.useEffect(() => {
 		if (login) {
-			console.log("Login Success!");
 			if (active) {
 				navigate('/');
 			} else {
@@ -123,7 +129,7 @@ export default function Login(props) {
 
 	return (
 		<React.Fragment>
-			<OtpModal open={open} handleClose={handleClose} otp={otp} setOtp={setOtp} handleOtp={handleOTP} />
+			<OtpModal open={open} handleClose={handleClose} active={active} otp={otp} setOtp={setOtp} handleOtp={handleOTP} />
 			<ThemeProvider theme={theme}>
 				<Container component="main" maxWidth="xs">
 					<CssBaseline />

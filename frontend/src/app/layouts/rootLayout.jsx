@@ -35,7 +35,7 @@ const RootLayout = () => {
         {/* <Header setMode={setMode} mode={mode} /> */}
         <Header/>
         <Routes>
-          <Route path="/" element={<HomePage setToken={setToken} />} />
+          <Route path="/" element={<HomePage token={token} />} />
           <Route path="/login" element={<Login token={token} setToken={setToken} />} />
           <Route path="/register" element={<Register />} />
           <Route path="/homepage" element={<HomePage />} />
@@ -44,7 +44,7 @@ const RootLayout = () => {
           <Route path="/document/:doc_id" element={<Document />} />
           <Route path="/grade" element={<GradeCourses />} />
           <Route path="/validation-document" element={<ValidationPage />} />
-          <Route path="/profile/:type" element={<Profile />} />
+          <Route path="/profile/:type" element={<Profile token={token} />} />
         </Routes>
 
         <Footer />
