@@ -1,4 +1,4 @@
-const { Class, StudentClass } = require("../../database/models");
+const { Class, Student } = require("../../database/models");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 
 const verifyClass = async (req) => {
@@ -96,16 +96,18 @@ const getClass = async (req) => {
 const addStudent = async (req) => {
 	try {
 		let curClass, message, status;
-		const { codeClass, semester, codeStudent, midterm, final, total } =
-			req.body;
+		const { codeClass, semester, students } = req.body;
 		curClass = await Class.findOne({
 			where: { code: codeClass, semester: semester },
 		});
 
-		if (curClass) {
-			message = "Add student successfully";
-			status = ResponseCode.OK;
+		for (let student in students) {
+			let studentId = await Student.findOne({ where: { code: student.code } });
+			await curClass.addStudent(studentId, { through: { student } });
 		}
+
+		// message = "Add student successfully";
+		// status = ResponseCode.OK;
 
 		const data = {
 			curClass,

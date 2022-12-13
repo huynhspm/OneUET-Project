@@ -11,7 +11,7 @@ const createOTP = () => {
 	};
 };
 
-const sendOTP = (email, otp) => {
+const sendEmailOTP = (email, otp) => {
 	try {
 		const transporter = nodemailer.createTransport(config.mail_setting);
 		const mailOptions = {
@@ -34,4 +34,4 @@ const sendOTP = (email, otp) => {
 	}
 };
 
-module.exports = { sendOTP, createOTP };
+module.exports = { sendEmailOTP, createOTP };
