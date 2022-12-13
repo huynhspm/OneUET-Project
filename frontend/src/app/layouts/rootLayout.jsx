@@ -18,6 +18,7 @@ import Register from "../pages/Register";
 import Grade from "../pages/Grade";
 import GradeCourses from "../pages/GradeCourses";
 import Profile from "../pages/Profile";
+import ForgetPassword from "../pages/ForgetPassword";
 
 const RootLayout = () => {
 
@@ -37,6 +38,7 @@ const RootLayout = () => {
         <Routes>
           <Route path="/" element={<HomePage token={token} />} />
           <Route path="/login" element={<Login token={token} setToken={setToken} />} />
+          <Route path="/login/forget" element={<ForgetPassword token={token} setToken={setToken} />} />
           <Route path="/register" element={<Register />} />
           <Route path="/homepage" element={<HomePage />} />
           <Route path="/convert" element={<Convert />} />

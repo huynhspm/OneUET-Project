@@ -13,12 +13,15 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import validator from 'validator'
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import OtpModal from "../../components/OtpModal";
 
 const theme = createTheme();
 
 export default function Login(props) {
+	const { type } = useParams();
+	console.log(type);
+
 	const [login, setLogin] = React.useState(false);
 	const [active, setActive] = React.useState(false);
 
@@ -213,7 +216,7 @@ export default function Login(props) {
 							</Button>
 							<Grid container>
 								<Grid item xs>
-									<Link href="#" variant="body2">
+									<Link href="/login/forget" variant="body2">
 										Forgot password?
 									</Link>
 								</Grid>
