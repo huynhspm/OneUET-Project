@@ -89,8 +89,6 @@ const updateMyPassword = async (req) => {
 			}
 		}
 
-		const data = { user };
-
 		return {
 			data,
 			message,

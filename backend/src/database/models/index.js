@@ -11,6 +11,7 @@ const UserClub = require("./UserClub");
 const File = require("./File");
 const Document = require("./Document");
 const Comment = require("./Comment");
+const Grade = require("./Grade");
 
 module.exports = {
 	Course,
@@ -26,4 +27,5 @@ module.exports = {
 	File,
 	Document,
 	Comment,
+	Grade,
 };
