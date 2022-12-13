@@ -12,8 +12,8 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
-import validator from 'validator'
-import { useNavigate } from 'react-router-dom';
+import validator from "validator";
+import { useNavigate } from "react-router-dom";
 import OtpModal from "../../components/OtpModal";
 
 const theme = createTheme();
@@ -22,9 +22,9 @@ export default function Login(props) {
 	const [login, setLogin] = React.useState(false);
 	const [active, setActive] = React.useState(false);
 
-	const [email, setEmail] = React.useState('');
-	const [password, setPassword] = React.useState('');
-	const [otp, setOtp] = React.useState('');
+	const [email, setEmail] = React.useState("");
+	const [password, setPassword] = React.useState("");
+	const [otp, setOtp] = React.useState("");
 
 	const navigate = useNavigate();
 	const [isValidEmail, setIsValidEmail] = React.useState(0);
@@ -35,17 +35,9 @@ export default function Login(props) {
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
 
-	const EmailState = [
-		"",
-		"Please enter your email",
-		"Invalid Email"
-	];
+	const EmailState = ["", "Please enter your email", "Invalid Email"];
 
-	const PasswordState = [
-		"",
-		"Please enter your password",
-		"Wrong password"
-	];
+	const PasswordState = ["", "Please enter your password", "Wrong password"];
 
 	const handleOTP = async () => {
 		console.log(otp);
@@ -59,10 +51,9 @@ export default function Login(props) {
 		} catch (e) {
 			console.log(e.response.data.message);
 			if (e.response.data.message === "Invalid OTP") {
-
 			}
 		}
-	}
+	};
 
 	const handleSubmit = async (event) => {
 		let validation = true;
@@ -106,10 +97,10 @@ export default function Login(props) {
 				if (e.response.data.message === "Invalid email") {
 					setIsValidEmail(2);
 				}
-				if (e.response.data.message === "Invalid password!") {
+				if (e.response.data.message === "Invalid password") {
 					setIsValidPassword(2);
 				}
-				if (e.response.data.message === "Login successfully but not active!") {
+				if (e.response.data.message === "Login successfully but not active") {
 					setLogin(true);
 					setActive(false);
 				}
@@ -120,7 +111,7 @@ export default function Login(props) {
 	React.useEffect(() => {
 		if (login) {
 			if (active) {
-				navigate('/');
+				navigate("/");
 			} else {
 				setOpen(!active);
 			}
@@ -129,7 +120,14 @@ export default function Login(props) {
 
 	return (
 		<React.Fragment>
-			<OtpModal open={open} handleClose={handleClose} active={active} otp={otp} setOtp={setOtp} handleOtp={handleOTP} />
+			<OtpModal
+				open={open}
+				handleClose={handleClose}
+				active={active}
+				otp={otp}
+				setOtp={setOtp}
+				handleOtp={handleOTP}
+			/>
 			<ThemeProvider theme={theme}>
 				<Container component="main" maxWidth="xs">
 					<CssBaseline />
