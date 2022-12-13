@@ -42,9 +42,9 @@ const verifyOTP = async (req, res) => {
 };
 
 // POST: /login/forget
-const forgetPassword = async (req, res) => {
+const sendOTP = async (req, res) => {
 	try {
-		const result = await service.forgetPassword(req);
+		const result = await service.sendOTP(req);
 		const { data, message, status } = result;
 
 		res.status(status).json({
@@ -81,4 +81,4 @@ const resetPassword = async (req, res) => {
 	}
 };
 
-module.exports = { login, verifyOTP, forgetPassword, resetPassword };
+module.exports = { login, verifyOTP, sendOTP, resetPassword };
