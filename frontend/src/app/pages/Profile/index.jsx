@@ -10,6 +10,7 @@ import Grade from '../Grade';
 import PrivateDocument from './PrivateDocument';
 import FilterSidebar from '../../components/FilterSidebar';
 import { units } from '../../utils/constant';
+import ChangePassword from './ChangePassword';
 
 const drawerWidth = 240;
 
@@ -47,7 +48,7 @@ const Profile = (props) => {
                 {type === 'schedule' && <Schedule />}
                 {type === 'learning-result' && <Grade />}
                 {type === 'private-document' && <PrivateDocument />}
-                {type === 'change-password' && <Header />}
+                {type === 'change-password' && <ChangePassword token={props.token} />}
                 {type === 'login' && <Header />}
             </Box>
         </Box>
