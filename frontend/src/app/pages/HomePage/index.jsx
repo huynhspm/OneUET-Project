@@ -7,10 +7,10 @@ const HomePage = (props) => {
   const navigate = useNavigate();
   useEffect(() => {
     // console.log(props.token);
-    if (props.token == '') {
+    if (props.token === '') {
       navigate('/login');
     }
-  }, [props.token]);
+  }, [props.token, navigate]);
 
   const cards_json = [
     {

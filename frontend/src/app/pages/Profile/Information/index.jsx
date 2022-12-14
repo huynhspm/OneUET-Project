@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Basic from './Basic';
 import Education from './Education';
 import Activities from './Activities';
+import ExportCV from './ExportCV';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import axios from 'axios';
@@ -34,6 +35,8 @@ const updateUserData = async (token, data) => {
 }
 
 const Information = (props) => {
+    const [isFetch, setIsFetch] = React.useState(false);
+
     // Basic
     const [avatar, setAvatar] = React.useState("https://randomuser.me/api/portraits/women/79.jpg");
 
@@ -53,14 +56,14 @@ const Information = (props) => {
     // Activites
     const [unionJoint, setUnionJoint] = React.useState(null);
     const [partyJoint, setPartyJoint] = React.useState(null);
-    const [unionPossition, setUnionPossition] = React.useState(null);
-    const [associationPossition, setAssociationPossition] = React.useState(null);
+    const [unionPosition, setUnionPosition] = React.useState(null);
+    const [associationPosition, setAssociationPosition] = React.useState(null);
     const [club, setClub] = React.useState(null);
 
     const fetchData = () => {
         getUserData(props.token).then((data) => {
-            const user = data.user;
-            const student = data.student;
+            const user = data.profile.user;
+            const student = data.profile.student;
 
             // Basic
             setAvatar(user.avatar);
@@ -78,17 +81,21 @@ const Information = (props) => {
             setClassID(student.class);
 
             // Activities
-            setUnionJoint(user.unionJoint || false);
-            setPartyJoint(user.partyJoint || false);
-            setUnionPossition(user.unionPossition);
-            setAssociationPossition(user.associationPossition);
+            setUnionJoint(user.unionJoint);
+            setPartyJoint(user.partyJoint);
+            setUnionPosition(user.unionPosition);
+            setAssociationPosition(user.associationPosition);
             setClub(user.club);
+
+            setIsFetch(true);
         });
     }
 
     useEffect(() => {
-        fetchData();
-    }, []);
+        if (!isFetch) {
+            fetchData();
+        }
+    }, [isFetch]);
 
     return (
         <Box
@@ -143,6 +150,7 @@ const Information = (props) => {
                             setClassID={setClassID}
                             token={props.token}
                             updateUserData={updateUserData}
+                            isFetch={isFetch}
                         />
                     </Paper>
                 </Grid>
@@ -159,15 +167,26 @@ const Information = (props) => {
                             setUnionJoint={setUnionJoint}
                             partyJoint={partyJoint}
                             setPartyJoint={setPartyJoint}
-                            unionPossition={unionPossition}
-                            setUnionPossition={setUnionPossition}
-                            associationPossition={associationPossition}
-                            setAssociationPossition={setAssociationPossition}
+                            unionPosition={unionPosition}
+                            setUnionPosition={setUnionPosition}
+                            associationPosition={associationPosition}
+                            setAssociationPosition={setAssociationPosition}
                             club={club}
                             setClub={setClub}
                             token={props.token}
                             updateUserData={updateUserData}
                         />
+                    </Paper>
+                </Grid>
+                <Grid item xs={12}>
+                    <Paper
+                        sx={{
+                            p: 2,
+                            display: 'flex',
+                            flexDirection: 'column',
+                        }}
+                    >
+                        <ExportCV />
                     </Paper>
                 </Grid>
             </Grid>
