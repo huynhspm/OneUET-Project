@@ -57,8 +57,11 @@ export default function Login(props) {
 				otp: otp,
 			});
 			console.log(res.data);
+			if (res.data.message === "OTP expired, please click resend") {
+				setError(3);
+				return;
+			}
 			props.setToken(res.data.data.token);
-			sessionStorage.setItem('token', props.token);
 			setError(0);
 			setActive(true);
 		} catch (e) {
@@ -138,12 +141,13 @@ export default function Login(props) {
 	React.useEffect(() => {
 		if (login) {
 			if (active) {
+				sessionStorage.setItem('token', props.token);
 				navigate("/");
 			} else {
 				setOpen(!active);
 			}
 		}
-	}, [login, active, navigate]);
+	}, [login, active, navigate, props.token]);
 
 	return (
 		<React.Fragment>

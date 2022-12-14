@@ -7,7 +7,7 @@ const Logout = (props) => {
         props.setToken('');
         sessionStorage.removeItem("token");
         navigate('/login');
-    }, [props]);
+    }, [props, navigate]);
 
     return (
         <div>
