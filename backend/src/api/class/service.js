@@ -96,25 +96,20 @@ const getClass = async (req) => {
 const addStudent = async (req) => {
 	try {
 		let curClass, message, status;
-		const { codeClass, semester, students } = req.body;
+		const { code, semester, grades } = req.body;
 		curClass = await Class.findOne({
-			where: { code: codeClass, semester: semester },
+			where: { code, semester },
 		});
 
-		for (let student in students) {
-			let studentId = await Student.findOne({ where: { code: student.code } });
-			await curClass.addStudent(studentId, { through: { student } });
+		for (let grade in grades) {
+			let student = await Student.findOne({
+				where: { code: grade.studentCode },
+			});
+			await curClass.addStudent(student.id, { through: { grade } });
 		}
 
-		// message = "Add student successfully";
-		// status = ResponseCode.OK;
-
-		const data = {
-			curClass,
-			teachers,
-			students,
-			course,
-		};
+		message = "Add student successfully";
+		status = ResponseCode.OK;
 
 		return {
 			data,

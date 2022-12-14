@@ -1,0 +1,44 @@
+[
+    {
+        "linkPDF": "http://huynhspm1",
+        "studentCode": "20020001",
+        "midterm": 9.0,
+        "final": 9.0,
+        "total": 9.0
+    },
+    {
+        "linkPDF": "http://huynhspm1",
+        "studentCode": "18020105",
+        "midterm": 9.0,
+        "final": 9.0,
+        "total": 9.0
+    },
+    {
+        "linkPDF": "http://huynhspm1",
+        "studentCode": "18020106",
+        "midterm": 9.0,
+        "final": 9.0,
+        "total": 9.0
+    },
+    {
+        "linkPDF": "http://huynhspm2",
+        "studentCode": "18020107",
+        "midterm": 9.0,
+        "final": 9.0,
+        "total": 9.0
+    },
+    {
+        "linkPDF": "http://huynhspm2",
+        "studentCode": "18020108",
+        "midterm": 9.0,
+        "final": 9.0,
+        "total": 9.0
+    },
+    {
+        "linkPDF": "http://huynhspm2",
+        "studentCode": "18020109",
+        "midterm": 9.0,
+        "final": 9.0,
+        "total": 9.0
+    }
+]
