@@ -12,6 +12,7 @@ const usersClubs = require("../database/data/userClub.json");
 const files = require("../database/data/file.json");
 const documents = require("../database/data/document.json");
 const comments = require("../database/data/comment.json");
+const grades = require("../database/data/grade.json");
 
 async function createCourse() {
 	for (let course of courses) {
@@ -92,6 +93,12 @@ async function createComment() {
 	}
 }
 
+async function createGrade() {
+	for (let grade of grades) {
+		await models.Grade.create(grade);
+	}
+}
+
 async function createData() {
 	await createCourse();
 	await createClass();
@@ -106,6 +113,8 @@ async function createData() {
 	await createFile();
 	await createDocument();
 	await createComment();
+
+	await createGrade();
 }
 
 module.exports = createData;

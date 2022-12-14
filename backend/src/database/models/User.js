@@ -61,9 +61,6 @@ const User = sequelize.define(
 		associationPosition: {
 			type: DataTypes.STRING,
 		},
-		club: {
-			type: DataTypes.STRING,
-		},
 		history: {
 			type: DataTypes.STRING,
 		},

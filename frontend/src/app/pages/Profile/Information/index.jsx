@@ -13,6 +13,7 @@ const getUserData = async token => {
     }
     try {
         const response = await axios.get("http://localhost:2002/user/me", config);
+        console.log(response);
         return response.data.data;
     } catch (e) {
         console.log(e.response);
@@ -32,9 +33,7 @@ const updateUserData = async (token, data) => {
     }
 }
 
-const Information = () => {
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo";
-
+const Information = (props) => {
     // Basic
     const [avatar, setAvatar] = React.useState("https://randomuser.me/api/portraits/women/79.jpg");
 
@@ -59,7 +58,7 @@ const Information = () => {
     const [club, setClub] = React.useState(null);
 
     const fetchData = () => {
-        getUserData(token).then((data) => {
+        getUserData(props.token).then((data) => {
             const user = data.user;
             const student = data.student;
 
@@ -120,7 +119,7 @@ const Information = () => {
                             setEmailVNU={setEmailVNU}
                             email={email}
                             setEmail={setEmail}
-                            token={token}
+                            token={props.token}
                             updateUserData={updateUserData}
                         />
                     </Paper>
@@ -142,7 +141,7 @@ const Information = () => {
                             setUnit={setUnit}
                             classID={classID}
                             setClassID={setClassID}
-                            token={token}
+                            token={props.token}
                             updateUserData={updateUserData}
                         />
                     </Paper>
@@ -166,7 +165,7 @@ const Information = () => {
                             setAssociationPossition={setAssociationPossition}
                             club={club}
                             setClub={setClub}
-                            token={token}
+                            token={props.token}
                             updateUserData={updateUserData}
                         />
                     </Paper>

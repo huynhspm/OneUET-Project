@@ -1,5 +1,6 @@
-const { Class, StudentClass } = require("../../database/models");
+const { Class, Student, StudentClass } = require("../../database/models");
 const ResponseCode = require("../../utils/constant/ResponseCode");
+const sendEmailGrade = require("../../utils/email");
 
 const verifyClass = async (req) => {
 	try {
@@ -93,37 +94,6 @@ const getClass = async (req) => {
 	}
 };
 
-const addStudent = async (req) => {
-	try {
-		let curClass, message, status;
-		const { codeClass, semester, codeStudent, midterm, final, total } =
-			req.body;
-		curClass = await Class.findOne({
-			where: { code: codeClass, semester: semester },
-		});
-
-		if (curClass) {
-			message = "Add student successfully";
-			status = ResponseCode.OK;
-		}
-
-		const data = {
-			curClass,
-			teachers,
-			students,
-			course,
-		};
-
-		return {
-			data,
-			message,
-			status,
-		};
-	} catch (e) {
-		throw e;
-	}
-};
-
 const updateClass = async (req) => {
 	try {
 		let { curClass, message, status } = await verifyClass(req);
@@ -181,10 +151,65 @@ const deleteClass = async (req) => {
 	}
 };
 
+const updateGrade = async (req) => {
+	try {
+		let curClass, message, status;
+		const { code, semester, grades } = req.body;
+		curClass = await Class.findOne({
+			where: { code, semester },
+		});
+
+		for (let grade in grades) {
+			let student = await Student.findOne({
+				where: { code: grade.studentCode },
+			});
+			await StudentClass.update(grades, {
+				where: { studentId: student.id, classId: curClass.id },
+			});
+
+			let email = student.code + "@vnu.edu.vn";
+			let subject = "Your score in class " + curClass.code;
+			sendEmailOTP(email, grade, subject);
+		}
+	} catch (e) {
+		throw e;
+	}
+};
+
+const addStudent = async (req) => {
+	try {
+		let curClass, message, status;
+		const { code, semester, grades } = req.body;
+		curClass = await Class.findOne({
+			where: { code, semester },
+		});
+
+		for (let grade in grades) {
+			let student = await Student.findOne({
+				where: { code: grade.studentCode },
+			});
+			await curClass.addStudent(student.id, { through: { grade } });
+		}
+
+		message = "Add student successfully";
+		status = ResponseCode.OK;
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
 module.exports = {
 	createClass,
 	getClasses,
 	getClass,
 	updateClass,
 	deleteClass,
+	updateGrade,
+	addStudent,
 };

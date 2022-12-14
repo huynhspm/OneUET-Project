@@ -75,7 +75,7 @@ const AvatarDropdown = () => {
           <SyncLockIcon />
           Đổi mật khẩu
         </MenuItem>
-        <MenuItem className="menu-item" component={Link} to="/login">
+        <MenuItem className="menu-item" component={Link} to="/logout">
           <LogoutIcon />
           Đăng xuất
         </MenuItem>
