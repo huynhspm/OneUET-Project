@@ -13,15 +13,12 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import validator from 'validator'
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import OtpModal from "../../components/OtpModal";
 
 const theme = createTheme();
 
 export default function Login(props) {
-	const { type } = useParams();
-	console.log(type);
-
 	const [login, setLogin] = React.useState(false);
 	const [active, setActive] = React.useState(false);
 
@@ -69,12 +66,13 @@ export default function Login(props) {
 			});
 			console.log(res.data);
 			props.setToken(res.data.data.token);
+			sessionStorage.setItem('token', props.token);
 			setError(0);
 			setActive(true);
 		} catch (e) {
 			console.log(e.response.data.message);
 			if (e.response.data.message === "Invalid OTP") {
-				if (otp == '') {
+				if (otp === '') {
 					setError(1);
 				} else {
 					setError(2);
@@ -137,6 +135,15 @@ export default function Login(props) {
 	};
 
 	React.useEffect(() => {
+		const lastToken = sessionStorage.getItem("token");
+		if (lastToken !== null && lastToken !== undefined) {
+			props.setToken(lastToken);
+			setLogin(true);
+			setActive(true);
+		}
+	}, [props]);
+
+	React.useEffect(() => {
 		if (login) {
 			if (active) {
 				navigate('/');
@@ -144,7 +151,7 @@ export default function Login(props) {
 				setOpen(!active);
 			}
 		}
-	}, [login, active]);
+	}, [login, active, navigate]);
 
 	return (
 		<React.Fragment>
