@@ -12,8 +12,8 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
-import validator from 'validator'
-import { useNavigate } from 'react-router-dom';
+import validator from "validator";
+import { useNavigate } from "react-router-dom";
 import OtpModal from "../../components/OtpModal";
 
 const theme = createTheme();
@@ -22,9 +22,9 @@ export default function Login(props) {
 	const [login, setLogin] = React.useState(false);
 	const [active, setActive] = React.useState(false);
 
-	const [email, setEmail] = React.useState('');
-	const [password, setPassword] = React.useState('');
-	const [otp, setOtp] = React.useState('');
+	const [email, setEmail] = React.useState("");
+	const [password, setPassword] = React.useState("");
+	const [otp, setOtp] = React.useState("");
 
 	const navigate = useNavigate();
 	const [isValidEmail, setIsValidEmail] = React.useState(0);
@@ -34,17 +34,9 @@ export default function Login(props) {
 	const [open, setOpen] = React.useState(false);
 	const handleClose = () => setOpen(false);
 
-	const EmailState = [
-		"",
-		"Please enter your email",
-		"Invalid Email"
-	];
+	const EmailState = ["", "Please enter your email", "Invalid Email"];
 
-	const PasswordState = [
-		"",
-		"Please enter your password",
-		"Wrong password"
-	];
+	const PasswordState = ["", "Please enter your password", "Wrong password"];
 
 	const resendOTP = async () => {
 		try {
@@ -78,7 +70,7 @@ export default function Login(props) {
 				}
 			}
 		}
-	}
+	};
 
 	const handleSubmit = async (event) => {
 		let validation = true;
@@ -136,7 +128,7 @@ export default function Login(props) {
 	React.useEffect(() => {
 		if (login) {
 			if (active) {
-				navigate('/');
+				navigate("/");
 			} else {
 				setOpen(!active);
 			}

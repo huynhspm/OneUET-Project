@@ -16,6 +16,7 @@ app.use(cors());
 const createData = require("./utils/data");
 
 const fetch = require("cross-fetch");
+
 const getData = async () => {
 	const url = "https://itest.com.vn/lects/webappdev/fetch/data";
 	const response = await fetch(url);
