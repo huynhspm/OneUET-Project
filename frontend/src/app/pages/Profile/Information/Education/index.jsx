@@ -28,6 +28,7 @@ const Extract = (classID, classIDs) => {
 
 const Education = (props) => {
     const [editable, setEditable] = React.useState(false);
+    const [isGood, setIsGood] = React.useState(false);
 
     const [classIndex, setClassIndex] = React.useState();
 
@@ -46,7 +47,7 @@ const Education = (props) => {
     ];
 
     const academicYears = [];
-    for (let i = 2018; i < 2022; i++) {
+    for (let i = 2018; i <= 2022; i++) {
         academicYears.push("QH-" + String(i) + "-I/CQ");
     }
 
@@ -140,32 +141,48 @@ const Education = (props) => {
 
     const getClassIDs = (academicYear, unit, program) => {
         if (academicYear !== null && unit !== null && program !== null) {
-            return classIDs[academicYear][unit][program];
+            const unit_index = units.findIndex((element) => {
+                return element === unit;
+            });
+            return classIDs[academicYear][unit_index][program];
         } else {
             return ["Khác"];
         }
     }
 
     useEffect(() => {
-        if (props.academicYear == null && props.unit == null && props.program == null) {
-            const [ac, u, pr, cl] = Extract(props.classID, classIDs);
-            if (cl !== undefined) {
-                if (ac !== props.academicYear) {
-                    props.setAcademicYear(ac);
-                }
-                if (u !== props.unit) {
-                    props.setUnit(u);
-                }
-                if (pr !== props.program) {
-                    props.setProgram(pr);
-                }
-                setClassIndex(cl);
-            }
+        if (props.academicYear == null || props.unit == null || props.program == null || props.classID == null) {
+            setIsGood(false);
         } else {
-            const result = Extract(props.classID, classIDs);
-            setClassIndex(result[3]);
+            setIsGood(true);
+            if (props.classID !== undefined) {
+                const result = Extract(props.classID, classIDs);
+                setClassIndex(result[3]);
+            } else {
+                setClassIndex(0);
+            }
         }
-    }, [classIndex, props]);
+    }, [props.academicYear, props.unit, props.program, props.classID]);
+
+    useEffect(() => {
+        if (!isGood) {
+            if (props.academicYear == null || props.unit == null || props.program == null) {
+                const [ac, u, pr, cl] = Extract(props.classID, classIDs);
+                if (cl !== undefined) {
+                    if (props.academicYear !== ac) {
+                        props.setAcademicYear(ac);
+                    }
+                    if (props.unit !== units[u]) {
+                        props.setUnit(units[u]);
+                    }
+                    if (props.program !== pr) {
+                        props.setProgram(pr);
+                    }
+                    setClassIndex(cl);
+                }
+            }
+        }
+    }, [classIndex, isGood, props.academicYear, props.unit, props.program, props.classID]);
 
     return (
         <React.Fragment>
@@ -218,6 +235,7 @@ const Education = (props) => {
                                 onChange={(event) => {
                                     props.setProgram(event.target.value);
                                     setClassIndex(undefined);
+                                    props.setClassID(undefined);
                                 }}
                             >
                                 {programs.map((name, index) => (
@@ -240,6 +258,7 @@ const Education = (props) => {
                                 onChange={(event) => {
                                     props.setAcademicYear(event.target.value);
                                     setClassIndex(undefined);
+                                    props.setClassID(undefined);
                                 }}
                             >
                                 {academicYears.map((name, index) => (
@@ -252,20 +271,21 @@ const Education = (props) => {
                     </Grid>
                     <Grid item xs={6}>
                         <FormControl fullWidth>
-                            <InputLabel id="unit-label">Ngành đào tạo</InputLabel>
+                            <InputLabel id="unit-label">Đơn vị đào tạo</InputLabel>
                             <Select
                                 disabled={!editable}
                                 labelId="unit-label"
                                 id="unit"
                                 value={ControlValue(props.unit)}
-                                label="Ngành đào tạo"
+                                label="Đơn vị đào tạo"
                                 onChange={(event) => {
                                     props.setUnit(event.target.value);
                                     setClassIndex(undefined);
+                                    props.setClassID(undefined);
                                 }}
                             >
-                                {units.map((name, index) => (
-                                    <MenuItem key={name} value={index}>
+                                {units.map((name) => (
+                                    <MenuItem key={name} value={name}>
                                         {name}
                                     </MenuItem>
                                 ))}
