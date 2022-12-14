@@ -63,24 +63,28 @@ const verifyOTP = async (req, res) => {
 	let data, message, status;
 
 	if (!user) {
-		data = null;
 		message = "Invalid email";
 		status = ResponseCode.Forbidden;
 	} else {
 		if (parseInt(otp) === user.otp) {
-			await user.update({ active: true });
-			const role = await user.getRole();
-			const token = jwt.sign(
-				{ id: user.id, roleId: role.id },
-				config.secret_key,
-				{
-					expiresIn: config.expires_in,
-				}
-			);
+			if (new Date(Date.now()) > user.expiredTime) {
+				message = "OTP expired, please click resend";
+				status = ResponseCode.OK;
+			} else {
+				await user.update({ active: true });
+				const role = await user.getRole();
+				const token = jwt.sign(
+					{ id: user.id, roleId: role.id },
+					config.secret_key,
+					{
+						expiresIn: config.expires_in,
+					}
+				);
 
-			data = { token };
-			message = "OTP validation successful!";
-			status = ResponseCode.OK;
+				data = { token };
+				message = "OTP validation successful";
+				status = ResponseCode.OK;
+			}
 		} else {
 			message = "Invalid OTP";
 			status = ResponseCode.Unauthorized;
@@ -130,21 +134,26 @@ const resetPassword = async (req, res) => {
 		status = ResponseCode.Forbidden;
 	} else {
 		if (parseInt(otp) === user.otp) {
-			const hashPassword = bcrypt.hashSync(password, config.salt);
-			await user.update({ password: hashPassword });
+			if (new Date(Date.now()) > user.expiredTime) {
+				message = "OTP expired, please click resend";
+				status = ResponseCode.OK;
+			} else {
+				const hashPassword = bcrypt.hashSync(password, config.salt);
+				await user.update({ password: hashPassword });
 
-			const role = await user.getRole();
-			const token = jwt.sign(
-				{ id: user.id, roleId: role.id },
-				config.secret_key,
-				{
-					expiresIn: config.expires_in,
-				}
-			);
+				const role = await user.getRole();
+				const token = jwt.sign(
+					{ id: user.id, roleId: role.id },
+					config.secret_key,
+					{
+						expiresIn: config.expires_in,
+					}
+				);
 
-			data = { token };
-			message = "Reset password successfully";
-			status = ResponseCode.OK;
+				data = { token };
+				message = "Reset password successfully";
+				status = ResponseCode.OK;
+			}
 		} else {
 			message = "Invalid OTP";
 			status = ResponseCode.Unauthorized;

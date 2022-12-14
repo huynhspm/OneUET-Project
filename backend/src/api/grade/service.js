@@ -20,6 +20,28 @@ const getGrade = async (req) => {
 	}
 };
 
+const getPDF = async (req) => {
+	try {
+		const linkPDFs = await Grade.findAll({
+			attributes: ["linkPDF"],
+			group: ["linkPDF"],
+		});
+
+		const message = "Get pdf successfully";
+		const status = ResponseCode.OK;
+		const data = { linkPDFs };
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
 module.exports = {
 	getGrade,
+	getPDF,
 };

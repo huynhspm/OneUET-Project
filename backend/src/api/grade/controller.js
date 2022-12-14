@@ -20,6 +20,26 @@ const getGrade = async (req, res) => {
 	}
 };
 
+// GET: /grade/pdf
+const getPDF = async (req, res) => {
+	try {
+		const result = await service.getPDF(req);
+		const { data, message, status } = result;
+
+		res.status(status).json({
+			data: data,
+			message: message,
+			status: status,
+		});
+	} catch (e) {
+		res.status(ResponseCode.Bad_Request).json({
+			data: e.message,
+			message: "Couldn't get pdf",
+			status: ResponseCode.Bad_Request,
+		});
+	}
+};
+
 module.exports = {
-	getGrade
+	getGrade, getPDF
 };
