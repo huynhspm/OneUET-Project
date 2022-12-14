@@ -69,9 +69,6 @@ function Row(props) {
         <TableCell style={{ padding: 0 }} colSpan={8}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 0 }}>
-              <Typography variant="h6" gutterBottom component="div">
-                Chi tiết
-              </Typography>
               <Table aria-label="purchases">
                 <TableHead>
                   <TableRow>
@@ -82,7 +79,7 @@ function Row(props) {
                 <TableBody>
                   {row.detail.map((detail) => (
                     <TableRow key={detail.GK}>
-                      <TableCell component="th" scope="row">
+                      <TableCell component="th" >
                         {detail.GK}
                       </TableCell>
                       <TableCell>{detail.CK}</TableCell>
@@ -147,7 +144,6 @@ export default function Grade() {
               <TableCell align="center"> Chi tiết</TableCell>
             </TableRow>
           </TableHead>
-
           <TableRow>
             <TableCell sx={{ borderBottom: 1, borderTop: 1 }} align="center" colSpan={8}>
               Học kỳ 2 - Năm học 2022 - 2023

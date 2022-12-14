@@ -3,12 +3,26 @@ import Box from '@mui/material/Box';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+import axios from 'axios';
+import { useEffect } from 'react';
 // https://drive.google.com/file/d/1X2K2dE5pj5NeP0yOEvQ-8MCUhzd4Papz/view?usp=share_link
 
 let t1 = "https://docs.google.com/viewer?srcid="; 
 let t2 = "&pid=explorer&efh=false&a=v&chrome=false&embedded=true"; 
 
 const pdf_link = t1.concat('1pRHDGYar6n85cSndPP0XYuBKNcBlqEqd', t2);
+
+const getUserData = async token => {
+  const config = {
+      headers: { Authorization: `Bearer ${token}` }
+  }
+  try {
+      const response = await axios.get("http://localhost:2002/user/me", config);
+      return response.data.data;
+  } catch (e) {
+      console.log(e.response);
+  }
+}
 
 const columns = [
   { field: 'id', 
@@ -90,45 +104,31 @@ const columns = [
   },
 ];
 
+let codeClass = "";
+let semester = "";
+const rows = []
 
 let getData = async () => {
 	const url = "http://localhost:3000/data.json";
 	const response = await fetch(url);
 	const data = await response.json();
+  for(var i = 0; i < data['students'].length; i++) {
+    const obj = {}
+    obj.code = data['students'][i]['0'];
+    obj.name = 0;
+    obj.date_of_birth = 0;
+    obj.classes = 0;
+    obj.id = i;
+    obj.midterm_grade = data['students'][i]['1'];
+    obj.final_grade = data['students'][i]['2'];
+    obj.total_grade = data['students'][i]['3'];
+    rows[i] = obj;
+  }
+  console.log(rows);
 	return data;
 };
 
 const data = getData();
-
-columns['id'] = data['index'];
-columns['code'] = data['0'];
-columns['midterm_grade'] = data['1'];
-columns['final_grade'] = data['2'];
-columns['total_grade'] = data['3'];
-
-console.log(data['0'])
-
-
-const rows = [];
-
-// const rows = [
-//   {id: 1, code: "20020057", name: "Đặng Xuân Lộc", date_of_birth: "06/04/2002", classes: "QH-2020-I/CQ-C-CLC", midterm_grade: 8.5, final_grade: 9.5, total_grade: 9.1},
-//   {id: 2, code: "20020057", name: "Đặng Xuân Lộc", date_of_birth: "06/04/2002", classes: "QH-2020-I/CQ-C-CLC", midterm_grade: 8.5, final_grade: 9.5, total_grade: 9.1},
-//   {id: 3, code: "20020057", name: "Đặng Xuân Lộc", date_of_birth: "06/04/2002", classes: "QH-2020-I/CQ-C-CLC", midterm_grade: 8.5, final_grade: 9.5, total_grade: 9.1},
-//   {id: 4, code: "20020057", name: "Đặng Xuân Lộc", date_of_birth: "06/04/2002", classes: "QH-2020-I/CQ-C-CLC", midterm_grade: 8.5, final_grade: 9.5, total_grade: 9.1},
-//   {id: 5, code: "20020057", name: "Đặng Xuân Lộc", date_of_birth: "06/04/2002", classes: "QH-2020-I/CQ-C-CLC", midterm_grade: 8.5, final_grade: 9.5, total_grade: 9.1},
-//   {id: 6, code: "20020057", name: "Đặng Xuân Lộc", date_of_birth: "06/04/2002", classes: "QH-2020-I/CQ-C-CLC", midterm_grade: 8.5, final_grade: 9.5, total_grade: 9.1},
-//   {id: 7, code: "20020057", name: "Đặng Xuân Lộc", date_of_birth: "06/04/2002", classes: "QH-2020-I/CQ-C-CLC", midterm_grade: 8.5, final_grade: 9.5, total_grade: 9.1},
-//   {id: 8, code: "20020057", name: "Đặng Xuân Lộc", date_of_birth: "06/04/2002", classes: "QH-2020-I/CQ-C-CLC", midterm_grade: 8.5, final_grade: 9.5, total_grade: 9.1},
-//   {id: 9, code: "20020057", name: "Đặng Xuân Lộc", date_of_birth: "06/04/2002", classes: "QH-2020-I/CQ-C-CLC", midterm_grade: 8.5, final_grade: 9.5, total_grade: 9.1},
-//   {id: 10, code: "20020057", name: "Đặng Xuân Lộc", date_of_birth: "06/04/2002", classes: "QH-2020-I/CQ-C-CLC", midterm_grade: 8.5, final_grade: 9.5, total_grade: 9.1},
-//   {id: 11, code: "20020057", name: "Đặng Xuân Lộc", date_of_birth: "06/04/2002", classes: "QH-2020-I/CQ-C-CLC", midterm_grade: 8.5, final_grade: 9.5, total_grade: 9.1},
-//   {id: 12, code: "20020057", name: "Đặng Xuân Lộc", date_of_birth: "06/04/2002", classes: "QH-2020-I/CQ-C-CLC", midterm_grade: 8.5, final_grade: 9.5, total_grade: 9.1},
-//   {id: 13, code: "20020057", name: "Đặng Xuân Lộc", date_of_birth: "06/04/2002", classes: "QH-2020-I/CQ-C-CLC", midterm_grade: 8.5, final_grade: 9.5, total_grade: 9.1},
-//   {id: 14, code: "20020057", name: "Đặng Xuân Lộc", date_of_birth: "06/04/2002", classes: "QH-2020-I/CQ-C-CLC", midterm_grade: 8.5, final_grade: 9.5, total_grade: 9.1},
-//   {id: 15, code: "20020057", name: "Đặng Xuân Lộc", date_of_birth: "06/04/2002", classes: "QH-2020-I/CQ-C-CLC", midterm_grade: 8.5, final_grade: 9.5, total_grade: 9.1},
-//   {id: 16, code: "20020057", name: "Đặng Xuân Lộc", date_of_birth: "06/04/2002", classes: "QH-2020-I/CQ-C-CLC", midterm_grade: 8.5, final_grade: 9.5, total_grade: 9.1},
-// ];
 
 const useFakeMutation = () => {
   return React.useCallback(
@@ -147,12 +147,34 @@ const useFakeMutation = () => {
 };
 
 export default function ValidationGrade() {
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZUlkIjoxLCJpYXQiOjE2NzA0ODk2ODEsImV4cCI6MTY3MzA4MTY4MX0.rSseHQSrXVyf_PyY3WAIoU07AKavd3-XP-RIXgXRgr4";
+
+  const [code, setCode] = React.useState(null);
+  const [name, setName] = React.useState(null);
+  const [classes, setClasses] = React.useState(null);
+  const [date_of_birth, setBirthday] = React.useState(null);
+
+  const fetchData = () => {
+    getUserData(token).then((data) => {
+      console.log(data)
+      const user = data.profile.user;
+      const student = data.profile.student;
+
+      setCode(student.code);
+      setName(user.name);
+      setBirthday(user.birthday);
+      setClasses(user.otherEmail);
+    });
+  }
+
+  useEffect(() => {
+    fetchData();
+}, []);
 
   const [pageSize, setPageSize] = React.useState(5);
-  const mutateRow = useFakeMutation();
-
   const [snackbar, setSnackbar] = React.useState(null);
-
+  
+  const mutateRow = useFakeMutation();
   const handleCloseSnackbar = () => setSnackbar(null);
 
   const processRowUpdate = React.useCallback(
@@ -190,9 +212,6 @@ export default function ValidationGrade() {
         columns={columns}
         processRowUpdate={processRowUpdate}
         onProcessRowUpdateError={handleProcessRowUpdateError}
-        components={{
-          Toolbar: GridToolbar,
-        }}
         componentsProps={{  
           pagination: {
             labelRowsPerPage: ("Số hàng hiển thị:")
