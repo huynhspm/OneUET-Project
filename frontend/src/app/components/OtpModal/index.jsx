@@ -6,7 +6,8 @@ const OtpModal = (props) => {
     const OTPState = [
         "",
         "Please enter your OTP",
-        "Invalid OTP"
+        "Invalid OTP",
+        "OTP expired, please click resend"
     ];
 
     return (

@@ -19,7 +19,7 @@ const UpperHrefs = ["/profile/information", "/profile/schedule", "/profile/learn
 
 const LowerTexts = ['Đổi mật khẩu', 'Đăng xuất'];
 const LowerIcons = [<SyncLockIcon />, <LogoutIcon />];
-const LowerHrefs = ["/profile/change-password", "/login"];
+const LowerHrefs = ["/profile/change-password", "/logout"];
 
 const LeftDrawer = () => {
   return (

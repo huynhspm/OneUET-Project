@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -18,11 +18,14 @@ import Register from "../pages/Register";
 import Grade from "../pages/Grade";
 import GradeCourses from "../pages/GradeCourses";
 import Profile from "../pages/Profile";
+import ForgetPassword from "../pages/ForgetPassword";
+import Logout from "../pages/Logout";
 
 const RootLayout = () => {
 
   // const [mode, setMode] = useState("light");
   const [token, setToken] = useState('');
+
   // const darkTheme = createTheme({
   //   palette: {
   //     mode: mode,
@@ -33,10 +36,12 @@ const RootLayout = () => {
     <Box bgcolor={"background.default"} color={"text.primary"}>
       <BrowserRouter>
         {/* <Header setMode={setMode} mode={mode} /> */}
-        <Header/>
+        <Header />
         <Routes>
           <Route path="/" element={<HomePage token={token} />} />
           <Route path="/login" element={<Login token={token} setToken={setToken} />} />
+          <Route path="/login/forget" element={<ForgetPassword token={token} setToken={setToken} />} />
+          <Route path="/logout" element={<Logout setToken={setToken} />} />
           <Route path="/register" element={<Register />} />
           <Route path="/homepage" element={<HomePage />} />
           <Route path="/convert" element={<Convert />} />

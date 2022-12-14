@@ -57,13 +57,17 @@ export default function Login(props) {
 				otp: otp,
 			});
 			console.log(res.data);
+			if (res.data.message === "OTP expired, please click resend") {
+				setError(3);
+				return;
+			}
 			props.setToken(res.data.data.token);
 			setError(0);
 			setActive(true);
 		} catch (e) {
 			console.log(e.response.data.message);
 			if (e.response.data.message === "Invalid OTP") {
-				if (otp == '') {
+				if (otp === '') {
 					setError(1);
 				} else {
 					setError(2);
@@ -126,14 +130,24 @@ export default function Login(props) {
 	};
 
 	React.useEffect(() => {
+		const lastToken = sessionStorage.getItem("token");
+		if (lastToken !== null && lastToken !== undefined) {
+			props.setToken(lastToken);
+			setLogin(true);
+			setActive(true);
+		}
+	}, [props]);
+
+	React.useEffect(() => {
 		if (login) {
 			if (active) {
+				sessionStorage.setItem('token', props.token);
 				navigate("/");
 			} else {
 				setOpen(!active);
 			}
 		}
-	}, [login, active]);
+	}, [login, active, navigate, props.token]);
 
 	return (
 		<React.Fragment>
@@ -205,7 +219,7 @@ export default function Login(props) {
 							</Button>
 							<Grid container>
 								<Grid item xs>
-									<Link href="#" variant="body2">
+									<Link href="/login/forget" variant="body2">
 										Forgot password?
 									</Link>
 								</Grid>
