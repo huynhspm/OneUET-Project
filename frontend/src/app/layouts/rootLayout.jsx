@@ -18,6 +18,8 @@ import Register from "../pages/Register";
 import Grade from "../pages/Grade";
 import GradeCourses from "../pages/GradeCourses";
 import Profile from "../pages/Profile";
+import ValidationGrade from "../pages/ValidationGrade";
+import SearchCourses from  "../pages/SearchCourses";
 
 const RootLayout = () => {
 
@@ -43,8 +45,10 @@ const RootLayout = () => {
           <Route extract path="/document" element={<Main />} />
           <Route path="/document/:doc_id" element={<Document />} />
           <Route path="/grade" element={<GradeCourses />} />
+          <Route path="/SearchCourses" element={<SearchCourses />} />
           <Route path="/validation-document" element={<ValidationPage />} />
           <Route path="/profile/:type" element={<Profile />} />
+          <Route path="/validation-grade" element={<ValidationGrade />} />
         </Routes>
 
         <Footer />

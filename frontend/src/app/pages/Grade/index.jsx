@@ -70,9 +70,6 @@ function Row(props) {
         <TableCell style={{ padding: 0 }} colSpan={8}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 0 }}>
-              <Typography variant="h6" gutterBottom component="div">
-                Chi tiết
-              </Typography>
               <Table aria-label="purchases">
                 <TableHead>
                   <TableRow>
@@ -83,7 +80,7 @@ function Row(props) {
                 <TableBody>
                   {row.detail.map((detail) => (
                     <TableRow key={detail.GK}>
-                      <TableCell component="th" scope="row">
+                      <TableCell component="th" >
                         {detail.GK}
                       </TableCell>
                       <TableCell>{detail.CK}</TableCell>
@@ -122,12 +119,6 @@ export default function Grade() {
   return (
       <Box sx={{ display: 'flex' }}>
         <Box
-          component="nav"
-          sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-        >
-          <LeftDrawer />
-        </Box>
-        <Box
           component="main"
           sx={{ flexGrow: 1, p: 1, m: 5, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
         >
@@ -145,7 +136,7 @@ export default function Grade() {
           </Typography>
           <br />
           <br />
-          <TableContainer sx={{ maxHeight: 700 }} component={Paper}>
+          <TableContainer sx={{ maxHeight: '100vh' }} component={Paper}>
             <Table stickyHeader aria-label="grade_table">
               <TableHead>
                 <TableRow sx={{ '& > *': { borderBottom: 0.5, borderLeft: 0.5, borderTop: 0.5, backgroundColor: "lightblue" } }}>

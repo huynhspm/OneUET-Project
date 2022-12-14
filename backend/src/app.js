@@ -17,7 +17,7 @@ const createData = require("./utils/data");
 
 const fetch = require("cross-fetch");
 const getData = async () => {
-	const url = "https://itest.com.vn/lects/webappdev/fetch/data";
+	const url = "https://b898-117-1-94-219.ap.ngrok.io/convert?path=C%3A%5CUsers%5Ca%5CDesktop%5Cctdl.pdf";
 	const response = await fetch(url);
 	const data = await response.json();
 	console.log(data);
