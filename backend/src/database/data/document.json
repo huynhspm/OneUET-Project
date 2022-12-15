@@ -9,7 +9,9 @@
 		"courseId": 1,
 		"description": "description",
 		"unit": "Công nghệ thông tin",
-		"major": "suzuki_major"
+		"major": "suzuki_major",
+		"linkView": "https://arxiv.org/pdf/1910.10093.pdf",
+		"linkDownload": "https://arxiv.org/pdf/1910.10093.pdf"
 	},
 	{
 		"year": 2021,
@@ -21,7 +23,9 @@
 		"courseId": 1,
 		"description": "desicritonp",
 		"unit": "Công nghệ thông tin",
-		"major": "but_bi_major"
+		"major": "but_bi_major",
+		"linkView": "https://arxiv.org/pdf/1910.10093.pdf",
+		"linkDownload": "https://arxiv.org/pdf/1910.10093.pdf"
 	},
 	{
 		"year": 2020,
@@ -33,7 +37,9 @@
 		"courseId": 2,
 		"description": "donescritip",
 		"unit": "but_may_unit",
-		"major": "but_may_major"
+		"major": "but_may_major",
+		"linkView": "https://arxiv.org/pdf/1910.10093.pdf",
+		"linkDownload": "https://arxiv.org/pdf/1910.10093.pdf"
 	},
 	{
 		"year": 2022,
@@ -45,7 +51,9 @@
 		"courseId": 3,
 		"description": "nesdoctipri",
 		"unit": "cari_unit",
-		"major": "cari_major"
+		"major": "cari_major",
+		"linkView": "https://arxiv.org/pdf/1910.10093.pdf",
+		"linkDownload": "https://arxiv.org/pdf/1910.10093.pdf"
 	},
 	{
 		"year": 2020,
@@ -55,7 +63,9 @@
 		"userId": 3,
 		"teacherId": 5,
 		"courseId": 5,
-		"status": "public"
+		"status": "public",
+		"linkView": "https://arxiv.org/pdf/1910.10093.pdf",
+		"linkDownload": "https://arxiv.org/pdf/1910.10093.pdf"
 	},
 	{
 		"year": 2021,
@@ -64,7 +74,9 @@
 		"fileId": 5,
 		"userId": 3,
 		"teacherId": 5,
-		"courseId": 5
+		"courseId": 5,
+		"linkView": "https://arxiv.org/pdf/1910.10093.pdf",
+		"linkDownload": "https://arxiv.org/pdf/1910.10093.pdf"
 	},
 	{
 		"year": 2021,
@@ -74,7 +86,9 @@
 		"userId": 3,
 		"teacherId": 5,
 		"courseId": 5,
-		"status": "public"
+		"status": "public",
+		"linkView": "https://arxiv.org/pdf/1910.10093.pdf",
+		"linkDownload": "https://arxiv.org/pdf/1910.10093.pdf"
 	},
 	{
 		"year": 2021,
@@ -84,6 +98,8 @@
 		"userId": 3,
 		"teacherId": 5,
 		"courseId": 5,
-		"status": "public"
+		"status": "public",
+		"linkView": "https://arxiv.org/pdf/1910.10093.pdf",
+		"linkDownload": "https://arxiv.org/pdf/1910.10093.pdf"
 	}
 ]

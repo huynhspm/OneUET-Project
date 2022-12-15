@@ -67,13 +67,12 @@ const getPublicDocuments = async (req) => {
 const getPublicDocument = async (req) => {
 	try {
 		let { document, message, status } = await verifyDocument(req);
-		let course, teacher, file, comments;
+		let course, teacher, comments;
 
 		if (document) {
 			if (document.status === "public") {
 				course = await document.getCourse();
 				teacher = await document.getTeacher();
-				file = await document.getFile();
 				comments = await document.getComments();
 
 				message = "Get public document successfully";
@@ -89,7 +88,6 @@ const getPublicDocument = async (req) => {
 			document,
 			course,
 			teacher,
-			file,
 			comments,
 		};
 
@@ -106,13 +104,12 @@ const getPublicDocument = async (req) => {
 const getMyDocument = async (req) => {
 	try {
 		let { document, message, status } = await verifyDocument(req);
-		let course, teacher, file, comments;
+		let course, teacher, comments;
 
 		if (document) {
 			if (document.userId === req.user.id) {
 				course = await document.getCourse();
 				teacher = await document.getTeacher();
-				file = await document.getFile();
 				comments = await document.getComments();
 
 				message = "Get my document successfully";
@@ -128,7 +125,6 @@ const getMyDocument = async (req) => {
 			document,
 			course,
 			teacher,
-			file,
 			comments,
 		};
 
@@ -149,14 +145,10 @@ const updateMyDocument = async (req) => {
 		if (document) {
 			if (document.userId === req.user.id) {
 				const updatedDocument = req.body;
-				const { link } = req.body;
-
-				file = await document.getFile();
-				await file.update(link);
 				await document.update(updatedDocument);
-				course = await document.getCourse();
-				teacher = await document.getTeacher();
-				comments = await document.getComments();
+				// course = await document.getCourse();
+				// teacher = await document.getTeacher();
+				// comments = await document.getComments();
 
 				message = "Update my document successfully";
 				status = ResponseCode.OK;
@@ -167,13 +159,7 @@ const updateMyDocument = async (req) => {
 			}
 		}
 
-		const data = {
-			document,
-			course,
-			teacher,
-			file,
-			comments,
-		};
+		const data = { document };
 
 		return {
 			data,
@@ -235,14 +221,13 @@ const getDocuments = async (req) => {
 const getDocument = async (req) => {
 	try {
 		let { document, message, status } = await verifyDocument(req);
-		let course, teacher, file, comments;
+		let course, teacher, comments;
 
 		if (document) {
 			course = await document.getCourse();
 			teacher = await document.getTeacher();
-			file = await document.getFile();
 			comments = await document.getComments();
-			
+
 			message = "Get document successfully";
 			status = ResponseCode.OK;
 		}
@@ -251,7 +236,6 @@ const getDocument = async (req) => {
 			document,
 			course,
 			teacher,
-			file,
 			comments,
 		};
 
