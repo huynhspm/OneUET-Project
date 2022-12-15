@@ -159,50 +159,60 @@ const updateGrade = async (req) => {
 			where: { code, semester },
 		});
 
-		for (let grade in grades) {
-			let student = await Student.findOne({
-				where: { code: grade.studentCode },
-			});
-			await StudentClass.update(grades, {
-				where: { studentId: student.id, classId: curClass.id },
-			});
+		if (curClass) {
+			for (let grade in grades) {
+				let student = await Student.findOne({
+					where: { code: grade.studentCode },
+				});
+				await StudentClass.update(grades, {
+					where: { studentId: student.id, classId: curClass.id },
+				});
 
-			let email = student.code + "@vnu.edu.vn";
-			let subject = "Your score in class " + curClass.code;
-			sendEmailOTP(email, grade, subject);
+				let email = student.code + "@vnu.edu.vn";
+				let subject = "Your score in class " + curClass.code;
+				// sendEmailOTP(email, grade, subject);
+			}
+
+			message = "Update grade successfully";
+			status = ResponseCode.OK;
+		} else {
+			message = "Class not existed";
+			status = ResponseCode.Not_Found;
 		}
+
+		data = { curClass };
 	} catch (e) {
 		throw e;
 	}
 };
 
-const addStudent = async (req) => {
-	try {
-		let curClass, message, status;
-		const { code, semester, grades } = req.body;
-		curClass = await Class.findOne({
-			where: { code, semester },
-		});
+// const addStudent = async (req) => {
+// 	try {
+// 		let curClass, message, status;
+// 		const { code, semester, grades } = req.body;
+// 		curClass = await Class.findOne({
+// 			where: { code, semester },
+// 		});
 
-		for (let grade in grades) {
-			let student = await Student.findOne({
-				where: { code: grade.studentCode },
-			});
-			await curClass.addStudent(student.id, { through: { grade } });
-		}
+// 		for (let grade in grades) {
+// 			let student = await Student.findOne({
+// 				where: { code: grade.studentCode },
+// 			});
+// 			await curClass.addStudent(student.id, { through: { grade } });
+// 		}
 
-		message = "Add student successfully";
-		status = ResponseCode.OK;
+// 		message = "Add student successfully";
+// 		status = ResponseCode.OK;
 
-		return {
-			data,
-			message,
-			status,
-		};
-	} catch (e) {
-		throw e;
-	}
-};
+// 		return {
+// 			data,
+// 			message,
+// 			status,
+// 		};
+// 	} catch (e) {
+// 		throw e;
+// 	}
+// };
 
 module.exports = {
 	createClass,

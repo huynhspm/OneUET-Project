@@ -12,7 +12,7 @@ const Course = sequelize.define(
 		},
 		name: {
 			allowNull: false,
-			type: DataTypes.STRING,
+			type: DataTypes.TEXT,
 		},
 		code: {
 			allowNull: false,
