@@ -29,7 +29,7 @@ const FilterSidebar = (props) => {
         "Giảng viên": [],
         "Môn": [],
         "Loại": categories,
-        "Năm": [2021, 2022]
+        "Năm": [2020, 2021, 2022]
     });
     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo'
     const config = {
@@ -103,12 +103,12 @@ const FilterSidebar = (props) => {
     }
 
     function toVariable(str) {
-        if (str == "Khoa") return "unit";
-        if (str == "Ngành") return "major";
-        if (str == "Giảng viên") return "teacher";
-        if (str == "Môn") return "course";
-        if (str == "Loại") return "category";
-        if (str == "Năm") return "year";
+        if (str === "Khoa") return "unit";
+        if (str === "Ngành") return "major";
+        if (str === "Giảng viên") return "teacher";
+        if (str === "Môn") return "course";
+        if (str === "Loại") return "category";
+        if (str === "Năm") return "year";
     }
 
     const handleCheck = (event) => {
@@ -155,7 +155,7 @@ const FilterSidebar = (props) => {
                                     <FormControlLabel
                                         key={index}
                                         label={<Typography sx={{ fontSize: 14 }}>{text}</Typography>}
-                                        control={<Checkbox  sx={{ '& .MuiSvgIcon-root': { fontSize: 16 } }}/>}
+                                        control={<Checkbox sx={{ '& .MuiSvgIcon-root': { fontSize: 16 } }}/>}
                                         onChange={handleCheck}
                                         sx={{ pl: 1 }} />
                                 ))}

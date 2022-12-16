@@ -69,12 +69,16 @@ const getPublicDocument = async (req) => {
 		let { document, message, status } = await verifyDocument(req);
 		let course, teacher, file, comments;
 
+		console.log("getPublicDocument()");
+
 		if (document) {
 			if (document.status === "public") {
 				course = await document.getCourse();
 				teacher = await document.getTeacher();
 				file = await document.getFile();
-				comments = await document.getComments();
+				comments = await document.getComments({
+					include: "user"
+				});
 
 				message = "Get public document successfully";
 				status = ResponseCode.OK;
@@ -236,6 +240,9 @@ const getDocument = async (req) => {
 	try {
 		let { document, message, status } = await verifyDocument(req);
 		let course, teacher, file, comments;
+
+		console.log("HEREEE");
+
 
 		if (document) {
 			course = await document.getCourse();

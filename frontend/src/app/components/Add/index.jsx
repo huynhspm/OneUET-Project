@@ -15,41 +15,59 @@ import {
 import AddIcon from '@mui/icons-material/Add';
 import React, { useState } from 'react';
 import axios from "axios";
-import { InputBox, InputButton } from './styles';
+import { InputBox, InputButton } from '../../utils/styles';
 import { CenterModal } from '../../utils/styles';
 import { units, majors, categories } from '../../utils/constant';
+// import { uploadFile } from '../../pages/Document/DocumentView/test';
 
 const Add = () => {
     const [open, setOpen] = useState(false);
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
+    // const handleSubmit = async (event) => {
+    //     event.preventDefault();
+    //     const data = new FormData(event.currentTarget);
 
-        const docName = data.get("docName");
-        const docDescription = data.get("docDescription");
-        const docUnit = data.get("docUnit");
-        const docMajor = data.get("docMajor");
-        const docLecturer = data.get("docLecturer");
-        const docSubject = data.get("docSubject");
-        const docType = data.get("docType");
-        const docYear = data.get("docYear");
+    //     const docName = data.get("docName");
+    //     const docDescription = data.get("docDescription");
+    //     const docUnit = data.get("docUnit");
+    //     const docMajor = data.get("docMajor");
+    //     const docLecturer = data.get("docLecturer");
+    //     const docSubject = data.get("docSubject");
+    //     const docType = data.get("docType");
+    //     const docYear = data.get("docYear");
 
-        try {
-            const res = await axios.post("http://localhost:2002/file", {
-                docName,
-                docDescription,
-                docUnit,
-                docMajor,
-                docLecturer,
-                docSubject,
-                docType,
-                docYear,
-            });
-            console.log(res.data);
-        } catch (e) {
-            console.log(e.response.data);
-        }
+    //     try {
+    //         const res = await axios.post("http://localhost:2002/file", {
+    //             docName,
+    //             docDescription,
+    //             docUnit,
+    //             docMajor,
+    //             docLecturer,
+    //             docSubject,
+    //             docType,
+    //             docYear,
+    //         });
+    //         console.log(res.data);
+    //     } catch (e) {
+    //         console.log(e.response.data);
+    //     }
+    // };
+
+
+    const fileBrowseHandler = (event) => {
+
+        let value = URL.createObjectURL(event.target.files[0]);
+        // setImageUrl(value]);
+        console.log(value);
+        console.log(event.target.files[0]);
+        fetch(value).then((res) => {
+            console.log(res);
+            // uploadFile(res);
+        })
+        axios.get("http://localhost:2002/ggservice").then((res) => {
+            console.log(res);
+        })
+
     };
 
     return (
@@ -79,7 +97,6 @@ const Add = () => {
                         p: 3,
                         position: 'relative',
                         width: 'calc(60%)',
-                        height: 'calc(80%)',
                         display: 'flex',
                         flexDirection: 'column'
                     }}
@@ -91,31 +108,15 @@ const Add = () => {
                         <Box
                             component="form"
                             noValidate
-                            onSubmit={handleSubmit}
-                            sx={{ width: '50%', pt: 1, flexShrink: { sm: 0 }, mt: 1 }}
+                            // onSubmit={handleSubmit}
+                            sx={{ width: '100%', pt: 1, flexShrink: { sm: 0 }, mt: 1 }}
                         >
                             <Grid container spacing={1}>
                                 <Grid item xs={12}>
-                                    <TextField
-                                        required
-                                        fullWidth
-                                        label="Document Name"
-                                        id="docName"
-                                        name="docName"
-                                        type="text"
-                                        autoFocus
-                                    />
+                                    <TextField required fullWidth label="Document Name" id="docName" name="docName" type="text" autoFocus />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <TextField
-                                        required
-                                        fullWidth
-                                        label="Description"
-                                        id="docDescription"
-                                        name="docDescription"
-                                        type="text"
-                                        row="3"
-                                    />
+                                    <TextField required fullWidth label="Description" id="docDescription" name="docDescription" type="text" row="3" />
                                 </Grid>
                                 <Grid item xs={6}>
                                     <FormControl fullWidth>
@@ -200,29 +201,33 @@ const Add = () => {
                                 </Grid>
                             </Grid>
                         </Box>
-                        <Box sx={{ flexGrow: 1, pt: 2, pl: 2, height: 350 }}>
-                            <InputBox>
-                                <InputButton
-                                    variant="outlined"
-                                    component="label"
-                                    fullWidth="true"
-                                >
-                                    Upload File
-                                    <input
-                                        type="file"
-                                        hidden
-                                    />
-                                </InputButton>
-                            </InputBox>
-                        </Box>
                     </Box>
-                    <Button variant="contained" sx={{
-                        borderRadius: 2,
-                        width: '100px',
-                        bottom: 20,
-                        right: 20,
-                        position: 'absolute',
-                    }}>
+                    <Box sx={{ flexGrow: 1, p: 2, height: 350 }}>
+                        <InputBox>
+                            <InputButton
+                                variant="outlined"
+                                component="label"
+                                fullWidth="true"
+                            >
+                                Upload File
+                                <input
+                                    type="file"
+                                    hidden
+                                    onChange={fileBrowseHandler}
+                                />
+                            </InputButton>
+                        </InputBox>
+                    </Box>
+                    <Button
+                        variant="contained"
+                        sx={{
+                            borderRadius: 2,
+                            width: '100px',
+                            bottom: 20,
+                            right: 20,
+                            position: 'absolute',
+                        }}
+                    >
                         POST
                     </Button>
                 </Box>

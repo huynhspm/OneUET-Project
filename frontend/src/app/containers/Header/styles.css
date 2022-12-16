@@ -9,17 +9,10 @@
     display: flex;
     justify-content: space-between;
 }
-.search-group {
-    width: 30%;
-    display: flex;
-    justify-content: space-between;
-}
+
 .input-search {
     width: 90%;
 }
 .btn {
     margin: auto;
-}
-.search-input {
-    width: 100%;
 }

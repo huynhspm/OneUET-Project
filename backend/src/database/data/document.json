@@ -51,6 +51,7 @@
 		"year": 2020,
 		"category": "Giáo trình",
 		"name": "spm1",
+		"description": "Một cái description dùng để test việc sửa description",
 		"fileId": 6,
 		"userId": 3,
 		"teacherId": 5,
@@ -73,7 +74,8 @@
 	{
 		"year": 2021,
 		"category": "Giáo trình",
-		"name": "spm2",
+		"name": "Một cái tên gì đó thật dài để css",
+		"description": "Một cái mô tả gì đó cũng thật dài cũng để css",
 		"fileId": 7,
 		"userId": 3,
 		"teacherId": 5,
