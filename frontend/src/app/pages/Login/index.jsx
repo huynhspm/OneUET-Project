@@ -77,6 +77,7 @@ export default function Login(props) {
 	};
 
 	const handleSubmit = async (event) => {
+		event.preventDefault();
 		let validation = true;
 
 		// Validation
@@ -211,9 +212,9 @@ export default function Login(props) {
 							/>
 							<Button
 								fullWidth
+								type="submit"
 								variant="contained"
 								sx={{ mt: 3, mb: 2 }}
-								onClick={handleSubmit}
 							>
 								LOG IN
 							</Button>
