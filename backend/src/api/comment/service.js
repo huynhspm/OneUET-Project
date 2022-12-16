@@ -29,11 +29,12 @@ const verifyComment = async (req) => {
 const createComment = async (req) => {
 	try {
 		const newComment = req.body;
-		const Comment = await Comment.create(newComment);
+		console.log(newComment);
+		const comment = await Comment.create(newComment);
 
 		const message = "Create comment successfully!";
 		const status = ResponseCode.Created;
-		const data = { Comment };
+		const data = { comment };
 
 		return {
 			data,
