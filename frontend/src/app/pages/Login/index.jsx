@@ -41,13 +41,13 @@ export default function Login(props) {
 	const resendOTP = async () => {
 		try {
 			const res = await axios.post("http://localhost:2002/login/forget", {
-				email: email
+				email: email,
 			});
 			console.log(res);
 		} catch (e) {
 			console.log(e.response);
 		}
-	}
+	};
 
 	const handleOTP = async (setError) => {
 		console.log(otp);
@@ -67,7 +67,7 @@ export default function Login(props) {
 		} catch (e) {
 			console.log(e.response.data.message);
 			if (e.response.data.message === "Invalid OTP") {
-				if (otp === '') {
+				if (otp === "") {
 					setError(1);
 				} else {
 					setError(2);
@@ -142,7 +142,7 @@ export default function Login(props) {
 	React.useEffect(() => {
 		if (login) {
 			if (active) {
-				sessionStorage.setItem('token', props.token);
+				sessionStorage.setItem("token", props.token);
 				navigate("/");
 			} else {
 				setOpen(!active);
@@ -152,7 +152,15 @@ export default function Login(props) {
 
 	return (
 		<React.Fragment>
-			<OtpModal open={open} handleClose={handleClose} active={active} otp={otp} setOtp={setOtp} handleOTP={handleOTP} resendOTP={resendOTP} />
+			<OtpModal
+				open={open}
+				handleClose={handleClose}
+				active={active}
+				otp={otp}
+				setOtp={setOtp}
+				handleOTP={handleOTP}
+				resendOTP={resendOTP}
+			/>
 			<ThemeProvider theme={theme}>
 				<Container component="main" maxWidth="xs">
 					<CssBaseline />

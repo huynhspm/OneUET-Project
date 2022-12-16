@@ -9,7 +9,6 @@ const roles = require("../database/data/role.json");
 const clubs = require("../database/data/club.json");
 const users = require("../database/data/user.json");
 const usersClubs = require("../database/data/userClub.json");
-const files = require("../database/data/file.json");
 const documents = require("../database/data/document.json");
 const comments = require("../database/data/comment.json");
 const grades = require("../database/data/grade.json");
@@ -75,12 +74,6 @@ async function createUserClub() {
 	}
 }
 
-async function createFile() {
-	for (let file of files) {
-		await models.File.create(file);
-	}
-}
-
 async function createDocument() {
 	for (let document of documents) {
 		await models.Document.create(document);
@@ -110,7 +103,6 @@ async function createData() {
 	await createClub();
 	await createUser();
 	await createUserClub();
-	await createFile();
 	await createDocument();
 	await createComment();
 

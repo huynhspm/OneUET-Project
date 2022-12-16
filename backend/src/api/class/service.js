@@ -221,5 +221,4 @@ module.exports = {
 	updateClass,
 	deleteClass,
 	updateGrade,
-	addStudent,
 };
