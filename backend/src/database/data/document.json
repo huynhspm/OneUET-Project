@@ -8,7 +8,7 @@
 		"teacherId": 2,
 		"courseId": 1,
 		"description": "description",
-		"unit": "Công nghệ thông tin",
+		"unit": "Khoa Công nghệ Thông tin",
 		"major": "suzuki_major",
 		"linkView": "https://arxiv.org/pdf/1910.10093.pdf",
 		"linkDownload": "https://arxiv.org/pdf/1910.10093.pdf"
@@ -22,7 +22,7 @@
 		"teacherId": 1,
 		"courseId": 1,
 		"description": "desicritonp",
-		"unit": "Công nghệ thông tin",
+		"unit": "Khoa Công nghệ Thông tin",
 		"major": "but_bi_major",
 		"linkView": "https://arxiv.org/pdf/1910.10093.pdf",
 		"linkDownload": "https://arxiv.org/pdf/1910.10093.pdf"
@@ -50,7 +50,7 @@
 		"teacherId": 5,
 		"courseId": 3,
 		"description": "nesdoctipri",
-		"unit": "cari_unit",
+		"unit": "Khoa Công nghệ Thông tin",
 		"major": "cari_major",
 		"linkView": "https://arxiv.org/pdf/1910.10093.pdf",
 		"linkDownload": "https://arxiv.org/pdf/1910.10093.pdf"
@@ -59,11 +59,14 @@
 		"year": 2020,
 		"category": "Giáo trình",
 		"name": "spm1",
+		"description": "Một cái description dùng để test việc sửa description",
 		"fileId": 6,
 		"userId": 3,
 		"teacherId": 5,
 		"courseId": 5,
 		"status": "public",
+		"unit": "Khoa Công nghệ Thông tin",
+		"major": "Khoa học máy tính",
 		"linkView": "https://arxiv.org/pdf/1910.10093.pdf",
 		"linkDownload": "https://arxiv.org/pdf/1910.10093.pdf"
 	},
@@ -75,18 +78,23 @@
 		"userId": 3,
 		"teacherId": 5,
 		"courseId": 5,
+		"unit": "Khoa Công nghệ Thông tin",
+		"major": "Khoa học máy tính",
 		"linkView": "https://arxiv.org/pdf/1910.10093.pdf",
 		"linkDownload": "https://arxiv.org/pdf/1910.10093.pdf"
 	},
 	{
 		"year": 2021,
 		"category": "Giáo trình",
-		"name": "spm2",
+		"name": "Một cái tên gì đó thật dài để css",
+		"description": "Một cái mô tả gì đó cũng thật dài cũng để css",
 		"fileId": 7,
 		"userId": 3,
 		"teacherId": 5,
 		"courseId": 5,
 		"status": "public",
+		"unit": "Khoa Công nghệ Thông tin",
+		"major": "Khoa học máy tính",
 		"linkView": "https://arxiv.org/pdf/1910.10093.pdf",
 		"linkDownload": "https://arxiv.org/pdf/1910.10093.pdf"
 	},
@@ -99,6 +107,8 @@
 		"teacherId": 5,
 		"courseId": 5,
 		"status": "public",
+		"unit": "Khoa Điện tử Viễn thông",
+		"major": "Kỹ thuật máy tính",
 		"linkView": "https://arxiv.org/pdf/1910.10093.pdf",
 		"linkDownload": "https://arxiv.org/pdf/1910.10093.pdf"
 	}

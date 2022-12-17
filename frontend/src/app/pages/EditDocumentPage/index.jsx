@@ -1,14 +1,9 @@
-import Header from "../../containers/Header";
 import { useParams } from "react-router-dom";
-import EditDocumentView from "../EditDocumentPage/Main";
-import DocumentView from "./DocumentView";
 import Main from "./Main";
-import { useEffect } from "react";
-import axios
-    from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-const Document = (props) => {
+const EditDocumentPage = (props) => {
     const [doc_ids, setDoc_ids] = useState([]);
 
     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo'
@@ -39,17 +34,17 @@ const Document = (props) => {
         }
     }
 
-    const { doc_id, type } = useParams();
+    const { doc_id } = useParams();
 
     return (
         <>
-            {doc_id === "" && <Main />}
+            {/* {doc_id === "" && <Main />} */}
             {doc_ids.map((id, index) => (
-                doc_id === String(id) && <DocumentView key={index} id={id} />
+                doc_id === String(id) && <Main key={index} id={id} />
             ))}
 
         </>
     );
 };
 
-export default Document;
+export default EditDocumentPage;

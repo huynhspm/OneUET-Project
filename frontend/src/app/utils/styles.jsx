@@ -21,3 +21,16 @@ export const CategoryBox = styled(Box)({
     fontFamily: 'Canva Sans,Noto Sans Variable,Noto Sans,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif'
 });
 
+export const InputBox = styled(Box)({
+    paddingTop: 40,
+    display: 'absolute',
+    borderRadius: 8,
+});
+
+export const InputButton = styled(Button)({
+    paddingTop: 100,
+    paddingBottom: 100,
+    display: 'relative',
+    alignItems: 'center',
+    justifyContent: 'center',
+});

@@ -18,6 +18,7 @@ import Register from "../pages/Register";
 import Grade from "../pages/Grade";
 import GradeCourses from "../pages/GradeCourses";
 import Profile from "../pages/Profile";
+import EditDocumentPage from "../pages/EditDocumentPage";
 import ValidationGrade from "../pages/ValidationGrade";
 import SearchCourses from  "../pages/SearchCourses";
 import ForgetPassword from "../pages/ForgetPassword";
@@ -49,6 +50,7 @@ const RootLayout = () => {
           <Route path="/convert" element={<Convert />} />
           <Route extract path="/document" element={<Main />} />
           <Route path="/document/:doc_id" element={<Document />} />
+          <Route path="/document/edit/:doc_id" element={<EditDocumentPage />} />
           <Route path="/grade" element={<GradeCourses />} />
           <Route path="/SearchCourses" element={<SearchCourses />} />
           <Route path="/validation-document" element={<ValidationPage />} />
@@ -56,7 +58,6 @@ const RootLayout = () => {
           <Route path="/validation-grade" element={<ValidationGrade />} />
           <Route path="/profile/:type" element={<Profile token={token} />} />
         </Routes>
-
         <Footer />
       </BrowserRouter>
     </Box>

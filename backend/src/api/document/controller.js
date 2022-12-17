@@ -3,9 +3,12 @@ const ResponseCode = require("../../utils/constant/ResponseCode");
 
 // POST: /document
 const createDocument = async (req, res) => {
+	console.log("createDocument - controller.js")
 	try {
 		const result = await service.createDocument(req);
 		const { data, message, status } = result;
+
+		
 
 		res.status(status).json({
 			data: data,
