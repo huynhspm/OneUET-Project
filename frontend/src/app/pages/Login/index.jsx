@@ -50,20 +50,20 @@ export default function Login(props) {
 	// Resend OTP function
 	const resendOTP = async () => {
 		try {
-			const res = await axios.post("http://localhost:2002/login/forget", {
-				email: email
+			const res = await axios.post("http://localhost:2002/api/login/forget", {
+				email: email,
 			});
 			console.log(res);
 		} catch (e) {
 			console.log(e.response);
 		}
-	}
+	};
 
 	// Handle OTP function
 	const handleOTP = async (setError) => {
 		console.log(otp);
 		try {
-			const res = await axios.post("http://localhost:2002/login/verify", {
+			const res = await axios.post("http://localhost:2002/api/login/verify", {
 				email: email,
 				otp: otp,
 			});
@@ -78,7 +78,7 @@ export default function Login(props) {
 		} catch (e) {
 			console.log(e.response.data.message);
 			if (e.response.data.message === "Invalid OTP") {
-				if (otp === '') {
+				if (otp === "") {
 					setError(1);
 				} else {
 					setError(2);
@@ -117,7 +117,7 @@ export default function Login(props) {
 
 		// Handle Login
 		try {
-			const res = await axios.post("http://localhost:2002/login", {
+			const res = await axios.post("http://localhost:2002/api/login", {
 				email: email,
 				password: password,
 			});
@@ -156,7 +156,15 @@ export default function Login(props) {
 
 	return (
 		<React.Fragment>
-			<OtpModal open={open} handleClose={handleClose} active={active} otp={otp} setOtp={setOtp} handleOTP={handleOTP} resendOTP={resendOTP} />
+			<OtpModal
+				open={open}
+				handleClose={handleClose}
+				active={active}
+				otp={otp}
+				setOtp={setOtp}
+				handleOTP={handleOTP}
+				resendOTP={resendOTP}
+			/>
 			<ThemeProvider theme={theme}>
 				<Container component="main" maxWidth="xs">
 					<CssBaseline />

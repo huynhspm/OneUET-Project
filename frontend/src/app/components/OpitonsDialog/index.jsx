@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import './styles.css'
 import { typography } from "@mui/system";
 import axios from "axios";
+import { OptionButton, RedButton } from "./styles";
 
 function OptionsDialog({ onClose, documentID }) {
     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo'
@@ -31,7 +32,8 @@ function OptionsDialog({ onClose, documentID }) {
                     scrollPaper: "dialogScrollPaper"
                 }}
                 sx={{
-                    typography: typography
+                    typography: typography,
+                    display: "grid !important",
                 }}
                 PaperProps={{
                     style: { borderRadius: 20 }
@@ -39,27 +41,28 @@ function OptionsDialog({ onClose, documentID }) {
                 onClose={onClose}
                 TransitionComponent={Zoom}
             >
-                <Button
-                    class="redButton"
+                <RedButton
                     onClick={deleteDocument}
-                    sx={{
-                        display:'flex',
-                        justifyContent:'center',
-                        alignItems:'center'
-                    }}
+                    component={Link}
+                    to="/document/"
                 >
                     DELETE
-                </Button>
+                </RedButton>
                 <Divider />
-                <Button class="button">EDIT</Button>
+                <OptionButton
+                    component={Link}
+                    to={"/document/edit/" + documentID }
+                >
+                    EDIT
+                </OptionButton>
                 <Divider />
-                <Button class="button">SET TO PUBLIC</Button>
+                <OptionButton > DOWNLOAD </OptionButton>
                 <Divider />
-                {/* <Button class="button" ig>CANCEL</Button>
-                    <Divider /> */}
-                <Button onClick={onClose} class="button">
+                <OptionButton >SET TO PUBLIC</OptionButton>
+                <Divider />
+                <OptionButton onClick={onClose}>
                     Cancel
-                </Button>
+                </OptionButton>
             </Dialog>
         </>
     );

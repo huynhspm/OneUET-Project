@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import OptionsDialog from '../OpitonsDialog';
 import '../../utils/styles.css';
 import Tags from '../Tags';
-import Comment from '../Comment';
+import Comment from '../Comment/Post';
 import { CenterModal } from '../../utils/styles';
 
 const PreviewDocument = (props) => {
