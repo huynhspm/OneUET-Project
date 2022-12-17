@@ -27,9 +27,9 @@ const verifyDocument = async (req) => {
 
 const createDocument = async (req) => {
 	try {
+		console.log("createDocument - service.js");
 		const newDocument = req.body;
 		const document = await Document.create(newDocument);
-
 		const message = "Create document successfully!";
 		const status = ResponseCode.Created;
 		const data = { document };
@@ -69,11 +69,15 @@ const getPublicDocument = async (req) => {
 		let { document, message, status } = await verifyDocument(req);
 		let course, teacher, comments;
 
+		console.log("getPublicDocument()");
+
 		if (document) {
 			if (document.status === "public") {
 				course = await document.getCourse();
 				teacher = await document.getTeacher();
-				comments = await document.getComments();
+				comments = await document.getComments({
+					include: "user"
+				});
 
 				message = "Get public document successfully";
 				status = ResponseCode.OK;
@@ -222,6 +226,9 @@ const getDocument = async (req) => {
 	try {
 		let { document, message, status } = await verifyDocument(req);
 		let course, teacher, comments;
+
+		console.log("HEREEE");
+
 
 		if (document) {
 			course = await document.getCourse();

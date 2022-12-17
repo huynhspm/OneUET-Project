@@ -18,23 +18,33 @@ const Main = (props) => {
 	const [data, setData] = React.useState([]);
 	const [card, setCard] = React.useState([]);
 	const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo'
-	const config = {
-		headers: { Authorization: `Bearer ${token}` }
-	};
 
 	function getDocuments(data) {
 		let docs = data.data;
 		return docs?.documents;
 	}
 
+	const [filterParams, setFilterParams] = React.useState({
+		unit: [],
+		major: [],
+		category: [],
+		year: []
+	});
+
 	useEffect(() => {
 		fetchData();
-	}, []);
-
+		console.log('useEffect()');
+	}, [filterParams]);
+	
 	const fetchData = async () => {
 		try {
+			console.log(filterParams);
 			await axios
-				.get("http://localhost:2002/document/public", config)
+				.get("http://localhost:2002/document/public",
+					{
+						params: filterParams,
+						headers: { Authorization: `Bearer ${token}` }
+					})
 				.then((res) => {
 					let docs = getDocuments(res.data);
 					console.log(res);
@@ -81,16 +91,16 @@ const Main = (props) => {
 						open
 					>
 						<Toolbar variant="dense" sx={{}} />
-						<FilterSidebar />
+						<FilterSidebar filterParams={filterParams} setFilterParams={setFilterParams}/>
 					</Drawer>
 				</Box>
 				<Box
 					component="main"
-					sx={{ 
-						flexGrow: 1, 
-						p: 3, 
-						width: { sm: `calc(100% - ${drawerWidth}px)` }, 
-						display: 'flex',  
+					sx={{
+						flexGrow: 1,
+						p: 3,
+						width: { sm: `calc(100% - ${drawerWidth}px)` },
+						display: 'flex',
 					}}
 				>
 					{

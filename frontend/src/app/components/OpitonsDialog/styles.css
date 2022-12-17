@@ -2,34 +2,3 @@
     display: grid !important;
     grid-template-columns: minmax(auto, 496px) !important;
 }
-
-.button {
-    padding: 12px 8px !important;
-    border: none;
-}
-
-.button:hover {
-    background-color: #e1e1e1;
-}
-
-
-.redButton {
-    /* color: theme.palette.error.main !important; */
-    color:red;
-    padding: 12px 8px !important;
-    font-weight: bold !important;
-    border: none;
-} 
-
-.redButton:hover {
-    background-color: #e1e1e1;
-}
-
-.MuiButton.MuiButton-containedPrimary {
-    text-transform: unset;
-}
-
-.MuiButton.MuiButton-containedPrimary:hover {
-    background-color: #3897f0;
-    box-shadow: none;
-}

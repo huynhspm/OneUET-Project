@@ -15,27 +15,27 @@ const DocumentCard = (props) => {
 
     return (
         <>
-            <Card sx={{ m: 2 }} >
+            <Card sx={{ m: 2, width: 250, height: 380 }} >
                 <CardMedia
                     component="img"
                     height={documentCardHeight}
                     image={props.src_img}
                     alt="sorry about error"
                 />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
+                <CardContent sx={{ maxHeight: 70 }}>
+                    <Typography sx={{ display: 'flex' }} variant="h5" >
                         {props.name}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    {/* <Typography variant="body2" color="text.secondary">
                         {props.description}
-                    </Typography>
+                    </Typography> */}
                 </CardContent>
                 <CardActions sx={{
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
                 }} >
-                    <Button component={Link} onClick={handleClick}><RemoveRedEyeIcon sx={{mr:1}} />Xem tài liệu</Button>
+                    <Button component={Link} onClick={handleClick}><RemoveRedEyeIcon sx={{ mr: 1 }} />Xem tài liệu</Button>
                 </CardActions>
             </Card >
             <PreviewDocument

@@ -13,6 +13,7 @@ import AvatarDropdown from "../../components/AvatarDropdown";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import {
+  Box,
   List,
   Switch,
   ListItem,
@@ -20,29 +21,56 @@ import {
   ListItemIcon,
 } from "@mui/material";
 import { ModeNight } from "@mui/icons-material";
-
-
+import axios from "axios";
+import { useEffect, useState } from "react";
 import "./styles.css";
 
-const documents = [
-  { name: 'Giáo trình xử lý ảnh', link: "" },
-  { name: 'Giáo trình data mining', link: "" },
-  { name: 'Đề thi Vật lý đại cương kỳ 1 năm học 2021-2022', link: "" },
-  { name: 'Đề thi Vật lý đại cương kỳ 2 năm học 2021-2022', link: "" },
-  { name: 'Đề thi Vật lý đại cương kỳ 1 năm học 2020-2021', link: "" },
-  { name: 'Đề thi Vật lý đại cương kỳ 2 năm học 2020-2021', link: "" },
-  { name: 'Slide trí tuệ nhân tạo phần 1', link: "" },
-  { name: 'Slide trí tuệ nhân tạo phần 2', link: "" },
-  { name: 'Slide trí tuệ nhân tạo phần 3', link: "" },
-  { name: 'Slide trí tuệ nhân tạo phần 4', link: "" },
-  { name: 'Slide trí tuệ nhân tạo phần 5', link: "" },
-  { name: 'Slide trí tuệ nhân tạo phần 6', link: "" },
-  { name: 'Slide trí tuệ nhân tạo phần 7', link: "" },
-
-];
-
-
 const Header = (props) => {
+  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo'
+
+  const [docs, setDocs] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  function getDocuments(data) {
+    let docs = data.data;
+    return docs?.documents;
+  };
+
+  const fetchData = async () => {
+    try {
+      await axios
+        .get("http://localhost:2002/api/document/public",
+          {
+            // params: filterParams,
+            headers: { Authorization: `Bearer ${token}` }
+          })
+        .then((res) => {
+          let docs = getDocuments(res.data);
+          console.log(res);
+          let tmp = [];
+          for (let id in docs) {
+            let element = {
+              name: docs[id].name,
+              docID: docs[id].id,
+            }
+            tmp.push(element);
+          }
+          console.log("--fetchData() - Header--");
+          console.log(tmp);
+          console.log("-------------------------");
+
+          setDocs(tmp);
+        });
+    } catch (e) {
+      console.log(e.response.data);
+    }
+  }
+
+
+
   return (
     <>
       <div className="header">
@@ -63,37 +91,40 @@ const Header = (props) => {
             <FactCheckIcon /> Validation Document
           </Link>
         </div>
-        <div className="search-group">
+        <Box sx={{
+          width: "30%",
+          display: "flex",
+          justifyContent: "space-between"
+        }}>
           <Autocomplete
-            className="search-input"
+            sx={{
+              p: 0,
+              width: "100%",
+              display: 'flex',
+              alignItems: 'center',
+              '.MuiOutlinedInput-root .MuiAutocomplete-input': {
+                p: '7.5px 10px 7.5px 20px'
+              },
+              '.MuiOutlinedInput-root': {
+                p: 0,
+                pr: 1,
+                borderRadius: 50,
+              }
+            }}
             freeSolo
+            popupIndicator
             getOptionLabel={(option) => option.name}
-            options={documents.map((option) => option)}
+            options={docs.map((option) => option)}
             onChange={(event, option) => {
-              window.location.href = "/document";
+              window.location.href = "/document/" + option.docID;
             }}
             renderInput={(params) => <TextField {...params} />}
           />
           <Link className="validation-button btn" to="/document">
             <SearchIcon />
           </Link>
-        </div>
-        {/* <div>
-          <List disablePadding>
-            <ListItem disablePadding>
-              <ListItemButton component="a" href="#home">
-                <ListItemIcon>
-                  <ModeNight disablePadding />
-                </ListItemIcon>
-                <Switch
-                  onChange={(e) =>
-                    props.setMode(props.mode === "light" ? "dark" : "light")
-                  }
-                />
-              </ListItemButton>
-            </ListItem>
-          </List>
-        </div> */}
+        </Box>
+
         <div className="profile-group">
           <AvatarDropdown />
         </div>
@@ -103,4 +134,3 @@ const Header = (props) => {
 };
 
 export default Header;
-  

@@ -1,6 +1,7 @@
 import { Box, Divider, Typography, Button } from '@mui/material';
 import Tags from '../../../components/Tags';
-import Comment from '../../../components/Comment';
+import CommentPost from '../../../components/Comment/Post';
+import CommentContent from '../../../components/Comment/Content';
 import OptionsDialog from '../../../components/OpitonsDialog';
 import { useEffect } from 'react';
 import axios from 'axios';
@@ -21,6 +22,7 @@ const DocumentView = (props) => {
     const [tags, setTags] = useState([]);
     const [dateUploaded, setDateUploaded] = useState();
     const [comments, setComments] = useState([])
+    const docId = props.id;
 
     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo'
     const config = {
@@ -38,7 +40,7 @@ const DocumentView = (props) => {
                 .then((res) => {
                     let data = res.data.data;
                     console.log(data);
-                    set_pdf_link(data.file.link);
+                    set_pdf_link(data.document.linkView);
                     setName(data.document.name);
                     setDescription(data.document.description);
                     setTags([
@@ -52,6 +54,7 @@ const DocumentView = (props) => {
                     for (let property in data.comments) {
                         tmp_comments.push(data.comments[property]);
                     }
+
                     setComments(tmp_comments);
                     setDateUploaded(data.document.updatedAt);
                 });
@@ -87,34 +90,26 @@ const DocumentView = (props) => {
                         <Typography>
                             {description}
                         </Typography>
-                        <Divider />
+                        <Divider sx={{ p: 1, m: 1 }} />
                         <Tags data={tags} />
                         <Typography color="textSecondary" className="datePosted" sx={{ pt: 1 }}>
                             {dateUploaded}
                         </Typography>
                         <Divider />
-                        {comments.map(comment => (
-                            <Box key={comment.id}>
-                                <Typography variant="body2" component="span" sx={{ p: 1 }}>
-                                    {<Typography variant="button">{comment.id}</Typography>} {comment.content}
-                                </Typography>
-                                <Divider />
-                            </Box>
-                        ))}
-
+                        <CommentContent comments={comments} />
                         <Box sx={{
                             position: 'absolute',
                             bottom: 0,
                             width: '100%'
                         }}>
                             <Divider />
-                            <Comment />
+                            <CommentPost docId={docId} onClick={() => fetchData()} />
                         </Box>
                     </Box>
                 </Box>
             </Box>
             {showOptionsDialog && (
-                <OptionsDialog documentID = {props.id} onClose={() => setShowOptionsDialog(false)} />
+                <OptionsDialog documentID={props.id} onClose={() => setShowOptionsDialog(false)} />
             )}
         </>
     );
