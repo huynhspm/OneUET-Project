@@ -40,7 +40,7 @@ export default function Login(props) {
 
 	const resendOTP = async () => {
 		try {
-			const res = await axios.post("http://localhost:2002/login/forget", {
+			const res = await axios.post("http://localhost:2002/api/login/forget", {
 				email: email,
 			});
 			console.log(res);
@@ -52,7 +52,7 @@ export default function Login(props) {
 	const handleOTP = async (setError) => {
 		console.log(otp);
 		try {
-			const res = await axios.post("http://localhost:2002/login/verify", {
+			const res = await axios.post("http://localhost:2002/api/login/verify", {
 				email: email,
 				otp: otp,
 			});
@@ -105,7 +105,7 @@ export default function Login(props) {
 
 		// Handle Login
 		try {
-			const res = await axios.post("http://localhost:2002/login", {
+			const res = await axios.post("http://localhost:2002/api/login", {
 				email: email,
 				password: password,
 			});
