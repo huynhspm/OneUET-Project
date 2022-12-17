@@ -13,7 +13,7 @@ const getUserData = async token => {
         headers: { Authorization: `Bearer ${token}` }
     }
     try {
-        const response = await axios.get("http://localhost:2002/user/me", config);
+        const response = await axios.get("http://localhost:2002/api/user/me", config);
         console.log(response);
         return response.data.data;
     } catch (e) {
@@ -27,7 +27,7 @@ const updateUserData = async (token, data) => {
     }
     console.log(data);
     try {
-        const response = await axios.put("http://localhost:2002/user/me", data, config);
+        const response = await axios.put("http://localhost:2002/api/user/me", data, config);
         console.log(response);
     } catch (e) {
         console.log(e.response);

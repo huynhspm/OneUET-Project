@@ -42,7 +42,7 @@ const Header = (props) => {
   const fetchData = async () => {
     try {
       await axios
-        .get("http://localhost:2002/document/public",
+        .get("http://localhost:2002/api/document/public",
           {
             // params: filterParams,
             headers: { Authorization: `Bearer ${token}` }

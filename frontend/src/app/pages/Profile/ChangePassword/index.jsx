@@ -70,7 +70,7 @@ const ChangePassword = (props) => {
             headers: { Authorization: `Bearer ${props.token}` }
         }
         try {
-            const res = await axios.put("http://localhost:2002/user/me/password", {
+            const res = await axios.put("http://localhost:2002/api/user/me/password", {
                 oldPassword: oldPassword,
                 newPassword: newPassword
             }, config);
