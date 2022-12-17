@@ -1,4 +1,4 @@
-const { User, Class, Student, StudentClass } = require("../../database/models");
+const { User } = require("../../database/models");
 const bcrypt = require("bcrypt");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 const config = require("../../config");
@@ -49,7 +49,7 @@ const getMyUser = async (req) => {
 
 			documents = await user.getDocuments();
 
-			message = "Get user successfully";
+			message = "Get my user successfully";
 			status = ResponseCode.OK;
 		}
 
@@ -76,6 +76,8 @@ const updateMyPassword = async (req) => {
 		if (user) {
 			const { oldPassword, newPassword } = req.body;
 
+			console.log(oldPassword, newPassword);
+
 			const verifyPassword = bcrypt.compareSync(oldPassword, user.password);
 			const hashNewPassword = bcrypt.hashSync(newPassword, config.salt);
 			if (verifyPassword) {
@@ -89,6 +91,7 @@ const updateMyPassword = async (req) => {
 			}
 		}
 
+		const data = { user };
 		return {
 			data,
 			message,
@@ -149,20 +152,34 @@ const getUsers = async (req) => {
 const getUser = async (req) => {
 	try {
 		let { user, message, status } = await verifyUser(req.params.id);
-		let classes, documents, student, clubs;
+		let profile, classes, documents;
 
 		if (user) {
-			student = await user.getStudent();
-			clubs = await user.getClubs();
+			let student = await user.getStudent();
+			let clubs = await user.getClubs();
+
+			profile = { user, student, clubs };
+
+			let studiedClasses = await student.getClasses({
+				where: { finish: true },
+			});
+
+			let studyingClasses = await student.getClasses({
+				where: { finish: false },
+			});
+
+			classes = { studiedClasses, studyingClasses };
+
+			documents = await user.getDocuments();
 
 			message = "Get user successfully";
 			status = ResponseCode.OK;
 		}
 
 		const data = {
-			user,
-			student,
-			clubs,
+			profile,
+			classes,
+			documents,
 		};
 
 		return {

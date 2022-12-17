@@ -61,9 +61,9 @@ const ChangePassword = (props) => {
             }
         }
 
-        if (!validation) {
-            return;
-        }
+		if (!validation) {
+			return;
+		}
 
         // Change password
         const config = {
