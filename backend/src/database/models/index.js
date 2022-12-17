@@ -1,23 +1,29 @@
-const User = require("./User");
-const Teacher = require("./Teacher");
-const Class = require("./Class");
 const Course = require("./Course");
+const Class = require("./Class");
+const Teacher = require("./Teacher");
 const TeacherClass = require("./TeacherClass");
-const UserClass = require("./UserClass");
-const Document = require("./Document");
-const File = require("./File");
+const Student = require("./Student");
+const StudentClass = require("./StudentClass");
 const Role = require("./Role");
-const UserRole = require("./UserRole");
+const User = require("./User");
+const Club = require("./Club");
+const UserClub = require("./UserClub");
+const Document = require("./Document");
+const Comment = require("./Comment");
+const Grade = require("./Grade");
 
 module.exports = {
-	User,
-	Teacher,
 	Course,
 	Class,
+	Teacher,
 	TeacherClass,
-	UserClass,
-	Document,
-	File,
+	Student,
+	StudentClass,
 	Role,
-	UserRole,
+	User,
+	Club,
+	UserClub,
+	Document,
+	Comment,
+	Grade,
 };

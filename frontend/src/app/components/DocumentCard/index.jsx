@@ -1,35 +1,52 @@
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import { Link } from "react-router-dom";
-import Typography from '@mui/material/Typography';
+import { Card, CardMedia, CardActions, CardContent, Typography, Button } from '@mui/material';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import PreviewDocument from '../PreviewDocument';
+import axios from 'axios';
+import { documentCardHeight } from '../../utils/constant';
+
 const DocumentCard = (props) => {
-    // props have height, title, description, src_img, link (link to web see document)
+    const [open, setOpen] = useState(false);
+
+    const handleClick = () => {
+        setOpen(true);
+    };
+
     return (
         <>
-            <Card>
+            <Card sx={{ m: 2, width: 250, height: 380 }} >
                 <CardMedia
                     component="img"
-                    height={props.height}
+                    height={documentCardHeight}
                     image={props.src_img}
                     alt="sorry about error"
                 />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                    {props.title}
+                <CardContent sx={{ maxHeight: 70 }}>
+                    <Typography sx={{ display: 'flex' }} variant="h5" >
+                        {props.name}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                    {props.description}
-                    </Typography>
+                    {/* <Typography variant="body2" color="text.secondary">
+                        {props.description}
+                    </Typography> */}
                 </CardContent>
-                <CardActions>
-                    <Link className="btn" to={props.link}><RemoveRedEyeIcon/>Xem tài liệu</Link>
+                <CardActions sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }} >
+                    <Button component={Link} onClick={handleClick}><RemoveRedEyeIcon sx={{ mr: 1 }} />Xem tài liệu</Button>
                 </CardActions>
-            </Card>
+            </Card >
+            <PreviewDocument
+                open={open}
+                onClose={() => setOpen(false)}
+                description={props.description}
+                name={props.name}
+                docID={props.docID}
+            />
         </>
     )
 }
-export default DocumentCard;
 
+export default DocumentCard;

@@ -1,11 +1,12 @@
 const bcrypt = require("bcrypt");
+const config = require("../../config");
 const { DataTypes } = require("sequelize");
 const sequelize = require("../");
-
-const RoleCode = require("../../utils/constant/Role");
+const Role = require("./Role");
+const Student = require("./Student");
 
 const User = sequelize.define(
-	"User",
+	"user",
 	{
 		id: {
 			allowNull: false,
@@ -15,7 +16,7 @@ const User = sequelize.define(
 		},
 		email: {
 			allowNull: false,
-
+			primaryKey: true,
 			unique: true,
 			type: DataTypes.STRING,
 		},
@@ -23,17 +24,55 @@ const User = sequelize.define(
 			allowNull: false,
 			type: DataTypes.STRING,
 		},
-		name: {
-			type: DataTypes.TEXT,
+		otherEmail: {
+			unique: true,
+			type: DataTypes.STRING,
+		},
+		birthday: {
+			type: DataTypes.DATE,
+		},
+		gender: {
+			type: DataTypes.STRING,
 		},
 		avatar: {
 			type: DataTypes.STRING,
 		},
-		class: {
+		program: {
+			type: DataTypes.INTEGER,
+		},
+		academicYear: {
+			type: DataTypes.INTEGER,
+		},
+		unit: {
+			type: DataTypes.STRING,
+		},
+		major: {
+			type: DataTypes.STRING,
+		},
+		unionJoint: {
+			type: DataTypes.BOOLEAN,
+		},
+		partyJoint: {
+			type: DataTypes.BOOLEAN,
+		},
+		unionPosition: {
+			type: DataTypes.STRING,
+		},
+		associationPosition: {
 			type: DataTypes.STRING,
 		},
 		history: {
-			type: DataTypes.TEXT,
+			type: DataTypes.STRING,
+		},
+		active: {
+			type: DataTypes.BOOLEAN,
+			defaultValue: false,
+		},
+		otp: {
+			type: DataTypes.INTEGER,
+		},
+		expiredTime: {
+			type: DataTypes.DATE,
 		},
 	},
 	{
@@ -41,18 +80,22 @@ const User = sequelize.define(
 	}
 );
 
-User.beforeCreate((user) => {
-	const hashedPassword = bcrypt.hashSync(user.password, 10);
-	user.password = hashedPassword;
-});
+User.belongsTo(Student);
+Student.hasOne(User);
 
-User.beforeUpdate((user) => {
-	const hashedPassword = bcrypt.hashSync(user.password, 10);
-	user.password = hashedPassword;
-});
+User.belongsTo(Role);
+Role.hasMany(User);
+
+User.beforeCreate(
+	(user) => (user.password = bcrypt.hashSync(user.password, config.salt))
+);
 
 User.afterCreate(async (user) => {
-	await user.addRole(RoleCode.User);
+	const code = user.email.slice(0, 8);
+	const student = await Student.findOne({ where: { code } });
+	if (student) {
+		await user.update({ studentId: student.id });
+	}
 });
 
 module.exports = User;

@@ -1,0 +1,4 @@
+.dialogScrollPaper {
+    display: grid !important;
+    grid-template-columns: minmax(auto, 496px) !important;
+}

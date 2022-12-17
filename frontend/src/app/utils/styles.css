@@ -1,0 +1,6 @@
+.pdf-viewer {
+    border-radius: 5px;
+    position: relative;
+    width: calc(100%);
+    height: calc(100%);
+}

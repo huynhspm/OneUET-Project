@@ -1,0 +1,13 @@
+.head {
+    border: 1;
+    background-color:aliceblue
+}
+
+.cell {
+    border:1px;
+}
+.sticky {
+    position: "sticky";
+    left: 0;
+    background: "white";
+}

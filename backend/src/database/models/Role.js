@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../");
 
 const Role = sequelize.define(
-	"Role",
+	"role",
 	{
 		id: {
 			allowNull: false,

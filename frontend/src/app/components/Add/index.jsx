@@ -1,0 +1,272 @@
+import {
+    Box,
+    Button,
+    Fab,
+    Grid,
+    Input,
+    FormControl,
+    MenuItem,
+    InputLabel,
+    Select,
+    TextField,
+    Tooltip,
+    Typography,
+} from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import React, { useState } from 'react';
+import axios from "axios";
+import { InputBox, InputButton } from '../../utils/styles';
+import { CenterModal } from '../../utils/styles';
+import { units, majors, categories } from '../../utils/constant';
+// import { uploadFile } from '../../pages/Document/DocumentView/test';
+
+const Add = () => {
+    const [open, setOpen] = useState(false);
+
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo'
+    const config = {
+        headers: { Authorization: `Bearer ${token}` }
+    };
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+
+        const docName = data.get("docName");
+        const docDescription = data.get("docDescription");
+        const docUnit = data.get("docUnit");
+        const docMajor = data.get("docMajor");
+        const docLecturer = data.get("docLecturer");
+        const docSubject = data.get("docSubject");
+        const docType = data.get("docType");
+        const docYear = data.get("docYear");
+        
+        console.log(docName);
+        console.log(docDescription);
+        console.log(docUnit);
+        console.log(docMajor);
+        console.log(docLecturer);
+        console.log(docSubject);
+        console.log(docType);
+        console.log(docYear);
+
+    }
+
+    //     try {
+    //         const res = await axios.post("http://localhost:2002/file", {
+    //             docName,
+    //             docDescription,
+    //             docUnit,
+    //             docMajor,
+    //             docLecturer,
+    //             docSubject,
+    //             docType,
+    //             docYear,
+    //         });
+    //         console.log(res.data);
+    //     } catch (e) {
+    //         console.log(e.response.data);
+    //     }
+    // };
+
+    const postDocument = async () => {
+        let data = {
+            name: 'docPost2',
+            year: 2022,
+            category: 'Giáo trình',
+            status: 'private', 
+            description: 'description for docPost2', 
+            unit: 'Khoa Công nghệ Thông tin', 
+            major: 'Khoa học máy tính', 
+            linkView: 'https://arxiv.org/pdf/1910.10093.pdf', 
+            linkDownload: 'https://arxiv.org/pdf/1910.10093.pdf', 
+            userId: 1,
+            courseId: 1, 
+            teacherId: 2
+        }
+        await axios.post("http://localhost:2002/document", data, config);
+
+    }
+
+    const fileBrowseHandler = (event) => {
+
+        let value = URL.createObjectURL(event.target.files[0]);
+        // setImageUrl(value]);
+        console.log(value);
+        console.log(event.target.files[0]);
+        fetch(value).then((res) => {
+            console.log(res);
+            // uploadFile(res);
+        })
+        axios.get("http://localhost:2002/ggservice").then((res) => {
+            console.log(res);
+        })
+    };
+
+    return (
+        <>
+            <Tooltip
+                onClick={(e) => setOpen(true)}
+                title="Add new document"
+                sx={{
+                    position: 'fixed',
+                    bottom: 20,
+                    right: { xs: 'calc(50% - 25px)', md: 30 },
+                }}
+            >
+                <Fab color="primary" aria-label="add">
+                    <AddIcon />
+                </Fab>
+            </Tooltip>
+            <CenterModal
+                open={open}
+                onClose={(e) => setOpen(false)}
+            >
+                <Box
+                    bgcolor={'background.default'}
+                    color={'text.primary'}
+                    borderRadius={2}
+                    sx={{
+                        p: 3,
+                        position: 'relative',
+                        width: 'calc(60%)',
+                        display: 'flex',
+                        flexDirection: 'column'
+                    }}
+                >
+                    <Typography variant="h6" color="gray" textAlign="left">
+                        Create new document
+                    </Typography>
+                    <Box sx={{ display: 'flex', flexDirection: 'row', top: 52 }}>
+                        <Box
+                            component="form"
+                            noValidate
+                            onSubmit={handleSubmit}
+                            sx={{ width: '100%', pt: 1, flexShrink: { sm: 0 }, mt: 1 }}
+                        >
+                            <Grid container spacing={1}>
+                                <Grid item xs={12}>
+                                    <TextField required fullWidth label="Document Name" id="docName" name="docName" type="text" autoFocus />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField required fullWidth label="Description" id="docDescription" name="docDescription" type="text" row="3" />
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <FormControl fullWidth>
+                                        <InputLabel id="unit-label">Khoa</InputLabel>
+                                        <Select
+                                            fullWidth
+                                            labelId="unit-label"
+                                            id="docunit"
+                                            // value={age}
+                                            label="Khoa"
+                                        >
+                                            {units.map((unit) => (
+                                                <MenuItem key={unit}>
+                                                    {unit}
+                                                </MenuItem>
+                                            ))}
+                                        </Select>
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <FormControl fullWidth>
+                                        <InputLabel id="major-label">Ngành</InputLabel>
+                                        <Select
+                                            fullWidth
+                                            labelId="major-label"
+                                            id="docMajor"
+                                            // value={age}
+                                            label="Ngành"
+                                        >
+                                            {majors.map((major) => (
+                                                <MenuItem key={major}>
+                                                    {major}
+                                                </MenuItem>
+                                            ))}
+                                        </Select>
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <TextField
+                                        fullWidth
+                                        label="Giảng viên"
+                                        id="docLecturer"
+                                        name="docLecturer"
+                                        type="text"
+                                    />
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <TextField
+                                        fullWidth
+                                        label="Môn"
+                                        id="docSubject"
+                                        name="docSubject"
+                                        type="text"
+                                    />
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <FormControl fullWidth>
+                                        <InputLabel id="category-label">Loại</InputLabel>
+                                        <Select
+                                            fullWidth
+                                            labelId="category-label"
+                                            id="docCategory"
+                                            // value={age}
+                                            label="Loại"
+                                        >
+                                            {categories.map((category) => (
+                                                <MenuItem key={category}>
+                                                    {category}
+                                                </MenuItem>
+                                            ))}
+                                        </Select>
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <TextField
+                                        fullWidth
+                                        label="Năm"
+                                        id="docYear"
+                                        name="docYear"
+                                        type="text"
+                                    />
+                                </Grid>
+                            </Grid>
+                        </Box>
+                    </Box>
+                    <Box sx={{ flexGrow: 1, p: 2, height: 350 }}>
+                        <InputBox>
+                            <InputButton
+                                variant="outlined"
+                                component="label"
+                                fullWidth="true"
+                            >
+                                Upload File
+                                <input
+                                    type="file"
+                                    hidden
+                                    onChange={fileBrowseHandler}
+                                />
+                            </InputButton>
+                        </InputBox>
+                    </Box>
+                    <Button
+                        variant="contained"
+                        sx={{
+                            borderRadius: 2,
+                            width: '100px',
+                            bottom: 20,
+                            right: 20,
+                            position: 'absolute',
+                        }}
+                        onClick={postDocument}
+                    >
+                        POST
+                    </Button>
+                </Box>
+            </CenterModal>
+        </>
+    );
+};
+
+export default Add;

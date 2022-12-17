@@ -1,45 +1,110 @@
 const service = require("./service");
+const ResponseCode = require("../../utils/constant/ResponseCode");
 
+// POST: /teacher
 const createTeacher = async (req, res) => {
-	const result = await service.createTeacher(req.body);
-	const { data, message, status } = result;
+	try {
+		const result = await service.createTeacher(req);
+		const { data, message, status } = result;
 
-	res.status(status).json({
-		data: data,
-		message: message,
-		status: status,
-	});
+		res.status(status).json({
+			data: data,
+			message: message,
+			status: status,
+		});
+	} catch (e) {
+		res.status(ResponseCode.Bad_Request).json({
+			data: e.message,
+			message: "Couldn't create teacher",
+			status: ResponseCode.Bad_Request,
+		});
+	}
 };
 
+// GET: /teacher
 const getTeachers = async (req, res) => {
-	const result = await service.getTeachers(req.body);
-	const { data, message, status } = result;
+	try {
+		const result = await service.getTeachers(req);
+		const { data, message, status } = result;
 
-	res.status(status).json({
-		data: data,
-		message: message,
-		status: status,
-	});
+		res.status(status).json({
+			data: data,
+			message: message,
+			status: status,
+		});
+	} catch (e) {
+		res.status(ResponseCode.Bad_Request).json({
+			data: e.message,
+			message: "Couldn't get all teachers",
+			status: ResponseCode.Bad_Request,
+		});
+	}
 };
 
+// PUT: /teacher/:id
 const updateTeacher = async (req, res) => {
-	const result = await service.updateTeacher(req.body);
-	const { message, status } = result;
+	try {
+		const result = await service.updateTeacher(req);
+		const { data, message, status } = result;
 
-	res.status(status).json({
-		message: message,
-		status: status,
-	});
+		res.status(status).json({
+			data: data,
+			message: message,
+			status: status,
+		});
+	} catch (e) {
+		res.status(ResponseCode.Bad_Request).json({
+			data: e.message,
+			message: "Couldn't update teacher",
+			status: ResponseCode.Bad_Request,
+		});
+	}
 };
 
+// DELETE: /:id
 const deleteTeacher = async (req, res) => {
-	const result = await service.deleteTeacher(req.body);
-	const { message, status } = result;
+	try {
+		const result = await service.deleteTeacher(req);
+		const { data, message, status } = result;
 
-	res.status(status).json({
-		message: message,
-		status: status,
-	});
+		res.status(status).json({
+			data: data,
+			message: message,
+			status: status,
+		});
+	} catch (e) {
+		res.status(ResponseCode.Bad_Request).json({
+			data: e.message,
+			message: "Couldn't delete teacher",
+			status: ResponseCode.Bad_Request,
+		});
+	}
 };
 
-module.exports = { createTeacher, getTeachers, updateTeacher, deleteTeacher };
+// GET: /teacher/:id
+const getTeacher = async (req, res) => {
+	try {
+		const result = await service.getTeacher(req);
+		const { data, message, status } = result;
+
+		res.status(status).json({
+			data: data,
+			message: message,
+			status: status,
+		});
+	} catch (e) {
+		res.status(ResponseCode.Bad_Request).json({
+			data: e.message,
+			message: "Couldn't get teacher",
+			status: ResponseCode.Bad_Request,
+		});
+	}
+};
+
+module.exports = {
+	createTeacher,
+	getTeachers,
+	updateTeacher,
+	deleteTeacher,
+	getTeacher,
+};

@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../");
 
 const Teacher = sequelize.define(
-	"Teacher",
+	"teacher",
 	{
 		id: {
 			allowNull: false,
@@ -11,15 +11,17 @@ const Teacher = sequelize.define(
 			type: DataTypes.INTEGER,
 		},
 		email: {
-			allowNull: false,
 			unique: true,
 			type: DataTypes.STRING,
 		},
 		name: {
 			type: DataTypes.STRING,
 		},
-		faculty: {
-			type: DataTypes.TEXT,
+		level: {
+			type: DataTypes.STRING,
+		},
+		unit: {
+			type: DataTypes.STRING,
 		},
 	},
 	{

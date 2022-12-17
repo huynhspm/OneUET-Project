@@ -1,61 +1,142 @@
 const { Course } = require("../../database/models");
+const ResponseCode = require("../../utils/constant/ResponseCode");
 
-const createCourse = async (newCourse) => {
-	const data = await Course.create(newCourse);
+const verifyCourse = async (req) => {
+	try {
+		const { id } = req.params;
+		let course, message, status;
+		course = await Course.findByPk(id);
 
-	const message = "Add Course successfully!";
-	const status = 200;
+		if (course) {
+			message = "Course existed";
+			status = ResponseCode.OK;
+		} else {
+			message = "Course not existed";
+			status = ResponseCode.OK;
+		}
 
-	return {
-		data,
-		message,
-		status,
-	};
+		return {
+			course,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
 };
 
-const getCourses = async () => {
-	const data = await Course.findAll();
+const createCourse = async (req) => {
+	try {
+		const newCourse = req.body;
+		const course = await Course.create(newCourse);
 
-	const message = "Get Courses successfully";
-	const status = 200;
+		const message = "Create course successfully!";
+		const status = ResponseCode.Created;
+		const data = { course };
 
-	return {
-		data,
-		message,
-		status,
-	};
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
 };
 
-const updateCourse = async (updatedCourse) => {
-	await Course.update(updatedCourse, {
-		where: {
-			id: updatedCourse.id,
-		},
-	});
+const getCourses = async (req) => {
+	try {
+		const courses = await Course.findAll();
 
-	const message = "Update Course successfully";
-	const status = 200;
+		const message = "Get courses successfully";
+		const status = ResponseCode.OK;
+		const data = { courses };
 
-	return {
-		message,
-		status,
-	};
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
 };
 
-const deleteCourse = async (deletedCourse) => {
-	await Course.destroy({
-		where: {
-			id: deletedCourse.id,
-		},
-	});
+const getCourse = async (req) => {
+	try {
+		let { course, message, status } = await verifyCourse(req);
+		let classes;
 
-	const message = "Delete Course successfully";
-	const status = 200;
+		if (course) {
+			classes = await course.getClasses();
+			message = "Get course successfully";
+			status = ResponseCode.OK;
+		}
 
-	return {
-		message,
-		status,
-	};
+		const data = {
+			course,
+			classes,
+		};
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
 };
 
-module.exports = { createCourse, getCourses, updateCourse, deleteCourse };
+const updateCourse = async (req) => {
+	try {
+		let { course, message, status } = await verifyCourse(req);
+
+		if (course) {
+			const updatedCourse = req.body;
+			course = await course.update(updatedCourse);
+			message = "Update course successfully";
+			status = ResponseCode.OK;
+		}
+
+		const data = { course };
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
+const deleteCourse = async (req) => {
+	try {
+		let { course, message, status } = await verifyCourse(req);
+
+		if (course) {
+			course = await course.destroy();
+			message = "Delete course successfully";
+			status = ResponseCode.OK;
+		}
+
+		const data = { course };
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
+module.exports = {
+	createCourse,
+	getCourses,
+	getCourse,
+	updateCourse,
+	deleteCourse,
+};
