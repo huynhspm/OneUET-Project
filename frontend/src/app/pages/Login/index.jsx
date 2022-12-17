@@ -33,16 +33,16 @@ export default function Login(props) {
 
 	// Token
 	const navigate = useNavigate();
-	const [token, setToken] = useState('');
+	const [token, setToken] = useState("");
 
 	// Get Token from sessionStorage
 	useEffect(() => {
-		if (token === '') {
+		if (token === "") {
 			const lastToken = sessionStorage.getItem("token");
 			if (lastToken !== null && lastToken !== undefined) {
 				console.log(lastToken);
 				setToken(lastToken); // Successfully get Token!
-				navigate(-1); // Go back to the previous page 
+				navigate(-1); // Go back to the previous page
 			}
 		}
 	}, [token, navigate]);
@@ -138,7 +138,7 @@ export default function Login(props) {
 	useEffect(() => {
 		if (login) {
 			if (active) {
-				sessionStorage.setItem('token', props.token); // Save Token to sessionStorage
+				sessionStorage.setItem("token", props.token); // Save Token to sessionStorage
 				navigate("/");
 			} else {
 				setOpen(!active);
