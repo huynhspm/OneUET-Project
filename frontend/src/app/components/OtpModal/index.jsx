@@ -1,10 +1,11 @@
 import React from 'react';
+import { OTPValidCode, OTPValidText } from '../../utils/validation/otp';
 import { Box, Typography, Button, Modal, TextField } from '@mui/material';
 
+// props = [open, handleClose, otp, setOtp, handleOtp, resendOtp ]
 const OtpModal = (props) => {
     // OTP
-    const [isError, setIsError] = React.useState(0);
-    const OTPState = ["", "Please enter your OTP", "Invalid OTP", "OTP expired, please click resend"];
+    const [isValidOtp, setIsValidOtp] = React.useState(OTPValidCode.OK);
 
     return (
         <Modal open={props.open} onClose={props.handleClose} >
@@ -28,8 +29,8 @@ const OtpModal = (props) => {
                     OTP Verification
                 </Typography>
                 <TextField
-                    error={isError != 0}
-                    helperText={OTPState[isError]}
+                    error={isValidOtp !== OTPValidCode.OK}
+                    helperText={OTPValidText[isValidOtp]}
                     label='otp'
                     value={props.otp}
                     onChange={(event) => {
@@ -50,7 +51,7 @@ const OtpModal = (props) => {
                     fullWidth
                     variant="contained"
                     onClick={() => {
-                        props.handleOTP(setIsError);
+                        props.handleOTP(setIsValidOtp);
                     }}
                 >
                     SUBMIT

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import validator from "validator";
 import { useNavigate } from "react-router-dom";
 import OtpModal from "../../components/OtpModal";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { OTPValidCode } from "../../utils/validation/otp";
+import { EmailUIValidator, EmailValidCode, EmailValidText } from "../../utils/validation/email";
+import { PasswordUIValidator, PasswordValidCode, PasswordValidText } from "../../utils/validation/password";
 import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Grid, Box, Container } from '@mui/material';
 
 const theme = createTheme();
@@ -16,13 +18,11 @@ export default function Login(props) {
 
 	// Email
 	const [email, setEmail] = useState("");
-	const [isValidEmail, setIsValidEmail] = useState(0);
-	const EmailState = ["", "Please enter your email", "Invalid Email"];
+	const [isValidEmail, setIsValidEmail] = useState(EmailValidCode.OK);
 
 	// Password
 	const [password, setPassword] = useState("");
-	const [isValidPassword, setIsValidPassword] = useState(0);
-	const PasswordState = ["", "Please enter your password", "Wrong password"];
+	const [isValidPassword, setIsValidPassword] = useState(PasswordValidCode.OK);
 
 	// Otp in Modal (optional)
 	const [otp, setOtp] = useState("");
@@ -60,7 +60,7 @@ export default function Login(props) {
 	};
 
 	// Handle OTP function
-	const handleOTP = async (setError) => {
+	const handleOTP = async (setIsValidOtp) => {
 		console.log(otp);
 		try {
 			const res = await axios.post("http://localhost:2002/api/login/verify", {
@@ -69,19 +69,19 @@ export default function Login(props) {
 			});
 			console.log(res.data);
 			if (res.data.message === "OTP expired, please click resend") {
-				setError(3);
+				setIsValidOtp(OTPValidCode.Expired);
 				return;
 			}
 			props.setToken(res.data.data.token);
-			setError(0);
+			setIsValidOtp(0);
 			setActive(true);
 		} catch (e) {
 			console.log(e.response.data.message);
 			if (e.response.data.message === "Invalid OTP") {
 				if (otp === "") {
-					setError(1);
+					setIsValidOtp(OTPValidCode.Empty);
 				} else {
-					setError(2);
+					setIsValidOtp(OTPValidCode.Invalid);
 				}
 			}
 		}
@@ -93,26 +93,18 @@ export default function Login(props) {
 		let validation = true;
 
 		// Validation
-		if (email === "") {
-			setIsValidEmail(1);
+		setIsValidEmail(EmailUIValidator(email));
+		if (EmailUIValidator(email) !== EmailValidCode.OK) {
 			validation = false;
-		} else {
-			if (!validator.isEmail(email)) {
-				setIsValidEmail(2);
-				validation = false;
-			} else {
-				setIsValidEmail(0);
-			}
 		}
-		if (password === "") {
-			setIsValidPassword(1);
+
+		setIsValidPassword(PasswordUIValidator(password));
+		if (PasswordUIValidator(password) !== PasswordValidCode.OK) {
 			validation = false;
-		} else {
-			setIsValidPassword(0);
 		}
 
 		if (!validation) {
-			return false;
+			return;
 		}
 
 		// Handle Login
@@ -129,10 +121,10 @@ export default function Login(props) {
 			if (e.response !== undefined) {
 				console.log(e.response.data.message);
 				if (e.response.data.message === "Invalid email") {
-					setIsValidEmail(2);
+					setIsValidEmail(EmailValidCode.Invalid);
 				}
 				if (e.response.data.message === "Invalid password") {
-					setIsValidPassword(2);
+					setIsValidPassword(PasswordValidCode.Wrong);
 				}
 				if (e.response.data.message === "Login successfully but not active") {
 					setLogin(true);
@@ -159,7 +151,6 @@ export default function Login(props) {
 			<OtpModal
 				open={open}
 				handleClose={handleClose}
-				active={active}
 				otp={otp}
 				setOtp={setOtp}
 				handleOTP={handleOTP}
@@ -189,15 +180,14 @@ export default function Login(props) {
 								margin="normal"
 								required
 								fullWidth
-								// id="email"
 								label="Email Address"
 								name="email"
 								value={email}
 								onChange={(event) => {
 									setEmail(event.target.value);
 								}}
-								error={isValidEmail !== 0}
-								helperText={EmailState[isValidEmail]}
+								error={isValidEmail !== EmailValidCode.OK}
+								helperText={EmailValidText[isValidEmail]}
 								// autoComplete="email"
 								type="text"
 								autoFocus
@@ -207,14 +197,13 @@ export default function Login(props) {
 								required
 								fullWidth
 								label="Password"
-								// id="password"
 								name="password"
 								value={password}
 								onChange={(event) => {
 									setPassword(event.target.value);
 								}}
-								error={isValidPassword !== 0}
-								helperText={PasswordState[isValidPassword]}
+								error={isValidPassword !== PasswordValidCode.OK}
+								helperText={PasswordValidText[isValidPassword]}
 								// autoComplete="current-password"
 								type="password"
 							/>
