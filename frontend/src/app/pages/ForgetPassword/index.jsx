@@ -1,30 +1,40 @@
-import React, { useEffect } from 'react';
-import LockResetIcon from '@mui/icons-material/LockReset';
-import { ThemeProvider, Container, CssBaseline, Box, Avatar, createTheme, TextField, Button, Grid, Typography } from '@mui/material';
-import validator from "validator";
+import React, { useState } from 'react';
 import axios from 'axios';
+import LockResetIcon from '@mui/icons-material/LockReset';
 import { useNavigate } from 'react-router-dom';
+import { EmailUIValidator, EmailValidCode, EmailValidText } from '../../utils/validation/email';
+import { PasswordUIValidator, PasswordValidCode, PasswordValidText } from '../../utils/validation/password';
+import { OTPUIValidator, OTPValidCode, OTPValidText } from '../../utils/validation/otp';
+import { ThemeProvider, Container, CssBaseline, Box, Avatar, createTheme, TextField, Button, Typography } from '@mui/material';
 
 const theme = createTheme();
 
-const ForgetPassword = (props) => {
+const ForgetPassword = () => {
+    // Navigater
     const navigate = useNavigate();
 
-    const [state, setState] = React.useState(0);
-    const [email, setEmail] = React.useState('');
-    const [isValidEmail, setIsValidEmail] = React.useState(0);
-    const EmailState = ["", "Please enter your email", "Invalid Email"];
+    // State Code
+    const StateCode = {
+        Email: 0,
+        ResetPassword: 1
+    };
+    const [state, setState] = useState(StateCode.Email);
 
-    const [newPassword, setNewPassword] = React.useState('');
-    const [rewritePassword, setRewritePassword] = React.useState('');
-    const [isValidNewPassword, setIsValidNewPassword] = React.useState(0);
-    const [isValidRewritePassword, setIsValidRewritePassword] = React.useState(0);
-    const PasswordState = ["", "Please enter password", "Confirm password does not match the new password"];
+    // Email
+    const [email, setEmail] = useState('');
+    const [isValidEmail, setIsValidEmail] = useState(EmailValidCode.OK);
 
-    const [otp, setOtp] = React.useState('');
-    const [isValidOtp, setIsValidOtp] = React.useState(0);
-    const OTPState = ["", "Please enter your OTP", "Invalid OTP", "OTP expired, please click resend"];
+    // Password
+    const [newPassword, setNewPassword] = useState('');
+    const [rewritePassword, setRewritePassword] = useState('');
+    const [isValidNewPassword, setIsValidNewPassword] = useState(PasswordValidCode.OK);
+    const [isValidRewritePassword, setIsValidRewritePassword] = useState(PasswordValidCode.OK);
 
+    // OTP
+    const [otp, setOtp] = useState('');
+    const [isValidOtp, setIsValidOtp] = useState(OTPValidCode.OK);
+
+    // Resend OTP function
     const resendOTP = async () => {
         try {
             const res = await axios.post("http://localhost:2002/api/login/forget", {
@@ -36,21 +46,17 @@ const ForgetPassword = (props) => {
         }
     }
 
+    // Handle Submit function
     const handleSubmit = async (event) => {
         event.preventDefault();
         let validation = true;
 
-        if (state == 0) {
-            if (email === "") {
-                setIsValidEmail(1);
+        // Email state
+        if (state === StateCode.Email) {
+            // Validation
+            setIsValidEmail(EmailUIValidator(email));
+            if (EmailUIValidator(email) !== EmailValidCode.OK) {
                 validation = false;
-            } else {
-                if (!validator.isEmail(email)) {
-                    setIsValidEmail(2);
-                    validation = false;
-                } else {
-                    setIsValidEmail(0);
-                }
             }
 
             if (!validation) {
@@ -62,39 +68,32 @@ const ForgetPassword = (props) => {
                     email: email
                 });
                 console.log(res);
-                setState(1);
+                setState(StateCode.ResetPassword);
             } catch (e) {
                 console.log(e.response);
-                if (e.response.data.message == "Invalid email") {
-                    setIsValidEmail(2);
+                if (e.response.data.message === "Invalid email") {
+                    setIsValidEmail(EmailValidCode.Invalid);
                 }
             }
-        } else {
-            if (newPassword == '') {
-                setIsValidNewPassword(1);
+        } 
+        
+        // Reset Password state
+        if (state === StateCode.ResetPassword) {
+            // Validation
+            setIsValidNewPassword(PasswordUIValidator(newPassword));
+            if (PasswordUIValidator(newPassword) !== PasswordValidCode.OK) {
                 validation = false;
-            } else {
-                setIsValidNewPassword(0);
             }
 
-            if (rewritePassword == '') {
-                setIsValidRewritePassword(1);
+            setIsValidRewritePassword(PasswordUIValidator(rewritePassword, newPassword, false));
+            if (PasswordUIValidator(rewritePassword, newPassword, false) !== PasswordValidCode.OK) {
                 validation = false;
-            } else {
-                if (newPassword != rewritePassword) {
-                    setIsValidRewritePassword(2);
-                    validation = false;
-                } else {
-                    setIsValidRewritePassword(0);
-                }
             }
 
-            if (otp == '') {
-                setIsValidOtp(1);
+            setIsValidOtp(OTPUIValidator(otp));
+            if (OTPUIValidator(otp) !== OTPValidCode.OK) {
                 validation = false;
-            } else {
-                setIsValidOtp(0);
-            }
+            } 
 
             if (!validation) {
                 return;
@@ -110,11 +109,11 @@ const ForgetPassword = (props) => {
                 navigate('/login');
             } catch (e) {
                 console.log(e.response);
-                if (e.response.data.message == "Invalid OTP") {
-                    setIsValidOtp(2);
+                if (e.response.data.message === "Invalid OTP") {
+                    setIsValidOtp(OTPValidCode.Invalid);
                 }
-                if (e.response.data.message == "OTP expired, please click resend") {
-                    setIsValidOtp(3);
+                if (e.response.data.message === "OTP expired, please click resend") {
+                    setIsValidOtp(OTPValidCode.Expired);
                 }
             }
         }
@@ -136,7 +135,7 @@ const ForgetPassword = (props) => {
                     <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
                         <LockResetIcon />
                     </Avatar>
-                    {state == 0 &&
+                    {state === StateCode.Email &&
                         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }} >
                             <TextField
                                 margin="normal"
@@ -148,8 +147,8 @@ const ForgetPassword = (props) => {
                                 onChange={(event) => {
                                     setEmail(event.target.value);
                                 }}
-                                error={isValidEmail !== 0}
-                                helperText={EmailState[isValidEmail]}
+                                error={isValidEmail !== EmailValidCode.OK}
+                                helperText={EmailValidText[isValidEmail]}
                                 type="text"
                                 autoFocus
                             />
@@ -163,53 +162,48 @@ const ForgetPassword = (props) => {
                             </Button>
                         </Box>
                     }
-                    {state == 1 &&
+                    {state === StateCode.ResetPassword &&
                         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }} >
-                            <Grid container spacing={2}>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        required
-                                        fullWidth
-                                        label="Mật khẩu mới"
-                                        value={newPassword}
-                                        onChange={(event) => {
-                                            setNewPassword(event.target.value);
-                                        }}
-                                        error={isValidNewPassword != 0}
-                                        helperText={PasswordState[isValidNewPassword]}
-                                        type="password"
-                                        autoFocus
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        required
-                                        fullWidth
-                                        label="Nhập lại mật khẩu mới"
-                                        value={rewritePassword}
-                                        onChange={(event) => {
-                                            setRewritePassword(event.target.value);
-                                        }}
-                                        error={isValidRewritePassword != 0}
-                                        helperText={PasswordState[isValidRewritePassword]}
-                                        type="password"
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        required
-                                        fullWidth
-                                        label="OTP"
-                                        value={otp}
-                                        onChange={(event) => {
-                                            setOtp(event.target.value);
-                                        }}
-                                        error={isValidOtp != 0}
-                                        helperText={OTPState[isValidOtp]}
-                                        type="text"
-                                    />
-                                </Grid>
-                            </Grid>
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                label="Mật khẩu mới"
+                                value={newPassword}
+                                onChange={(event) => {
+                                    setNewPassword(event.target.value);
+                                }}
+                                error={isValidNewPassword !== PasswordValidCode.OK}
+                                helperText={PasswordValidText[isValidNewPassword]}
+                                type="password"
+                                autoFocus
+                            />
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                label="Nhập lại mật khẩu mới"
+                                value={rewritePassword}
+                                onChange={(event) => {
+                                    setRewritePassword(event.target.value);
+                                }}
+                                error={isValidRewritePassword !== PasswordValidCode.OK}
+                                helperText={PasswordValidText[isValidRewritePassword]}
+                                type="password"
+                            />
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                label="OTP"
+                                value={otp}
+                                onChange={(event) => {
+                                    setOtp(event.target.value);
+                                }}
+                                error={isValidOtp !== OTPValidCode.OK}
+                                helperText={OTPValidText[isValidOtp]}
+                                type="text"
+                            />
                             <Box sx={{ p: 1 }}>
                                 <Typography variant='p'>
                                     OTP not received?
