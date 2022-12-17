@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -19,7 +19,7 @@ import Grade from "../pages/Grade";
 import GradeCourses from "../pages/GradeCourses";
 import Profile from "../pages/Profile";
 import ValidationGrade from "../pages/ValidationGrade";
-import SearchCourses from  "../pages/SearchCourses";
+import SearchCourses from "../pages/SearchCourses";
 import ForgetPassword from "../pages/ForgetPassword";
 import Logout from "../pages/Logout";
 
@@ -33,6 +33,7 @@ const RootLayout = () => {
   //     mode: mode,
   //   },
   // });
+  
   return (
     // <ThemeProvider theme={darkTheme}>
     <Box bgcolor={"background.default"} color={"text.primary"}>

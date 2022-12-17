@@ -95,7 +95,7 @@ const Information = (props) => {
         if (!isFetch) {
             fetchData();
         }
-    }, [isFetch]);
+    }, [props.token, isFetch]);
 
     return (
         <Box

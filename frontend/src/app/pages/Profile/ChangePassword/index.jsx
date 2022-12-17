@@ -1,16 +1,22 @@
-import React from 'react';
-import { Box, Paper, TextField, Grid, Container, Button } from '@mui/material';
-import Title from '../../../components/Title';
+import React, { useState } from "react";
 import axios from 'axios';
+import Title from '../../../components/Title';
+import { Box, Paper, TextField, Grid, Container, Button } from '@mui/material';
 
 const ChangePassword = (props) => {
-    const [oldPassword, setOldPassword] = React.useState('');
-    const [newPassword, setNewPassword] = React.useState('');
-    const [rewritePassword, setRewritePassword] = React.useState('');
+    // Old password
+    const [oldPassword, setOldPassword] = useState('');
+    const [isValidOldPassword, setIsValidOldPassword] = useState(0);
 
-    const [oldState, setOldState] = React.useState(0);
-    const [newState, setNewState] = React.useState(0);
-    const [rewriteState, setRewriteState] = React.useState(0);
+    // New password
+    const [newPassword, setNewPassword] = useState('');
+    const [isValidNewPassword, setIsValidNewPassword] = useState(0);
+
+    // Rewrite password
+    const [rewritePassword, setRewritePassword] = useState('');
+    const [isValidRewritePassword, setIsValidRewritePassword] = useState(0);
+
+    // Password State
     const PasswordState = [
         "",
         "Please enter password",
@@ -19,36 +25,39 @@ const ChangePassword = (props) => {
         "Confirm password does not match the new password"
     ];
 
+    // Handle Submit change password function
     const handleSubmit = async () => {
         let validation = true;
+
+        // Validation
         if (oldPassword == '') {
-            setOldState(1);
+            setIsValidOldPassword(1);
             validation = false;
         } else {
-            setOldState(0);
+            setIsValidOldPassword(0);
         }
 
         if (newPassword == '') {
-            setNewState(1);
+            setIsValidNewPassword(1);
             validation = false;
         } else {
             if (oldPassword == newPassword) {
-                setNewState(3);
+                setIsValidNewPassword(3);
                 validation = false;
             } else {
-                setNewState(0);
+                setIsValidNewPassword(0);
             }
         }
 
         if (rewritePassword == '') {
-            setRewriteState(1);
+            setIsValidRewritePassword(1);
             validation = false;
         } else {
             if (newPassword != rewritePassword) {
-                setRewriteState(4);
+                setIsValidRewritePassword(4);
                 validation = false;
             } else {
-                setRewriteState(0);
+                setIsValidRewritePassword(0);
             }
         }
 
@@ -56,6 +65,7 @@ const ChangePassword = (props) => {
             return;
         }
 
+        // Change password
         const config = {
             headers: { Authorization: `Bearer ${props.token}` }
         }
@@ -69,7 +79,7 @@ const ChangePassword = (props) => {
         } catch (e) {
             console.log(e.response);
             if (e.response.data.message == "Invalid oldPassword") {
-                setOldState(2);
+                setIsValidOldPassword(2);
             }
         }
     }
@@ -103,8 +113,8 @@ const ChangePassword = (props) => {
                                     onChange={(event) => {
                                         setOldPassword(event.target.value);
                                     }}
-                                    error={oldState != 0}
-                                    helperText={PasswordState[oldState]}
+                                    error={isValidOldPassword != 0}
+                                    helperText={PasswordState[isValidOldPassword]}
                                     type="password"
                                 />
                             </Grid>
@@ -117,8 +127,8 @@ const ChangePassword = (props) => {
                                     onChange={(event) => {
                                         setNewPassword(event.target.value);
                                     }}
-                                    error={newState != 0}
-                                    helperText={PasswordState[newState]}
+                                    error={isValidNewPassword != 0}
+                                    helperText={PasswordState[isValidNewPassword]}
                                     type="password"
                                 />
                             </Grid>
@@ -131,8 +141,8 @@ const ChangePassword = (props) => {
                                     onChange={(event) => {
                                         setRewritePassword(event.target.value);
                                     }}
-                                    error={rewriteState != 0}
-                                    helperText={PasswordState[rewriteState]}
+                                    error={isValidRewritePassword != 0}
+                                    helperText={PasswordState[isValidRewritePassword]}
                                     type="password"
                                 />
                             </Grid>

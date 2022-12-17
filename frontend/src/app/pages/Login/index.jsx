@@ -1,43 +1,53 @@
-import * as React from "react";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import validator from "validator";
 import { useNavigate } from "react-router-dom";
 import OtpModal from "../../components/OtpModal";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Grid, Box, Container } from '@mui/material';
 
 const theme = createTheme();
 
 export default function Login(props) {
-	const [login, setLogin] = React.useState(false);
-	const [active, setActive] = React.useState(false);
+	// Login state
+	const [login, setLogin] = useState(false);
+	const [active, setActive] = useState(false);
 
-	const [email, setEmail] = React.useState("");
-	const [password, setPassword] = React.useState("");
-	const [otp, setOtp] = React.useState("");
-
-	const navigate = useNavigate();
-	const [isValidEmail, setIsValidEmail] = React.useState(0);
-	const [isValidPassword, setIsValidPassword] = React.useState(0);
-
-	// Modal
-	const [open, setOpen] = React.useState(false);
-	const handleClose = () => setOpen(false);
-
+	// Email
+	const [email, setEmail] = useState("");
+	const [isValidEmail, setIsValidEmail] = useState(0);
 	const EmailState = ["", "Please enter your email", "Invalid Email"];
 
+	// Password
+	const [password, setPassword] = useState("");
+	const [isValidPassword, setIsValidPassword] = useState(0);
 	const PasswordState = ["", "Please enter your password", "Wrong password"];
 
+	// Otp in Modal (optional)
+	const [otp, setOtp] = useState("");
+
+	// Modal
+	const [open, setOpen] = useState(false);
+	const handleClose = () => setOpen(false);
+
+	// Token
+	const navigate = useNavigate();
+	const [token, setToken] = useState('');
+
+	// Get Token from sessionStorage
+	useEffect(() => {
+		if (token === '') {
+			const lastToken = sessionStorage.getItem("token");
+			if (lastToken !== null && lastToken !== undefined) {
+				console.log(lastToken);
+				setToken(lastToken); // Successfully get Token!
+				navigate(-1); // Go back to the previous page 
+			}
+		}
+	}, [token, navigate]);
+
+	// Resend OTP function
 	const resendOTP = async () => {
 		try {
 			const res = await axios.post("http://localhost:2002/login/forget", {
@@ -49,6 +59,7 @@ export default function Login(props) {
 		}
 	}
 
+	// Handle OTP function
 	const handleOTP = async (setError) => {
 		console.log(otp);
 		try {
@@ -76,6 +87,7 @@ export default function Login(props) {
 		}
 	};
 
+	// Handle Submit login function
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		let validation = true;
@@ -130,19 +142,11 @@ export default function Login(props) {
 		}
 	};
 
-	React.useEffect(() => {
-		const lastToken = sessionStorage.getItem("token");
-		if (lastToken !== null && lastToken !== undefined) {
-			props.setToken(lastToken);
-			setLogin(true);
-			setActive(true);
-		}
-	}, [props]);
-
-	React.useEffect(() => {
+	// Checking Login state
+	useEffect(() => {
 		if (login) {
 			if (active) {
-				sessionStorage.setItem('token', props.token);
+				sessionStorage.setItem('token', props.token); // Save Token to sessionStorage
 				navigate("/");
 			} else {
 				setOpen(!active);
