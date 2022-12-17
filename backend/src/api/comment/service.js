@@ -1,5 +1,4 @@
 const { Comment } = require("../../database/models");
-const { verifyUser } = require("../user/service");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 
 const verifyComment = async (req) => {
@@ -29,7 +28,7 @@ const verifyComment = async (req) => {
 const createComment = async (req) => {
 	try {
 		const newComment = req.body;
-		console.log(newComment);
+		newComment["userId"] = req.user.id;
 		const comment = await Comment.create(newComment);
 
 		const message = "Create comment successfully!";
@@ -46,12 +45,11 @@ const createComment = async (req) => {
 	}
 };
 
-const getMyComments = async (req) => {
+const getAllComments = async (req) => {
 	try {
-		const userId = req.user.id;
-		const comments = await Comment.findAll({ where: { userId } });
+		const comments = await Comment.findAll();
 
-		const message = "Get my comments successfully";
+		const message = "Get comments successfully";
 		const status = ResponseCode.OK;
 		const data = { comments };
 
@@ -65,6 +63,25 @@ const getMyComments = async (req) => {
 	}
 };
 
+// const getMyComments = async (req) => {
+// 	try {
+// 		const userId = req.user.id;
+// 		const comments = await Comment.findAll({ where: { userId } });
+
+// 		const message = "Get my comments successfully";
+// 		const status = ResponseCode.OK;
+// 		const data = { comments };
+
+// 		return {
+// 			data,
+// 			message,
+// 			status,
+// 		};
+// 	} catch (e) {
+// 		throw e;
+// 	}
+// };
+
 const updateMyComment = async (req) => {
 	try {
 		let { comment, message, status } = await verifyComment(req);
@@ -72,8 +89,9 @@ const updateMyComment = async (req) => {
 		if (comment) {
 			if (comment.userId === req.user.id) {
 				const updatedComment = req.body;
+				updateMyComment["userId"] = undefined;
 				comment = await comment.update(updatedComment);
-				message = "Update Comment successfully";
+				message = "Update comment successfully";
 				status = ResponseCode.OK;
 			} else {
 				comment = null;
@@ -101,7 +119,7 @@ const deleteMyComment = async (req) => {
 		if (comment) {
 			if (comment.userId === req.user.id) {
 				comment = await comment.destroy();
-				message = "Delete Comment successfully";
+				message = "Delete comment successfully";
 				status = ResponseCode.OK;
 			} else {
 				comment = null;
@@ -122,52 +140,34 @@ const deleteMyComment = async (req) => {
 	}
 };
 
-const getMyComment = async (req) => {
-	try {
-		let { comment, message, status } = await verifyComment(req);
-		let document;
+// const getMyComment = async (req) => {
+// 	try {
+// 		let { comment, message, status } = await verifyComment(req);
+// 		let document;
 
-		if (comment) {
-			if (comment.userId === req.user.id) {
-				document = await comment.getDocument();
-				message = "Get my comment successfully";
-				status = ResponseCode.OK;
-			} else {
-				comment = null;
-				message = "Comment not belongs to you, Not permission";
-				status = ResponseCode.Unauthorized;
-			}
-		}
+// 		if (comment) {
+// 			if (comment.userId === req.user.id) {
+// 				document = await comment.getDocument();
+// 				message = "Get my comment successfully";
+// 				status = ResponseCode.OK;
+// 			} else {
+// 				comment = null;
+// 				message = "Comment not belongs to you, Not permission";
+// 				status = ResponseCode.Unauthorized;
+// 			}
+// 		}
 
-		const data = { comment, document };
+// 		const data = { comment, document };
 
-		return {
-			data,
-			message,
-			status,
-		};
-	} catch (e) {
-		throw e;
-	}
-};
-
-const getAllComments = async (req) => {
-	try {
-		const Comments = await Comment.findAll();
-
-		const message = "Get comments successfully";
-		const status = ResponseCode.OK;
-		const data = { Comments };
-
-		return {
-			data,
-			message,
-			status,
-		};
-	} catch (e) {
-		throw e;
-	}
-};
+// 		return {
+// 			data,
+// 			message,
+// 			status,
+// 		};
+// 	} catch (e) {
+// 		throw e;
+// 	}
+// };
 
 const getComment = async (req) => {
 	try {
@@ -194,15 +194,15 @@ const getComment = async (req) => {
 
 const deleteComment = async (req) => {
 	try {
-		let { Comment, message, status } = await verifyComment(req);
+		let { comment, message, status } = await verifyComment(req);
 
-		if (Comment) {
-			Comment = await Comment.destroy();
-			message = "Delete Comment successfully";
+		if (comment) {
+			comment = await Comment.destroy();
+			message = "Delete comment successfully";
 			status = ResponseCode.OK;
 		}
 
-		const data = { Comment };
+		const data = { comment };
 
 		return {
 			data,
@@ -216,11 +216,9 @@ const deleteComment = async (req) => {
 
 module.exports = {
 	createComment,
-	getMyComments,
-	getMyComment,
+	getAllComments,
 	updateMyComment,
 	deleteMyComment,
-	getAllComments,
 	getComment,
 	deleteComment,
 };

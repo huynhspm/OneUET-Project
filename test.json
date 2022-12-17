@@ -1,26 +1,18 @@
-[
-    {
-        "codeClass": "INT3396",
-        "semester": "...",
-        "students": [
-            {
-                "code": 20020066,
-                "midterm": 1,
-                "final": 1,
-                "total": 1
-            },
-            {
-                "code": 20020066,
-                "midterm": 1,
-                "final": 1,
-                "total": 1
-            },
-            {
-                "code": 20020066,
-                "midterm": 1,
-                "final": 1,
-                "total": 1
-            }
-        ]
-    }
-]
+{
+    "code": "INT3306 4",
+    "semester": "2020-2021-1",
+    "grades": [
+        {
+            "studentCode": 20020054,
+            "midterm": 9,
+            "final": 9,
+            "total": 9
+        },
+        {
+            "studentCode": 20020054,
+            "midterm": 9,
+            "final": 9,
+            "total": 9
+        }
+    ]
+}

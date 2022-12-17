@@ -40,7 +40,7 @@ const DocumentView = (props) => {
                 .then((res) => {
                     let data = res.data.data;
                     console.log(data);
-                    set_pdf_link(data.file.link);
+                    set_pdf_link(data.document.linkView);
                     setName(data.document.name);
                     setDescription(data.document.description);
                     setTags([

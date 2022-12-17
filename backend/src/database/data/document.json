@@ -9,7 +9,9 @@
 		"courseId": 1,
 		"description": "description",
 		"unit": "Khoa Công nghệ Thông tin",
-		"major": "suzuki_major"
+		"major": "suzuki_major",
+		"linkView": "https://arxiv.org/pdf/1910.10093.pdf",
+		"linkDownload": "https://arxiv.org/pdf/1910.10093.pdf"
 	},
 	{
 		"year": 2021,
@@ -21,7 +23,9 @@
 		"courseId": 1,
 		"description": "desicritonp",
 		"unit": "Khoa Công nghệ Thông tin",
-		"major": "but_bi_major"
+		"major": "but_bi_major",
+		"linkView": "https://arxiv.org/pdf/1910.10093.pdf",
+		"linkDownload": "https://arxiv.org/pdf/1910.10093.pdf"
 	},
 	{
 		"year": 2020,
@@ -33,7 +37,9 @@
 		"courseId": 2,
 		"description": "donescritip",
 		"unit": "but_may_unit",
-		"major": "but_may_major"
+		"major": "but_may_major",
+		"linkView": "https://arxiv.org/pdf/1910.10093.pdf",
+		"linkDownload": "https://arxiv.org/pdf/1910.10093.pdf"
 	},
 	{
 		"year": 2022,
@@ -45,7 +51,9 @@
 		"courseId": 3,
 		"description": "nesdoctipri",
 		"unit": "Khoa Công nghệ Thông tin",
-		"major": "cari_major"
+		"major": "cari_major",
+		"linkView": "https://arxiv.org/pdf/1910.10093.pdf",
+		"linkDownload": "https://arxiv.org/pdf/1910.10093.pdf"
 	},
 	{
 		"year": 2020,
@@ -58,7 +66,9 @@
 		"courseId": 5,
 		"status": "public",
 		"unit": "Khoa Công nghệ Thông tin",
-		"major": "Khoa học máy tính"
+		"major": "Khoa học máy tính",
+		"linkView": "https://arxiv.org/pdf/1910.10093.pdf",
+		"linkDownload": "https://arxiv.org/pdf/1910.10093.pdf"
 	},
 	{
 		"year": 2021,
@@ -69,7 +79,9 @@
 		"teacherId": 5,
 		"courseId": 5,
 		"unit": "Khoa Công nghệ Thông tin",
-		"major": "Khoa học máy tính"
+		"major": "Khoa học máy tính",
+		"linkView": "https://arxiv.org/pdf/1910.10093.pdf",
+		"linkDownload": "https://arxiv.org/pdf/1910.10093.pdf"
 	},
 	{
 		"year": 2021,
@@ -82,7 +94,9 @@
 		"courseId": 5,
 		"status": "public",
 		"unit": "Khoa Công nghệ Thông tin",
-		"major": "Khoa học máy tính"
+		"major": "Khoa học máy tính",
+		"linkView": "https://arxiv.org/pdf/1910.10093.pdf",
+		"linkDownload": "https://arxiv.org/pdf/1910.10093.pdf"
 	},
 	{
 		"year": 2021,
@@ -94,6 +108,8 @@
 		"courseId": 5,
 		"status": "public",
 		"unit": "Khoa Điện tử Viễn thông",
-		"major": "Kỹ thuật máy tính"
+		"major": "Kỹ thuật máy tính",
+		"linkView": "https://arxiv.org/pdf/1910.10093.pdf",
+		"linkDownload": "https://arxiv.org/pdf/1910.10093.pdf"
 	}
 ]

@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const config = require("../../config");
 const { User } = require("../../database/models");
 const ResponseCode = require("../../utils/constant/ResponseCode");
-const { sendOTP, createOTP } = require("../../utils/email");
+const { sendEmailOTP, createOTP } = require("../../utils/email");
 
 const verifyEmail = async (email) => {
 	return await User.findOne({ where: { email } });
@@ -21,7 +21,7 @@ const login = async (req) => {
 	} else {
 		const verifyPassword = bcrypt.compareSync(password, user.password);
 		if (!verifyPassword) {
-			message = "Invalid password!";
+			message = "Invalid password";
 			status = ResponseCode.Forbidden;
 		} else {
 			if (user.active) {
@@ -36,7 +36,7 @@ const login = async (req) => {
 				);
 
 				data = { token };
-				message = "Login successfully!";
+				message = "Login successfully";
 				status = ResponseCode.OK;
 			} else {
 				const { otp, expiredTime } = createOTP();
@@ -44,7 +44,7 @@ const login = async (req) => {
 				console.log("sendOTP");
 				await user.update({ otp, expiredTime });
 
-				message = "Login successfully but not active!";
+				message = "Login successfully but not active";
 				status = ResponseCode.Unauthorized;
 			}
 		}
@@ -63,24 +63,28 @@ const verifyOTP = async (req, res) => {
 	let data, message, status;
 
 	if (!user) {
-		data = null;
 		message = "Invalid email";
 		status = ResponseCode.Forbidden;
 	} else {
 		if (parseInt(otp) === user.otp) {
-			await user.update({ active: true });
-			const role = await user.getRole();
-			const token = jwt.sign(
-				{ id: user.id, roleId: role.id },
-				config.secret_key,
-				{
-					expiresIn: config.expires_in,
-				}
-			);
+			if (new Date(Date.now()) > user.expiredTime) {
+				message = "OTP expired, please click resend";
+				status = ResponseCode.OK;
+			} else {
+				await user.update({ active: true });
+				const role = await user.getRole();
+				const token = jwt.sign(
+					{ id: user.id, roleId: role.id },
+					config.secret_key,
+					{
+						expiresIn: config.expires_in,
+					}
+				);
 
-			data = { token };
-			message = "OTP validation successful!";
-			status = ResponseCode.OK;
+				data = { token };
+				message = "OTP validation successful";
+				status = ResponseCode.OK;
+			}
 		} else {
 			message = "Invalid OTP";
 			status = ResponseCode.Unauthorized;
@@ -94,7 +98,7 @@ const verifyOTP = async (req, res) => {
 	};
 };
 
-const forgetPassword = async (req, res) => {
+const sendOTP = async (req, res) => {
 	const { email } = req.body;
 	const user = await verifyEmail(email);
 	let data, message, status;
@@ -104,11 +108,11 @@ const forgetPassword = async (req, res) => {
 		status = ResponseCode.Forbidden;
 	} else {
 		const { otp, expiredTime } = createOTP();
-		// sendOTP(user.email, otp);
-		console.log("sendOTP");
+		// sendEmailOTP(user.email, otp);
+		console.log("sendEmailOTP");
 		await user.update({ otp, expiredTime });
 
-		message = "Forget password successfully";
+		message = "Send OTP successfully";
 		status = ResponseCode.OK;
 	}
 
@@ -130,21 +134,26 @@ const resetPassword = async (req, res) => {
 		status = ResponseCode.Forbidden;
 	} else {
 		if (parseInt(otp) === user.otp) {
-			const hashPassword = bcrypt.hashSync(password, config.salt);
-			await user.update({ password: hashPassword });
+			if (new Date(Date.now()) > user.expiredTime) {
+				message = "OTP expired, please click resend";
+				status = ResponseCode.OK;
+			} else {
+				const hashPassword = bcrypt.hashSync(password, config.salt);
+				await user.update({ password: hashPassword });
 
-			const role = await user.getRole();
-			const token = jwt.sign(
-				{ id: user.id, roleId: role.id },
-				config.secret_key,
-				{
-					expiresIn: config.expires_in,
-				}
-			);
+				const role = await user.getRole();
+				const token = jwt.sign(
+					{ id: user.id, roleId: role.id },
+					config.secret_key,
+					{
+						expiresIn: config.expires_in,
+					}
+				);
 
-			data = { token };
-			message = "Reset password successfully";
-			status = ResponseCode.OK;
+				data = { token };
+				message = "Reset password successfully";
+				status = ResponseCode.OK;
+			}
 		} else {
 			message = "Invalid OTP";
 			status = ResponseCode.Unauthorized;
@@ -158,4 +167,4 @@ const resetPassword = async (req, res) => {
 	};
 };
 
-module.exports = { login, verifyOTP, forgetPassword, resetPassword };
+module.exports = { login, verifyOTP, sendOTP, resetPassword };

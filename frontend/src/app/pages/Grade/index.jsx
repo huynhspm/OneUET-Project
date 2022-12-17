@@ -12,7 +12,6 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import LeftDrawer from "../../components/LeftDrawer";
 import './styles.css';
 
 const drawerWidth = 240;
@@ -70,9 +69,6 @@ function Row(props) {
         <TableCell style={{ padding: 0 }} colSpan={8}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 0 }}>
-              <Typography variant="h6" gutterBottom component="div">
-                Chi tiết
-              </Typography>
               <Table aria-label="purchases">
                 <TableHead>
                   <TableRow>
@@ -83,7 +79,7 @@ function Row(props) {
                 <TableBody>
                   {row.detail.map((detail) => (
                     <TableRow key={detail.GK}>
-                      <TableCell component="th" scope="row">
+                      <TableCell component="th" >
                         {detail.GK}
                       </TableCell>
                       <TableCell>{detail.CK}</TableCell>
@@ -120,59 +116,47 @@ const rows = [
 
 export default function Grade() {
   return (
-      <Box sx={{ display: 'flex' }}>
-        <Box
-          component="nav"
-          sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-        >
-          <LeftDrawer />
-        </Box>
-        <Box
-          component="main"
-          sx={{ flexGrow: 1, p: 1, m: 5, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
-        >
-          <Typography variant="h6">
-            Sinh viên:
-          </Typography>
-          <Typography variant="h6">
-            Mã số sinh viên:
-          </Typography>
-          <Typography variant="h6">
-            Lớp quản lý:
-          </Typography>
-          <Typography variant="h4" align="center">
-            Bảng điểm học tập
-          </Typography>
-          <br />
-          <br />
-          <TableContainer sx={{ maxHeight: 700 }} component={Paper}>
-            <Table stickyHeader aria-label="grade_table">
-              <TableHead>
-                <TableRow sx={{ '& > *': { borderBottom: 0.5, borderLeft: 0.5, borderTop: 0.5, backgroundColor: "lightblue" } }}>
-                  <TableCell align="center">Mã môn học</TableCell>
-                  <TableCell align="left">Môn học</TableCell>
-                  <TableCell align="center">Số tín chỉ</TableCell>
-                  <TableCell align="center">Điểm hệ 10</TableCell>
-                  <TableCell align="center">Điểm chữ</TableCell>
-                  <TableCell align="center">Điểm hệ 4</TableCell>
-                  <TableCell align="center"> Chi tiết</TableCell>
-                </TableRow>
-              </TableHead>
+    <>
+      <Typography variant="h6">
+        Sinh viên:
+      </Typography>
+      <Typography variant="h6">
+        Mã số sinh viên:
+      </Typography>
+      <Typography variant="h6">
+        Lớp quản lý:
+      </Typography>
+      <Typography variant="h4" align="center">
+        Bảng điểm học tập
+      </Typography>
+      <br />
+      <br />
+      <TableContainer sx={{ maxHeight: 700 }} component={Paper}>
+        <Table stickyHeader aria-label="grade_table">
+          <TableHead>
+            <TableRow sx={{ '& > *': { borderBottom: 0.5, borderLeft: 0.5, borderTop: 0.5, backgroundColor: "lightblue" } }}>
+              <TableCell align="center">Mã môn học</TableCell>
+              <TableCell align="left">Môn học</TableCell>
+              <TableCell align="center">Số tín chỉ</TableCell>
+              <TableCell align="center">Điểm hệ 10</TableCell>
+              <TableCell align="center">Điểm chữ</TableCell>
+              <TableCell align="center">Điểm hệ 4</TableCell>
+              <TableCell align="center"> Chi tiết</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableRow>
+            <TableCell sx={{ borderBottom: 1, borderTop: 1 }} align="center" colSpan={8}>
+              Học kỳ 2 - Năm học 2022 - 2023
+            </TableCell>
+          </TableRow>
 
-              <TableRow>
-                <TableCell sx={{ borderBottom: 1, borderTop: 1 }} align="center" colSpan={8}>
-                  Học kỳ 2 - Năm học 2022 - 2023
-                </TableCell>
-              </TableRow>
-
-              <TableBody>
-                {rows.map((row) => (
-                  <Row key={row.code} row={row} />
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-      </Box>
-    </Box>
+          <TableBody>
+            {rows.map((row) => (
+              <Row key={row.code} row={row} />
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
   );
 }

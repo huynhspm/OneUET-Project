@@ -23,18 +23,33 @@ import { units, majors, categories } from '../../utils/constant';
 const Add = () => {
     const [open, setOpen] = useState(false);
 
-    // const handleSubmit = async (event) => {
-    //     event.preventDefault();
-    //     const data = new FormData(event.currentTarget);
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo'
+    const config = {
+        headers: { Authorization: `Bearer ${token}` }
+    };
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
 
-    //     const docName = data.get("docName");
-    //     const docDescription = data.get("docDescription");
-    //     const docUnit = data.get("docUnit");
-    //     const docMajor = data.get("docMajor");
-    //     const docLecturer = data.get("docLecturer");
-    //     const docSubject = data.get("docSubject");
-    //     const docType = data.get("docType");
-    //     const docYear = data.get("docYear");
+        const docName = data.get("docName");
+        const docDescription = data.get("docDescription");
+        const docUnit = data.get("docUnit");
+        const docMajor = data.get("docMajor");
+        const docLecturer = data.get("docLecturer");
+        const docSubject = data.get("docSubject");
+        const docType = data.get("docType");
+        const docYear = data.get("docYear");
+        
+        console.log(docName);
+        console.log(docDescription);
+        console.log(docUnit);
+        console.log(docMajor);
+        console.log(docLecturer);
+        console.log(docSubject);
+        console.log(docType);
+        console.log(docYear);
+
+    }
 
     //     try {
     //         const res = await axios.post("http://localhost:2002/file", {
@@ -53,6 +68,24 @@ const Add = () => {
     //     }
     // };
 
+    const postDocument = async () => {
+        let data = {
+            name: 'docPost2',
+            year: 2022,
+            category: 'Giáo trình',
+            status: 'private', 
+            description: 'description for docPost2', 
+            unit: 'Khoa Công nghệ Thông tin', 
+            major: 'Khoa học máy tính', 
+            linkView: 'https://arxiv.org/pdf/1910.10093.pdf', 
+            linkDownload: 'https://arxiv.org/pdf/1910.10093.pdf', 
+            userId: 1,
+            courseId: 1, 
+            teacherId: 2
+        }
+        await axios.post("http://localhost:2002/document", data, config);
+
+    }
 
     const fileBrowseHandler = (event) => {
 
@@ -67,7 +100,6 @@ const Add = () => {
         axios.get("http://localhost:2002/ggservice").then((res) => {
             console.log(res);
         })
-
     };
 
     return (
@@ -108,7 +140,7 @@ const Add = () => {
                         <Box
                             component="form"
                             noValidate
-                            // onSubmit={handleSubmit}
+                            onSubmit={handleSubmit}
                             sx={{ width: '100%', pt: 1, flexShrink: { sm: 0 }, mt: 1 }}
                         >
                             <Grid container spacing={1}>
@@ -227,6 +259,7 @@ const Add = () => {
                             right: 20,
                             position: 'absolute',
                         }}
+                        onClick={postDocument}
                     >
                         POST
                     </Button>

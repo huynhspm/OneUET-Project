@@ -6,8 +6,8 @@ const { verifyToken, verifyAdmin } = require("../../middleware/service");
 const router = Router();
 
 router.post("/", [verifyToken, verifyAdmin], controller.createCourse);
-router.get("/", [verifyToken, verifyAdmin], controller.getCourses);
-router.get("/:id", [verifyToken, verifyAdmin], controller.getCourse);
+router.get("/", [verifyToken], controller.getCourses);
+router.get("/:id", [verifyToken], controller.getCourse);
 router.put("/:id", [verifyToken, verifyAdmin], controller.updateCourse);
 router.delete("/:id", [verifyToken, verifyAdmin], controller.deleteCourse);
 

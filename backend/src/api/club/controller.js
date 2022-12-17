@@ -1,10 +1,10 @@
 const service = require("./service");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 
-// POST: /class
-const createClass = async (req, res) => {
+// POST: /club
+const createClub = async (req, res) => {
 	try {
-		const result = await service.createClass(req);
+		const result = await service.createClub(req);
 		const { data, message, status } = result;
 
 		res.status(status).json({
@@ -15,16 +15,16 @@ const createClass = async (req, res) => {
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
 			data: e.message,
-			message: "Couldn't create class",
+			message: "Couldn't create club",
 			status: ResponseCode.Bad_Request,
 		});
 	}
 };
 
-// GET: /class/
-const getClasses = async (req, res) => {
+// GET: /club/
+const getClubs = async (req, res) => {
 	try {
-		const result = await service.getClasses(req);
+		const result = await service.getClubs(req);
 		const { data, message, status } = result;
 
 		res.status(status).json({
@@ -35,16 +35,16 @@ const getClasses = async (req, res) => {
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
 			data: e.message,
-			message: "Couldn't get classes",
+			message: "Couldn't get clubs",
 			status: ResponseCode.Bad_Request,
 		});
 	}
 };
 
-// GET: /class/:id
-const getClass = async (req, res) => {
+// GET: /Club/:id
+const getClub = async (req, res) => {
 	try {
-		const result = await service.getClass(req);
+		const result = await service.getClub(req);
 		const { data, message, status } = result;
 
 		res.status(status).json({
@@ -55,16 +55,17 @@ const getClass = async (req, res) => {
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
 			data: e.message,
-			message: "Couldn't get class",
+			message: "Couldn't get club",
 			status: ResponseCode.Bad_Request,
 		});
 	}
 };
 
-// PUT: /class/:id
-const updateClass = async (req, res) => {
+// PUT: /club/:id
+const updateClub = async (req, res) => {
 	try {
-		const result = await service.updateClass(req);
+		console.log(req.user);
+		const result = await service.updateClub(req);
 		const { data, message, status } = result;
 
 		res.status(status).json({
@@ -75,16 +76,16 @@ const updateClass = async (req, res) => {
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
 			data: e.message,
-			message: "Couldn't update class",
+			message: "Couldn't update club",
 			status: ResponseCode.Bad_Request,
 		});
 	}
 };
 
-// DELETE: /class/:id
-const deleteClass = async (req, res) => {
+// DELETE: /club/:id
+const deleteClub = async (req, res) => {
 	try {
-		const result = await service.deleteClass(req);
+		const result = await service.deleteClub(req);
 		const { data, message, status } = result;
 
 		res.status(status).json({
@@ -95,36 +96,16 @@ const deleteClass = async (req, res) => {
 	} catch (e) {
 		res.status(ResponseCode.Bad_Request).json({
 			data: e.message,
-			message: "Couldn't delete class",
-			status: ResponseCode.Bad_Request,
-		});
-	}
-};
-
-const updateGrade = async (req, res) => {
-	try {
-		const result = await service.updateGrade(req);
-		const { data, message, status } = result;
-
-		res.status(status).json({
-			data: data,
-			message: message,
-			status: status,
-		});
-	} catch (e) {
-		res.status(ResponseCode.Bad_Request).json({
-			data: e.message,
-			message: "Couldn't update grade",
+			message: "Couldn't delete club",
 			status: ResponseCode.Bad_Request,
 		});
 	}
 };
 
 module.exports = {
-	createClass,
-	getClasses,
-	getClass,
-	updateClass,
-	deleteClass,
-	updateGrade,
+	createClub,
+	getClubs,
+	getClub,
+	updateClub,
+	deleteClub,
 };

@@ -19,11 +19,16 @@ import Grade from "../pages/Grade";
 import GradeCourses from "../pages/GradeCourses";
 import Profile from "../pages/Profile";
 import EditDocumentPage from "../pages/EditDocumentPage";
+import ValidationGrade from "../pages/ValidationGrade";
+import SearchCourses from  "../pages/SearchCourses";
+import ForgetPassword from "../pages/ForgetPassword";
+import Logout from "../pages/Logout";
 
 const RootLayout = () => {
 
   // const [mode, setMode] = useState("light");
   const [token, setToken] = useState('');
+
   // const darkTheme = createTheme({
   //   palette: {
   //     mode: mode,
@@ -34,10 +39,12 @@ const RootLayout = () => {
     <Box bgcolor={"background.default"} color={"text.primary"}>
       <BrowserRouter>
         {/* <Header setMode={setMode} mode={mode} /> */}
-        <Header/>
+        <Header />
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<HomePage token={token} />} />
+          <Route path="/login" element={<Login token={token} setToken={setToken} />} />
+          <Route path="/login/forget" element={<ForgetPassword token={token} setToken={setToken} />} />
+          <Route path="/logout" element={<Logout setToken={setToken} />} />
           <Route path="/register" element={<Register />} />
           <Route path="/homepage" element={<HomePage />} />
           <Route path="/convert" element={<Convert />} />
@@ -45,8 +52,11 @@ const RootLayout = () => {
           <Route path="/document/:doc_id" element={<Document />} />
           <Route path="/document/edit/:doc_id" element={<EditDocumentPage />} />
           <Route path="/grade" element={<GradeCourses />} />
+          <Route path="/SearchCourses" element={<SearchCourses />} />
           <Route path="/validation-document" element={<ValidationPage />} />
           <Route path="/profile/:type" element={<Profile />} />
+          <Route path="/validation-grade" element={<ValidationGrade />} />
+          <Route path="/profile/:type" element={<Profile token={token} />} />
         </Routes>
         <Footer />
       </BrowserRouter>
