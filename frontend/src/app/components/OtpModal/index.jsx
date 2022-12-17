@@ -2,24 +2,12 @@ import React from 'react';
 import { Box, Typography, Button, Modal, TextField } from '@mui/material';
 
 const OtpModal = (props) => {
+    // OTP
     const [isError, setIsError] = React.useState(0);
-    const OTPState = [
-        "",
-        "Please enter your OTP",
-        "Invalid OTP",
-        "OTP expired, please click resend"
-    ];
+    const OTPState = ["", "Please enter your OTP", "Invalid OTP", "OTP expired, please click resend"];
 
     return (
-        <Modal
-            open={props.open}
-            onClose={props.handleClose}
-        // sx={{
-        //     display: 'flex',
-        //     alignItems: 'center',
-        //     justifyContent: 'center',
-        // }}
-        >
+        <Modal open={props.open} onClose={props.handleClose} >
             <Box
                 sx={{
                     position: 'absolute',
@@ -47,9 +35,7 @@ const OtpModal = (props) => {
                     onChange={(event) => {
                         props.setOtp(event.target.value);
                     }}
-                >
-
-                </TextField>
+                />
                 <Box>
                     <Typography variant='p'>
                         OTP not received?

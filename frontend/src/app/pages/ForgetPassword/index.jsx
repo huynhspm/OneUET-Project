@@ -27,7 +27,7 @@ const ForgetPassword = (props) => {
 
     const resendOTP = async () => {
         try {
-            const res = await axios.post("http://localhost:2002/login/forget", {
+            const res = await axios.post("http://localhost:2002/api/login/forget", {
                 email: email
             });
             console.log(res);
@@ -58,7 +58,7 @@ const ForgetPassword = (props) => {
             }
 
             try {
-                const res = await axios.post("http://localhost:2002/login/forget", {
+                const res = await axios.post("http://localhost:2002/api/login/forget", {
                     email: email
                 });
                 console.log(res);
@@ -101,7 +101,7 @@ const ForgetPassword = (props) => {
             }
 
             try {
-                const res = await axios.post("http://localhost:2002/login/reset", {
+                const res = await axios.post("http://localhost:2002/api/login/reset", {
                     email: email,
                     password: newPassword,
                     otp: otp

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from "react-router-dom";
 import { Divider } from '@mui/material';
 import Header from '../../containers/Header';
@@ -23,12 +23,24 @@ const Profile = (props) => {
     }
 
     const navigate = useNavigate();
+    const [token, setToken] = useState('');
     useEffect(() => {
-        // console.log(props.token);
-        if (props.token == '') {
+        if (token === '') {
+          const lastToken = sessionStorage.getItem("token");
+          if (lastToken !== null && lastToken !== undefined) {
+            console.log(lastToken);
+            setToken(lastToken);
+          } else {
             navigate('/login');
+          }
         }
-    }, [props.token]);
+      }, [token, navigate]);
+    // useEffect(() => {
+    //     console.log(props.token);
+    //     if (props.token === '') {
+    //         navigate('/login');
+    //     }
+    // }, [props.token]);
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -44,11 +56,11 @@ const Profile = (props) => {
                 sx={{ flexGrow: 1, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
                 <Divider />
-                {type === 'information' && <Information token={props.token} />}
+                {type === 'information' && <Information token={token} />}
                 {type === 'schedule' && <Schedule />}
                 {type === 'learning-result' && <Grade />}
                 {type === 'private-document' && <PrivateDocument />}
-                {type === 'change-password' && <ChangePassword token={props.token} />}
+                {type === 'change-password' && <ChangePassword token={token} />}
                 {type === 'login' && <Header />}
             </Box>
         </Box>
