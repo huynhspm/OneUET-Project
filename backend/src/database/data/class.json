@@ -8,6 +8,7 @@
 		"quantity": 37,
 		"dayOfWeek": "2",
 		"section": "1-2",
+		"finish": true,
 		"classroom": "313-GĐ2"
 	},
 	{
@@ -19,6 +20,7 @@
 		"quantity": 50,
 		"dayOfWeek": "2",
 		"section": "1-2",
+		"finish": false,
 		"classroom": "Sân bãi ĐHNN"
 	},
 	{
@@ -30,6 +32,7 @@
 		"quantity": 29,
 		"dayOfWeek": "2",
 		"section": "1-2",
+		"finish": true,
 		"classroom": "302-GĐ2"
 	},
 	{
@@ -41,6 +44,7 @@
 		"quantity": 29,
 		"dayOfWeek": "2",
 		"section": "1-2",
+		"finish": false,
 		"classroom": "PM 208-G2"
 	},
 	{
@@ -52,6 +56,7 @@
 		"quantity": 18,
 		"dayOfWeek": "2",
 		"section": "1-2",
+		"finish": true,
 		"classroom": "210-G2"
 	},
 	{
@@ -63,6 +68,7 @@
 		"quantity": 36,
 		"dayOfWeek": "2",
 		"section": "1-2",
+		"finish": false,
 		"classroom": "Sân bãi ĐHNN"
 	},
 	{
@@ -74,6 +80,7 @@
 		"quantity": 34,
 		"dayOfWeek": "2",
 		"section": "1-2",
+		"finish": true,
 		"classroom": "307-GĐ2"
 	},
 	{
@@ -85,6 +92,7 @@
 		"quantity": 35,
 		"dayOfWeek": "2",
 		"section": "1-2",
+		"finish": true,
 		"classroom": "303-GĐ2"
 	},
 	{
@@ -96,6 +104,7 @@
 		"quantity": 28,
 		"dayOfWeek": "2",
 		"section": "1-2",
+		"finish": true,
 		"classroom": "PM 207-G2"
 	},
 	{
@@ -107,6 +116,7 @@
 		"quantity": 32,
 		"dayOfWeek": "2",
 		"section": "1-2",
+		"finish": true,
 		"classroom": "213-GĐ3"
 	},
 	{
@@ -118,6 +128,7 @@
 		"quantity": 70,
 		"dayOfWeek": "2",
 		"section": "1-2",
+		"finish": true,
 		"classroom": "308-G2"
 	},
 	{
@@ -129,17 +140,19 @@
 		"quantity": 58,
 		"dayOfWeek": "2",
 		"section": "1-2",
+		"finish": true,
 		"classroom": "405-VCH"
 	},
 	{
 		"id": 13,
 		"courseId": 11,
 		"semester": "2021-2022-1",
-		"code": "EMA 2027 20",
+		"code": "EMA2027 20",
 		"group": "2",
 		"quantity": 35,
 		"dayOfWeek": "2",
 		"section": "1-2",
+		"finish": true,
 		"classroom": "312-GĐ2"
 	},
 	{
@@ -151,6 +164,7 @@
 		"quantity": 62,
 		"dayOfWeek": "2",
 		"section": "1-2",
+		"finish": true,
 		"classroom": "206-GĐ3"
 	},
 	{
@@ -162,6 +176,7 @@
 		"quantity": 48,
 		"dayOfWeek": "2",
 		"section": "1-2",
+		"finish": true,
 		"classroom": "Sân bãi ĐHNN"
 	},
 	{
@@ -173,6 +188,7 @@
 		"quantity": 80,
 		"dayOfWeek": "2",
 		"section": "1-2",
+		"finish": true,
 		"classroom": "301-G2"
 	},
 	{
@@ -184,6 +200,7 @@
 		"quantity": 20,
 		"dayOfWeek": "2",
 		"section": "1-2",
+		"finish": true,
 		"classroom": "306-GĐ2"
 	},
 	{
@@ -195,17 +212,19 @@
 		"quantity": 31,
 		"dayOfWeek": "2",
 		"section": "1-2",
+		"finish": true,
 		"classroom": "PM 313-G2"
 	},
 	{
 		"id": 19,
 		"courseId": 16,
 		"semester": "2021-2022-1",
-		"code": "INT3139 1",
+		"code": "INT3121 2",
 		"group": "CL",
 		"quantity": 79,
 		"dayOfWeek": "2",
 		"section": "1-2",
+		"finish": true,
 		"classroom": "304-G2"
 	},
 	{
@@ -217,6 +236,7 @@
 		"quantity": 68,
 		"dayOfWeek": "2",
 		"section": "1-2",
+		"finish": true,
 		"classroom": "101-G2"
 	}
 ]

@@ -37,8 +37,8 @@ const Activities = (props) => {
         props.updateUserData(props.token, {
             unionJoint: props.unionJoint,
             partyJoint: props.partyJoint,
-            unionPossition: props.unionPossition,
-            associationPossition: props.associationPossition
+            unionPosition: props.unionPosition,
+            associationPosition: props.associationPosition
         });
     }
 
@@ -134,9 +134,9 @@ const Activities = (props) => {
                                     disabled={!editable}
                                     fullWidth
                                     label="Chức vụ cao nhất (Đoàn Thanh niên)"
-                                    value={ControlValue(props.unionPossition)}
+                                    value={ControlValue(props.unionPosition)}
                                     onChange={(event) => {
-                                        props.setUnionPossition(event.target.value);
+                                        props.setUnionPosition(event.target.value);
                                     }}
                                     id="position-doan"
                                     type="text"
@@ -148,9 +148,9 @@ const Activities = (props) => {
                                     disabled={!editable}
                                     fullWidth
                                     label="Chức vụ cao nhất (Hội Sinh viên)"
-                                    value={ControlValue(props.associationPossition)}
+                                    value={ControlValue(props.associationPosition)}
                                     onChange={(event) => {
-                                        props.setAssociationPossition(event.target.value);
+                                        props.setAssociationPosition(event.target.value);
                                     }}
                                     id="position-hoi"
                                     type="text"

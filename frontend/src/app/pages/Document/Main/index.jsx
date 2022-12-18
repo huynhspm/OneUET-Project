@@ -9,7 +9,7 @@ import FilterSidebar from '../../../components/FilterSidebar';
 import Add from '../../../components/Add';
 import { useState, useEffect } from 'react';
 
-import { drawerWidth, documentCardHeight, faculties } from '../../../utils/constant';
+import { drawerWidth, documentCardHeight, units, majors, unitsAndMajors } from '../../../utils/constant';
 import axios from "axios";
 import '../styles.css'
 
@@ -18,23 +18,33 @@ const Main = (props) => {
 	const [data, setData] = React.useState([]);
 	const [card, setCard] = React.useState([]);
 	const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo'
-	const config = {
-		headers: { Authorization: `Bearer ${token}` }
-	};
 
 	function getDocuments(data) {
 		let docs = data.data;
 		return docs?.documents;
 	}
 
+	const [filterParams, setFilterParams] = React.useState({
+		unit: [],
+		major: [],
+		category: [],
+		year: []
+	});
+
 	useEffect(() => {
 		fetchData();
-	}, []);
-
+		console.log('useEffect()');
+	}, [filterParams]);
+	
 	const fetchData = async () => {
 		try {
+			console.log(filterParams);
 			await axios
-				.get("http://localhost:2002/document", config)
+				.get("http://localhost:2002/document/public",
+					{
+						params: filterParams,
+						headers: { Authorization: `Bearer ${token}` }
+					})
 				.then((res) => {
 					let docs = getDocuments(res.data);
 					console.log(res);
@@ -44,14 +54,17 @@ const Main = (props) => {
 							name: docs[id].name,
 							description: docs[id].description,
 							src_img: "https://randomuser.me/api/portraits/women/2.jpg",
-							faculty: docs[id].faculty,
+							unit: docs[id].unit,
 							major: docs[id].major,
+							fileID: docs[id].fileId,
+							docID: docs[id].id,
 						}
 						tmp.push(element);
 					}
-					// console.log("--fetchData() - Document--");
-					// console.log(tmp);
-					// console.log("-------------------------");
+					console.log("--fetchData() - Document--");
+					console.log(tmp);
+					console.log("-------------------------");
+
 					setCard(tmp);
 				});
 		} catch (e) {
@@ -64,11 +77,6 @@ const Main = (props) => {
 	const handleDrawerToggle = () => {
 		setMobileOpen(!mobileOpen);
 	};
-
-	const filterData = {
-		Khoa: faculties,
-		Ngành: ['Công nghệ thông tin', 'Khoa học máy tính', 'Send email', 'Drafts', "Nganh A"]
-	}
 
 	return (
 		<>
@@ -83,31 +91,33 @@ const Main = (props) => {
 						open
 					>
 						<Toolbar variant="dense" sx={{}} />
-						<FilterSidebar filterData={filterData} />
+						<FilterSidebar filterParams={filterParams} setFilterParams={setFilterParams}/>
 					</Drawer>
 				</Box>
 				<Box
 					component="main"
-					sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+					sx={{
+						flexGrow: 1,
+						p: 3,
+						width: { sm: `calc(100% - ${drawerWidth}px)` },
+						display: 'flex',
+					}}
 				>
 					{
 						card.length > 0 &&
-						<div>
-							<Box sx={{ display: 'flex', flexWrap: "wrap", }}>
-								{card.map((card, index) => (
-									<DocumentCard
-										height={documentCardHeight}
-										src_img={card.src_img}
-										name={card.name}
-										description={card.description}
-										faculty={card.faculty}
-										major={card.major}
-										index={index} />
-								))}
-							</Box>
-						</div>
+						<Box sx={{ display: 'flex', flexWrap: "wrap", alignItems: 'center', justifyContent: 'flex-start', }}>
+							{card.map((card, index) => (
+								<DocumentCard
+									src_img={card.src_img}
+									name={card.name}
+									description={card.description}
+									unit={card.unit}
+									major={card.major}
+									key={index}
+									docID={card.docID} />
+							))}
+						</Box>
 					}
-
 				</Box>
 			</Box>
 			<Add></Add>

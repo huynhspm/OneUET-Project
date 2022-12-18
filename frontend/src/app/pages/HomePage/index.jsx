@@ -5,13 +5,20 @@ import { useNavigate } from "react-router-dom";
 
 const HomePage = (props) => {
   const navigate = useNavigate();
-  useEffect(() => {
-    // console.log(props.token);
-    if (props.token == '') {
-      navigate('/login');
-    }
-  }, [props.token]);
+  const [token, setToken] = useState('');
 
+  useEffect(() => {
+    if (token === '') {
+      const lastToken = sessionStorage.getItem("token");
+      if (lastToken !== null && lastToken !== undefined) {
+        console.log(lastToken);
+        setToken(lastToken);
+      } else {
+        navigate('/login');
+      }
+    }
+  }, [token, navigate]);
+  
   const cards_json = [
     {
       name: "Du",

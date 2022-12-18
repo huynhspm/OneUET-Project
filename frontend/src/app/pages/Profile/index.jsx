@@ -1,5 +1,5 @@
-import React from 'react';
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from "react-router-dom";
 import { Divider } from '@mui/material';
 import Header from '../../containers/Header';
 import Box from '@mui/material/Box';
@@ -9,18 +9,38 @@ import Schedule from './Schedule';
 import Grade from '../Grade';
 import PrivateDocument from './PrivateDocument';
 import FilterSidebar from '../../components/FilterSidebar';
-import { faculties } from '../../utils/constant';
+import { units } from '../../utils/constant';
+import ChangePassword from './ChangePassword';
 
 const drawerWidth = 240;
 
-const Profile = () => {
+const Profile = (props) => {
     const { type } = useParams();
 
     const filterData = {
-		Khoa: faculties,
-		Ngành: ['Công nghệ thông tin', 'Khoa học máy tính', 'Send email', 'Drafts']
-	}
+        Khoa: units,
+        Ngành: ['Công nghệ thông tin', 'Khoa học máy tính', 'Send email', 'Drafts']
+    }
 
+    const navigate = useNavigate();
+    const [token, setToken] = useState('');
+    useEffect(() => {
+        if (token === '') {
+          const lastToken = sessionStorage.getItem("token");
+          if (lastToken !== null && lastToken !== undefined) {
+            console.log(lastToken);
+            setToken(lastToken);
+          } else {
+            navigate('/login');
+          }
+        }
+      }, [token, navigate]);
+    // useEffect(() => {
+    //     console.log(props.token);
+    //     if (props.token === '') {
+    //         navigate('/login');
+    //     }
+    // }, [props.token]);
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -36,11 +56,11 @@ const Profile = () => {
                 sx={{ flexGrow: 1, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
                 <Divider />
-                {type === 'information' && <Information />}
+                {type === 'information' && <Information token={token} />}
                 {type === 'schedule' && <Schedule />}
                 {type === 'learning-result' && <Grade />}
                 {type === 'private-document' && <PrivateDocument />}
-                {type === 'change-password' && <Header />}
+                {type === 'change-password' && <ChangePassword token={token} />}
                 {type === 'login' && <Header />}
             </Box>
         </Box>

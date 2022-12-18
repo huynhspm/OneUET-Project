@@ -26,7 +26,7 @@ const PrivateDocument = (props) => {
     const fetchData = async () => {
         try {
             await axios
-                .get("http://localhost:2002/document/me/", config)
+                .get("http://localhost:2002/user/me", config)
                 .then((res) => {
                     let docs = getDocuments(res.data);
                     console.log(res);
@@ -36,8 +36,9 @@ const PrivateDocument = (props) => {
                             name: docs[id].name,
                             description: docs[id].description,
                             src_img: "https://randomuser.me/api/portraits/women/2.jpg",
-                            faculty: docs[id].faculty,
+                            unit: docs[id].unit,
                             major: docs[id].major,
+							fileID: docs[id].fileId,
                         }
                         tmp.push(element);
                     }
@@ -60,13 +61,14 @@ const PrivateDocument = (props) => {
                             <Box sx={{ display: 'flex', flexWrap: "wrap", }}>
                                 {card.map((card, index) => (
                                     <DocumentCard
+                                        key={index}
                                         height={documentCardHeight}
                                         src_img={card.src_img}
                                         name={card.name}
                                         description={card.description}
-                                        faculty={card.faculty}
+                                        unit={card.unit}
                                         major={card.major}
-                                        index={index} />
+                                        fileID={card.fileID} />
                                 ))}
                             </Box>
                         </div>

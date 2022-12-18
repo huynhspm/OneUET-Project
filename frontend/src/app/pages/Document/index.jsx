@@ -1,5 +1,6 @@
 import Header from "../../containers/Header";
 import { useParams } from "react-router-dom";
+import EditDocumentView from "../EditDocumentPage/Main";
 import DocumentView from "./DocumentView";
 import Main from "./Main";
 import { useEffect } from "react";
@@ -22,13 +23,15 @@ const Document = (props) => {
     const fetchData = async () => {
         try {
             await axios
-                .get("http://localhost:2002/document", config)
+                .get("http://localhost:2002/document/public", config)
                 .then((res) => {
                     let docs = res.data.data.documents;
+                    console.log(docs)
                     let tmp = [];
-                    for (let id in docs) {
-                        tmp.push(id)
+                    for (let index in docs) {
+                        tmp.push(docs[index].id) //docs[index].id
                     }
+                    console.log(tmp);
                     setDoc_ids(tmp);
                 });
         } catch (e) {
@@ -36,15 +39,15 @@ const Document = (props) => {
         }
     }
 
-    const { doc_id } = useParams();
-
+    const { doc_id, type } = useParams();
 
     return (
         <>
             {doc_id === "" && <Main />}
             {doc_ids.map((id, index) => (
-                doc_id === id && <DocumentView id={id} />
+                doc_id === String(id) && <DocumentView key={index} id={id} />
             ))}
+
         </>
     );
 };

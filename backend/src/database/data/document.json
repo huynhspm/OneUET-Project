@@ -8,8 +8,10 @@
 		"teacherId": 2,
 		"courseId": 1,
 		"description": "description",
-		"faculty": "suzuki_faculty",
-		"major": "suzuki_major"
+		"unit": "Khoa Công nghệ Thông tin",
+		"major": "suzuki_major",
+		"linkView": "https://arxiv.org/pdf/1910.10093.pdf",
+		"linkDownload": "https://arxiv.org/pdf/1910.10093.pdf"
 	},
 	{
 		"year": 2021,
@@ -20,8 +22,10 @@
 		"teacherId": 1,
 		"courseId": 1,
 		"description": "desicritonp",
-		"faculty": "but_bi_faculty",
-		"major": "but_bi_major"
+		"unit": "Khoa Công nghệ Thông tin",
+		"major": "but_bi_major",
+		"linkView": "https://arxiv.org/pdf/1910.10093.pdf",
+		"linkDownload": "https://arxiv.org/pdf/1910.10093.pdf"
 	},
 	{
 		"year": 2020,
@@ -32,8 +36,10 @@
 		"teacherId": 4,
 		"courseId": 2,
 		"description": "donescritip",
-		"faculty": "but_may_faculty",
-		"major": "but_may_major"
+		"unit": "but_may_unit",
+		"major": "but_may_major",
+		"linkView": "https://arxiv.org/pdf/1910.10093.pdf",
+		"linkDownload": "https://arxiv.org/pdf/1910.10093.pdf"
 	},
 	{
 		"year": 2022,
@@ -44,8 +50,25 @@
 		"teacherId": 5,
 		"courseId": 3,
 		"description": "nesdoctipri",
-		"faculty": "cari_faculty",
-		"major": "cari_major"
+		"unit": "Khoa Công nghệ Thông tin",
+		"major": "cari_major",
+		"linkView": "https://arxiv.org/pdf/1910.10093.pdf",
+		"linkDownload": "https://arxiv.org/pdf/1910.10093.pdf"
+	},
+	{
+		"year": 2020,
+		"category": "Giáo trình",
+		"name": "spm1",
+		"description": "Một cái description dùng để test việc sửa description",
+		"fileId": 6,
+		"userId": 3,
+		"teacherId": 5,
+		"courseId": 5,
+		"status": "public",
+		"unit": "Khoa Công nghệ Thông tin",
+		"major": "Khoa học máy tính",
+		"linkView": "https://arxiv.org/pdf/1910.10093.pdf",
+		"linkDownload": "https://arxiv.org/pdf/1910.10093.pdf"
 	},
 	{
 		"year": 2021,
@@ -54,36 +77,39 @@
 		"fileId": 5,
 		"userId": 3,
 		"teacherId": 5,
-		"courseId": 5
-	},
-	{
-		"year": 2020,
-		"category": "Giáo trình",
-		"name": "spm",
-		"fileId": 6,
-		"userId": 3,
-		"teacherId": 5,
 		"courseId": 5,
-		"status": "public"
+		"unit": "Khoa Công nghệ Thông tin",
+		"major": "Khoa học máy tính",
+		"linkView": "https://arxiv.org/pdf/1910.10093.pdf",
+		"linkDownload": "https://arxiv.org/pdf/1910.10093.pdf"
 	},
 	{
 		"year": 2021,
 		"category": "Giáo trình",
-		"name": "spm",
+		"name": "Một cái tên gì đó thật dài để css",
+		"description": "Một cái mô tả gì đó cũng thật dài cũng để css",
 		"fileId": 7,
 		"userId": 3,
 		"teacherId": 5,
 		"courseId": 5,
-		"status": "public"
+		"status": "public",
+		"unit": "Khoa Công nghệ Thông tin",
+		"major": "Khoa học máy tính",
+		"linkView": "https://arxiv.org/pdf/1910.10093.pdf",
+		"linkDownload": "https://arxiv.org/pdf/1910.10093.pdf"
 	},
 	{
 		"year": 2021,
 		"category": "Giáo trình",
-		"name": "spm",
+		"name": "spm3",
 		"fileId": 8,
 		"userId": 3,
 		"teacherId": 5,
 		"courseId": 5,
-		"status": "public"
+		"status": "public",
+		"unit": "Khoa Điện tử Viễn thông",
+		"major": "Kỹ thuật máy tính",
+		"linkView": "https://arxiv.org/pdf/1910.10093.pdf",
+		"linkDownload": "https://arxiv.org/pdf/1910.10093.pdf"
 	}
 ]

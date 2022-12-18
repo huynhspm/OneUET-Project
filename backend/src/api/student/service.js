@@ -1,11 +1,10 @@
 const { Student } = require("../../database/models");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 
-const verifyStudent = async (req) => {
+const verifyStudent = async (query) => {
 	try {
-		const { id } = req.params;
 		let student, message, status;
-		student = await Student.findByPk(id);
+		student = await Student.findOne(query);
 
 		if (student) {
 			message = "Get student successfully";
@@ -99,6 +98,7 @@ const updateStudent = async (req) => {
 			status = ResponseCode.OK;
 		}
 
+		const data = { student };
 		return {
 			data,
 			message,
@@ -111,14 +111,15 @@ const updateStudent = async (req) => {
 
 const deleteStudent = async (req) => {
 	try {
-		let { data, message, status } = await verifyStudent(req);
+		let { student, message, status } = await verifyStudent(req);
 
-		if (data) {
-			data = await data.destroy();
+		if (student) {
+			student = await data.destroy();
 			message = "Delete student successfully";
 			status = ResponseCode.OK;
 		}
 
+		const data = { student };
 		return {
 			data,
 			message,

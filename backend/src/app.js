@@ -13,21 +13,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
+// app.use(express.static("../frontend/build"));
+
 const createData = require("./utils/data");
 
 const fetch = require("cross-fetch");
-const getData = async () => {
-	const url = "https://itest.com.vn/lects/webappdev/fetch/data";
-	const response = await fetch(url);
-	const data = await response.json();
-	console.log(data);
-};
-// getData();
 
 const init = async () => {
 	await sequelize.sync();
 	console.log("Finish load database.");
-	app.use(router);
+	app.use("/api", router);
 	// await createData();
 	console.log("Create data successfully");
 };

@@ -1,5 +1,6 @@
-const { Class } = require("../../database/models");
+const { Class, Student, StudentClass } = require("../../database/models");
 const ResponseCode = require("../../utils/constant/ResponseCode");
+const sendEmailGrade = require("../../utils/email");
 
 const verifyClass = async (req) => {
 	try {
@@ -33,91 +34,6 @@ const createClass = async (req) => {
 		const message = "Create class successfully!";
 		const status = ResponseCode.Created;
 		const data = { curClass };
-
-		return {
-			data,
-			message,
-			status,
-		};
-	} catch (e) {
-		throw e;
-	}
-};
-
-const getMyClasses = async (req) => {
-	try {
-		const classes = await Class.findAll();
-		const message = "Get my classes successfully";
-		const status = ResponseCode.OK;
-
-		const data = { classes };
-
-		return {
-			data,
-			message,
-			status,
-		};
-	} catch (e) {
-		throw e;
-	}
-};
-
-const getMyStudiedClasses = async (req) => {
-	try {
-		const classes = await Class.findAll({ where: {} });
-		const message = "Get classes successfully";
-		const status = ResponseCode.OK;
-
-		const data = { classes };
-
-		return {
-			data,
-			message,
-			status,
-		};
-	} catch (e) {
-		throw e;
-	}
-};
-
-const getMyStudyingClasses = async (req) => {
-	try {
-		const classes = await Class.findAll();
-		const message = "Get classes successfully";
-		const status = ResponseCode.OK;
-
-		const data = { classes };
-
-		return {
-			data,
-			message,
-			status,
-		};
-	} catch (e) {
-		throw e;
-	}
-};
-
-const getMyClass = async (req) => {
-	try {
-		let { curClass, message, status } = await verifyClass(req);
-		let teachers, students, course;
-
-		if (curClass) {
-			teachers = await curClass.getTeachers();
-			students = await curClass.getStudents();
-			course = await curClass.getCourse();
-
-			message = "Get class successfully";
-			status = ResponseCode.OK;
-		}
-
-		const data = {
-			curClass,
-			teachers,
-			students,
-			course,
-		};
 
 		return {
 			data,
@@ -181,16 +97,27 @@ const getClass = async (req) => {
 const updateClass = async (req) => {
 	try {
 		let { curClass, message, status } = await verifyClass(req);
+		let teachers, students, course;
 
 		if (curClass) {
-			const { updatedClass, courseId } = req.body;
-			curClass = await curClass.update(updatedClass);
+			const updatedClass = req.body;
+			const { teacherIds, studentIds } = req.body;
+
+			teachers = await curClass.setTeachers(teacherIds);
+			students = await curClass.setStudents(studentIds);
+			course = await curClass.setCourse();
+			await curClass.update(updatedClass);
 
 			message = "Update class successfully";
 			status = ResponseCode.OK;
 		}
 
-		const data = { curClass };
+		const data = {
+			curClass,
+			teachers,
+			students,
+			course,
+		};
 
 		return {
 			data,
@@ -224,22 +151,58 @@ const deleteClass = async (req) => {
 	}
 };
 
-// const addClass = async (req) => {
+const updateGrade = async (req) => {
+	try {
+		let curClass, message, status;
+		const { code, semester, grades } = req.body;
+		curClass = await Class.findOne({
+			where: { code, semester },
+		});
+
+		if (curClass) {
+			for (let grade in grades) {
+				let student = await Student.findOne({
+					where: { code: grade.studentCode },
+				});
+				await StudentClass.update(grades, {
+					where: { studentId: student.id, classId: curClass.id },
+				});
+
+				let email = student.code + "@vnu.edu.vn";
+				let subject = "Your score in class " + curClass.code;
+				// sendEmailOTP(email, grade, subject);
+			}
+
+			message = "Update grade successfully";
+			status = ResponseCode.OK;
+		} else {
+			message = "Class not existed";
+			status = ResponseCode.Not_Found;
+		}
+
+		data = { curClass };
+	} catch (e) {
+		throw e;
+	}
+};
+
+// const addStudent = async (req) => {
 // 	try {
-// 		const { teacherId, courseId, studentId } = req.body;
-// 		let { curClass, message, status } = await getClassById(req);
-// 		let data = null;
+// 		let curClass, message, status;
+// 		const { code, semester, grades } = req.body;
+// 		curClass = await Class.findOne({
+// 			where: { code, semester },
+// 		});
 
-// 		if (curClass) {
-// 			if (teacherId) await curClass.addTeacher(teacherId);
-// 			if (courseId) await curClass.setCourse(courseId);
-// 			if (studentId) await curClass.addStudent(studentId);
-
-// 			message = "Add class successfully";
-// 			status = ResponseCode.OK;
+// 		for (let grade in grades) {
+// 			let student = await Student.findOne({
+// 				where: { code: grade.studentCode },
+// 			});
+// 			await curClass.addStudent(student.id, { through: { grade } });
 // 		}
 
-// 		data = curClass;
+// 		message = "Add student successfully";
+// 		status = ResponseCode.OK;
 
 // 		return {
 // 			data,
@@ -253,12 +216,9 @@ const deleteClass = async (req) => {
 
 module.exports = {
 	createClass,
-	getMyClasses,
-	getMyStudiedClasses,
-	getMyStudyingClasses,
-	getMyClass,
 	getClasses,
 	getClass,
 	updateClass,
 	deleteClass,
+	updateGrade,
 };

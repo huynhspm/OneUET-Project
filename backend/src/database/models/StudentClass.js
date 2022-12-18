@@ -13,11 +13,14 @@ const StudentClass = sequelize.define(
 			primaryKey: true,
 			type: DataTypes.INTEGER,
 		},
-		grade: {
-			type: DataTypes.INTEGER,
+		midterm: {
+			type: DataTypes.FLOAT,
 		},
-		finish: {
-			type: DataTypes.BOOLEAN,
+		final: {
+			type: DataTypes.FLOAT,
+		},
+		total: {
+			type: DataTypes.FLOAT,
 		},
 	},
 	{

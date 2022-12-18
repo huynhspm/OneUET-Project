@@ -3,9 +3,12 @@ const ResponseCode = require("../../utils/constant/ResponseCode");
 
 // POST: /document
 const createDocument = async (req, res) => {
+	console.log("createDocument - controller.js")
 	try {
 		const result = await service.createDocument(req);
 		const { data, message, status } = result;
+
+		
 
 		res.status(status).json({
 			data: data,
@@ -56,26 +59,6 @@ const getPublicDocument = async (req, res) => {
 		res.status(ResponseCode.Bad_Request).json({
 			data: e.message,
 			message: "Couldn't get public document",
-			status: ResponseCode.Bad_Request,
-		});
-	}
-};
-
-// GET: /document/me
-const getMyDocuments = async (req, res) => {
-	try {
-		const result = await service.getMyDocuments(req);
-		const { data, message, status } = result;
-
-		res.status(status).json({
-			data: data,
-			message: message,
-			status: status,
-		});
-	} catch (e) {
-		res.status(ResponseCode.Bad_Request).json({
-			data: e.message,
-			message: "Couldn't get my documents",
 			status: ResponseCode.Bad_Request,
 		});
 	}
@@ -206,7 +189,6 @@ module.exports = {
 	createDocument,
 	getPublicDocuments,
 	getPublicDocument,
-	getMyDocuments,
 	getMyDocument,
 	updateMyDocument,
 	deleteMyDocument,

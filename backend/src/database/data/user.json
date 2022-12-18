@@ -26,7 +26,7 @@
     {
         "email": "20020066@vnu.edu.vn",
         "password": "12345678",
-        "active": true,
+        "active": false,
         "roleId": 2
     },
     {

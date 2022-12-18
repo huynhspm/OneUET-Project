@@ -2,7 +2,6 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../");
 
 const User = require("./User");
-const File = require("./File");
 const Course = require("./Course");
 const Teacher = require("./Teacher");
 
@@ -36,10 +35,18 @@ const Document = sequelize.define(
 		description: {
 			type: DataTypes.STRING,
 		},
-		faculty: {
+		unit: {
 			type: DataTypes.STRING,
 		},
 		major: {
+			type: DataTypes.STRING,
+		},
+		linkView: {
+			allowNull: false,
+			type: DataTypes.STRING,
+		},
+		linkDownload: {
+			allowNull: false,
 			type: DataTypes.STRING,
 		},
 	},
@@ -50,9 +57,6 @@ const Document = sequelize.define(
 
 Document.belongsTo(User);
 User.hasMany(Document);
-
-Document.belongsTo(File);
-File.hasOne(Document);
 
 Document.belongsTo(Course);
 Course.hasMany(Document);

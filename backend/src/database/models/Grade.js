@@ -1,8 +1,8 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../");
 
-const File = sequelize.define(
-	"file",
+const Grade = sequelize.define(
+	"grade",
 	{
 		id: {
 			allowNull: false,
@@ -10,18 +10,25 @@ const File = sequelize.define(
 			primaryKey: true,
 			type: DataTypes.INTEGER,
 		},
-		link: {
-			allowNull: false,
+		linkPDF: {
 			type: DataTypes.STRING,
 		},
-		type: {
-			allowNull: false,
+		studentCode: {
 			type: DataTypes.STRING,
+		},
+		midterm: {
+			type: DataTypes.FLOAT,
+		},
+		final: {
+			type: DataTypes.FLOAT,
+		},
+		total: {
+			type: DataTypes.FLOAT,
 		},
 	},
 	{
-		tableName: "file",
+		tableName: "grade",
 	}
 );
 
-module.exports = File;
+module.exports = Grade;
