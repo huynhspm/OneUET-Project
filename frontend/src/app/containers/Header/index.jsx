@@ -2,7 +2,7 @@ import "/node_modules/bootstrap/dist/css/bootstrap.min.css";
 // import "/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
 
 import { Link } from "react-router-dom";
-import IconButton from "@mui/material/IconButton";
+//import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import HomeIcon from "@mui/icons-material/Home";
 import SummarizeIcon from "@mui/icons-material/Summarize";
@@ -12,35 +12,23 @@ import FactCheckIcon from "@mui/icons-material/FactCheck";
 import AvatarDropdown from "../../components/AvatarDropdown";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import {
-  List,
-  Switch,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-} from "@mui/material";
-import { ModeNight } from "@mui/icons-material";
-
-
 import "./styles.css";
 
 const documents = [
-  { name: 'Giáo trình xử lý ảnh', link: "" },
-  { name: 'Giáo trình data mining', link: "" },
-  { name: 'Đề thi Vật lý đại cương kỳ 1 năm học 2021-2022', link: "" },
-  { name: 'Đề thi Vật lý đại cương kỳ 2 năm học 2021-2022', link: "" },
-  { name: 'Đề thi Vật lý đại cương kỳ 1 năm học 2020-2021', link: "" },
-  { name: 'Đề thi Vật lý đại cương kỳ 2 năm học 2020-2021', link: "" },
-  { name: 'Slide trí tuệ nhân tạo phần 1', link: "" },
-  { name: 'Slide trí tuệ nhân tạo phần 2', link: "" },
-  { name: 'Slide trí tuệ nhân tạo phần 3', link: "" },
-  { name: 'Slide trí tuệ nhân tạo phần 4', link: "" },
-  { name: 'Slide trí tuệ nhân tạo phần 5', link: "" },
-  { name: 'Slide trí tuệ nhân tạo phần 6', link: "" },
-  { name: 'Slide trí tuệ nhân tạo phần 7', link: "" },
-
+  { name: "Giáo trình xử lý ảnh", link: "" },
+  { name: "Giáo trình data mining", link: "" },
+  { name: "Đề thi Vật lý đại cương kỳ 1 năm học 2021-2022", link: "" },
+  { name: "Đề thi Vật lý đại cương kỳ 2 năm học 2021-2022", link: "" },
+  { name: "Đề thi Vật lý đại cương kỳ 1 năm học 2020-2021", link: "" },
+  { name: "Đề thi Vật lý đại cương kỳ 2 năm học 2020-2021", link: "" },
+  { name: "Slide trí tuệ nhân tạo phần 1", link: "" },
+  { name: "Slide trí tuệ nhân tạo phần 2", link: "" },
+  { name: "Slide trí tuệ nhân tạo phần 3", link: "" },
+  { name: "Slide trí tuệ nhân tạo phần 4", link: "" },
+  { name: "Slide trí tuệ nhân tạo phần 5", link: "" },
+  { name: "Slide trí tuệ nhân tạo phần 6", link: "" },
+  { name: "Slide trí tuệ nhân tạo phần 7", link: "" },
 ];
-
 
 const Header = (props) => {
   return (
@@ -65,6 +53,7 @@ const Header = (props) => {
         </div>
         <div className="search-group">
           <Autocomplete
+            placeholder="Search....."
             className="search-input"
             freeSolo
             getOptionLabel={(option) => option.name}
@@ -78,22 +67,7 @@ const Header = (props) => {
             <SearchIcon />
           </Link>
         </div>
-        <div>
-          <List disablePadding>
-            <ListItem disablePadding>
-              <ListItemButton component="a" href="#home">
-                <ListItemIcon>
-                  <ModeNight disablePadding />
-                </ListItemIcon>
-                <Switch
-                  onChange={(e) =>
-                    props.setMode(props.mode === "light" ? "dark" : "light")
-                  }
-                />
-              </ListItemButton>
-            </ListItem>
-          </List>
-        </div>
+
         <div className="profile-group">
           <AvatarDropdown />
         </div>
@@ -103,4 +77,3 @@ const Header = (props) => {
 };
 
 export default Header;
-  

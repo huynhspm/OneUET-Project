@@ -5,14 +5,17 @@
     width: 100%;
     z-index: 1300;
     flex: auto;
-    background-color: #f1f1f1; 
+    background-image: linear-gradient(to left,#6699FF, white);
     display: flex;
-    justify-content: space-between;
+   justify-content: space-between;
 }
 .search-group {
-    width: 30%;
+    
+    width: 40%;
+    height: 50%;
     display: flex;
-    justify-content: space-between;
+   
+   
 }
 .input-search {
     width: 90%;
@@ -21,5 +24,17 @@
     margin: auto;
 }
 .search-input {
+    
     width: 100%;
+    /*padding-top: 10px;
+    padding-bottom: 10px;*/
+    margin: 5px;
+
 }
+
+
+.profile_group{
+    justify-content: left;
+    margin-left: 200px;
+}
+
