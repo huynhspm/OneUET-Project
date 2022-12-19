@@ -1,10 +1,8 @@
-import { Modal, Box, Button, Divider, TextField, Hidden, Card, CardActions, CardContent, Typography } from '@mui/material';
+import { Modal, Box, Button, Divider, Zoom, Hidden, Card, CardActions, CardContent, Typography } from '@mui/material';
 import { Link } from "react-router-dom";
 import React, { useState } from 'react';
 import OptionsDialog from '../OpitonsDialog';
 import '../../utils/styles.css';
-import Tags from '../Tags';
-import Comment from '../Comment/Post';
 import { CenterModal } from '../../utils/styles';
 
 const PreviewDocument = (props) => {
@@ -18,6 +16,7 @@ const PreviewDocument = (props) => {
             <CenterModal
                 open={props.open}
                 onClose={props.onClose}
+                TransitionComponent={Zoom}
             >
                 <Box
                     bgcolor={'background.default'}

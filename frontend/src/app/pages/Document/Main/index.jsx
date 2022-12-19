@@ -68,7 +68,7 @@ const Main = (props) => {
 						}
 						tmp.push(element);
 					}
-					setCard(tmp);
+					setCard(tmp.reverse());
 				});
 		} catch (e) {
 			console.log(e.response.data);

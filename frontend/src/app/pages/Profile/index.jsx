@@ -49,7 +49,7 @@ const Profile = (props) => {
                 sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
             >
                 <LeftDrawer />
-                {type === 'private-document' && <FilterSidebar filterData={filterData} />}
+                {/* {type === 'private-document' && <FilterSidebar filterData={filterData} />} */}
             </Box>
             <Box
                 component="main"

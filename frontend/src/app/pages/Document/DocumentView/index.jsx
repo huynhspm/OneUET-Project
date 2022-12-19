@@ -107,7 +107,7 @@ const DocumentView = (props) => {
                 </Box>
             </Box>
             {showOptionsDialog && (
-                <OptionsDialog documentID={props.id} linkDownload={linkDownload} onClose={() => setShowOptionsDialog(false)} />
+                <OptionsDialog documentID={props.id} linkDownload={linkDownload} onClose={setShowOptionsDialog} />
             )}
         </>
     );
