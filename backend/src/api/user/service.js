@@ -36,12 +36,9 @@ const getMyUser = async (req) => {
 
 			profile = { user, student, clubs };
 
-			console.log(student);
-			console.log("...................");
 			let studiedClasses = await student.getClasses({
 				where: { finish: true },
 			});
-			console.log("...................");
 
 			let studyingClasses = await student.getClasses({
 				where: { finish: false },
@@ -80,7 +77,7 @@ const updateMyPassword = async (req) => {
 
 			const verifyPassword = comparePassword(oldPassword, user.password);
 			if (verifyPassword) {
-				user = await user.update({ password: hashPassword(password) });
+				user = await user.update({ password: hashPassword(newPassword) });
 
 				message = "Update my password successfully";
 				status = ResponseCode.OK;
