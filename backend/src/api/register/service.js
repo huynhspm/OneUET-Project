@@ -1,7 +1,8 @@
-const { User } = require("../../database/models");
+const { User, Student } = require("../../database/models");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 const RoleCode = require("../../utils/constant/RoleCode");
 const { sendOTP, createOTP } = require("../../utils/email");
+const { hashPassword } = require("../../utils/password");
 
 const verifyEmail = async (email) => {
 	return await User.findOne({ where: { email } });
@@ -15,7 +16,6 @@ const register = async (req) => {
 
 	if (user) {
 		if (user.active) {
-			data = null;
 			message = "Email existed";
 			status = ResponseCode.Bad_Request;
 		} else {
@@ -24,28 +24,36 @@ const register = async (req) => {
 			console.log("sendOTP");
 			newUser["otp"] = otp;
 			newUser["expiredTime"] = expiredTime;
+			newUser["password"] = hashPassword(password);
 			data = await user.update(newUser);
 
-			data = data.id;
 			message = "Register successfully but not active!";
 			status = ResponseCode.Created;
 		}
 	} else {
-		const { otp, expiredTime } = createOTP();
-		// sendOTP(user.email, otp);
-		console.log("sendOTP");
-		newUser["otp"] = otp;
-		newUser["expiredTime"] = expiredTime;
-		newUser["roleId"] = RoleCode.User;
-		data = await User.create(newUser);
+		const code = newUser.email.slice(0, 8);
+		const student = await Student.findOne({ where: { code } });
 
-		data = data.id;
-		message = "Register successfully but not active!";
-		status = ResponseCode.Created;
+		if (student) {
+			const { otp, expiredTime } = createOTP();
+			// sendOTP(newUser.email, otp);
+			console.log("sendOTP");
+			newUser["otp"] = otp;
+			newUser["expiredTime"] = expiredTime;
+			newUser["studentId"] = student.id;
+			newUser["roleId"] = RoleCode.User;
+			newUser["password"] = hashPassword(password);
+			await User.create(newUser);
+
+			message = "Register successfully but not active";
+			status = ResponseCode.Created;
+		} else {
+			message = "Code not existed, student not existed";
+			status = ResponseCode.Created;
+		}
 	}
 
 	return {
-		data,
 		message,
 		status,
 	};
