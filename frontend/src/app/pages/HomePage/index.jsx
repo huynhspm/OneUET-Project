@@ -11,7 +11,7 @@ const HomePage = (props) => {
     if (token === '') {
       const lastToken = sessionStorage.getItem("token");
       if (lastToken !== null && lastToken !== undefined) {
-        console.log(lastToken);
+        // console.log(lastToken);
         setToken(lastToken);
       } else {
         navigate('/login');

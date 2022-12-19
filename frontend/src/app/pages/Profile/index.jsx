@@ -28,19 +28,13 @@ const Profile = (props) => {
         if (token === '') {
           const lastToken = sessionStorage.getItem("token");
           if (lastToken !== null && lastToken !== undefined) {
-            console.log(lastToken);
+            // console.log(lastToken);
             setToken(lastToken);
           } else {
             navigate('/login');
           }
         }
       }, [token, navigate]);
-    // useEffect(() => {
-    //     console.log(props.token);
-    //     if (props.token === '') {
-    //         navigate('/login');
-    //     }
-    // }, [props.token]);
 
     return (
         <Box sx={{ display: 'flex' }}>

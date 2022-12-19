@@ -43,10 +43,9 @@ const Main = (props) => {
     const fetchData = async () => {
         try {
             await axios
-                .get("http://localhost:2002/document/public/" + String(props.id), config)
+                .get("http://localhost:2002/api/document/public/" + String(props.id), config)
                 .then((res) => {
                     let data = res.data.data;
-                    console.log(data);
                     set_pdf_link(data.file.link);
                     setName(data.document.name);
                     setDescription(data.document.description);

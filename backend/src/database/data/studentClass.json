@@ -17,8 +17,8 @@
     },
     {
         "id": 3,
-        "studentId": 2,
-        "classId": 3,
+        "studentId": 3,
+        "classId": 1,
         "midterm": 10,
         "final": 10,
         "total": 10

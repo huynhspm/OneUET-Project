@@ -53,6 +53,14 @@ export const categories = [
     "Đề thi"
 ]
 
+export const years = [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022
+]
+
 export const majors = [
     "Công nghệ thông tin",
     "Công nghệ nông nghiệp",

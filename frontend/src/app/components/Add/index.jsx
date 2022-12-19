@@ -15,92 +15,80 @@ import {
 import AddIcon from '@mui/icons-material/Add';
 import React, { useState } from 'react';
 import axios from "axios";
+
 import { InputBox, InputButton } from '../../utils/styles';
 import { CenterModal } from '../../utils/styles';
-import { units, majors, categories } from '../../utils/constant';
-// import { uploadFile } from '../../pages/Document/DocumentView/test';
+import { units, majors, categories, years } from '../../utils/constant';
+import { fileToDataUri, controlValue } from '../../utils/function';
 
-const Add = () => {
+const Add = (props) => {
     const [open, setOpen] = useState(false);
 
     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo'
     const config = {
         headers: { Authorization: `Bearer ${token}` }
     };
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
 
-        const docName = data.get("docName");
-        const docDescription = data.get("docDescription");
-        const docUnit = data.get("docUnit");
-        const docMajor = data.get("docMajor");
-        const docLecturer = data.get("docLecturer");
-        const docSubject = data.get("docSubject");
-        const docType = data.get("docType");
-        const docYear = data.get("docYear");
-        
-        console.log(docName);
-        console.log(docDescription);
-        console.log(docUnit);
-        console.log(docMajor);
-        console.log(docLecturer);
-        console.log(docSubject);
-        console.log(docType);
-        console.log(docYear);
+    const [name, setName] = useState('');
+    const [dataUri, setDataUri] = useState('');
+    const [description, setDescription] = useState(null);
+    const [unit, setUnit] = useState(null);
+    const [major, setMajor] = useState(null);
+    const [teacherId, setTeacherId] = useState(null);
+    const [courseId, setCourseId] = useState(null);
+    const [category, setCategory] = useState(null);
+    const [year, setYear] = useState(null);
 
+    const [fileName, setFileName] = useState('UPLOAD FILE');
+
+    const onChangeFilePDF = (file) => {
+        if (!file) {
+            setDataUri('');
+            return;
+        }
+
+        fileToDataUri(file)
+            .then(dataUri => {
+                setDataUri(dataUri);
+                console.log(dataUri);
+            })
     }
 
-    //     try {
-    //         const res = await axios.post("http://localhost:2002/file", {
-    //             docName,
-    //             docDescription,
-    //             docUnit,
-    //             docMajor,
-    //             docLecturer,
-    //             docSubject,
-    //             docType,
-    //             docYear,
-    //         });
-    //         console.log(res.data);
-    //     } catch (e) {
-    //         console.log(e.response.data);
-    //     }
-    // };
+    const postProcess = async () => {
+        setOpen(false);
+        setName('');
+        setDataUri('');
+        setDescription(null);
+        setUnit(null);
+        setMajor(null);
+        setTeacherId(null);
+        setCourseId(null);
+        setCategory(null);
+        setYear(null);
+        setFileName('UPLOAD FILE');
+    }
 
     const postDocument = async () => {
         let data = {
-            name: 'docPost2',
-            year: 2022,
-            category: 'Giáo trình',
-            status: 'private', 
-            description: 'description for docPost2', 
-            unit: 'Khoa Công nghệ Thông tin', 
-            major: 'Khoa học máy tính', 
-            linkView: 'https://arxiv.org/pdf/1910.10093.pdf', 
-            linkDownload: 'https://arxiv.org/pdf/1910.10093.pdf', 
+            name,
+            description,
+            unit,
+            major,
+            category,
+            year,
+            status: 'private',
+            dataUri: { dataUri },
             userId: 1,
-            courseId: 1, 
-            teacherId: 2
+            courseId: parseInt(courseId),
+            teacherId: parseInt(teacherId)
         }
-        await axios.post("http://localhost:2002/document", data, config);
-
+        try {
+            await axios.post("http://localhost:2002/api/document", data, config);
+        } catch (e) {
+            console.log(e.response.data);
+        }
+        postProcess();
     }
-
-    const fileBrowseHandler = (event) => {
-
-        let value = URL.createObjectURL(event.target.files[0]);
-        // setImageUrl(value]);
-        console.log(value);
-        console.log(event.target.files[0]);
-        fetch(value).then((res) => {
-            console.log(res);
-            // uploadFile(res);
-        })
-        axios.get("http://localhost:2002/ggservice").then((res) => {
-            console.log(res);
-        })
-    };
 
     return (
         <>
@@ -117,10 +105,7 @@ const Add = () => {
                     <AddIcon />
                 </Fab>
             </Tooltip>
-            <CenterModal
-                open={open}
-                onClose={(e) => setOpen(false)}
-            >
+            <CenterModal open={open} onClose={(e) => setOpen(false)}>
                 <Box
                     bgcolor={'background.default'}
                     color={'text.primary'}
@@ -140,28 +125,28 @@ const Add = () => {
                         <Box
                             component="form"
                             noValidate
-                            onSubmit={handleSubmit}
                             sx={{ width: '100%', pt: 1, flexShrink: { sm: 0 }, mt: 1 }}
                         >
                             <Grid container spacing={1}>
                                 <Grid item xs={12}>
-                                    <TextField required fullWidth label="Document Name" id="docName" name="docName" type="text" autoFocus />
+                                    <TextField required fullWidth label="Document Name" id="docName" name="docName" type="text" autoFocus
+                                        value={controlValue(name)} onChange={(e) => { setName(e.target.value) }} />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <TextField required fullWidth label="Description" id="docDescription" name="docDescription" type="text" row="3" />
+                                    <TextField fullWidth label="Description" id="docDescription" name="docDescription" type="text" row="3"
+                                        value={controlValue(description)} onChange={(e) => { setDescription(e.target.value) }} />
                                 </Grid>
                                 <Grid item xs={6}>
                                     <FormControl fullWidth>
                                         <InputLabel id="unit-label">Khoa</InputLabel>
-                                        <Select
-                                            fullWidth
-                                            labelId="unit-label"
-                                            id="docunit"
-                                            // value={age}
-                                            label="Khoa"
+                                        <Select fullWidth labelId="unit-label" id="docunit" label="Khoa"
+                                            value={controlValue(unit)}
+                                            onChange={(event) => {
+                                                setUnit(event.target.value);
+                                            }}
                                         >
-                                            {units.map((unit) => (
-                                                <MenuItem key={unit}>
+                                            {units.map((unit, index) => (
+                                                <MenuItem key={index} value={unit}>
                                                     {unit}
                                                 </MenuItem>
                                             ))}
@@ -171,15 +156,14 @@ const Add = () => {
                                 <Grid item xs={6}>
                                     <FormControl fullWidth>
                                         <InputLabel id="major-label">Ngành</InputLabel>
-                                        <Select
-                                            fullWidth
-                                            labelId="major-label"
-                                            id="docMajor"
-                                            // value={age}
-                                            label="Ngành"
+                                        <Select fullWidth labelId="major-label" id="docMajor" label="Ngành"
+                                            value={controlValue(major)}
+                                            onChange={(event) => {
+                                                setMajor(event.target.value);
+                                            }}
                                         >
-                                            {majors.map((major) => (
-                                                <MenuItem key={major}>
+                                            {majors.map((major, index) => (
+                                                <MenuItem key={index} value={major}>
                                                     {major}
                                                 </MenuItem>
                                             ))}
@@ -187,35 +171,50 @@ const Add = () => {
                                     </FormControl>
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <TextField
-                                        fullWidth
-                                        label="Giảng viên"
-                                        id="docLecturer"
-                                        name="docLecturer"
-                                        type="text"
-                                    />
+                                    <FormControl fullWidth>
+                                        <InputLabel id="teacher-label">Giảng viên</InputLabel>
+                                        <Select fullWidth labelId="teacher-label" id="docTeacher" label="Giảng viên"
+                                            value={controlValue(teacherId)}
+                                            onChange={(event) => {
+                                                setTeacherId(event.target.value);
+                                            }}
+                                        >
+                                            {Object.keys(props.teacher).map((id, index) => (
+                                                <MenuItem key={index} value={id}>
+                                                    {props.teacher[id]}
+                                                </MenuItem>
+                                            ))}
+                                        </Select>
+                                    </FormControl>
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <TextField
-                                        fullWidth
-                                        label="Môn"
-                                        id="docSubject"
-                                        name="docSubject"
-                                        type="text"
-                                    />
+                                    <FormControl fullWidth>
+                                        <InputLabel id="course-label">Môn</InputLabel>
+                                        <Select fullWidth labelId="course-label" id="docCourse" label="Môn"
+                                            value={controlValue(courseId)}
+                                            onChange={(event) => {
+                                                setCourseId(event.target.value);
+                                            }}
+                                        >
+                                            {Object.keys(props.course).map((id, index) => (
+                                                <MenuItem key={index} value={id}>
+                                                    {props.course[id]}
+                                                </MenuItem>
+                                            ))}
+                                        </Select>
+                                    </FormControl>
                                 </Grid>
                                 <Grid item xs={6}>
                                     <FormControl fullWidth>
                                         <InputLabel id="category-label">Loại</InputLabel>
-                                        <Select
-                                            fullWidth
-                                            labelId="category-label"
-                                            id="docCategory"
-                                            // value={age}
-                                            label="Loại"
+                                        <Select fullWidth labelId="category-label" id="docCategory" label="Loại"
+                                            value={controlValue(category)}
+                                            onChange={(event) => {
+                                                setCategory(event.target.value);
+                                            }}
                                         >
-                                            {categories.map((category) => (
-                                                <MenuItem key={category}>
+                                            {categories.map((category, index) => (
+                                                <MenuItem key={index} value={category}>
                                                     {category}
                                                 </MenuItem>
                                             ))}
@@ -223,13 +222,21 @@ const Add = () => {
                                     </FormControl>
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <TextField
-                                        fullWidth
-                                        label="Năm"
-                                        id="docYear"
-                                        name="docYear"
-                                        type="text"
-                                    />
+                                    <FormControl fullWidth>
+                                        <InputLabel id="year-label">Năm</InputLabel>
+                                        <Select fullWidth labelId="category-label" id="docYear" label="Năm"
+                                            value={controlValue(year)}
+                                            onChange={(event) => {
+                                                setYear(event.target.value);
+                                            }}
+                                        >
+                                            {years.map((year, index) => (
+                                                <MenuItem key={index} value={year}>
+                                                    {year}
+                                                </MenuItem>
+                                            ))}
+                                        </Select>
+                                    </FormControl>
                                 </Grid>
                             </Grid>
                         </Box>
@@ -239,14 +246,20 @@ const Add = () => {
                             <InputButton
                                 variant="outlined"
                                 component="label"
-                                fullWidth="true"
+                                fullWidth
                             >
-                                Upload File
+                                <Typography variant='h6'>
+                                    {fileName}
+                                </Typography>
                                 <input
                                     type="file"
                                     hidden
-                                    onChange={fileBrowseHandler}
-                                />
+                                    onChange={(event) => {
+                                        onChangeFilePDF(event.target.files[0] || null);
+                                        let name = event.target.value.split('\\');
+                                        let len = name.length;
+                                        setFileName(name[len - 1]);
+                                    }} />
                             </InputButton>
                         </InputBox>
                     </Box>

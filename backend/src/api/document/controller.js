@@ -8,8 +8,6 @@ const createDocument = async (req, res) => {
 		const result = await service.createDocument(req);
 		const { data, message, status } = result;
 
-		
-
 		res.status(status).json({
 			data: data,
 			message: message,
