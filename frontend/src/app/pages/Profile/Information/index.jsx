@@ -61,34 +61,36 @@ const Information = (props) => {
     const [club, setClub] = React.useState(null);
 
     const fetchData = () => {
-        getUserData(props.token).then((data) => {
-            const user = data.profile.user;
-            const student = data.profile.student;
+        if (props.token !== "" && props.token !== null && props.token !== undefined) {
+            getUserData(props.token).then((data) => {
+                const user = data.profile.user;
+                const student = data.profile.student;
 
-            // Basic
-            setAvatar(user.avatar);
-            setCode(student.code);
-            setName(user.name);
-            setBirthday(user.birthday);
-            setGender(user.gender);
-            setEmailVNU(user.email);
-            setEmail(user.otherEmail);
+                // Basic
+                setAvatar(user.avatar);
+                setCode(student.code);
+                setName(user.name);
+                setBirthday(user.birthday);
+                setGender(user.gender);
+                setEmailVNU(user.email);
+                setEmail(user.otherEmail);
 
-            // Education
-            setProgram(user.program);
-            setAcademicYear(user.academicYear);
-            setUnit(user.unit);
-            setClassID(student.class);
+                // Education
+                setProgram(user.program);
+                setAcademicYear(user.academicYear);
+                setUnit(user.unit);
+                setClassID(student.class);
 
-            // Activities
-            setUnionJoint(user.unionJoint);
-            setPartyJoint(user.partyJoint);
-            setUnionPosition(user.unionPosition);
-            setAssociationPosition(user.associationPosition);
-            setClub(user.club);
+                // Activities
+                setUnionJoint(user.unionJoint);
+                setPartyJoint(user.partyJoint);
+                setUnionPosition(user.unionPosition);
+                setAssociationPosition(user.associationPosition);
+                setClub(user.club);
 
-            setIsFetch(true);
-        });
+                setIsFetch(true);
+            });
+        }
     }
 
     useEffect(() => {
