@@ -27,7 +27,7 @@ const register = async (req) => {
 			data = await user.update(newUser);
 
 			data = data.id;
-			message = "Register successfully but not active!";
+			message = "Register successfully but not active";
 			status = ResponseCode.Created;
 		}
 	} else {
@@ -40,7 +40,7 @@ const register = async (req) => {
 		data = await User.create(newUser);
 
 		data = data.id;
-		message = "Register successfully but not active!";
+		message = "Register successfully but not active";
 		status = ResponseCode.Created;
 	}
 
