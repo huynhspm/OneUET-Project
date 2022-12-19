@@ -66,8 +66,15 @@ async function createClub() {
 
 async function createUser() {
 	for (let user of users) {
+		const code = user.email.slice(0, 8);
+		const student = await models.Student.findOne({ where: { code } });
+
 		user["password"] = hashPassword(user["password"]);
-		await models.User.create(user);
+
+		if (student) {
+			user["studentId"] = student.id;
+			await models.User.create(user);
+		}
 	}
 }
 
