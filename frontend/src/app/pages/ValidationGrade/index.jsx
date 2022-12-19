@@ -3,26 +3,34 @@ import Box from '@mui/material/Box';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+import {TextField} from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 import axios from 'axios';
 import { useEffect } from 'react';
-// https://drive.google.com/file/d/1X2K2dE5pj5NeP0yOEvQ-8MCUhzd4Papz/view?usp=share_link
-
-let t1 = "https://docs.google.com/viewer?srcid="; 
-let t2 = "&pid=explorer&efh=false&a=v&chrome=false&embedded=true"; 
-
-const pdf_link = t1.concat('1pRHDGYar6n85cSndPP0XYuBKNcBlqEqd', t2);
 
 const getUserData = async token => {
   const config = {
       headers: { Authorization: `Bearer ${token}` }
   }
+
   try {
-      const response = await axios.get("http://localhost:2002/user/me", config);
-      return response.data.data;
+
+    const response = await axios.get("http://localhost:2002/grade", 
+    {
+      // params: {linkPDF},
+      headers: { Authorization: `Bearer ${token}` }
+    })
+    return response.data.data;
   } catch (e) {
-      console.log(e.response);
+      console.log('error to get database');
   }
 }
+
+const linkPDF = ""
+let t1 = "https://docs.google.com/viewer?srcid=";   
+let t2 = "&pid=explorer&efh=false&a=v&chrome=false&embedded=true"; 
+
+const pdf_link = t1.concat('12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV', t2);
 
 const columns = [
   { field: 'id', 
@@ -42,38 +50,7 @@ const columns = [
     editable: true
   },
   {
-    field: 'name',
-    headerName: 'Họ và tên',
-    headerAlign: 'center',
-    // width: 200,
-    flex: 0.8,
-    editable: true
-  },
-  {
-    field: 'date_of_birth',
-    headerName: 'Ngày sinh',
-    type: 'date',
-    headerAlign: 'center',
-    align: 'center',
-    description: 'Không thể sắp xếp giá trị ở cột này.',
-    sortable: false,
-    // width: 110,
-    flex: 0.7,
-    editable: true
-  },
-  {
-    field: 'classes',
-    headerName: 'Lớp học',  
-    headerAlign: 'center',
-    align: 'left',
-    description: 'Không thể sắp xếp giá trị ở cột này.',
-    sortable: false,
-    // width: 200,
-    flex: 0.8,
-    editable: true
-  },
-  {
-    field: 'midterm_grade',
+    field: 'midterm',
     headerName: 'Điểm thành phần',
     headerAlign: 'center',
     align: 'center',
@@ -83,7 +60,7 @@ const columns = [
     editable: true
   },
   {
-    field: 'final_grade',
+    field: 'final',
     headerName: 'Điểm cuối kỳ',
     headerAlign: 'center',
     align: 'center',
@@ -93,7 +70,7 @@ const columns = [
     editable: true
   },
   {
-    field: 'total_grade',
+    field: 'total',
     headerName: 'Tổng điểm',
     headerAlign: 'center',
     align: 'center',
@@ -104,10 +81,6 @@ const columns = [
   },
 ];
 
-let codeClass = "";
-let semester = "";
-const rows = []
-
 let getData = async () => {
 	const url = "http://localhost:3000/data.json";
 	const response = await fetch(url);
@@ -115,30 +88,40 @@ let getData = async () => {
   for(var i = 0; i < data['students'].length; i++) {
     const obj = {}
     obj.code = data['students'][i]['0'];
-    obj.name = 0;
-    obj.date_of_birth = 0;
-    obj.classes = 0;
     obj.id = i;
-    obj.midterm_grade = data['students'][i]['1'];
-    obj.final_grade = data['students'][i]['2'];
-    obj.total_grade = data['students'][i]['3'];
-    rows[i] = obj;
+    obj.midterm = data['students'][i]['1'];
+    obj.final = data['students'][i]['2'];
+    obj.total = data['students'][i]['3'];
+    // rows[i] = obj;
   }
-  console.log(rows);
+  // console.log(rows);
 	return data;
 };
 
-const data = getData();
+const updateData = async (token, data) => {
+  const config = {
+      headers: { Authorization: `Bearer ${token}` }
+  }
+  console.log(data);
+  try {
+      const response = await axios.put("http://localhost:2002/user/me", data, config);
+      console.log(response);
+  } catch (e) {
+      console.log(e.response);
+  }
+}
+
+// const data = getData();
 
 const useFakeMutation = () => {
   return React.useCallback(
     (user) =>
       new Promise((resolve, reject) =>
         setTimeout(() => {
-          if (user.name?.trim() === '') {
-            reject(new Error("Lỗi khi lưu: Tên không thể để trống."));
+          if (user.code?.trim() === '') {
+            reject(new Error("Lỗi khi lưu: Mã sinh viên không thể để trống."));
           } else {
-            resolve({ ...user, name: user.name });
+            resolve({ ...user, code: user.code });
           }
         }, 200),
       ),
@@ -149,39 +132,47 @@ const useFakeMutation = () => {
 export default function ValidationGrade() {
   const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZUlkIjoxLCJpYXQiOjE2NzA0ODk2ODEsImV4cCI6MTY3MzA4MTY4MX0.rSseHQSrXVyf_PyY3WAIoU07AKavd3-XP-RIXgXRgr4";
 
+  const [codeClass, setCodeClass] = React.useState(null);
+  const [semester, setSemester] = React.useState(null);
   const [code, setCode] = React.useState(null);
-  const [name, setName] = React.useState(null);
-  const [classes, setClasses] = React.useState(null);
-  const [date_of_birth, setBirthday] = React.useState(null);
+  const [midterm, setMidterm] = React.useState(null);
+  const [final, setFinal] = React.useState(null);
+  const [total, setTotal] = React.useState(null);
+  const [rows, setRows] = React.useState([]);
 
-  const fetchData = () => {
-    getUserData(token).then((data) => {
-      console.log(data)
-      const user = data.profile.user;
-      const student = data.profile.student;
-
-      setCode(student.code);
-      setName(user.name);
-      setBirthday(user.birthday);
-      setClasses(user.otherEmail);
-    });
-  }
-
-  useEffect(() => {
-    fetchData();
-}, []);
-
-  const [pageSize, setPageSize] = React.useState(5);
+  const [pageSize, setPageSize] = React.useState(50);
   const [snackbar, setSnackbar] = React.useState(null);
-  
+
   const mutateRow = useFakeMutation();
   const handleCloseSnackbar = () => setSnackbar(null);
+
+  useEffect(() => {
+    getUserData(token).then((data) => {
+      let rows2 = []
+      data = data.grade
+      console.log(data)
+      
+      for(var i = 0; i < data.length; i++) {
+        rows2.push({
+          code: data[i].studentCode,
+          id: i+1,
+          midterm: data[i].midterm,
+          final: data[i].final,
+          total: data[i].total,
+        });
+      }
+
+      setRows(rows2)
+    });
+}, []);
+
 
   const processRowUpdate = React.useCallback(
     async (newRow) => {
       // Make the HTTP request to save in the backend
       const response = await mutateRow(newRow);
-      setSnackbar({ children: 'Dữ liệu đã được lưu', severity: 'success' });
+      setSnackbar({ children: 'Dữ liệu đã được sửa', severity: 'success' });
+      console.log(response)
       return response;
     },
     [mutateRow],
@@ -195,6 +186,27 @@ export default function ValidationGrade() {
     // Editable table grade
     <>
     
+    <Box>
+      <TextField sx={{m: 2,ml: 3,  width: 200}} 
+        id="codeclass" 
+        label="Mã môn học" 
+        onChange={(event) => {
+          setCodeClass(event.target.value);
+        }}
+        />
+    </Box>
+
+    <Box>
+      <TextField sx={{m: 1,ml: 3,  width: 200}} 
+        id="semester" 
+        label="Học kỳ"
+        helperText="Ví dụ: 2021-2022-1" 
+        onChange={(event) => {
+          setSemester(event.target.value);
+        }}
+        />
+    </Box>
+
     <Box sx={{ display: 'flex', flexDirection: 'row'}}>
       <Box component="nav"
 					sx={{ width: '50%', flexShrink: { sm: 0 } }}>
