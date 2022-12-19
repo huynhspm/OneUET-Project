@@ -72,7 +72,8 @@ export default function Login(props) {
 				setIsValidOtp(OTPValidCode.Expired);
 				return;
 			}
-			props.setToken(res.data.data.token);
+			setToken(res.data.data.token);
+			props.setToken(token);
 			setIsValidOtp(0);
 			setActive(true);
 		} catch (e) {
@@ -114,7 +115,8 @@ export default function Login(props) {
 				password: password,
 			});
 			console.log(res);
-			props.setToken(res.data.data.token);
+			setToken(res.data.data.token);
+			props.setToken(token);
 			setLogin(true);
 			setActive(true);
 		} catch (e) {
@@ -138,13 +140,14 @@ export default function Login(props) {
 	useEffect(() => {
 		if (login) {
 			if (active) {
-				sessionStorage.setItem("token", props.token); // Save Token to sessionStorage
+				sessionStorage.setItem("token", token); // Save Token to sessionStorage
+				console.log(token);
 				navigate("/");
 			} else {
 				setOpen(!active);
 			}
 		}
-	}, [login, active, navigate, props.token]);
+	}, [login, active, navigate, token]);
 
 	return (
 		<React.Fragment>
