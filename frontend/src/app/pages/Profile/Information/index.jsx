@@ -14,7 +14,6 @@ const getUserData = async token => {
     }
     try {
         const response = await axios.get("http://localhost:2002/api/user/me", config);
-        console.log(response);
         return response.data.data;
     } catch (e) {
         console.log(e.response);
@@ -58,37 +57,42 @@ const Information = (props) => {
     const [partyJoint, setPartyJoint] = React.useState(null);
     const [unionPosition, setUnionPosition] = React.useState(null);
     const [associationPosition, setAssociationPosition] = React.useState(null);
-    const [club, setClub] = React.useState(null);
+    const [club, setClub] = React.useState([]);
 
     const fetchData = () => {
-        getUserData(props.token).then((data) => {
-            const user = data.profile.user;
-            const student = data.profile.student;
+        if (props.token !== "" && props.token !== null && props.token !== undefined) {
+            getUserData(props.token).then((data) => {
+                const user = data.profile.user;
+                const student = data.profile.student;
+                const clubs = data.profile.clubs;
 
-            // Basic
-            setAvatar(user.avatar);
-            setCode(student.code);
-            setName(user.name);
-            setBirthday(user.birthday);
-            setGender(user.gender);
-            setEmailVNU(user.email);
-            setEmail(user.otherEmail);
+                // Basic
+                setAvatar(user.avatar);
+                setCode(student.code);
+                setName(student.name);
+                setBirthday(user.birthday);
+                setGender(user.gender);
+                setEmailVNU(user.email);
+                setEmail(user.otherEmail);
 
-            // Education
-            setProgram(user.program);
-            setAcademicYear(user.academicYear);
-            setUnit(user.unit);
-            setClassID(student.class);
+                // Education
+                setProgram(user.program);
+                setAcademicYear(user.academicYear);
+                setUnit(user.unit);
+                setClassID(student.class);
 
-            // Activities
-            setUnionJoint(user.unionJoint);
-            setPartyJoint(user.partyJoint);
-            setUnionPosition(user.unionPosition);
-            setAssociationPosition(user.associationPosition);
-            setClub(user.club);
+                // Activities
+                setUnionJoint(user.unionJoint);
+                setPartyJoint(user.partyJoint);
+                setUnionPosition(user.unionPosition);
+                setAssociationPosition(user.associationPosition);
+                for (let i = 0; i < clubs.length; i++) {
+                    club.push(clubs[i].id-1);
+                }
 
-            setIsFetch(true);
-        });
+                setIsFetch(true);
+            });
+        }
     }
 
     useEffect(() => {

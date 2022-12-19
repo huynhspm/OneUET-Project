@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Title from '../../../../components/Title';
 import { Box, Grid, IconButton, FormControl, FormGroup, FormLabel, FormControlLabel, Checkbox, Select, TextField, InputLabel, ListItemText, OutlinedInput, MenuItem } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import CheckIcon from '@mui/icons-material/Check';
+import axios from 'axios';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -29,38 +30,48 @@ const ControlValue = (value, type = 0) => {
 
 const Activities = (props) => {
     const [editable, setEditable] = React.useState(false);
-    
-    const [club, setClub] = React.useState([]);
 
     const Submit = () => {
         console.log("Activities Information submited!");
+        let clubIds = [];
+        props.club.map((value) => {
+            clubIds.push(value+1);
+        });
         props.updateUserData(props.token, {
             unionJoint: props.unionJoint,
             partyJoint: props.partyJoint,
             unionPosition: props.unionPosition,
-            associationPosition: props.associationPosition
+            associationPosition: props.associationPosition,
+            clubIds: clubIds
         });
     }
 
-    const ClubsList = [
-        "Câu lạc bộ Thư viện Hội Sinh viên",
-        "Câu lạc bộ Nghệ thuật",
-        "Câu lạc bộ nguồn nhân lực HRTech",
-        "Câu lạc bộ Tiếng Anh",
-        "Câu lạc bộ Đá Bóng",
-        "Câu lạc bộ Điện tử và Tự động hóa",
-        "Câu lạc bộ Thuyết trình",
-        "Câu lạc bộ Sinh viên vận động hiến máu",
-        "Câu lạc bộ Robotics",
-        "Câu lạc bộ Tiếng Nhật",
-        "Câu lạc bộ Lý luận trẻ",
-        "Câu lạc bộ Hỗ trợ sinh viên",
-        "Câu lạc bộ Truyền thông UETLC",
-        "Câu lạc bộ Nhảy cổ động",
-        "Câu lạc bộ Cầu Lông",
-        "Câu lạc bộ Bóng rổ",
-        "Câu lạc bộ Hàng không Vũ trụ"
-    ];
+    const [clubsList, setClubsList] = useState([]);
+
+    const getClubList = async () => {
+        const config = {
+            headers: { Authorization: `Bearer ${props.token}` }
+        }
+        try {
+            const res = await axios.get("http://localhost:2002/api/club", config);
+            // console.log(res.data.data.clubs);
+            return res.data.data.clubs;
+        } catch (e) {
+            console.log(e.response.data);
+        }
+    }
+
+    useEffect(() => {
+        if (props.token !== "" && props.token !== null && props.token !== undefined) {
+            getClubList().then((value) => {
+                if (clubsList.length === 0) {
+                    for (let i = 0; i < value.length; i++) {
+                        clubsList.push(value[i].name);
+                    }
+                }
+            })
+        }
+    }, [props.token]);
 
     return (
         <React.Fragment>
@@ -163,22 +174,29 @@ const Activities = (props) => {
                                         labelId="club-label"
                                         id="club"
                                         multiple
-                                        value={club}
+                                        value={props.club}
                                         onChange={(event) => {
                                             const {
                                                 target: { value },
                                             } = event;
-                                            setClub(
+                                            props.setClub(
                                                 typeof value === 'string' ? value.split(',') : value,
                                             );
+                                            console.log(props.club);
                                         }}
                                         input={<OutlinedInput label="Các câu lạc bộ tham gia" />}
-                                        renderValue={(selected) => selected.join(', ')}
+                                        renderValue={(selected) => {
+                                            let name_selected = [];
+                                            for (let i = 0; i < selected.length; i++) {
+                                                name_selected.push(clubsList[selected[i]]);
+                                            }
+                                            return name_selected.join(', ');
+                                        }}
                                         MenuProps={MenuProps}
                                     >
-                                        {ClubsList.map((name) => (
-                                            <MenuItem key={name} value={name}>
-                                                <Checkbox checked={club.indexOf(name) > -1} />
+                                        {clubsList.map((name, index) => (
+                                            <MenuItem key={name} value={index}>
+                                                <Checkbox checked={props.club.indexOf(index) > -1} />
                                                 <ListItemText primary={name} />
                                             </MenuItem>
                                         ))}
