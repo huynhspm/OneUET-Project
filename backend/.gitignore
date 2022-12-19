@@ -1,3 +1,4 @@
 /node_modules
 .env
 gg-service-key.json
+tmp.pdf

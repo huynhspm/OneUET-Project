@@ -10,18 +10,15 @@ import "../../../utils/styles.css"
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 const DocumentView = (props) => {
-
-    // let t1 = "https://docs.google.com/viewer?srcid=";
-    // let t2 = "&pid=explorer&efh=false&a=v&chrome=false&embedded=true";
-    // const pdf_link = t1.concat(String(props.id), t2);
     const [showOptionsDialog, setShowOptionsDialog] = useState(false);
 
     const [pdf_link, set_pdf_link] = useState();
     const [name, setName] = useState();
     const [description, setDescription] = useState();
     const [tags, setTags] = useState([]);
+    const [linkDownload, setLinkDownload] = useState();
     const [dateUploaded, setDateUploaded] = useState();
-    const [comments, setComments] = useState([])
+    const [comments, setComments] = useState([]);
     const docId = props.id;
 
     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo'
@@ -42,6 +39,7 @@ const DocumentView = (props) => {
                     console.log(data);
                     set_pdf_link(data.document.linkView);
                     setName(data.document.name);
+                    setLinkDownload(data.document.linkDownload);
                     setDescription(data.document.description);
                     setTags([
                         data.document.unit,
@@ -109,7 +107,7 @@ const DocumentView = (props) => {
                 </Box>
             </Box>
             {showOptionsDialog && (
-                <OptionsDialog documentID={props.id} onClose={() => setShowOptionsDialog(false)} />
+                <OptionsDialog documentID={props.id} linkDownload={linkDownload} onClose={() => setShowOptionsDialog(false)} />
             )}
         </>
     );

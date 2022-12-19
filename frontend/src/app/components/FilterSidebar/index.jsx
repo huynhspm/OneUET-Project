@@ -2,7 +2,6 @@ import {
     List,
     ListItem,
     ListItemText,
-    ListItemIcon,
     ListItemButton,
     Box,
     Collapse,
@@ -12,33 +11,26 @@ import {
     Typography,
     Checkbox
 } from "@mui/material";
-import InboxIcon from '@mui/icons-material/MoveToInbox';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import StarBorder from '@mui/icons-material/StarBorder';
 import { FilterBox, CategoryBox } from "../../utils/styles";
 import { useEffect, useState } from "react";
 import React from "react";
-import axios from "axios";
-import { categories, units, majors } from "../../utils/constant";
+import { categories, units, majors, years } from "../../utils/constant";
 
 const FilterSidebar = (props) => {
     const [filterData, setFilterData] = useState({
-        "Khoa": units, //Object.keys(unitsAndMajors),
+        "Khoa": units,
         "Ngành": majors,
-        "Giảng viên": [],
-        "Môn": [],
+        "Giảng viên": props.teacher,
+        "Môn": props.course,
         "Loại": categories,
-        "Năm": [2020, 2021, 2022]
+        "Năm": years
     });
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo'
-    const config = {
-        headers: { Authorization: `Bearer ${token}` }
-    };
 
-    const [openUnits, setOpenUnits] = React.useState(false);
-    const [openMajors, setOpenMajors] = React.useState(false);
-    const [openTeachers, setOpenTeachers] = React.useState(false);
+    const [openUnits, setOpenUnits] = useState(false);
+    const [openMajors, setOpenMajors] = useState(false);
+    const [openTeachers, setOpenTeachers] = useState(false);
     const [openCourses, setOpenCourses] = React.useState(false);
     const [openCategories, setOpenCategories] = React.useState(false);
     const [openYears, setOpenYears] = React.useState(false);
@@ -67,46 +59,9 @@ const FilterSidebar = (props) => {
         });
     };
 
-    useEffect(() => {
-        fetchAllCourses();
-        fetchAllTeachers();
-    }, []);
-
-    const fetchAllCourses = async () => {
-        try {
-            await axios
-                .get("http://localhost:2002/course", config)
-                .then((res) => {
-                    let courses = res.data.data.courses;
-                    for (let index in courses) {
-                        filterData['Môn'].push(courses[index].name);
-                    }
-                });
-        } catch (e) {
-            console.log(e.response.data);
-        }
-    };
-
-    const fetchAllTeachers = async () => {
-        try {
-            await axios
-            .get("http://localhost:2002/teacher", config)
-            .then((res) => {
-                let teachers = res.data.data.teachers;
-                for (let index in teachers) {
-                    filterData['Giảng viên'].push(teachers[index].name);
-                }
-            });
-        } catch (e) {
-            console.log(e.response.data);
-        }
-    }
-
     function toVariable(str) {
         if (str === "Khoa") return "unit";
         if (str === "Ngành") return "major";
-        if (str === "Giảng viên") return "teacher";
-        if (str === "Môn") return "course";
         if (str === "Loại") return "category";
         if (str === "Năm") return "year";
     }
@@ -115,7 +70,7 @@ const FilterSidebar = (props) => {
         let param = event.nativeEvent.path[7].childNodes[1].innerText;
         let value = event.nativeEvent.path[2].innerText;
 
-        let clone = {...props.filterParams};
+        let clone = { ...props.filterParams };
         // let x = props.filterParams[toVariable(param)].push(event.nativeEvent.path[2].innerText);
         // props.setFilterParams(props.filterParams);
 
@@ -127,10 +82,35 @@ const FilterSidebar = (props) => {
             clone[toVariable(param)].splice(index, 1);
             props.setFilterParams(clone);
         }
-        console.log(props.filterParams);
-        console.log(value);
-        console.log(event.target.checked);
-        console.log(param);
+
+    }
+
+    const handleCheckTeacher = (event) => {
+        let clone = { ...props.filterParams };
+        let value = event.target.defaultValue;
+
+        if (event.target.checked) {
+            clone['teacherId'].push(value);
+            props.setFilterParams(clone);
+        } else {
+            let index = props.filterParams['teacherId'].indexOf(value);
+            clone['teacherId'].splice(index, 1);
+            props.setFilterParams(clone);
+        }
+    }
+
+    const handleCheckCourse = (event) => {
+        let clone = { ...props.filterParams };
+        let value = event.target.defaultValue;
+
+        if (event.target.checked) {
+            clone['courseId'].push(value);
+            props.setFilterParams(clone);
+        } else {
+            let index = props.filterParams['courseId'].indexOf(value);
+            clone['courseId'].splice(index, 1);
+            props.setFilterParams(clone);
+        }
     }
 
     return (
@@ -151,12 +131,30 @@ const FilterSidebar = (props) => {
                         </ListItemButton>
                         <Collapse in={open[index]} timeout="auto" unmountOnExit>
                             <FormGroup sx={{ ml: 2 }}>
-                                {filterData[data].map((text, index) => (
+                                {data !== "Giảng viên" && data !== 'Môn' && filterData[data].map((text, index) => (
                                     <FormControlLabel
                                         key={index}
                                         label={<Typography sx={{ fontSize: 14 }}>{text}</Typography>}
-                                        control={<Checkbox sx={{ '& .MuiSvgIcon-root': { fontSize: 16 } }}/>}
+                                        control={<Checkbox sx={{ '& .MuiSvgIcon-root': { fontSize: 16 } }} />}
                                         onChange={handleCheck}
+                                        sx={{ pl: 1 }} />
+                                ))}
+                                {data === "Giảng viên" && Object.keys(props.teacher).map((id, index) => (
+                                    <FormControlLabel
+                                        key={index}
+                                        value={id}
+                                        label={<Typography sx={{ fontSize: 14 }}>{props.teacher[id]}</Typography>}
+                                        control={<Checkbox sx={{ '& .MuiSvgIcon-root': { fontSize: 16 } }} />}
+                                        onChange={handleCheckTeacher}
+                                        sx={{ pl: 1 }} />
+                                ))}
+                                {data === "Môn" && Object.keys(props.course).map((id, index) => (
+                                    <FormControlLabel
+                                        key={index}
+                                        value={id}
+                                        label={<Typography sx={{ fontSize: 14 }}>{props.course[id]}</Typography>}
+                                        control={<Checkbox sx={{ '& .MuiSvgIcon-root': { fontSize: 16 } }} />}
+                                        onChange={handleCheckCourse}
                                         sx={{ pl: 1 }} />
                                 ))}
                             </FormGroup>

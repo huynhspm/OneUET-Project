@@ -112,7 +112,6 @@ const Header = (props) => {
               }
             }}
             freeSolo
-            popupIndicator
             getOptionLabel={(option) => option.name}
             options={docs.map((option) => option)}
             onChange={(event, option) => {
