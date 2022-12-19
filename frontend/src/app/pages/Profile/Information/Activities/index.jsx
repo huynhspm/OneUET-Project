@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Title from '../../../../components/Title';
 import { Box, Grid, IconButton, FormControl, FormGroup, FormLabel, FormControlLabel, Checkbox, Select, TextField, InputLabel, ListItemText, OutlinedInput, MenuItem } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import CheckIcon from '@mui/icons-material/Check';
+import axios from 'axios';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -29,7 +30,7 @@ const ControlValue = (value, type = 0) => {
 
 const Activities = (props) => {
     const [editable, setEditable] = React.useState(false);
-    
+
     const [club, setClub] = React.useState([]);
 
     const Submit = () => {
@@ -61,6 +62,24 @@ const Activities = (props) => {
         "Câu lạc bộ Bóng rổ",
         "Câu lạc bộ Hàng không Vũ trụ"
     ];
+
+    const getClubList = async () => {
+        const config = {
+            headers: { Authorization: `Bearer ${props.token}` }
+        }
+        try {
+            const res = await axios.get("http://localhost:2002/api/club", config);
+            console.log(res.data);
+        } catch (e) {
+            console.log(e.response.data);
+        }
+    }
+
+    useEffect(() => {
+        if (props.token !== "" && props.token !== null && props.token !== undefined) {
+            getClubList();
+        }
+    }, [props.token]);
 
     return (
         <React.Fragment>

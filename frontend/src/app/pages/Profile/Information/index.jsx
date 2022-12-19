@@ -14,7 +14,6 @@ const getUserData = async token => {
     }
     try {
         const response = await axios.get("http://localhost:2002/api/user/me", config);
-        console.log(response);
         return response.data.data;
     } catch (e) {
         console.log(e.response);

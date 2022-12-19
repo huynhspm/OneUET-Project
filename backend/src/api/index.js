@@ -9,6 +9,7 @@ const courseRouter = require("./course");
 const studentRouter = require("./student");
 const commentRouter = require("./comment");
 const gradeRouter = require("./grade");
+const clubRouter = require("./club");
 const router = Router();
 
 router.use("/login", loginRouter);
@@ -21,6 +22,7 @@ router.use("/course", courseRouter);
 router.use("/student", studentRouter);
 router.use("/comment", commentRouter);
 router.use("/grade", gradeRouter);
+router.use("/club", clubRouter);
 router.use("/", (req, res) => {
 	res.json("Home");
 });
