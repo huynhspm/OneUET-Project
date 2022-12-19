@@ -13,6 +13,8 @@ const documents = require("../database/data/document.json");
 const comments = require("../database/data/comment.json");
 const grades = require("../database/data/grade.json");
 
+const { hashPassword } = require("../utils/password");
+
 async function createCourse() {
 	for (let course of courses) {
 		await models.Course.create(course);
@@ -64,6 +66,7 @@ async function createClub() {
 
 async function createUser() {
 	for (let user of users) {
+		user["password"] = hashPassword(user["password"]);
 		await models.User.create(user);
 	}
 }
