@@ -50,7 +50,7 @@ const getClubs = async (req) => {
 
 		const message = "Get clubs successfully";
 		const status = ResponseCode.OK;
-		const data = { comments };
+		const data = { clubs };
 
 		return {
 			data,
@@ -73,7 +73,7 @@ const getClub = async (req) => {
 			status = ResponseCode.OK;
 		}
 
-		const data = { comment, users };
+		const data = { club, users };
 
 		return {
 			data,
@@ -110,7 +110,7 @@ const updateClub = async (req) => {
 
 const deleteClub = async (req) => {
 	try {
-		let { club, message, status } = await verifyComment(req);
+		let { club, message, status } = await verifyClub(req);
 
 		if (club) {
 			club = await club.destroy();

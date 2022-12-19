@@ -36,12 +36,9 @@ const getMyUser = async (req) => {
 
 			profile = { user, student, clubs };
 
-			console.log(student);
-			console.log("...................");
 			let studiedClasses = await student.getClasses({
 				where: { finish: true },
 			});
-			console.log("...................");
 
 			let studyingClasses = await student.getClasses({
 				where: { finish: false },
