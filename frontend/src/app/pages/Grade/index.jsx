@@ -12,7 +12,6 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import LeftDrawer from "../../components/LeftDrawer";
 import './styles.css';
 
 const drawerWidth = 240;
