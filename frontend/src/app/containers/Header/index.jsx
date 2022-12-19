@@ -44,12 +44,10 @@ const Header = (props) => {
       await axios
         .get("http://localhost:2002/api/document/public",
           {
-            // params: filterParams,
             headers: { Authorization: `Bearer ${token}` }
           })
         .then((res) => {
           let docs = getDocuments(res.data);
-          console.log(res);
           let tmp = [];
           for (let id in docs) {
             let element = {
@@ -58,10 +56,6 @@ const Header = (props) => {
             }
             tmp.push(element);
           }
-          console.log("--fetchData() - Header--");
-          console.log(tmp);
-          console.log("-------------------------");
-
           setDocs(tmp);
         });
     } catch (e) {

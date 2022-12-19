@@ -83,7 +83,7 @@ const Add = (props) => {
             teacherId: parseInt(teacherId)
         }
         try {
-            await axios.post("http://localhost:2002/document", data, config);
+            await axios.post("http://localhost:2002/api/document", data, config);
         } catch (e) {
             console.log(e.response.data);
         }
