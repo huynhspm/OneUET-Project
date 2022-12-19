@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
-// app.use(express.static("../frontend/build"));
+app.use(express.static("../frontend/build"));
 
 const createData = require("./utils/data");
 

@@ -27,7 +27,6 @@ const verifyDocument = async (req) => {
 
 const createDocument = async (req) => {
 	try {
-		console.log("createDocument - service.js");
 		const newDocument = req.body;
 		const document = await Document.create(newDocument);
 		const message = "Create document successfully!";
@@ -69,14 +68,12 @@ const getPublicDocument = async (req) => {
 		let { document, message, status } = await verifyDocument(req);
 		let course, teacher, comments;
 
-		console.log("getPublicDocument()");
-
 		if (document) {
 			if (document.status === "public") {
 				course = await document.getCourse();
 				teacher = await document.getTeacher();
 				comments = await document.getComments({
-					include: "user"
+					include: "user",
 				});
 
 				message = "Get public document successfully";
@@ -94,6 +91,26 @@ const getPublicDocument = async (req) => {
 			teacher,
 			comments,
 		};
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
+const getMyDocuments = async (req) => {
+	try {
+		const query = req.query;
+		query["userId"] = req.user.id;
+		const documents = await Document.findAll({ where: query });
+
+		const message = "Get my documents successfully";
+		const status = ResponseCode.OK;
+		const data = { documents };
 
 		return {
 			data,
@@ -227,9 +244,6 @@ const getDocument = async (req) => {
 		let { document, message, status } = await verifyDocument(req);
 		let course, teacher, comments;
 
-		console.log("HEREEE");
-
-
 		if (document) {
 			course = await document.getCourse();
 			teacher = await document.getTeacher();
@@ -282,6 +296,7 @@ module.exports = {
 	createDocument,
 	getPublicDocuments,
 	getPublicDocument,
+	getMyDocuments,
 	getMyDocument,
 	updateMyDocument,
 	deleteMyDocument,
