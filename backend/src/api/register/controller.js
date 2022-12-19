@@ -1,4 +1,5 @@
 const service = require("./service");
+const ResponseCode = require("../../utils/constant/ResponseCode");
 
 // POST: /register
 const register = async (req, res) => {
