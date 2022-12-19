@@ -20,11 +20,11 @@ const createData = require("./utils/data");
 const fetch = require("cross-fetch");
 
 const init = async () => {
-	await sequelize.sync();
-	console.log("Finish load database.");
-	app.use("/api", router);
-	await createData();
-	console.log("Create data successfully");
+  await sequelize.sync();
+  console.log("Finish load database.");
+  app.use("/api", router);
+  //await createData();
+  console.log("Create data successfully");
 };
 
 init();
