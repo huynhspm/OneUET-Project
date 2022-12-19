@@ -57,18 +57,19 @@ const Information = (props) => {
     const [partyJoint, setPartyJoint] = React.useState(null);
     const [unionPosition, setUnionPosition] = React.useState(null);
     const [associationPosition, setAssociationPosition] = React.useState(null);
-    const [club, setClub] = React.useState(null);
+    const [club, setClub] = React.useState([]);
 
     const fetchData = () => {
         if (props.token !== "" && props.token !== null && props.token !== undefined) {
             getUserData(props.token).then((data) => {
                 const user = data.profile.user;
                 const student = data.profile.student;
+                const clubs = data.profile.clubs;
 
                 // Basic
                 setAvatar(user.avatar);
                 setCode(student.code);
-                setName(user.name);
+                setName(student.name);
                 setBirthday(user.birthday);
                 setGender(user.gender);
                 setEmailVNU(user.email);
@@ -85,7 +86,9 @@ const Information = (props) => {
                 setPartyJoint(user.partyJoint);
                 setUnionPosition(user.unionPosition);
                 setAssociationPosition(user.associationPosition);
-                setClub(user.club);
+                for (let i = 0; i < clubs.length; i++) {
+                    club.push(clubs[i].id-1);
+                }
 
                 setIsFetch(true);
             });
