@@ -77,7 +77,7 @@ const updateMyPassword = async (req) => {
 
 			const verifyPassword = comparePassword(oldPassword, user.password);
 			if (verifyPassword) {
-				user = await user.update({ password: hashPassword(password) });
+				user = await user.update({ password: hashPassword(newPassword) });
 
 				message = "Update my password successfully";
 				status = ResponseCode.OK;
