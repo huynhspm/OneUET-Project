@@ -16,7 +16,7 @@ const CommentPost = (props) => {
                 documentId: props.docId,
                 userId: 1
             };
-            await axios.post("http://localhost:2002/comment", data, config).then(() => {
+            await axios.post("http://localhost:2002/api/comment", data, config).then(() => {
                     setContent("");
                 }).then(() => props.onClick());
         } catch (e) {

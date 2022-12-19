@@ -17,7 +17,7 @@ function OptionsDialog({ onClose, documentID, linkDownload }) {
         console.log(documentID);
         try {
             await axios
-                .delete("http://localhost:2002/document/" + String(documentID), config);
+                .delete("http://localhost:2002/api/document/" + String(documentID), config);
 
         } catch (e) {
             console.log(e.response.data);

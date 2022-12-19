@@ -47,7 +47,7 @@ const Main = (props) => {
 	const fetchData = async () => {
 		try {
 			await axios
-				.get("http://localhost:2002/document/public",
+				.get("http://localhost:2002/api/document/public",
 					{
 						params: filterParams,
 						headers: { Authorization: `Bearer ${token}` }
@@ -79,7 +79,7 @@ const Main = (props) => {
 	const fetchAllCourses = async () => {
 		try {
 			await axios
-				.get("http://localhost:2002/course", {
+				.get("http://localhost:2002/api/course", {
 					headers: { Authorization: `Bearer ${token}` }
 				})
 				.then((res) => {
@@ -101,7 +101,7 @@ const Main = (props) => {
 	const fetchAllTeachers = async () => {
 		try {
 			await axios
-				.get("http://localhost:2002/teacher", {
+				.get("http://localhost:2002/api/teacher", {
 					headers: { Authorization: `Bearer ${token}` }
 				})
 				.then((res) => {
