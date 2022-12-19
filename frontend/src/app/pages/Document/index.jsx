@@ -3,10 +3,8 @@ import { useParams } from "react-router-dom";
 import EditDocumentView from "../EditDocumentPage/Main";
 import DocumentView from "./DocumentView";
 import Main from "./Main";
-import { useEffect } from "react";
-import axios
-    from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Document = (props) => {
     const [doc_ids, setDoc_ids] = useState([]);
@@ -25,13 +23,13 @@ const Document = (props) => {
             await axios
                 .get("http://localhost:2002/document/public", config)
                 .then((res) => {
+                    console.log(res)
                     let docs = res.data.data.documents;
-                    console.log(docs)
                     let tmp = [];
                     for (let index in docs) {
                         tmp.push(docs[index].id) //docs[index].id
                     }
-                    console.log(tmp);
+                    // console.log(tmp);
                     setDoc_ids(tmp);
                 });
         } catch (e) {
@@ -47,7 +45,6 @@ const Document = (props) => {
             {doc_ids.map((id, index) => (
                 doc_id === String(id) && <DocumentView key={index} id={id} />
             ))}
-
         </>
     );
 };
