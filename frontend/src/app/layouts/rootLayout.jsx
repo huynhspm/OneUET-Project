@@ -25,19 +25,9 @@ import Logout from "../pages/Logout";
 const RootLayout = () => {
   const [token, setToken] = useState("");
 
-  // const [mode, setMode] = useState("light");
-
-  // const darkTheme = createTheme({
-  //   palette: {
-  //     mode: mode,
-  //   },
-  // });
-
   return (
-    // <ThemeProvider theme={darkTheme}>
     <Box bgcolor={"background.default"} color={"text.primary"}>
       <BrowserRouter>
-        {/* <Header setMode={setMode} mode={mode} /> */}
         <Header />
         <Routes>
           <Route path="/" element={<HomePage token={token} />} />
@@ -66,7 +56,6 @@ const RootLayout = () => {
         <Footer />
       </BrowserRouter>
     </Box>
-    // </ThemeProvider>
   );
 };
 

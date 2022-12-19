@@ -12,15 +12,8 @@ import FactCheckIcon from "@mui/icons-material/FactCheck";
 import AvatarDropdown from "../../components/AvatarDropdown";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import {
-  Box,
-  List,
-  Switch,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-} from "@mui/material";
-import { ModeNight } from "@mui/icons-material";
+import { Box, Typography } from "@mui/material";
+
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "./styles.css";
@@ -71,22 +64,27 @@ const Header = (props) => {
 
   return (
     <>
-      <div className="header">
+      <div className="header" color="white">
         <div className="btn-group button-group">
           <Link className="homepage-button btn" to="/">
-            <HomeIcon /> Trang chủ
+            <HomeIcon />
+            <Typography>Trang chủ</Typography>
           </Link>
           <Link className="convert-button btn" to="/convert">
-            <AutoAwesomeIcon /> Convert
+            <AutoAwesomeIcon />
+            <Typography>Convert</Typography>
           </Link>
           <Link className="document-button btn" to="/document">
-            <SummarizeIcon /> Document
+            <SummarizeIcon />
+            <Typography>Document</Typography>
           </Link>
           <Link className="grade-button btn" to="/grade">
-            <SchoolIcon /> Grade
+            <SchoolIcon />
+            <Typography>Grade</Typography>
           </Link>
           <Link className="validation-button btn" to="/validation-document">
-            <FactCheckIcon /> Validation Document
+            <FactCheckIcon />
+            <Typography>Validation Document</Typography>
           </Link>
         </div>
         <Box
