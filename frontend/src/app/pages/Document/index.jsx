@@ -6,6 +6,7 @@ import Main from "./Main";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { api_url } from "../../utils/config";
 
 const Document = (props) => {
     const [doc_ids, setDoc_ids] = useState([]);
@@ -41,7 +42,7 @@ const Document = (props) => {
     const fetchData = async () => {
         try {
             await axios
-                .get("http://localhost:2002/api/document/public", config)
+                .get(api_url + "/api/document/public", config)
                 .then((res) => {
                     console.log(res)
                     let docs = res.data.data.documents;

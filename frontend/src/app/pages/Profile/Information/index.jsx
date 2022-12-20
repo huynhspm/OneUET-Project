@@ -7,13 +7,14 @@ import ExportCV from './ExportCV';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import axios from 'axios';
+import { api_url } from '../../../utils/config';
 
 const getUserData = async token => {
     const config = {
         headers: { Authorization: `Bearer ${token}` }
     }
     try {
-        const response = await axios.get("http://localhost:2002/api/user/me", config);
+        const response = await axios.get(api_url + "/api/user/me", config);
         return response.data.data;
     } catch (e) {
         console.log(e.response);
@@ -26,7 +27,7 @@ const updateUserData = async (token, data) => {
     }
     console.log(data);
     try {
-        const response = await axios.put("http://localhost:2002/api/user/me", data, config);
+        const response = await axios.put(api_url + "/api/user/me", data, config);
         console.log(response);
     } catch (e) {
         console.log(e.response);

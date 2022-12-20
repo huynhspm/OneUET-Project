@@ -23,7 +23,7 @@ const init = async () => {
   await sequelize.sync();
   console.log("Finish load database.");
   app.use("/api", router);
-  // await createData();
+//   await createData();
   console.log("Create data successfully");
 };
 

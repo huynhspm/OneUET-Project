@@ -14,20 +14,12 @@ import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import {
   Box,
-  List,
-  Switch,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  colors,
 } from "@mui/material";
-import { ModeNight } from "@mui/icons-material";
-import { Typography } from "@mui/material";
-
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
+import { api_url } from "../../utils/config";
 
 const Header = (props) => {
   const [isFetch, setIsFetch] = useState(false);
@@ -67,7 +59,7 @@ const Header = (props) => {
   const fetchData = async () => {
     try {
       await axios
-        .get("http://localhost:2002/api/document/public", {
+        .get(api_url + "/api/document/public", {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => {
