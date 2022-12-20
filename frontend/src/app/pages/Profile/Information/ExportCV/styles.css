@@ -1,29 +1,153 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 @font-face {
-    font-family: "DejaVu Sans";
-    src: url("https://kendo.cdn.telerik.com/2017.2.621/styles/fonts/DejaVu/DejaVuSans.ttf") format("truetype");
+    font-family: "IBM Flex Sans";
+    font-weight: 300;
+    src: url("../../../../utils/fonts/IBMPlexSans-Light.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: "DejaVu Sans";
-    font-weight: bold;
-    src: url("https://kendo.cdn.telerik.com/2017.2.621/styles/fonts/DejaVu/DejaVuSans-Bold.ttf") format("truetype");
+    font-family: "IBM Flex Sans";
+    font-weight: 400;
+    src: url("../../../../utils/fonts/IBMPlexSans-Regular.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: "DejaVu Sans";
-    font-style: italic;
-    src: url("https://kendo.cdn.telerik.com/2017.2.621/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf") format("truetype");
+    font-family: "IBM Flex Sans";
+    font-weight: 500;
+    src: url("../../../../utils/fonts/IBMPlexSans-Medium.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: "DejaVu Sans";
-    font-weight: bold;
-    font-style: italic;
-    src: url("https://kendo.cdn.telerik.com/2017.2.621/styles/fonts/DejaVu/DejaVuSans-Oblique.ttf") format("truetype");
+    font-family: "IBM Flex Sans";
+    font-weight: 600;
+    src: url("../../../../utils/fonts/IBMPlexSans-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Material Icons";
+    font-style: normal;
+    font-weight: 400;
+    src: local('Material Icons'),
+        local('MaterialIcons-Regular'),
+        url("../../../../utils/fonts/MaterialIcons-Regular.ttf") format("truetype");
+}
+
+:root {
+    --main-width: 75%;
+    --header-height: 2.4in;
+    --sidebar-width: calc(100% - var(--main-width));
 }
 
 div.cv {
-    font-family: '"DejaVu Sans', sans-serif;
+    font-family: 'IBM Flex Sans', sans-serif;
+    display: flex;
+    flex-direction: row;
+}
+
+div.cv-sub-section {
+    flex-basis: var(--sidebar-width);
+    padding: 0.1618in 0.1618in 0.1618in 0.1618in;
+    display: flex;
+    flex-direction: column;
+    background-color: #f5f5f5;
+}
+
+div.cv-sub-section>div+div {
+    margin-top: 2em;
+}
+
+div.cv-contact {
+    padding: 0.1618in 0.1618in 0.1618in 0.1618in;
+}
+
+div.cv-main-section {
+    flex-basis: var(--main-width);
+    display: flex;
+    flex-direction: column;
+}
+
+div.cv-header {
+    display: block;
+    flex-basis: var(--header-height);
+    flex-grow: 0;
+    padding: 0.1618in;
+    background-color: white;
+}
+
+div.cv-name {
+    font-size: 5.4rem;
+    font-weight: 500;
+}
+
+div.cv-basic-info {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+hr {
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible;
+    display: block;
+    unicode-bidi: isolate;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    overflow: hidden;
+    border-style: inset;
+    border-width: 1px;
+}
+
+div.cv-avatar {
+    display: flex;
+    justify-content: center;
+}
+
+img.cv-avatar {
+    width: 100%;
+    display: block;
+    padding: 0.1618in 0.1618in 0 0.1618in;
+}
+
+div.cv-body {
+    flex-grow: 1;
+    padding: 0.1618in;
+    padding-top: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+div.cv-heading {
+    font-size: 1.6rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+    margin-top: 0;
+}
+
+div.cv-contact-row {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-block-start: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-size: 1.2rem;
+}
+
+.material-icons {
+    font-family: "Material Icons";
+    margin-right: 0.3em;
+    text-align: center;
+    min-width: 1em;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
 }
