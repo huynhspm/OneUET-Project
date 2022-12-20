@@ -72,6 +72,7 @@ const Header = (props) => {
         })
         .then((res) => {
           let docs = getDocuments(res.data);
+          // console.log(res);
           let tmp = [];
           for (let id in docs) {
             let element = {

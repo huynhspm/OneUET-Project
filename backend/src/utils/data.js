@@ -35,7 +35,7 @@ async function createTeacher() {
 
 async function createTeacherClass() {
 	for (let teacherClass of teachersClasses) {
-		models.TeacherClass.create(teacherClass);
+		models.TeacherClass.findOrCreate({ where: teacherClass });
 	}
 }
 
@@ -103,20 +103,19 @@ async function createGrade() {
 }
 
 async function createData() {
-	await createCourse();
-	await createClass();
-	await createTeacher();
-	await createTeacherClass();
-	await createStudent();
-	await createStudentClass();
-	await createRole();
-	await createClub();
-	await createUser();
-	await createUserClub();
-	await createDocument();
-	await createComment();
-
-	await createGrade();
+	// await createCourse();
+	// await createClass();
+	// await createTeacher();
+	// await createTeacherClass();
+	// await createStudent();
+	// await createStudentClass();
+	// await createRole();
+	// await createClub();
+	// await createUser();
+	// await createUserClub();
+	// await createDocument();
+	// await createComment();
+	// await createGrade();
 }
 
 module.exports = createData;

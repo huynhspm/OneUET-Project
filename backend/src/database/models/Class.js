@@ -21,6 +21,7 @@ const Class = sequelize.define(
 		},
 		finish: {
 			type: DataTypes.BOOLEAN,
+			defaultValue: false,
 		},
 		group: {
 			type: DataTypes.STRING,
