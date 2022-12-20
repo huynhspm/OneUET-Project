@@ -108,14 +108,14 @@ async function createData() {
 	// await createTeacher();
 	// await createTeacherClass();
 	// await createStudent();
-	// await createStudentClass();
-	// await createRole();
-	// await createClub();
-	// await createUser();
-	// await createUserClub();
-	// await createDocument();
-	// await createComment();
-	// await createGrade();
+	await createStudentClass();
+	await createRole();
+	await createClub();
+	await createUser();
+	await createUserClub();
+	await createDocument();
+	await createComment();
+	await createGrade();
 }
 
 module.exports = createData;

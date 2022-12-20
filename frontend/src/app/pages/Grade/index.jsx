@@ -10,7 +10,10 @@ const getUserData = async (token) => {
     headers: { Authorization: `Bearer ${token}` },
   };
   try {
-    const response = await axios.get("http://localhost:2002/", config);
+    const response = await axios.get(
+      "http://localhost:2002/api/user/me",
+      config
+    );
     return response.data.data;
   } catch (e) {
     console.log(e.response);
@@ -91,27 +94,7 @@ const columns = [
 
 const rows = [];
 
-let getData = async () => {
-  const url = "http://localhost:3000/data.json";
-  const response = await fetch(url);
-  const data = await response.json();
-  for (var i = 0; i < data["students"].length; i++) {
-    const obj = {};
-    obj.code = data["students"][i]["0"];
-    obj.name = 0;
-    obj.date_of_birth = 0;
-    obj.classes = 0;
-    obj.id = i;
-    obj.midterm_grade = data["students"][i]["1"];
-    obj.final_grade = data["students"][i]["2"];
-    obj.total_grade = data["students"][i]["3"];
-    rows[i] = obj;
-  }
-  console.log(rows);
-  return data;
-};
-
-export default function DataGridDemo() {
+export default function Grade() {
   const [pageSize, setPageSize] = React.useState(5);
   const [isFetch, setIsFetch] = React.useState(false);
   const navigate = useNavigate();
@@ -124,7 +107,7 @@ export default function DataGridDemo() {
     if (token === "") {
       const lastToken = sessionStorage.getItem("token");
       if (lastToken !== null && lastToken !== undefined) {
-        //console.log(lastToken);
+        // console.log(lastToken);
         setToken(lastToken);
       } else {
         navigate("/login");
@@ -147,7 +130,6 @@ export default function DataGridDemo() {
       console.log("Set", isFetch);
     }
   }, [token, isFetch]);
-
 
   return (
     <Box sx={{ height: 910, width: "100%" }}>
