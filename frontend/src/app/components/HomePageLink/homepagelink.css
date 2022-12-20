@@ -1,0 +1,28 @@
+.container {
+    height: vw;
+    width: 25%;
+    margin: 2%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    padding: 0%;
+    margin-top: 2%;
+}
+
+.cardContent {
+    color: black;
+    text-align: center;
+}
+
+@media screen and (max-width: 1200px) {
+    .container {
+        width: 42%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .container {
+        width: 95%;
+    }
+}

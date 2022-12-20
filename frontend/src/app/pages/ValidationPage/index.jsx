@@ -5,7 +5,7 @@ import Sidebar from "../../components/SidebarVali";
 
 const ValidationPage = () => {
   return (
-    <Box>
+    <Box sx={{ minHeight: window.innerHeight, width: '100%' }}>
       <Stack direction="row" spacing={2} justifyContent="space-between">
         <Sidebar />
         <Main />

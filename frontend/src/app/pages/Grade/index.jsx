@@ -116,7 +116,7 @@ const rows = [
 
 export default function Grade() {
   return (
-    <>
+    <Box sx={{minHeight: window.innerHeight}}>
       <Typography variant="h6">
         Sinh viên:
       </Typography>
@@ -157,6 +157,6 @@ export default function Grade() {
           </TableBody>
         </Table>
       </TableContainer>
-    </>
+    </Box>
   );
 }

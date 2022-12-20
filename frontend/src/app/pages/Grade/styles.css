@@ -7,7 +7,7 @@
     border:1px;
 }
 .sticky {
-    position: "sticky";
+    position: sticky;
     left: 0;
     background: "white";
 }

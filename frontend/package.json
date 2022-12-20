@@ -34,6 +34,7 @@
     "react-lines-ellipsis": "^0.15.3",
     "react-pdf": "^6.2.0",
     "react-scripts": "5.0.1",
+    "react-social-icons": "^5.15.0",
     "styled-components": "^5.3.6",
     "tesseract.js": "^4.0.0",
     "validator": "^13.7.0",
