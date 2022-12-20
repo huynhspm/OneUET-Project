@@ -13,7 +13,7 @@ import { units } from '../../utils/config';
 import Main from './PrivateDocument/Main' 
 import ChangePassword from './ChangePassword';
 
-const drawerWidth = 240;
+const drawerWidth = 210;
 
 const Profile = (props) => {
     const { type } = useParams();
