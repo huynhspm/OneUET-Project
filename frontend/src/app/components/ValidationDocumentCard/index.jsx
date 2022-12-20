@@ -2,11 +2,10 @@ import { Card, CardMedia, CardActions, CardContent, Typography, Button } from '@
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import { Link } from "react-router-dom";
 import React, { useState } from 'react';
-import PreviewDocument from '../PreviewDocument';
-import axios from 'axios';
 import { documentCardHeight } from '../../utils/config';
+import ValidationPreviewDocument from '../ValidationPreviewDocument';
 
-const DocumentCard = (props) => {
+const ValidationDocumentCard = (props) => {
     const [open, setOpen] = useState(false);
 
     const handleClick = () => {
@@ -35,7 +34,7 @@ const DocumentCard = (props) => {
                     <Button component={Link} onClick={handleClick}><RemoveRedEyeIcon sx={{ mr: 1 }} />Xem tài liệu</Button>
                 </CardActions>
             </Card >
-            <PreviewDocument
+            <ValidationPreviewDocument
                 open={open}
                 onClose={() => setOpen(false)}
                 description={props.description}
@@ -48,4 +47,4 @@ const DocumentCard = (props) => {
     )
 }
 
-export default DocumentCard;
+export default ValidationDocumentCard;

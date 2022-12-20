@@ -35,7 +35,7 @@ const LeftDrawer = (props) => {
           //     <ListItemText primary={text} />
           //   </ListItemButton>
           // </ListItem>
-          <div style={{width: "100%"}}>
+          <div key={index} style={{width: "100%"}}>
             {props.location !== UpperHrefs[index] ?
               <Link className="validation-button btn" to={UpperHrefs[index]} style={{width: "100%", display: "flex", justifyContent:"flex-start"}}>
                 {UpperIcons[index]} &nbsp;&nbsp;&nbsp;&nbsp;{text}
@@ -58,7 +58,7 @@ const LeftDrawer = (props) => {
           //     <ListItemText primary={text} />
           //   </ListItemButton>
           // </ListItem>
-          <div style={{width: "100%"}}>
+          <div key={index} style={{width: "100%"}}>
             {props.location !== LowerHrefs[index] ?
               <Link className="validation-button btn" to={LowerHrefs[index]} style={{width: "100%", display: "flex", justifyContent:"flex-start"}}>
                 {LowerIcons[index]} &nbsp;&nbsp;&nbsp;&nbsp;{text}

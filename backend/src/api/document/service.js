@@ -156,7 +156,7 @@ const getPublicDocuments = async (req) => {
 const getPublicDocument = async (req) => {
 	try {
 		let { document, message, status } = await verifyDocument(req);
-		let course, teacher, comments;
+		let course, teacher, comments, belongToMe = (req.user.id === document.userId);
 
 		if (document) {
 			if (document.status === "public") {
@@ -180,6 +180,7 @@ const getPublicDocument = async (req) => {
 			course,
 			teacher,
 			comments,
+			belongToMe
 		};
 
 		return {
@@ -215,7 +216,7 @@ const getMyDocuments = async (req) => {
 const getMyDocument = async (req) => {
 	try {
 		let { document, message, status } = await verifyDocument(req);
-		let course, teacher, comments;
+		let course, teacher, comments, belongToMe = (document.userId === req.user.id);
 
 		if (document) {
 			if (document.userId === req.user.id) {
@@ -238,6 +239,7 @@ const getMyDocument = async (req) => {
 			course,
 			teacher,
 			comments,
+			belongToMe
 		};
 
 		return {

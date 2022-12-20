@@ -15,11 +15,7 @@ import axios from "axios";
 import '../styles.css'
 
 const Main = (props) => {
-	const [isFetch, setIsFetch] = useState(false);
-
 	const [card, setCard] = React.useState([]);
-	// const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo'
-	// const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkIjoyLCJpYXQiOjE2NzE0NjExOTAsImV4cCI6MTY3NDA1MzE5MH0.MmY_x4mNXIPI_VRH2nTikr8Om_H8uGxzHzK-orlz4oA'
 	const navigate = useNavigate();
 
 	// user token
@@ -32,7 +28,6 @@ const Main = (props) => {
 			if (lastToken !== null && lastToken !== undefined) {
 				console.log(lastToken);
 				setToken(lastToken);
-				setIsFetch(true);
 			} else {
 				navigate('/login');
 			}
@@ -57,17 +52,12 @@ const Main = (props) => {
 
 	useEffect(() => {
 		getToken();
-		if (isFetch) {
+		if (token !== '') {
 			fetchData();
 			fetchAllTeachers();
 			fetchAllCourses();
 		}
 	}, [filterParams, token]);
-
-	// useEffect(() => {
-	// 	fetchAllTeachers();
-	// 	fetchAllCourses();
-	// }, []);
 
 	const fetchData = async () => {
 		try {
