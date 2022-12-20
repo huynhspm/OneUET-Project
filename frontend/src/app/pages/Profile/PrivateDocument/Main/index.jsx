@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Drawer, Toolbar } from '@mui/material';
+import { Box, Drawer, Toolbar } from "@mui/material";
 import DocumentCard from "../../../../components/DocumentCard";
 import { useState, useEffect } from "react";
 import { drawerWidth, documentCardHeight, api_url } from "../../../../utils/config";
@@ -32,7 +32,6 @@ const PrivateDocument = (props) => {
         }
     }, [token]);
 
-
     const config = {
         headers: { Authorization: `Bearer ${token}` }
     };
@@ -64,37 +63,40 @@ const PrivateDocument = (props) => {
             console.log(e.response.data);
         }
     }
-    return (
-        <>
-            <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-                <Box
-                    component="main"
-                    sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
-                >
-                    {
-                        card.length > 0 &&
-                        <div>
-                            <Box sx={{ display: 'flex', flexWrap: "wrap", }}>
-                                {card.map((card, index) => (
-                                    <DocumentCard
-                                        src_img={card.src_img}
-                                        name={card.name}
-                                        description={card.description}
-                                        unit={card.unit}
-                                        major={card.major}
-                                        key={index}
-                                        path='/profile/private-document/'
-                                        linkView={card.linkView}
-                                        docID={card.docID} />
-                                ))}
-                            </Box>
-                        </div>
-                    }
-
-                </Box>
-            </Box>
-        </>
-    );
+  
+  return (
+    <>
+      <Box sx={{ display: "flex", flexDirection: "row" }}>
+        <Box
+          component="main"
+          sx={{
+            flexGrow: 1,
+            p: 3,
+            width: { sm: `calc(100% - ${drawerWidth}px)` },
+          }}>
+          {card.length > 0 && (
+            <div>
+              <Box sx={{ display: "flex", flexWrap: "wrap" }}>
+                {card.map((card, index) => (
+                  <DocumentCard
+                    src_img={card.src_img}
+                    name={card.name}
+                    description={card.description}
+                    unit={card.unit}
+                    major={card.major}
+                    key={index}
+                    path="/profile/private-document/"
+                    linkView={card.linkView}
+                    docID={card.docID}
+                  />
+                ))}
+              </Box>
+            </div>
+          )}
+        </Box>
+      </Box>
+    </>
+  );
 };
 
 export default PrivateDocument;

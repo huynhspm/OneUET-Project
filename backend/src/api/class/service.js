@@ -197,8 +197,12 @@ const addStudent = async (req) => {
 
 const updateGrade = async (req) => {
 	try {
-		let curClass, message, status;
+		let curClass, message, status;		
 		const { code, semester, grades } = req.body;
+		
+		console.log(".......................")
+		console.log(code, semester, grades)
+		console.log("????????????????????????")
 		curClass = await Class.findOne({
 			where: { code, semester },
 		});
@@ -217,12 +221,13 @@ const updateGrade = async (req) => {
 		// 		total: 70,
 		// 	},
 		// ];
+		console.log(curClass, ".................")
 
 		if (curClass) {
+			curClass.finish = true;
 			for (let index in grades) {
 				let grade = grades[index];
 				grade["id"] = undefined;
-				grade["finish"] = true;
 
 				let student = await Student.findOne({
 					where: { code: grade.studentCode },
@@ -231,6 +236,8 @@ const updateGrade = async (req) => {
 				await StudentClass.update(grade, {
 					where: { studentId: student.id, classId: curClass.id },
 				});
+
+				console.log("????????????");
 
 				let email = student.code + "@vnu.edu.vn";
 				let subject = "Your score in class " + curClass.code;
@@ -244,10 +251,13 @@ const updateGrade = async (req) => {
 			status = ResponseCode.Not_Found;
 		}
 
-		return {
-			message,
+		data = { curClass };
+
+		return{
+			data, 
+			message, 
 			status,
-		};
+		}
 	} catch (e) {
 		throw e;
 	}

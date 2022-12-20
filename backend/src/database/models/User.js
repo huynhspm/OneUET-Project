@@ -32,6 +32,12 @@ const User = sequelize.define(
 		gender: {
 			type: DataTypes.STRING,
 		},
+		address: {
+			type: DataTypes.STRING,
+		},
+		phone: {
+			type: DataTypes.STRING,
+		},
 		avatar: {
 			type: DataTypes.STRING,
 		},

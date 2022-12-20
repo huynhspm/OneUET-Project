@@ -1,162 +1,184 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Collapse from '@mui/material/Collapse';
-import IconButton from '@mui/material/IconButton';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import './styles.css';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const drawerWidth = 240;
-
-function createData(
-  code,
-  subject,
-  num,
-  grade_10,
-  grade_text,
-  grade_4,
-) {
-  return {
-    code,
-    subject,
-    num,
-    grade_10,
-    grade_text,
-    grade_4,
-    detail: [
-      {
-        GK: 'a',
-        CK: 'b'
-      },
-    ],
+const getUserData = async (token) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
   };
-}
+  try {
+    const response = await axios.get("http://localhost:2002/", config);
+    return response.data.data;
+  } catch (e) {
+    console.log(e.response);
+  }
+};
 
-function Row(props) {
-  const { row } = props;
-  const [open, setOpen] = React.useState(false);
-
-  return (
-    <React.Fragment>
-      <TableRow sx={{ '& > *': { borderTop: 0 } }}>
-        <TableCell sx={{ borderLeft: 1 }} align="center" component="th" scope="row">
-          {row.code}
-        </TableCell>
-        <TableCell sx={{ borderLeft: 1 }} align="left">{row.subject}</TableCell>
-        <TableCell sx={{ borderLeft: 1 }} align="center">{row.num}</TableCell>
-        <TableCell sx={{ borderLeft: 1 }} align="center">{row.grade_10}</TableCell>
-        <TableCell sx={{ borderLeft: 1 }} align="center">{row.grade_text}</TableCell>
-        <TableCell sx={{ borderLeft: 1 }} align="center">{row.grade_4}</TableCell>
-        <TableCell sx={{ borderLeft: 1 }} align="center">
-          <IconButton
-            aria-label="expand row"
-            size="small"
-            onClick={() => setOpen(!open)}
-          >
-            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-          </IconButton>
-        </TableCell>
-      </TableRow>
-      <TableRow>
-        <TableCell style={{ padding: 0 }} colSpan={8}>
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <Box sx={{ margin: 0 }}>
-              <Table aria-label="purchases">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Giữa kỳ</TableCell>
-                    <TableCell>Cuối kỳ</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {row.detail.map((detail) => (
-                    <TableRow key={detail.GK}>
-                      <TableCell component="th" >
-                        {detail.GK}
-                      </TableCell>
-                      <TableCell>{detail.CK}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </Box>
-          </Collapse>
-        </TableCell>
-      </TableRow>
-    </React.Fragment>
-  );
-}
-
-const rows = [
-  createData('HIS1101', 'Lịch sử Đảng Cộng sản Việt Nam', 2, 7.3, 'B', 3),
-  createData('POL1001', 'Tư tưởng Hồ Chí Minh', 2, 7, 'B', 3),
-  createData('INT2208', 'Công nghệ phần mềm', 3, 9, 'A+', 4),
-  createData('BSA2002', 'Nguyên lý marketing', 3, 9.6, 'A+', 4),
-  createData('INT2211', 'Cơ sở dữ liệu', 4, 9.2, 'A+', 4),
-  createData('INT2213', 'Mạng máy tính', 4, 9.6, 'A+', 4),
-  createData('HIS1101', 'Lịch sử Đảng Cộng sản Việt Nam', 2, 7.3, 'B', 3),
-  createData('POL1001', 'Tư tưởng Hồ Chí Minh', 2, 7, 'B', 3),
-  createData('INT2208', 'Công nghệ phần mềm', 3, 9, 'A+', 4),
-  createData('BSA2002', 'Nguyên lý marketing', 3, 9.6, 'A+', 4),
-  createData('INT2211', 'Cơ sở dữ liệu', 4, 9.2, 'A+', 4),
-  createData('HIS1101', 'Lịch sử Đảng Cộng sản Việt Nam', 2, 7.3, 'B', 3),
-  createData('POL1001', 'Tư tưởng Hồ Chí Minh', 2, 7, 'B', 3),
-  createData('INT2208', 'Công nghệ phần mềm', 3, 9, 'A+', 4),
-  createData('BSA2002', 'Nguyên lý marketing', 3, 9.6, 'A+', 4),
-  createData('INT2211', 'Cơ sở dữ liệu', 4, 9.2, 'A+', 4),
+const columns = [
+  {
+    field: "id",
+    headerName: "STT",
+    width: 70,
+    headerAlign: "center",
+    align: "center",
+  },
+  {
+    field: "codeClass",
+    headerName: "Mã môn học",
+    // width: 150,
+    flex: 0.8,
+    headerAlign: "center",
+    align: "center",
+    // editable: true,
+  },
+  {
+    field: "name",
+    headerName: "Môn học",
+    headerAlign: "center",
+    // width: 200,
+    flex: 0.6,
+  },
+  {
+    field: "grade_10",
+    headerName: "Điểm hệ 10",
+    type: "number",
+    headerAlign: "center",
+    align: "center",
+    description: "This column has a value getter and is not sortable.",
+    sortable: false,
+    // width: 110,
+    flex: 0.5,
+  },
+  {
+    field: "grade_text",
+    headerName: "Điểm chữ",
+    headerAlign: "center",
+    align: "left",
+    // width: 200,
+    flex: 0.5,
+  },
+  {
+    field: "grade_4",
+    headerName: "Điểm hệ 4",
+    headerAlign: "center",
+    align: "center",
+    type: "number",
+    // width: 160,
+    flex: 0.5,
+  },
+  {
+    field: "midterm_grade",
+    headerName: "Điểm thành phần",
+    headerAlign: "center",
+    align: "center",
+    type: "number",
+    // width: 160,
+    flex: 0.5,
+  },
+  {
+    field: "final_grade",
+    headerName: "Điểm cuối kỳ",
+    headerAlign: "center",
+    align: "center",
+    type: "number",
+    // width: 160,
+    flex: 0.5,
+  },
 ];
 
-export default function Grade() {
-  return (
-    <Box sx={{minHeight: window.innerHeight}}>
-      <Typography variant="h6">
-        Sinh viên:
-      </Typography>
-      <Typography variant="h6">
-        Mã số sinh viên:
-      </Typography>
-      <Typography variant="h6">
-        Lớp quản lý:
-      </Typography>
-      <Typography variant="h4" align="center">
-        Bảng điểm học tập
-      </Typography>
-      <br />
-      <br />
-      <TableContainer sx={{ maxHeight: 700 }} component={Paper}>
-        <Table stickyHeader aria-label="grade_table">
-          <TableHead>
-            <TableRow sx={{ '& > *': { borderBottom: 0.5, borderLeft: 0.5, borderTop: 0.5, backgroundColor: "lightblue" } }}>
-              <TableCell align="center">Mã môn học</TableCell>
-              <TableCell align="left">Môn học</TableCell>
-              <TableCell align="center">Số tín chỉ</TableCell>
-              <TableCell align="center">Điểm hệ 10</TableCell>
-              <TableCell align="center">Điểm chữ</TableCell>
-              <TableCell align="center">Điểm hệ 4</TableCell>
-              <TableCell align="center"> Chi tiết</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableRow>
-            <TableCell sx={{ borderBottom: 1, borderTop: 1 }} align="center" colSpan={8}>
-              Học kỳ 2 - Năm học 2022 - 2023
-            </TableCell>
-          </TableRow>
+const rows = [];
 
-          <TableBody>
-            {rows.map((row) => (
-              <Row key={row.code} row={row} />
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+let getData = async () => {
+  const url = "http://localhost:3000/data.json";
+  const response = await fetch(url);
+  const data = await response.json();
+  for (var i = 0; i < data["students"].length; i++) {
+    const obj = {};
+    obj.code = data["students"][i]["0"];
+    obj.name = 0;
+    obj.date_of_birth = 0;
+    obj.classes = 0;
+    obj.id = i;
+    obj.midterm_grade = data["students"][i]["1"];
+    obj.final_grade = data["students"][i]["2"];
+    obj.total_grade = data["students"][i]["3"];
+    rows[i] = obj;
+  }
+  console.log(rows);
+  return data;
+};
+
+export default function DataGridDemo() {
+  const [pageSize, setPageSize] = React.useState(5);
+  const [isFetch, setIsFetch] = React.useState(false);
+  const navigate = useNavigate();
+
+  // user token
+  const [token, setToken] = useState("");
+
+  // fetch user token
+  useEffect(() => {
+    if (token === "") {
+      const lastToken = sessionStorage.getItem("token");
+      if (lastToken !== null && lastToken !== undefined) {
+        //console.log(lastToken);
+        setToken(lastToken);
+      } else {
+        navigate("/login");
+      }
+    }
+  }, [token, navigate]);
+
+  const fetchData = () => {
+    getUserData(token).then((data) => {
+      console.log("Data");
+      console.log(data);
+    });
+  };
+
+  useEffect(() => {
+    console.log("Fetch", isFetch);
+    if (!isFetch) {
+      fetchData();
+      setIsFetch(true);
+      console.log("Set", isFetch);
+    }
+  }, [token, isFetch]);
+
+
+  return (
+    <Box sx={{ height: 910, width: "100%" }}>
+      <DataGrid
+        sx={{
+          ".MuiTablePagination-toolbar": {
+            backgroundColor: "#dee2e6",
+          },
+          ".MuiTablePagination-selectLabel, .MuiTablePagination-displayedRows":
+            {
+              marginBottom: 0,
+              fontSize: 15,
+            },
+        }}
+        rows={rows}
+        columns={columns}
+        components={{
+          Toolbar: GridToolbar,
+        }}
+        componentsProps={{
+          pagination: {
+            labelRowsPerPage: "Số hàng hiển thị:",
+          },
+        }}
+        pageSize={pageSize}
+        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+        rowsPerPageOptions={[5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]}
+        pagination
+        disableSelectionOnClick
+        experimentalFeatures={{ newEditingApi: true }}
+      />
     </Box>
   );
 }

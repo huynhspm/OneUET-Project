@@ -1,373 +1,1962 @@
 [
     {
+        "studentCode": "20020096",
+        "midterm": 9.6,
+        "final": 7.5,
+        "total": 8.3,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020629",
+        "midterm": 9.4,
+        "final": 7.0,
+        "total": 8.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020001",
+        "midterm": 9.9,
+        "final": 8.1,
+        "total": 8.8,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020002",
+        "midterm": 9.7,
+        "final": 8.5,
+        "total": 9.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "19021543",
+        "midterm": 7.5,
+        "final": 5.8,
+        "total": 6.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "18020251",
+        "midterm": 7.1,
+        "final": 6.2,
+        "total": 6.6,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020098",
+        "midterm": 9.1,
+        "final": 6.1,
+        "total": 7.3,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020039",
+        "midterm": 9.4,
+        "final": 9.1,
+        "total": 9.2,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020043",
+        "midterm": 9.5,
+        "final": 8.1,
+        "total": 8.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020008",
+        "midterm": 9.6,
+        "final": 8.6,
+        "total": 9.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "17021152",
+        "midterm": 0.0,
+        "final": 0.0,
+        "total": 0.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020046",
+        "midterm": 7.9,
+        "final": 6.2,
+        "total": 6.9,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020011",
+        "midterm": 9.8,
+        "final": 7.8,
+        "total": 8.6,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020395",
+        "midterm": 9.7,
+        "final": 7.0,
+        "total": 8.1,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020257",
+        "midterm": 6.9,
+        "final": 8.3,
+        "total": 7.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020048",
+        "midterm": 9.0,
+        "final": 7.0,
+        "total": 7.8,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020049",
+        "midterm": 8.7,
+        "final": 5.9,
+        "total": 7.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020013",
+        "midterm": 9.6,
+        "final": 8.8,
+        "total": 9.1,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020050",
+        "midterm": 9.9,
+        "final": 8.5,
+        "total": 9.1,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "17020757",
+        "midterm": 2.1,
+        "final": 1.9,
+        "total": 2.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020408",
+        "midterm": 9.6,
+        "final": 7.7,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020053",
+        "midterm": 9.6,
+        "final": 5.9,
+        "total": 7.4,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "19020551",
+        "midterm": 6.6,
+        "final": 2.7,
+        "total": 4.3,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020106",
+        "midterm": 10.0,
+        "final": 7.5,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "19020553",
+        "midterm": 5.5,
+        "final": 4.3,
+        "total": 4.8,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020198",
+        "midterm": 9.8,
+        "final": 7.1,
+        "total": 8.2,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020054",
+        "midterm": 9.6,
+        "final": 7.7,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "19020334",
+        "midterm": 9.0,
+        "final": 4.7,
+        "total": 6.4,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020056",
+        "midterm": 5.5,
+        "final": 2.5,
+        "total": 3.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020109",
+        "midterm": 9.6,
+        "final": 7.4,
+        "total": 8.3,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020260",
+        "midterm": 8.9,
+        "final": 6.0,
+        "total": 7.2,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020434",
+        "midterm": 9.6,
+        "final": 8.6,
+        "total": 9.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020112",
+        "midterm": 9.9,
+        "final": 7.7,
+        "total": 8.6,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "19020347",
+        "midterm": 0.9,
+        "final": 2.6,
+        "total": 1.9,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020203",
+        "midterm": 9.7,
+        "final": 8.0,
+        "total": 8.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020113",
+        "midterm": 10.0,
+        "final": 7.5,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "18020856",
+        "midterm": 6.7,
+        "final": 5.0,
+        "total": 5.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020057",
+        "midterm": 9.8,
+        "final": 8.4,
+        "total": 9.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020022",
+        "midterm": 9.3,
+        "final": 5.6,
+        "total": 7.1,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020059",
+        "midterm": 10.0,
+        "final": 6.7,
+        "total": 8.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "19020380",
+        "midterm": 5.3,
+        "final": 2.7,
+        "total": 3.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "19021566",
+        "midterm": 7.3,
+        "final": 5.2,
+        "total": 6.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020024",
+        "midterm": 9.6,
+        "final": 6.5,
+        "total": 7.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020262",
+        "midterm": 9.5,
+        "final": 6.2,
+        "total": 7.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020063",
+        "midterm": 9.9,
+        "final": 7.9,
+        "total": 8.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020263",
+        "midterm": 10.0,
+        "final": 7.7,
+        "total": 8.6,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "16021325",
+        "midterm": 7.0,
+        "final": 4.5,
+        "total": 5.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020065",
+        "midterm": 9.6,
+        "final": 7.6,
+        "total": 8.4,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020026",
+        "midterm": 9.8,
+        "final": 8.8,
+        "total": 9.2,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "19021568",
+        "midterm": 5.9,
+        "final": 4.7,
+        "total": 5.2,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020183",
+        "midterm": 0.0,
+        "final": 0.0,
+        "total": 0.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020067",
+        "midterm": 9.7,
+        "final": 6.5,
+        "total": 7.8,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020028",
+        "midterm": 9.6,
+        "final": 8.3,
+        "total": 8.8,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020069",
+        "midterm": 9.3,
+        "final": 7.1,
+        "total": 8.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020267",
+        "midterm": 9.8,
+        "final": 7.1,
+        "total": 8.2,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020219",
+        "midterm": 9.9,
+        "final": 7.5,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020070",
+        "midterm": 10.0,
+        "final": 8.1,
+        "total": 8.9,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020096",
+        "midterm": 9.6,
+        "final": 7.5,
+        "total": 8.3,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020629",
+        "midterm": 9.4,
+        "final": 7.0,
+        "total": 8.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020001",
+        "midterm": 9.9,
+        "final": 8.1,
+        "total": 8.8,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020002",
+        "midterm": 9.7,
+        "final": 8.5,
+        "total": 9.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "19021543",
+        "midterm": 7.5,
+        "final": 5.8,
+        "total": 6.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "18020251",
+        "midterm": 7.1,
+        "final": 6.2,
+        "total": 6.6,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020098",
+        "midterm": 9.1,
+        "final": 6.1,
+        "total": 7.3,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020039",
+        "midterm": 9.4,
+        "final": 9.1,
+        "total": 9.2,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020043",
+        "midterm": 9.5,
+        "final": 8.1,
+        "total": 8.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020008",
+        "midterm": 9.6,
+        "final": 8.6,
+        "total": 9.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "17021152",
+        "midterm": 0.0,
+        "final": 0.0,
+        "total": 0.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020046",
+        "midterm": 7.9,
+        "final": 6.2,
+        "total": 6.9,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020011",
+        "midterm": 9.8,
+        "final": 7.8,
+        "total": 8.6,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020395",
+        "midterm": 9.7,
+        "final": 7.0,
+        "total": 8.1,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020257",
+        "midterm": 6.9,
+        "final": 8.3,
+        "total": 7.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020048",
+        "midterm": 9.0,
+        "final": 7.0,
+        "total": 7.8,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020049",
+        "midterm": 8.7,
+        "final": 5.9,
+        "total": 7.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020013",
+        "midterm": 9.6,
+        "final": 8.8,
+        "total": 9.1,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020050",
+        "midterm": 9.9,
+        "final": 8.5,
+        "total": 9.1,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "17020757",
+        "midterm": 2.1,
+        "final": 1.9,
+        "total": 2.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020408",
+        "midterm": 9.6,
+        "final": 7.7,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020053",
+        "midterm": 9.6,
+        "final": 5.9,
+        "total": 7.4,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "19020551",
+        "midterm": 6.6,
+        "final": 2.7,
+        "total": 4.3,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020106",
+        "midterm": 10.0,
+        "final": 7.5,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "19020553",
+        "midterm": 5.5,
+        "final": 4.3,
+        "total": 4.8,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020198",
+        "midterm": 9.8,
+        "final": 7.1,
+        "total": 8.2,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020054",
+        "midterm": 9.6,
+        "final": 7.7,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "19020334",
+        "midterm": 9.0,
+        "final": 4.7,
+        "total": 6.4,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020056",
+        "midterm": 5.5,
+        "final": 2.5,
+        "total": 3.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020109",
+        "midterm": 9.6,
+        "final": 7.4,
+        "total": 8.3,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020260",
+        "midterm": 8.9,
+        "final": 6.0,
+        "total": 7.2,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020434",
+        "midterm": 9.6,
+        "final": 8.6,
+        "total": 9.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020112",
+        "midterm": 9.9,
+        "final": 7.7,
+        "total": 8.6,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "19020347",
+        "midterm": 0.9,
+        "final": 2.6,
+        "total": 1.9,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020203",
+        "midterm": 9.7,
+        "final": 8.0,
+        "total": 8.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020113",
+        "midterm": 10.0,
+        "final": 7.5,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "18020856",
+        "midterm": 6.7,
+        "final": 5.0,
+        "total": 5.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020057",
+        "midterm": 9.8,
+        "final": 8.4,
+        "total": 9.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020022",
+        "midterm": 9.3,
+        "final": 5.6,
+        "total": 7.1,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020059",
+        "midterm": 10.0,
+        "final": 6.7,
+        "total": 8.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "19020380",
+        "midterm": 5.3,
+        "final": 2.7,
+        "total": 3.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "19021566",
+        "midterm": 7.3,
+        "final": 5.2,
+        "total": 6.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020024",
+        "midterm": 9.6,
+        "final": 6.5,
+        "total": 7.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020262",
+        "midterm": 9.5,
+        "final": 6.2,
+        "total": 7.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020063",
+        "midterm": 9.9,
+        "final": 7.9,
+        "total": 8.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020263",
+        "midterm": 10.0,
+        "final": 7.7,
+        "total": 8.6,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "16021325",
+        "midterm": 7.0,
+        "final": 4.5,
+        "total": 5.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020065",
+        "midterm": 9.6,
+        "final": 7.6,
+        "total": 8.4,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020026",
+        "midterm": 9.8,
+        "final": 8.8,
+        "total": 9.2,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "19021568",
+        "midterm": 5.9,
+        "final": 4.7,
+        "total": 5.2,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020183",
+        "midterm": 0.0,
+        "final": 0.0,
+        "total": 0.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020067",
+        "midterm": 9.7,
+        "final": 6.5,
+        "total": 7.8,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020028",
+        "midterm": 9.6,
+        "final": 8.3,
+        "total": 8.8,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020069",
+        "midterm": 9.3,
+        "final": 7.1,
+        "total": 8.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020267",
+        "midterm": 9.8,
+        "final": 7.1,
+        "total": 8.2,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020219",
+        "midterm": 9.9,
+        "final": 7.5,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020070",
+        "midterm": 10.0,
+        "final": 8.1,
+        "total": 8.9,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/023615210122Lap%20trinh%20huong%20doi%20tuong_INT2204_2.pdf"
+    },
+    {
+        "studentCode": "20020096",
+        "midterm": 9.6,
+        "final": 7.5,
+        "total": 8.3,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020629",
+        "midterm": 9.4,
+        "final": 7.0,
+        "total": 8.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020001",
+        "midterm": 9.9,
+        "final": 8.1,
+        "total": 8.8,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020002",
+        "midterm": 9.7,
+        "final": 8.5,
+        "total": 9.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "19021543",
+        "midterm": 7.5,
+        "final": 5.8,
+        "total": 6.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "18020251",
+        "midterm": 7.1,
+        "final": 6.2,
+        "total": 6.6,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020098",
+        "midterm": 9.1,
+        "final": 6.1,
+        "total": 7.3,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020039",
+        "midterm": 9.4,
+        "final": 9.1,
+        "total": 9.2,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020043",
+        "midterm": 9.5,
+        "final": 8.1,
+        "total": 8.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020008",
+        "midterm": 9.6,
+        "final": 8.6,
+        "total": 9.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "17021152",
+        "midterm": 0.0,
+        "final": 0.0,
+        "total": 0.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020046",
+        "midterm": 7.9,
+        "final": 6.2,
+        "total": 6.9,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020011",
+        "midterm": 9.8,
+        "final": 7.8,
+        "total": 8.6,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020395",
+        "midterm": 9.7,
+        "final": 7.0,
+        "total": 8.1,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020257",
+        "midterm": 6.9,
+        "final": 8.3,
+        "total": 7.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020048",
+        "midterm": 9.0,
+        "final": 7.0,
+        "total": 7.8,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020049",
+        "midterm": 8.7,
+        "final": 5.9,
+        "total": 7.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020013",
+        "midterm": 9.6,
+        "final": 8.8,
+        "total": 9.1,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020050",
+        "midterm": 9.9,
+        "final": 8.5,
+        "total": 9.1,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "17020757",
+        "midterm": 2.1,
+        "final": 1.9,
+        "total": 2.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020408",
+        "midterm": 9.6,
+        "final": 7.7,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020053",
+        "midterm": 9.6,
+        "final": 5.9,
+        "total": 7.4,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "19020551",
+        "midterm": 6.6,
+        "final": 2.7,
+        "total": 4.3,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020106",
+        "midterm": 10.0,
+        "final": 7.5,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "19020553",
+        "midterm": 5.5,
+        "final": 4.3,
+        "total": 4.8,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020198",
+        "midterm": 9.8,
+        "final": 7.1,
+        "total": 8.2,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020054",
+        "midterm": 9.6,
+        "final": 7.7,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "19020334",
+        "midterm": 9.0,
+        "final": 4.7,
+        "total": 6.4,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020056",
+        "midterm": 5.5,
+        "final": 2.5,
+        "total": 3.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020109",
+        "midterm": 9.6,
+        "final": 7.4,
+        "total": 8.3,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020260",
+        "midterm": 8.9,
+        "final": 6.0,
+        "total": 7.2,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020434",
+        "midterm": 9.6,
+        "final": 8.6,
+        "total": 9.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020112",
+        "midterm": 9.9,
+        "final": 7.7,
+        "total": 8.6,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "19020347",
+        "midterm": 0.9,
+        "final": 2.6,
+        "total": 1.9,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020203",
+        "midterm": 9.7,
+        "final": 8.0,
+        "total": 8.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020113",
+        "midterm": 10.0,
+        "final": 7.5,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "18020856",
+        "midterm": 6.7,
+        "final": 5.0,
+        "total": 5.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020057",
+        "midterm": 9.8,
+        "final": 8.4,
+        "total": 9.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020022",
+        "midterm": 9.3,
+        "final": 5.6,
+        "total": 7.1,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020059",
+        "midterm": 10.0,
+        "final": 6.7,
+        "total": 8.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "19020380",
+        "midterm": 5.3,
+        "final": 2.7,
+        "total": 3.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "19021566",
+        "midterm": 7.3,
+        "final": 5.2,
+        "total": 6.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020024",
+        "midterm": 9.6,
+        "final": 6.5,
+        "total": 7.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020262",
+        "midterm": 9.5,
+        "final": 6.2,
+        "total": 7.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020063",
+        "midterm": 9.9,
+        "final": 7.9,
+        "total": 8.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020263",
+        "midterm": 10.0,
+        "final": 7.7,
+        "total": 8.6,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "16021325",
+        "midterm": 7.0,
+        "final": 4.5,
+        "total": 5.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020065",
+        "midterm": 9.6,
+        "final": 7.6,
+        "total": 8.4,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020026",
+        "midterm": 9.8,
+        "final": 8.8,
+        "total": 9.2,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "19021568",
+        "midterm": 5.9,
+        "final": 4.7,
+        "total": 5.2,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020183",
+        "midterm": 0.0,
+        "final": 0.0,
+        "total": 0.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020067",
+        "midterm": 9.7,
+        "final": 6.5,
+        "total": 7.8,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020028",
+        "midterm": 9.6,
+        "final": 8.3,
+        "total": 8.8,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020069",
+        "midterm": 9.3,
+        "final": 7.1,
+        "total": 8.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020267",
+        "midterm": 9.8,
+        "final": 7.1,
+        "total": 8.2,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020219",
+        "midterm": 9.9,
+        "final": 7.5,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
+        "studentCode": "20020070",
+        "midterm": 10.0,
+        "final": 8.1,
+        "total": 8.9,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/052847170822mang%20may%20tinh_4.pdf"
+    },
+    {
         "studentCode": "20020186",
         "midterm": 9.0,
         "final": 6.5,
         "total": 7.5,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "19020216",
         "midterm": 9.5,
         "final": 7.5,
         "total": 8.3,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020001",
         "midterm": 10.0,
         "final": 8.5,
         "total": 9.1,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "18020189",
         "midterm": 8.5,
         "final": 0.0,
         "total": 3.4,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020002",
         "midterm": 9.8,
         "final": 9.5,
         "total": 9.6,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020098",
         "midterm": 9.8,
         "final": 7.0,
         "total": 8.1,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020039",
         "midterm": 10.0,
         "final": 9.5,
         "total": 9.7,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020040",
         "midterm": 9.9,
         "final": 10.0,
         "total": 10.0,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020042",
         "midterm": 10.0,
         "final": 7.0,
         "total": 8.2,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020043",
         "midterm": 9.0,
         "final": 7.5,
         "total": 8.1,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020008",
         "midterm": 10.0,
         "final": 9.0,
         "total": 9.4,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020044",
         "midterm": 9.9,
         "final": 8.5,
         "total": 9.1,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020046",
         "midterm": 9.0,
         "final": 7.5,
         "total": 8.1,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020011",
         "midterm": 10.0,
         "final": 8.5,
         "total": 9.1,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020395",
         "midterm": 9.2,
         "final": 8.0,
         "total": 8.5,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020257",
         "midterm": 10.0,
         "final": 6.5,
         "total": 7.9,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020048",
         "midterm": 9.1,
         "final": 7.5,
         "total": 8.1,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020049",
         "midterm": 8.5,
         "final": 7.0,
         "total": 7.6,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020013",
         "midterm": 10.0,
         "final": 8.0,
         "total": 8.8,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020050",
         "midterm": 9.2,
         "final": 8.0,
         "total": 8.5,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020408",
         "midterm": 8.8,
         "final": 6.5,
         "total": 7.4,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020052",
         "midterm": 10.0,
         "final": 8.5,
         "total": 9.1,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020106",
         "midterm": 9.4,
         "final": 7.5,
         "total": 8.3,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020198",
         "midterm": 9.9,
         "final": 7.5,
         "total": 8.5,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020054",
         "midterm": 10.0,
         "final": 9.5,
         "total": 9.7,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020056",
         "midterm": 8.9,
         "final": 7.5,
         "total": 8.1,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020109",
         "midterm": 10.0,
         "final": 8.5,
         "total": 9.1,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020260",
         "midterm": 10.0,
         "final": 8.5,
         "total": 9.1,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020434",
         "midterm": 10.0,
         "final": 8.5,
         "total": 9.1,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020112",
         "midterm": 9.9,
         "final": 9.0,
         "total": 9.4,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020203",
         "midterm": 10.0,
         "final": 9.0,
         "total": 9.4,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020113",
         "midterm": 10.0,
         "final": 10.0,
         "total": 10.0,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020057",
         "midterm": 10.0,
         "final": 8.5,
         "total": 9.1,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020022",
         "midterm": 10.0,
         "final": 8.5,
         "total": 9.1,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020059",
         "midterm": 10.0,
         "final": 6.5,
         "total": 7.9,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020024",
         "midterm": 9.9,
         "final": 8.5,
         "total": 9.1,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020262",
         "midterm": 9.0,
         "final": 6.0,
         "total": 7.2,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020063",
         "midterm": 10.0,
         "final": 8.0,
         "total": 8.8,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020263",
         "midterm": 9.1,
         "final": 7.0,
         "total": 7.8,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020065",
         "midterm": 10.0,
         "final": 8.5,
         "total": 9.1,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020026",
         "midterm": 10.0,
         "final": 9.0,
         "total": 9.4,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "18021051",
         "midterm": 5.6,
         "final": 0.0,
         "total": 2.2,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "18021043",
         "midterm": 7.2,
         "final": 0.0,
         "total": 2.9,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020183",
         "midterm": 8.0,
         "final": 0.0,
         "total": 3.2,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020067",
         "midterm": 9.0,
         "final": 9.5,
         "total": 9.3,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020028",
         "midterm": 9.9,
         "final": 9.5,
         "total": 9.7,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020069",
         "midterm": 9.2,
         "final": 7.5,
         "total": 8.2,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "19020435",
         "midterm": 9.0,
         "final": 6.0,
         "total": 7.2,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "19020177",
         "midterm": 9.4,
         "final": 3.0,
         "total": 5.6,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020267",
         "midterm": 9.1,
         "final": 7.5,
         "total": 8.1,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020034",
         "midterm": 10.0,
-        "final": 9.0,
+        "final": 19.0,
         "total": 9.4,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020219",
         "midterm": 10.0,
         "final": 10.0,
         "total": 10.0,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
     },
     {
         "studentCode": "20020070",
         "midterm": 10.0,
         "final": 8.0,
         "total": 8.8,
-        "linkPDF": "https://drive.google.com/file/d/12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV/view"
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/013418210122Cau%20truc%20du%20lieu%20va%20giai%20thuat_lop%204.pdf"
+    },
+    {
+        "studentCode": "20020001",
+        "midterm": 8.5,
+        "final": 8.5,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020002",
+        "midterm": 7.0,
+        "final": 9.0,
+        "total": 8.2,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020098",
+        "midterm": 8.5,
+        "final": 8.5,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020039",
+        "midterm": 9.0,
+        "final": 9.0,
+        "total": 9.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020040",
+        "midterm": 8.5,
+        "final": 8.5,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020043",
+        "midterm": 8.0,
+        "final": 9.0,
+        "total": 8.6,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020008",
+        "midterm": 8.0,
+        "final": 9.0,
+        "total": 8.6,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "19020039",
+        "midterm": 9.0,
+        "final": 9.0,
+        "total": 9.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "19020247",
+        "midterm": 6.5,
+        "final": 7.5,
+        "total": 7.1,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020011",
+        "midterm": 7.0,
+        "final": 8.0,
+        "total": 7.6,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020395",
+        "midterm": 8.5,
+        "final": 8.5,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020257",
+        "midterm": 8.5,
+        "final": 7.0,
+        "total": 7.6,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020048",
+        "midterm": 8.5,
+        "final": 8.5,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020049",
+        "midterm": 8.0,
+        "final": 6.5,
+        "total": 7.1,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020013",
+        "midterm": 8.5,
+        "final": 8.0,
+        "total": 8.2,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020050",
+        "midterm": 9.0,
+        "final": 9.0,
+        "total": 9.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020408",
+        "midterm": 8.0,
+        "final": 9.0,
+        "total": 8.6,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020196",
+        "midterm": 8.0,
+        "final": 9.0,
+        "total": 8.6,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020053",
+        "midterm": 8.0,
+        "final": 8.0,
+        "total": 8.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020106",
+        "midterm": 8.0,
+        "final": 9.0,
+        "total": 8.6,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "19020313",
+        "midterm": 0.0,
+        "final": 0.0,
+        "total": 0.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020197",
+        "midterm": 8.5,
+        "final": 8.5,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020198",
+        "midterm": 8.5,
+        "final": 7.0,
+        "total": 7.6,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020054",
+        "midterm": 9.0,
+        "final": 6.5,
+        "total": 7.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020109",
+        "midterm": 8.0,
+        "final": 6.5,
+        "total": 7.1,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020019",
+        "midterm": 0.0,
+        "final": 0.0,
+        "total": 0.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020260",
+        "midterm": 8.0,
+        "final": 7.5,
+        "total": 7.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "19020344",
+        "midterm": 8.5,
+        "final": 8.5,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020434",
+        "midterm": 8.5,
+        "final": 8.5,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020202",
+        "midterm": 8.0,
+        "final": 6.5,
+        "total": 7.1,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020112",
+        "midterm": 8.5,
+        "final": 8.5,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020203",
+        "midterm": 9.0,
+        "final": 9.0,
+        "total": 9.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020113",
+        "midterm": 9.5,
+        "final": 9.0,
+        "total": 9.2,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020114",
+        "midterm": 9.0,
+        "final": 9.0,
+        "total": 9.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020057",
+        "midterm": 9.0,
+        "final": 9.0,
+        "total": 9.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020022",
+        "midterm": 7.5,
+        "final": 6.0,
+        "total": 6.6,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020059",
+        "midterm": 8.5,
+        "final": 5.5,
+        "total": 6.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020261",
+        "midterm": 9.0,
+        "final": 7.5,
+        "total": 8.1,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020024",
+        "midterm": 8.5,
+        "final": 8.0,
+        "total": 8.2,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020262",
+        "midterm": 9.0,
+        "final": 9.0,
+        "total": 9.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020454",
+        "midterm": 8.5,
+        "final": 9.0,
+        "total": 8.8,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020456",
+        "midterm": 8.5,
+        "final": 8.5,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020063",
+        "midterm": 9.0,
+        "final": 9.0,
+        "total": 9.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020263",
+        "midterm": 8.5,
+        "final": 8.5,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020065",
+        "midterm": 8.5,
+        "final": 9.0,
+        "total": 8.8,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020066",
+        "midterm": 8.5,
+        "final": 8.0,
+        "total": 8.2,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020026",
+        "midterm": 9.0,
+        "final": 9.0,
+        "total": 9.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020067",
+        "midterm": 9.5,
+        "final": 8.0,
+        "total": 8.6,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020028",
+        "midterm": 8.5,
+        "final": 8.0,
+        "total": 8.2,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020212",
+        "midterm": 8.5,
+        "final": 8.5,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020265",
+        "midterm": 8.5,
+        "final": 8.5,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020217",
+        "midterm": 8.5,
+        "final": 8.5,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020267",
+        "midterm": 8.5,
+        "final": 8.5,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020489",
+        "midterm": 8.5,
+        "final": 8.5,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020219",
+        "midterm": 9.0,
+        "final": 6.0,
+        "total": 7.2,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020070",
+        "midterm": 9.0,
+        "final": 9.0,
+        "total": 9.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
     }
 ]
