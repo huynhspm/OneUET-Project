@@ -55,13 +55,20 @@ let func = [
 
 const HomePage = (props) => {
   const navigate = useNavigate();
-  useEffect(() => {
-    // console.log(props.token);
-    if (props.token === '') {
-      navigate('/login');
-    }
-  }, [props.token, navigate]);
+  const [token, setToken] = useState('');
 
+  useEffect(() => {
+    if (token === '') {
+      const lastToken = sessionStorage.getItem("token");
+      if (lastToken !== null && lastToken !== undefined) {
+        // console.log(lastToken);
+        setToken(lastToken);
+      } else {
+        navigate('/login');
+      }
+    }
+  }, [token, navigate]);
+  
   const [currentPageRec, setCurrentPageRec] = useState(1);
   const [currentPageSeen, setCurrentPageSeen] = useState(1);
 

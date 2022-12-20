@@ -1,15 +1,15 @@
 import { Box, Divider, Typography, Button } from '@mui/material';
-import Tags from '../../../components/Tags';
-import CommentPost from '../../../components/Comment/Post';
-import CommentContent from '../../../components/Comment/Content';
-import OptionsDialog from '../../../components/OpitonsDialog';
+import Tags from '../../../../components/Tags';
+import CommentPost from '../../../../components/Comment/Post';
+import CommentContent from '../../../../components/Comment/Content';
+import OptionsDialog from '../../../../components/OpitonsDialog';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
-import "../../../utils/styles.css"
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { useNavigate } from 'react-router-dom';
 
-const DocumentView = (props) => {
+const PrvDocView = (props) => {
     const [showOptionsDialog, setShowOptionsDialog] = useState(false);
 
     const [pdf_link, set_pdf_link] = useState();
@@ -21,19 +21,39 @@ const DocumentView = (props) => {
     const [comments, setComments] = useState([]);
     const docId = props.id;
 
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo'
+
+    const navigate = useNavigate();    
+
+	// user token
+	const [token, setToken] = useState('');
+
+	// fetch user token
+	useEffect(() => {
+		if (token === '') {
+			const lastToken = sessionStorage.getItem("token");
+			if (lastToken !== null && lastToken !== undefined) {
+				setToken(lastToken);
+			} else {
+				navigate('/login');
+			}
+		}
+	}, [token, navigate]);
+
+    useEffect(() => {
+        if (token !== "") {
+            fetchData();
+        }
+    }, [token]);
+
     const config = {
         headers: { Authorization: `Bearer ${token}` }
     };
 
-    useEffect(() => {
-        fetchData();
-    }, []);
 
     const fetchData = async () => {
         try {
             await axios
-                .get("http://localhost:2002/api/document/public/" + String(props.id), config)
+                .get("http://localhost:2002/api/document/me/" + String(props.id), config)
                 .then((res) => {
                     let data = res.data.data;
                     console.log(data);
@@ -52,8 +72,8 @@ const DocumentView = (props) => {
                     for (let property in data.comments) {
                         tmp_comments.push(data.comments[property]);
                     }
+                    // console.log(tmp_comments)
                     setComments(tmp_comments);
-                    // console.log(tmp_comments);
                     setDateUploaded(data.document.updatedAt);
                 });
         } catch (e) {
@@ -113,4 +133,4 @@ const DocumentView = (props) => {
     );
 };
 
-export default DocumentView;
+export default PrvDocView;

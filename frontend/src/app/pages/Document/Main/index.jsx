@@ -4,71 +4,145 @@ import {
 	Drawer,
 	Toolbar
 } from '@mui/material';
+import Add from '../../../components/Add';
 import DocumentCard from '../../../components/DocumentCard';
 import FilterSidebar from '../../../components/FilterSidebar';
-import Add from '../../../components/Add';
+import { getFilterPair } from '../../../utils/function';
 import { useState, useEffect } from 'react';
-
-import { drawerWidth, documentCardHeight, units, majors, unitsAndMajors } from '../../../utils/constant';
+import { useNavigate } from 'react-router-dom';
+import { drawerWidth, documentCardHeight, units, majors, unitsAndMajors } from '../../../utils/config';
 import axios from "axios";
 import '../styles.css'
 
-
 const Main = (props) => {
-	const [data, setData] = React.useState([]);
-	const [card, setCard] = React.useState([]);
-	const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo'
+	const [isFetch, setIsFetch] = useState(false);
 
-	function getDocuments(data) {
-		let docs = data.data;
-		return docs?.documents;
-	}
+	const [card, setCard] = React.useState([]);
+	// const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo'
+	// const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkIjoyLCJpYXQiOjE2NzE0NjExOTAsImV4cCI6MTY3NDA1MzE5MH0.MmY_x4mNXIPI_VRH2nTikr8Om_H8uGxzHzK-orlz4oA'
+	const navigate = useNavigate();
+
+	// user token
+	const [token, setToken] = useState('');
+
+	// fetch user token
+	const getToken = (() => {
+		if (token === '') {
+			const lastToken = sessionStorage.getItem("token");
+			if (lastToken !== null && lastToken !== undefined) {
+				console.log(lastToken);
+				setToken(lastToken);
+				setIsFetch(true);
+			} else {
+				navigate('/login');
+			}
+		}
+	})
+
+	const [course, setCourse] = useState([]);
+	const [teacher, setTeacher] = useState({});
 
 	const [filterParams, setFilterParams] = React.useState({
 		unit: [],
 		major: [],
+		teacherId: [],
+		courseId: [],
 		category: [],
 		year: []
 	});
 
 	useEffect(() => {
-		fetchData();
-		console.log('useEffect()');
-	}, [filterParams]);
-	
+		getToken();
+	}, [navigate]);
+
+	useEffect(() => {
+		getToken();
+		if (isFetch) {
+			fetchData();
+			fetchAllTeachers();
+			fetchAllCourses();
+		}
+	}, [filterParams, token]);
+
+	// useEffect(() => {
+	// 	fetchAllTeachers();
+	// 	fetchAllCourses();
+	// }, []);
+
 	const fetchData = async () => {
 		try {
-			console.log(filterParams);
 			await axios
-				.get("http://localhost:2002/document/public",
+				.get("http://localhost:2002/api/document/public",
 					{
 						params: filterParams,
 						headers: { Authorization: `Bearer ${token}` }
 					})
 				.then((res) => {
-					let docs = getDocuments(res.data);
+					let docs = res.data.data.documents;
 					console.log(res);
-					let tmp = [];
+					let tmpCard = [];
 					for (let id in docs) {
 						let element = {
 							name: docs[id].name,
 							description: docs[id].description,
+							linkView: docs[id].linkView,
 							src_img: "https://randomuser.me/api/portraits/women/2.jpg",
 							unit: docs[id].unit,
 							major: docs[id].major,
 							fileID: docs[id].fileId,
 							docID: docs[id].id,
 						}
-						tmp.push(element);
+						tmpCard.push(element);
 					}
-					console.log("--fetchData() - Document--");
-					console.log(tmp);
-					console.log("-------------------------");
-
-					setCard(tmp);
+					setCard(tmpCard.reverse());
 				});
 		} catch (e) {
 			console.log(e.response.data);
+		}
+	}
+
+
+	const fetchAllCourses = async () => {
+		try {
+			await axios
+				.get("http://localhost:2002/api/course", {
+					headers: { Authorization: `Bearer ${token}` }
+				})
+				.then((res) => {
+					let courses = res.data.data.courses;
+					let tmp = {};
+					for (let index in courses) {
+						let id = courses[index].id;
+						let name = courses[index].name;
+						course[id] = name;
+						tmp[id] = name;
+					}
+					setCourse(tmp);
+				});
+		} catch (e) {
+			console.log(e.response.data);
+		}
+	};
+
+	const fetchAllTeachers = async () => {
+		try {
+			await axios
+				.get("http://localhost:2002/api/teacher", {
+					headers: { Authorization: `Bearer ${token}` }
+				})
+				.then((res) => {
+					let teachers = res.data.data.teachers;
+					let tmp = {};
+					for (let index in teachers) {
+						let id = teachers[index].id;
+						let name = teachers[index].name;
+						teacher[id] = name;
+						tmp[id] = name;
+					}
+					setTeacher(tmp);
+				});
+		} catch (e) {
+			console.log(e);
 		}
 	}
 
@@ -91,7 +165,7 @@ const Main = (props) => {
 						open
 					>
 						<Toolbar variant="dense" sx={{}} />
-						<FilterSidebar filterParams={filterParams} setFilterParams={setFilterParams}/>
+						<FilterSidebar filterParams={filterParams} setFilterParams={setFilterParams} course={course} teacher={teacher} />
 					</Drawer>
 				</Box>
 				<Box
@@ -116,13 +190,15 @@ const Main = (props) => {
 									unit={card.unit}
 									major={card.major}
 									key={index}
+									path='/document/'
+									linkView={card.linkView}
 									docID={card.docID} />
 							))}
 						</Box>
 					}
 				</Box>
 			</Box>
-			<Add></Add>
+			<Add course={course} teacher={teacher} />
 		</>
 	);
 };

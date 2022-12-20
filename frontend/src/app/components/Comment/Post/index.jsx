@@ -1,22 +1,42 @@
 import { TextField, Button, Box } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const CommentPost = (props) => {
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo';
-    const config = {
-        headers: { Authorization: `Bearer ${token}` }
-    };
+
+    const navigate = useNavigate();
+
+	// user token
+	const [token, setToken] = useState('');
+
+	// fetch user token
+	useEffect(() => {
+		if (token === '') {
+			const lastToken = sessionStorage.getItem("token");
+			if (lastToken !== null && lastToken !== undefined) {
+				setToken(lastToken);
+			} else {
+				navigate('/login');
+			}
+		}
+	}, [token, navigate]);
+
     const [content, setContent] = useState("");
 
     const postComment = async () => {
         try {
-            let data = {
-                content: content,
-                documentId: props.docId,
-                userId: 1
-            };
-            await axios.post("http://localhost:2002/comment", data, config).then(() => {
+            await axios( 
+            {
+                method: 'post',
+                url: "http://localhost:2002/api/comment",
+                data: {
+                    content: content,
+                    documentId: props.docId,
+                    userId: 1
+                },
+                headers: { Authorization: `Bearer ${token}` }
+            }).then(() => {
                     setContent("");
                 }).then(() => props.onClick());
         } catch (e) {

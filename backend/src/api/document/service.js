@@ -1,5 +1,79 @@
 const { Document } = require("../../database/models");
 const ResponseCode = require("../../utils/constant/ResponseCode");
+const { google } = require('googleapis');
+const fs = require('fs');
+const { client_id, client_secret, redirect_uri, refresh_token } = require("../../config");
+
+// const CLIENT_ID = '1079743866745-5g0k7oop6760kton879oure3jkf0j45q.apps.googleusercontent.com';
+const CLIENT_ID = client_id;
+const CLIENT_SECRET = client_secret;
+const REDIRECT_URI = redirect_uri;
+const REFRESH_TOKEN = refresh_token;
+const t1 = "https://docs.google.com/viewer?srcid=";
+const t2 = "&pid=explorer&efh=false&a=v&chrome=false&embedded=true";
+
+const oauth2Client = new google.auth.OAuth2(
+    CLIENT_ID,
+    CLIENT_SECRET,
+    REDIRECT_URI,
+);
+
+oauth2Client.setCredentials({ refresh_token: REFRESH_TOKEN })
+
+const drive = google.drive({
+    version: 'v3',
+    auth: oauth2Client
+})
+
+async function uploadFile(name) {
+	try {
+		const response = await drive.files.create({
+                requestBody: {
+                    name: name + '.pdf',
+                    mimeType: 'application/pdf'
+                },
+                media: {
+                    mimeType: 'application/pdf',
+				body: fs.createReadStream("tmp.pdf")
+			}
+		})
+
+		console.log(response.data);
+		// return response.data.id;
+		return generatePublicUrl(response.data.id);
+	} catch (error) {
+		console.log(error.message)
+	}
+}
+
+async function generatePublicUrl(id) {
+    try {
+        // const fileId = '1rJnEYdfhkzmb1I0ij3wYldrjaro0aO6t';
+        await drive.permissions.create({
+            fileId: id,
+            requestBody: {
+                role: 'reader',
+                type: 'anyone'
+            }
+        })
+        const result = await drive.files.get({
+            fileId: id,
+            fields: 'webViewLink, webContentLink',
+        })
+		// result.push({
+		// 	customViewLink: t1.concat(id, t2)
+		// });
+		// console.log(result)
+		const res = {
+			linkDownload: result.data.webContentLink,
+			linkView: t1.concat(id, t2)
+		};
+		return res;
+        // console.log(result.data);
+    } catch (error) {
+        console.log(error.message);
+    }
+}
 
 const verifyDocument = async (req) => {
 	try {
@@ -27,18 +101,33 @@ const verifyDocument = async (req) => {
 
 const createDocument = async (req) => {
 	try {
-		console.log("createDocument - service.js");
 		const newDocument = req.body;
-		const document = await Document.create(newDocument);
-		const message = "Create document successfully!";
-		const status = ResponseCode.Created;
-		const data = { document };
-
-		return {
-			data,
-			message,
-			status,
-		};
+		let dataPDF = newDocument.dataUri.dataUri; 
+		dataPDF = dataPDF.replace('data:application/pdf;base64,', '');
+		fs.writeFile('tmp.pdf', dataPDF, 'base64', (error) => {
+			if (error) throw error;
+			console.log("Doc saved!");
+		  });
+		uploadFile(String(newDocument.name))
+		.then((link) => {
+			console.log(link);
+			newDocument.linkDownload = link.linkDownload;
+			newDocument.linkView = link.linkView;
+		})
+		.then(async () => {		
+			const document = await Document.create(newDocument);
+			// console.log(newDocument);
+			const message = "Create document successfully!";
+			const status = ResponseCode.Created;
+			const data = { document };
+			
+			return {
+				data,
+				message,
+				status,
+			};
+		});
+	
 	} catch (e) {
 		throw e;
 	}
@@ -69,14 +158,12 @@ const getPublicDocument = async (req) => {
 		let { document, message, status } = await verifyDocument(req);
 		let course, teacher, comments;
 
-		console.log("getPublicDocument()");
-
 		if (document) {
 			if (document.status === "public") {
 				course = await document.getCourse();
 				teacher = await document.getTeacher();
 				comments = await document.getComments({
-					include: "user"
+					include: "user",
 				});
 
 				message = "Get public document successfully";
@@ -105,6 +192,26 @@ const getPublicDocument = async (req) => {
 	}
 };
 
+const getMyDocuments = async (req) => {
+	try {
+		const query = req.query;
+		query["userId"] = req.user.id;
+		const documents = await Document.findAll({ where: query });
+
+		const message = "Get my documents successfully";
+		const status = ResponseCode.OK;
+		const data = { documents };
+
+		return {
+			data,
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
 const getMyDocument = async (req) => {
 	try {
 		let { document, message, status } = await verifyDocument(req);
@@ -114,8 +221,9 @@ const getMyDocument = async (req) => {
 			if (document.userId === req.user.id) {
 				course = await document.getCourse();
 				teacher = await document.getTeacher();
-				comments = await document.getComments();
-
+				comments = await document.getComments({
+					include: "user"
+				});
 				message = "Get my document successfully";
 				status = ResponseCode.OK;
 			} else {
@@ -227,9 +335,6 @@ const getDocument = async (req) => {
 		let { document, message, status } = await verifyDocument(req);
 		let course, teacher, comments;
 
-		console.log("HEREEE");
-
-
 		if (document) {
 			course = await document.getCourse();
 			teacher = await document.getTeacher();
@@ -282,6 +387,7 @@ module.exports = {
 	createDocument,
 	getPublicDocuments,
 	getPublicDocument,
+	getMyDocuments,
 	getMyDocument,
 	updateMyDocument,
 	deleteMyDocument,

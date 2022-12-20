@@ -21,7 +21,7 @@ const getMyUser = async (req, res) => {
 	}
 };
 
-// PUT: /user//me/password
+// PUT: /user/me/password
 const updateMyPassword = async (req, res) => {
 	try {
 		const result = await service.updateMyPassword(req);

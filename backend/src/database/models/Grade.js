@@ -17,13 +17,13 @@ const Grade = sequelize.define(
 			type: DataTypes.STRING,
 		},
 		midterm: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.FLOAT,
 		},
 		final: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.FLOAT,
 		},
 		total: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.FLOAT,
 		},
 	},
 	{

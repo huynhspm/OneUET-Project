@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 const config = require("../config");
-const expiredTime = 1; // minutes
+const expiredTime = 5; // minutes
 
 const createOTP = () => {
 	let min = 100000;

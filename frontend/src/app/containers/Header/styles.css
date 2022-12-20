@@ -10,11 +10,14 @@
     justify-content: space-between;
     border-bottom: ridge;
 }
-
 .input-search {
     width: 90%;
 }
 .btn {
     margin: auto;
     border-radius: 0;
+}
+
+.btn-group {
+    color: white;
 }

@@ -6,16 +6,14 @@ import Header from "../containers/Header";
 import Footer from "../containers/Footer";
 import HomePage from "../pages/HomePage";
 import ValidationPage from "../pages/ValidationPage";
-import { createTheme } from "@mui/material";
 
-import { Box, ThemeProvider } from "@mui/system";
+import { Box } from "@mui/system";
 
 import Main from "../pages/Document/Main";
 import Document from "../pages/Document";
 import Convert from "../pages/Convert";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
-import Grade from "../pages/Grade";
 import GradeCourses from "../pages/GradeCourses";
 import Profile from "../pages/Profile";
 import EditDocumentPage from "../pages/EditDocumentPage";
@@ -23,9 +21,9 @@ import ValidationGrade from "../pages/ValidationGrade";
 import SearchCourses from "../pages/SearchCourses";
 import ForgetPassword from "../pages/ForgetPassword";
 import Logout from "../pages/Logout";
-
-
+import PrivateDocument from "../pages/Profile/PrivateDocument";
 const RootLayout = () => {
+  const [token, setToken] = useState("");
 
   const [location, setLocation] = useState(window.location.pathname)
   // const [mode, setMode] = useState("light");
@@ -39,7 +37,6 @@ const RootLayout = () => {
     window.scrollTo(0, 0)
   }, [location])
   return (
-    // <ThemeProvider theme={darkTheme}>
     <Box bgcolor={"background.default"} color={"text.primary"}>
       <BrowserRouter>
         {/* <Header setMode={setMode} mode={mode} /> */}
@@ -48,7 +45,6 @@ const RootLayout = () => {
         {!["/login", "/logout", "/login/forget", "/register"].includes(location) && <Footer location={location} />}
       </BrowserRouter>
     </Box>
-    // </ThemeProvider>
   );
 };
 
