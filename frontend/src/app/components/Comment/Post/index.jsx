@@ -2,6 +2,8 @@ import { TextField, Button, Box } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { api_url } from "../../../utils/config";
+
 
 const CommentPost = (props) => {
 
@@ -29,7 +31,7 @@ const CommentPost = (props) => {
             await axios( 
             {
                 method: 'post',
-                url: "http://localhost:2002/api/comment",
+                url: api_url + "/api/comment",
                 data: {
                     content: content,
                     documentId: props.docId,

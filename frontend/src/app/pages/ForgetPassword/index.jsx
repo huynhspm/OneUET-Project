@@ -6,6 +6,7 @@ import { EmailUIValidator, EmailValidCode, EmailValidText } from '../../utils/va
 import { PasswordUIValidator, PasswordValidCode, PasswordValidText } from '../../utils/validation/password';
 import { OTPUIValidator, OTPValidCode, OTPValidText } from '../../utils/validation/otp';
 import { ThemeProvider, Container, CssBaseline, Box, Avatar, createTheme, TextField, Button, Typography } from '@mui/material';
+import { api_url } from '../../utils/config';
 
 const theme = createTheme();
 
@@ -37,7 +38,7 @@ const ForgetPassword = () => {
     // Resend OTP function
     const resendOTP = async () => {
         try {
-            const res = await axios.post("http://localhost:2002/api/login/forget", {
+            const res = await axios.post(api_url + "/api/login/forget", {
                 email: email
             });
             console.log(res);
@@ -64,7 +65,7 @@ const ForgetPassword = () => {
             }
 
             try {
-                const res = await axios.post("http://localhost:2002/api/login/forget", {
+                const res = await axios.post(api_url + "/api/login/forget", {
                     email: email
                 });
                 console.log(res);
@@ -100,7 +101,7 @@ const ForgetPassword = () => {
             }
 
             try {
-                const res = await axios.post("http://localhost:2002/api/login/reset", {
+                const res = await axios.post(api_url +  "/api/login/reset", {
                     email: email,
                     password: newPassword,
                     otp: otp

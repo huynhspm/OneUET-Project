@@ -29,14 +29,14 @@ const Class = sequelize.define(
 		quantity: {
 			type: DataTypes.INTEGER,
 		},
-		date: {
-			type: DataTypes.TEXT,
-		},
 		section: {
-			type: DataTypes.TEXT,
+			type: DataTypes.STRING,
 		},
 		classroom: {
-			type: DataTypes.TEXT,
+			type: DataTypes.STRING,
+		},
+		dayOfWeek: {
+			type: DataTypes.STRING,
 		},
 	},
 	{

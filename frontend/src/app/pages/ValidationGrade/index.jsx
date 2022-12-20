@@ -8,10 +8,13 @@ import { TextField } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { api_url } from "../../utils/config";
 
 const getUserData = async (token) => {
   try {
-    const response = await axios.get("http://localhost:2002/api/grade", {
+
+    const response = await axios.get(api_url + "/grade", 
+    {
       // params: {linkPDF},
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -96,12 +99,9 @@ const updateData = async (token, data) => {
     headers: { Authorization: `Bearer ${token}` },
   };
   try {
-    const response = await axios.put(
-      "http://localhost:2002/api/class/grade",
-      data,
-      config
-    );
-    return response;
+      const response = await axios.put(api_url + "/api/class/grade", data, config);
+      console.log(response);
+      return response;
   } catch (e) {
     console.log(e);
     if (e.response.data.message == "Class not existed") return e.response;
@@ -125,6 +125,9 @@ const useFakeMutation = () => {
 };
 
 export default function ValidationGrade(props) {
+
+
+  const [codeClass, setCodeClass] = React.useState(null);
   const [semester, setSemester] = React.useState(null);
   const [code, setCode] = React.useState(null);
   const [rows, setRows] = React.useState([]);
@@ -157,9 +160,10 @@ export default function ValidationGrade(props) {
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZUlkIjoxLCJpYXQiOjE2NzA0ODk2ODEsImV4cCI6MTY3MzA4MTY4MX0.rSseHQSrXVyf_PyY3WAIoU07AKavd3-XP-RIXgXRgr4";
 
   useEffect(() => {
-    getUserData(token).then((data) => {
-      let rows2 = [];
-      data = data.grade;
+    if (token !== '') {
+      getUserData(token).then((data) => {
+        let rows2 = [];
+        data = data.grade;
 
       for (var i = 0; i < data.length; i++) {
         rows2.push({
@@ -171,9 +175,10 @@ export default function ValidationGrade(props) {
         });
       }
 
-      setRows(rows2);
-    });
-  }, []);
+        setRows(rows2);
+      });        
+    }
+  }, [token]);
 
   const processRowUpdate = async (newRow) => {
     const response = await mutateRow(newRow);

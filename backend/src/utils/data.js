@@ -14,41 +14,105 @@ const comments = require("../database/data/comment.json");
 const grades = require("../database/data/grade.json");
 
 const { hashPassword } = require("../utils/password");
+const { trace } = require("../api");
 
 async function createCourse() {
+	let cnt = 0;
+	let arr = [];
 	for (let course of courses) {
-		await models.Course.create(course);
+		cnt = cnt + 1;
+		arr.push(course);
+		if (cnt === 200) {
+			await models.Course.bulkCreate(arr);
+			cnt = 0;
+			arr = [];
+		}
+	}
+	if (arr) {
+		await models.Course.bulkCreate(arr);
 	}
 }
 
 async function createClass() {
+	let cnt = 0;
+	let arr = [];
 	for (let cur_class of classes) {
-		await models.Class.create(cur_class);
+		cnt = cnt + 1;
+		arr.push(cur_class);
+		if (cnt === 200) {
+			await models.Class.bulkCreate(arr);
+			cnt = 0;
+			arr = [];
+		}
+	}
+
+	if (arr) {
+		await models.Class.bulkCreate(arr);
 	}
 }
 
 async function createTeacher() {
+	let cnt = 0;
+	let arr = [];
 	for (let teacher of teachers) {
-		await models.Teacher.create(teacher);
+		cnt = cnt + 1;
+		arr.push(teacher);
+		if (cnt === 200) {
+			await models.Teacher.bulkCreate(arr);
+			cnt = 0;
+			arr = [];
+		}
+	}
+	if (arr) {
+		await models.Teacher.bulkCreate(arr);
 	}
 }
 
 async function createTeacherClass() {
 	for (let teacherClass of teachersClasses) {
-		models.TeacherClass.findOrCreate({ where: teacherClass });
+		if (teacherClass.teacherId) {
+			models.TeacherClass.findOrCreate({
+				where: {
+					teacherId: teacherClass.teacherId,
+					classId: teacherClass.classId,
+				},
+			});
+		}
 	}
 }
 
 async function createStudent() {
+	let cnt = 0;
+	let arr = [];
 	for (let student of students) {
-		const newStudent = await models.Student.create(student);
-		await newStudent.addClasses(student.classId);
+		cnt = cnt + 1;
+		arr.push(student);
+		if (cnt === 200) {
+			await models.Student.bulkCreate(arr);
+			cnt = 0;
+			arr = [];
+		}
+	}
+	if (arr) {
+		await models.Student.bulkCreate(arr);
 	}
 }
 
 async function createStudentClass() {
+	let cnt = 0;
+	let arr = [];
 	for (let studentClass of studentsClasses) {
-		models.StudentClass.create(studentClass);
+		cnt = cnt + 1;
+		arr.push(studentClass);
+		if (cnt === 200) {
+			await models.StudentClass.bulkCreate(arr);
+			cnt = 0;
+			arr = [];
+		}
+	}
+
+	if (arr) {
+		await models.StudentClass.bulkCreate(arr);
 	}
 }
 
@@ -103,11 +167,11 @@ async function createGrade() {
 }
 
 async function createData() {
-	// await createCourse();
-	// await createClass();
-	// await createTeacher();
-	// await createTeacherClass();
-	// await createStudent();
+	await createCourse();
+	await createClass();
+	await createTeacher();
+	await createTeacherClass();
+	await createStudent();
 	await createStudentClass();
 	await createRole();
 	await createClub();

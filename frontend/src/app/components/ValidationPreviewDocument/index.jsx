@@ -6,9 +6,9 @@ import { CenterModal } from '../../utils/styles';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { api_url } from '../../utils/config';
 
 const ValidationPreviewDocument = (props) => {
-
     const navigate = useNavigate();
 
 	// user token
@@ -35,7 +35,7 @@ const ValidationPreviewDocument = (props) => {
         try {
             await axios({
                 method: 'put',
-                url: String("http://localhost:2002/api/document/me/" + String(props.docID)),
+                url: String(api_url + "/api/document/me/" + String(props.docID)),
                 data: {
                     status: 'public'
                 },
@@ -52,7 +52,7 @@ const ValidationPreviewDocument = (props) => {
         try {
             await axios({
                 method: 'put',
-                url: String("http://localhost:2002/api/document/me/" + String(props.docID)),
+                url: String(api_url + "/api/document/me/" + String(props.docID)),
                 data: {
                     status: 'private'
                 },
@@ -92,7 +92,7 @@ const ValidationPreviewDocument = (props) => {
                     </Typography>
                     <Divider />
                     <Typography color="textSecondary" className="datePosted" sx={{ pt: 1 }}>
-                        5 DAYS AGO
+                        {props.dateUploaded}
                     </Typography>
                     <iframe src={props.linkView} className='pdf-viewer'></iframe>
                     <Box sx={{display: 'flex', justifyContent: 'center'}}>

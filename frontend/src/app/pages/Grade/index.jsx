@@ -95,6 +95,7 @@ const columns = [
 const rows = [];
 
 export default function Grade() {
+
   const [pageSize, setPageSize] = React.useState(5);
   const [isFetch, setIsFetch] = React.useState(false);
   const navigate = useNavigate();
@@ -139,10 +140,10 @@ export default function Grade() {
             backgroundColor: "#dee2e6",
           },
           ".MuiTablePagination-selectLabel, .MuiTablePagination-displayedRows":
-            {
-              marginBottom: 0,
-              fontSize: 15,
-            },
+          {
+            marginBottom: 0,
+            fontSize: 15,
+          },
         }}
         rows={rows}
         columns={columns}

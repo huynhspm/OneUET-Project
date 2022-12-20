@@ -12,24 +12,48 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { guid } from "@progress/kendo-react-common";
 
-import { sectionMap } from '../../../utils/config';
+import { api_url, sectionMap } from '../../../utils/config';
 import { Button } from '@mui/material';
 import { PDFExport, savePDF } from '@progress/kendo-react-pdf';
-
+import { useNavigate } from "react-router-dom";
 
 const compareById = (matchingItem) => (item) => matchingItem.id === item.id;
 
 const RoomScheduler = (props) => {
   const [data, setData] = useState([]);
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55boeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZUlkIjoxLCJpYXQiOjE2NzA0ODk2ODEsImV4cCI6MTY3MzA4MTY4MX0.rSseHQSrXVyf_PyY3WAIoU07AKavd3-XP-RIXgXRgr4";
+  
+  const navigate = useNavigate();
+
+	// user token
+	const [token, setToken] = useState('');
+
+	// fetch user token
+	const getToken = (() => {
+		if (token === '') {
+			const lastToken = sessionStorage.getItem("token");
+			if (lastToken !== null && lastToken !== undefined) {
+				setToken(lastToken);
+			} else {
+				navigate('/login');
+			}
+		}
+	})
+
+  useEffect(() => {
+		getToken();
+	}, [navigate, token]);
+
+
+  
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (token !== '') {
+      fetchData();
+    }
+  }, [token]);
 
   function extractSemester(semester) {
     let semesters = semester.split("-");
@@ -46,7 +70,7 @@ const RoomScheduler = (props) => {
 
   const fetchData = async () => {
     try {
-      await axios.get("http://localhost:2002/student/1", config).then((res) => {
+      await axios.get(api_url + "/student/1", config).then((res) => {
         let classes = res.data.data.classes;
         let tmp_data = [];
         console.log(res);

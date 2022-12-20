@@ -15,7 +15,7 @@ import {
 import { useEffect } from 'react';
 import { useState } from 'react';
 import axios from 'axios';
-import { units, majors, categories, years } from '../../../utils/config';
+import { units, majors, categories, years, api_url } from '../../../utils/config';
 import { InputBox, InputButton } from '../../../utils/styles';
 import "../../../utils/styles.css"
 import { Link } from 'react-router-dom';
@@ -71,7 +71,7 @@ const Main = (props) => {
     const fetchData = async () => {
         try {
             await axios
-                .get("http://localhost:2002/api/document/me/" + docId, config)
+                .get(api_url + "/api/document/me/" + docId, config)
                 .then((res) => {
                     let data = res.data.data;
                     console.log("----------");
@@ -95,7 +95,7 @@ const Main = (props) => {
     const fetchAllCourses = async () => {
         try {
             await axios
-                .get("http://localhost:2002/api/course", {
+                .get(api_url + "/api/course", {
                     headers: { Authorization: `Bearer ${token}` }
                 })
                 .then((res) => {
@@ -117,7 +117,7 @@ const Main = (props) => {
     const fetchAllTeachers = async () => {
         try {
             await axios
-                .get("http://localhost:2002/api/teacher", {
+                .get(api_url + "/api/teacher", {
                     headers: { Authorization: `Bearer ${token}` }
                 })
                 .then((res) => {
@@ -140,7 +140,7 @@ const Main = (props) => {
         try {
             await axios({
                 method: 'put',
-                url: String("http://localhost:2002/api/document/me/" + docId),
+                url: String(api_url + "/api/document/me/" + docId),
                 data: {
                     name,
                     description,

@@ -17,6 +17,7 @@ const ValidationDocuments = (props) => {
 							major={card.major}
 							key={index}
 							path='/document/'
+							dateUploaded={card.dateUploaded}
 							linkView={card.linkView}
 							docID={card.docID} />
 					))}
