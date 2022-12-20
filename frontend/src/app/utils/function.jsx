@@ -1,3 +1,5 @@
+import { ui_avatar_api } from "./config";
+
 export const fileToDataUri = (file) => new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = (event) => {
@@ -42,3 +44,12 @@ export const stringToColour = (str) => {
     return colour;
   }
 
+export const getDocumentThumbnail = (name) => {
+    return ui_avatar_api + "name=" + name + "&background=" + stringToColour(name);
+}
+
+export const toDateString = (str) => {
+    const date = new Date(str);
+    return date.toLocaleTimeString() + " " + date.toDateString();
+
+}

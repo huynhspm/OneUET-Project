@@ -92,23 +92,23 @@ const columns = [
 const rows = [];
 
 let getData = async () => {
-  const url = "http://localhost:3000/data.json";
-  const response = await fetch(url);
-  const data = await response.json();
-  for (var i = 0; i < data["students"].length; i++) {
-    const obj = {};
-    obj.code = data["students"][i]["0"];
-    obj.name = 0;
-    obj.date_of_birth = 0;
-    obj.classes = 0;
-    obj.id = i;
-    obj.midterm_grade = data["students"][i]["1"];
-    obj.final_grade = data["students"][i]["2"];
-    obj.total_grade = data["students"][i]["3"];
-    rows[i] = obj;
-  }
-  console.log(rows);
-  return data;
+    const url = "http://localhost:3000/data.json";
+    const response = await fetch(url);
+    const data = await response.json();
+    for (var i = 0; i < data["students"].length; i++) {
+        const obj = {};
+        obj.code = data["students"][i]["0"];
+        obj.name = 0;
+        obj.date_of_birth = 0;
+        obj.classes = 0;
+        obj.id = i;
+        obj.midterm_grade = data["students"][i]["1"];
+        obj.final_grade = data["students"][i]["2"];
+        obj.total_grade = data["students"][i]["3"];
+        rows[i] = obj;
+    }
+    console.log(rows);
+    return data;
 };
 
 export default function DataGridDemo() {
@@ -157,10 +157,10 @@ export default function DataGridDemo() {
             backgroundColor: "#dee2e6",
           },
           ".MuiTablePagination-selectLabel, .MuiTablePagination-displayedRows":
-            {
-              marginBottom: 0,
-              fontSize: 15,
-            },
+          {
+            marginBottom: 0,
+            fontSize: 15,
+          },
         }}
         rows={rows}
         columns={columns}

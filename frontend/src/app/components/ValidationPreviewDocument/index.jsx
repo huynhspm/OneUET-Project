@@ -92,7 +92,7 @@ const ValidationPreviewDocument = (props) => {
                     </Typography>
                     <Divider />
                     <Typography color="textSecondary" className="datePosted" sx={{ pt: 1 }}>
-                        5 DAYS AGO
+                        {props.dateUploaded}
                     </Typography>
                     <iframe src={props.linkView} className='pdf-viewer'></iframe>
                     <Box sx={{display: 'flex', justifyContent: 'center'}}>

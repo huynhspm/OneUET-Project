@@ -16,6 +16,7 @@ import axios from "axios";
 import { api_url, drawerWidth } from "../../utils/config";
 import DocumentCard from "../../components/DocumentCard";
 import ValidationDocuments from "../../components/ValidationDocuments";
+import { toDateString } from "../../utils/function";
 
 const ValidationPage = (props) => {
 	const [card, setCard] = useState([]);
@@ -70,6 +71,7 @@ const ValidationPage = (props) => {
 							major: docs[id].major,
 							fileID: docs[id].fileId,
 							docID: docs[id].id,
+							dateUploaded: toDateString(docs[id].updatedAt)
 						}
 						tmpCard.push(element);
 					}
