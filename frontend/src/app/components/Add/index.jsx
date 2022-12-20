@@ -18,13 +18,31 @@ import axios from "axios";
 
 import { InputBox, InputButton } from '../../utils/styles';
 import { CenterModal } from '../../utils/styles';
-import { units, majors, categories, years } from '../../utils/constant';
+import { units, majors, categories, years } from '../../utils/config';
 import { fileToDataUri, controlValue } from '../../utils/function';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Add = (props) => {
     const [open, setOpen] = useState(false);
 
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo'
+    const navigate = useNavigate();
+
+    // user token
+	const [token, setToken] = useState('');
+
+	// fetch user token
+	useEffect(() => {
+		if (token === '') {
+			const lastToken = sessionStorage.getItem("token");
+			if (lastToken !== null && lastToken !== undefined) {
+				setToken(lastToken);
+			} else {
+				navigate('/login');
+			}
+		}
+	}, [token, navigate]);
+
     const config = {
         headers: { Authorization: `Bearer ${token}` }
     };

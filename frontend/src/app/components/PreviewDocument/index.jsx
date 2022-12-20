@@ -6,17 +6,11 @@ import '../../utils/styles.css';
 import { CenterModal } from '../../utils/styles';
 
 const PreviewDocument = (props) => {
-    let t1 = "https://docs.google.com/viewer?srcid=";
-    let t2 = "&pid=explorer&efh=false&a=v&chrome=false&embedded=true";
-
-    const pdf_link = t1.concat('1pRHDGYar6n85cSndPP0XYuBKNcBlqEqd', t2);
-
     return (
         <>
             <CenterModal
                 open={props.open}
                 onClose={props.onClose}
-                TransitionComponent={Zoom}
             >
                 <Box
                     bgcolor={'background.default'}
@@ -41,8 +35,8 @@ const PreviewDocument = (props) => {
                     <Typography color="textSecondary" className="datePosted" sx={{ pt: 1 }}>
                         5 DAYS AGO
                     </Typography>
-                    <iframe src={pdf_link} className='pdf-viewer'></iframe>
-                    <Button variant='contained' sx={{mt:3}} component={Link} to={"/document/" + String(props.docID)}>View Full Page</Button>
+                    <iframe src={props.linkView} className='pdf-viewer'></iframe>
+                    <Button variant='contained' sx={{mt:3}} component={Link} to={String(props.path) + String(props.docID)}>View Full Page</Button>
                 </Box>
             </CenterModal>
         </>

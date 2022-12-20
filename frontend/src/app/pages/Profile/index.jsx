@@ -9,18 +9,14 @@ import Schedule from './Schedule';
 import Grade from '../Grade';
 import PrivateDocument from './PrivateDocument';
 import FilterSidebar from '../../components/FilterSidebar';
-import { units } from '../../utils/constant';
+import { units } from '../../utils/config';
+import Main from './PrivateDocument/Main' 
 import ChangePassword from './ChangePassword';
 
 const drawerWidth = 240;
 
 const Profile = (props) => {
     const { type } = useParams();
-
-    const filterData = {
-        Khoa: units,
-        Ngành: ['Công nghệ thông tin', 'Khoa học máy tính', 'Send email', 'Drafts']
-    }
 
     const navigate = useNavigate();
     const [token, setToken] = useState('');
@@ -59,7 +55,7 @@ const Profile = (props) => {
                 {type === 'information' && <Information token={token} />}
                 {type === 'schedule' && <Schedule />}
                 {type === 'learning-result' && <Grade />}
-                {type === 'private-document' && <PrivateDocument />}
+                {type === 'private-document' && <Main />}
                 {type === 'change-password' && <ChangePassword token={token} />}
                 {type === 'login' && <Header />}
             </Box>

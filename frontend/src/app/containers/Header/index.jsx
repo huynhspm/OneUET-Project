@@ -24,15 +24,36 @@ import { ModeNight } from "@mui/icons-material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "./styles.css";
+import { useNavigate } from "react-router-dom";
 
 const Header = (props) => {
-  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo'
+  const [isFetch, setIsFetch] = useState(false);
+
+  const navigate = useNavigate();    
+
+	// user token
+	const [token, setToken] = useState('');
+
+	// fetch user token
+	useEffect(() => {
+		if (token === '') {
+			const lastToken = sessionStorage.getItem("token");
+			if (lastToken !== null && lastToken !== undefined) {
+				setToken(lastToken);
+        setIsFetch(true);
+			} else {
+				navigate('/login');
+			}
+		}
+	}, [token, navigate]);
 
   const [docs, setDocs] = useState([]);
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (isFetch) {
+      fetchData();
+    }
+  }, [token]);
 
   function getDocuments(data) {
     let docs = data.data;

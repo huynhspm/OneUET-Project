@@ -15,7 +15,7 @@ import {
 import { useEffect } from 'react';
 import { useState } from 'react';
 import axios from 'axios';
-import { units, majors, categories, years } from '../../../utils/constant';
+import { units, majors, categories, years } from '../../../utils/config';
 import { InputBox, InputButton } from '../../../utils/styles';
 import "../../../utils/styles.css"
 import { Link } from 'react-router-dom';
@@ -23,6 +23,7 @@ import { controlValue } from '../../../utils/function';
 import { useNavigate } from 'react-router-dom';
 
 const Main = (props) => {
+    //document properties
     const [linkView, setLinkView] = useState();
     const [name, setName] = useState();
     const [description, setDescription] = useState();
@@ -35,20 +36,37 @@ const Main = (props) => {
     const docId = String(props.id);
 
     const [course, setCourse] = useState([]);
-	const [teacher, setTeacher] = useState({});
+    const [teacher, setTeacher] = useState({});
 
+    // navigate page
     const navigate = useNavigate();
 
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo'
+    // user token
+    const [token, setToken] = useState('');
+
+    // fetch user token
+    useEffect(() => {
+        if (token === '') {
+            const lastToken = sessionStorage.getItem("token");
+            if (lastToken !== null && lastToken !== undefined) {
+                setToken(lastToken);
+            } else {
+                navigate('/login');
+            }
+        }
+    }, [token, navigate]);
+
     const config = {
         headers: { Authorization: `Bearer ${token}` }
     };
 
     useEffect(() => {
-        fetchAllTeachers();
-		fetchAllCourses();
-        fetchData();
-    }, []);
+        if (token !== '') {
+            fetchAllTeachers();
+            fetchAllCourses();
+            fetchData();
+        }
+    }, [token]);
 
     const fetchData = async () => {
         try {
@@ -122,7 +140,7 @@ const Main = (props) => {
         try {
             await axios({
                 method: 'put',
-                url: String("http://localhost:2002/api/document/me/" + docId), 
+                url: String("http://localhost:2002/api/document/me/" + docId),
                 data: {
                     name,
                     description,
@@ -135,7 +153,7 @@ const Main = (props) => {
                 },
                 headers: { Authorization: `Bearer ${token}` }
             });
-        } catch(e) {
+        } catch (e) {
             console.log(e.response.data);
         }
         navigate('/document/' + docId);

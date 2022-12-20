@@ -5,18 +5,38 @@ import DocumentView from "./DocumentView";
 import Main from "./Main";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Document = (props) => {
     const [doc_ids, setDoc_ids] = useState([]);
+    
+	// user token
+	const [token, setToken] = useState('');
 
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo'
     const config = {
         headers: { Authorization: `Bearer ${token}` }
     };
 
+    const navigate = useNavigate();    
+
+	// fetch user token
+	useEffect(() => {
+		if (token === '') {
+			const lastToken = sessionStorage.getItem("token");
+			if (lastToken !== null && lastToken !== undefined) {
+				setToken(lastToken);
+			} else {
+				navigate('/login');
+			}
+		}
+	}, [token, navigate]);
+
+
     useEffect(() => {
-        fetchData();
-    }, []);
+        if (token !== '') {
+            fetchData();
+        }
+    }, [token]);
     
     const fetchData = async () => {
         try {
@@ -27,9 +47,8 @@ const Document = (props) => {
                     let docs = res.data.data.documents;
                     let tmp = [];
                     for (let index in docs) {
-                        tmp.push(docs[index].id) //docs[index].id
+                        tmp.push(docs[index].id) 
                     }
-                    // console.log(tmp);
                     setDoc_ids(tmp);
                 });
         } catch (e) {
@@ -41,9 +60,9 @@ const Document = (props) => {
 
     return (
         <>
-            {doc_id === "" && <Main />}
-            {doc_ids.map((id, index) => (
-                doc_id === String(id) && <DocumentView key={index} id={id} />
+            {doc_id === "" && <Main/>}
+            {doc_ids.map((id) => (
+                doc_id === String(id) && <DocumentView key={id} id={id} />
             ))}
         </>
     );

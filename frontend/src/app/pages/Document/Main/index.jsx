@@ -4,25 +4,43 @@ import {
 	Drawer,
 	Toolbar
 } from '@mui/material';
+import Add from '../../../components/Add';
 import DocumentCard from '../../../components/DocumentCard';
 import FilterSidebar from '../../../components/FilterSidebar';
-import Add from '../../../components/Add';
+import { getFilterPair } from '../../../utils/function';
 import { useState, useEffect } from 'react';
-
-import { drawerWidth, documentCardHeight, units, majors, unitsAndMajors } from '../../../utils/constant';
+import { useNavigate } from 'react-router-dom';
+import { drawerWidth, documentCardHeight, units, majors, unitsAndMajors } from '../../../utils/config';
 import axios from "axios";
 import '../styles.css'
 
-
 const Main = (props) => {
+	const [isFetch, setIsFetch] = useState(false);
+
 	const [card, setCard] = React.useState([]);
-	const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo'
+	// const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo'
+	// const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkIjoyLCJpYXQiOjE2NzE0NjExOTAsImV4cCI6MTY3NDA1MzE5MH0.MmY_x4mNXIPI_VRH2nTikr8Om_H8uGxzHzK-orlz4oA'
+	const navigate = useNavigate();
+
+	// user token
+	const [token, setToken] = useState('');
+
+	// fetch user token
+	const getToken = (() => {
+		if (token === '') {
+			const lastToken = sessionStorage.getItem("token");
+			if (lastToken !== null && lastToken !== undefined) {
+				console.log(lastToken);
+				setToken(lastToken);
+				setIsFetch(true);
+			} else {
+				navigate('/login');
+			}
+		}
+	})
+
 	const [course, setCourse] = useState([]);
 	const [teacher, setTeacher] = useState({});
-
-	const controlValueDictionary = (value) => {
-
-	}
 
 	const [filterParams, setFilterParams] = React.useState({
 		unit: [],
@@ -34,11 +52,18 @@ const Main = (props) => {
 	});
 
 	useEffect(() => {
-		fetchData();
-		fetchAllTeachers();
-		fetchAllCourses();
-	}, [filterParams]);
-	
+		getToken();
+	}, [navigate]);
+
+	useEffect(() => {
+		getToken();
+		if (isFetch) {
+			fetchData();
+			fetchAllTeachers();
+			fetchAllCourses();
+		}
+	}, [filterParams, token]);
+
 	// useEffect(() => {
 	// 	fetchAllTeachers();
 	// 	fetchAllCourses();
@@ -54,21 +79,22 @@ const Main = (props) => {
 					})
 				.then((res) => {
 					let docs = res.data.data.documents;
-					// console.log(res);
-					let tmp = [];
+					console.log(res);
+					let tmpCard = [];
 					for (let id in docs) {
 						let element = {
 							name: docs[id].name,
 							description: docs[id].description,
+							linkView: docs[id].linkView,
 							src_img: "https://randomuser.me/api/portraits/women/2.jpg",
 							unit: docs[id].unit,
 							major: docs[id].major,
 							fileID: docs[id].fileId,
 							docID: docs[id].id,
 						}
-						tmp.push(element);
+						tmpCard.push(element);
 					}
-					setCard(tmp.reverse());
+					setCard(tmpCard.reverse());
 				});
 		} catch (e) {
 			console.log(e.response.data);
@@ -162,6 +188,8 @@ const Main = (props) => {
 									unit={card.unit}
 									major={card.major}
 									key={index}
+									path='/document/'
+									linkView={card.linkView}
 									docID={card.docID} />
 							))}
 						</Box>

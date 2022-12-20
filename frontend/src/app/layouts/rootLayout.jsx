@@ -23,7 +23,7 @@ import ValidationGrade from "../pages/ValidationGrade";
 import SearchCourses from "../pages/SearchCourses";
 import ForgetPassword from "../pages/ForgetPassword";
 import Logout from "../pages/Logout";
-
+import PrivateDocument from "../pages/Profile/PrivateDocument";
 const RootLayout = () => {
 
   // const [mode, setMode] = useState("light");
@@ -58,6 +58,7 @@ const RootLayout = () => {
           <Route path="/profile/:type" element={<Profile />} />
           <Route path="/validation-grade" element={<ValidationGrade />} />
           <Route path="/profile/:type" element={<Profile token={token} />} />
+          <Route path="/profile/private-document/:docId" element={<PrivateDocument />} />
         </Routes>
         <Footer />
       </BrowserRouter>

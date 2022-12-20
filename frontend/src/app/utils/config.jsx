@@ -1,3 +1,5 @@
+export const api_url = 'http://localhost:2002';
+
 export const documentCardHeight = 250;
 export const drawerWidth = 270;
 
@@ -36,6 +38,9 @@ export const drawerWidth = 270;
 //         "Trí tuệ nhân tạo",
 //     ]
 // }
+
+
+export const ui_avatar_api = 'https://ui-avatars.com/api/?';
 
 export const units = [
     "Khoa Công nghệ Thông tin",
