@@ -71,7 +71,7 @@ const Main = (props) => {
     const fetchData = async () => {
         try {
             await axios
-                .get("http://localhost:2002/api/document/public/" + docId, config)
+                .get("http://localhost:2002/api/document/me/" + docId, config)
                 .then((res) => {
                     let data = res.data.data;
                     console.log("----------");
