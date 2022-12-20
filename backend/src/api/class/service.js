@@ -197,8 +197,12 @@ const addStudent = async (req) => {
 
 const updateGrade = async (req) => {
 	try {
-		let curClass, message, status;
+		let curClass, message, status;		
 		const { code, semester, grades } = req.body;
+		
+		console.log(".......................")
+		console.log(code, semester, grades)
+		console.log("????????????????????????")
 		curClass = await Class.findOne({
 			where: { code, semester },
 		});
@@ -217,6 +221,7 @@ const updateGrade = async (req) => {
 		// 		total: 70,
 		// 	},
 		// ];
+		console.log(curClass, ".................")
 
 		if (curClass) {
 			curClass.finish = true;
@@ -232,6 +237,8 @@ const updateGrade = async (req) => {
 					where: { studentId: student.id, classId: curClass.id },
 				});
 
+				console.log("????????????");
+
 				let email = student.code + "@vnu.edu.vn";
 				let subject = "Your score in class " + curClass.code;
 				// sendEmailGrade(email, grade, subject);
@@ -244,10 +251,13 @@ const updateGrade = async (req) => {
 			status = ResponseCode.Not_Found;
 		}
 
-		return {
-			message,
+		data = { curClass };
+
+		return{
+			data, 
+			message, 
 			status,
-		};
+		}
 	} catch (e) {
 		throw e;
 	}
