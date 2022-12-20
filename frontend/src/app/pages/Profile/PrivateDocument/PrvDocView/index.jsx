@@ -8,6 +8,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useNavigate } from 'react-router-dom';
+import { api_url } from '../../../../utils/config';
 
 const PrvDocView = (props) => {
     const [showOptionsDialog, setShowOptionsDialog] = useState(false);
@@ -19,6 +20,8 @@ const PrvDocView = (props) => {
     const [linkDownload, setLinkDownload] = useState();
     const [dateUploaded, setDateUploaded] = useState();
     const [comments, setComments] = useState([]);
+    const [belongToMe, setBelongToMe] = useState();
+    const [status, setStatus] = useState();
     const docId = props.id;
 
 
@@ -53,29 +56,31 @@ const PrvDocView = (props) => {
     const fetchData = async () => {
         try {
             await axios
-                .get("http://localhost:2002/api/document/me/" + String(props.id), config)
-                .then((res) => {
-                    let data = res.data.data;
-                    console.log(data);
-                    set_pdf_link(data.document.linkView);
-                    setName(data.document.name);
-                    setLinkDownload(data.document.linkDownload);
-                    setDescription(data.document.description);
-                    setTags([
-                        data.document.unit,
-                        data.document.major,
-                        data.course.name,
-                        data.document.category,
-                        data.document.year,
-                    ]);
-                    let tmp_comments = []
-                    for (let property in data.comments) {
-                        tmp_comments.push(data.comments[property]);
-                    }
-                    // console.log(tmp_comments)
-                    setComments(tmp_comments);
-                    setDateUploaded(data.document.updatedAt);
-                });
+            .get(api_url + "/api/document/me/" + String(props.id), config)
+            .then((res) => {
+                let data = res.data.data;
+                setBelongToMe(res.data.data.belongToMe);
+                console.log(data);
+                set_pdf_link(data.document.linkView);
+                setName(data.document.name);
+                setLinkDownload(data.document.linkDownload);
+                setDescription(data.document.description);
+                setTags([
+                    data.document.unit,
+                    data.document.major,
+                    data.course.name,
+                    data.document.category,
+                    data.document.year,
+                ]);
+                let tmp_comments = []
+                for (let property in data.comments) {
+                    tmp_comments.push(data.comments[property]);
+                }
+                console.log(data);
+                setStatus(data.document.status);
+                setComments(tmp_comments);
+                setDateUploaded(data.document.updatedAt);
+            });
         } catch (e) {
             console.log(e.response.data);
         }
@@ -127,7 +132,7 @@ const PrvDocView = (props) => {
                 </Box>
             </Box>
             {showOptionsDialog && (
-                <OptionsDialog documentID={props.id} linkDownload={linkDownload} onClose={setShowOptionsDialog} />
+                <OptionsDialog documentID={props.id} linkDownload={linkDownload} onClose={setShowOptionsDialog} belongToMe={belongToMe} status={status} />
             )}
         </>
     );

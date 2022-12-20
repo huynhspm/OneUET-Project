@@ -3,13 +3,35 @@ import { Box, Drawer, Toolbar } from '@mui/material';
 import Main from "./Main";
 import PrvDocView from "./PrvDocView";
 import { useState, useEffect } from "react";
-import { drawerWidth } from "../../../utils/config";
+import { api_url, drawerWidth } from "../../../utils/config";
 import { documentCardHeight } from "../../../utils/config";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const PrivateDocument = (props) => {
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo'
+    const navigate = useNavigate();
+
+	// user token
+	const [token, setToken] = useState('');
+
+	// fetch user token
+	const getToken = (() => {
+		if (token === '') {
+			const lastToken = sessionStorage.getItem("token");
+			if (lastToken !== null && lastToken !== undefined) {
+				setToken(lastToken);
+			} else {
+				navigate('/login');
+			}
+		}
+	})
+
+    useEffect(() => {
+		getToken();
+	}, [navigate, token]);
+
+
     const config = {
         headers: { Authorization: `Bearer ${token}` }
     };
@@ -17,13 +39,15 @@ const PrivateDocument = (props) => {
     const [docIds, setDocIds] = useState([]);
 
     useEffect(() => {
-        fetchData();
-    }, []);
+        if (token !== '') {
+            fetchData();
+        }
+    }, [token]);
 
     const fetchData = async () => {
         try {
             await axios
-                .get("http://localhost:2002/api/user/me", config)
+                .get(api_url + "/api/user/me", config)
                 .then((res) => {
                     let docs = res.data.data.documents;
                     console.log(res);
@@ -42,12 +66,10 @@ const PrivateDocument = (props) => {
 
     return (
         <>
-
             {docId === "" && <Main />}
             {docIds.map((id, index) => (
                 docId === String(id) && <PrvDocView key={id} id={id} />
             ))}
-
         </>
     );
 };

@@ -8,10 +8,7 @@ import NativeSelect from '@mui/material/NativeSelect';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+import Button from "@mui/material/Button";
 
 const Item = styled(Paper)(({ theme }) => ({
   weight: 10,
@@ -76,18 +73,12 @@ export default function CustomizedSelects() {
       </FormControl>
     </div>
 
-    <Card sx={{ maxWidth: '100vw', colorBackground: 'black'}}>
-      <CardActionArea>
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div" >
-              Lập trình hướng đối tượng - INT2204 44
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-              Giảng viên
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
+      <Button sx={{ width: '100%', height: '7vh', mt: 2}}
+          variant="contained"
+          onClick={async () => {
+          }}>
+        Lập trình hướng đối tượng (INT3301)
+    </Button>
     </>
   );
 }

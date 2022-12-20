@@ -4,6 +4,7 @@ import { Box, Grid, IconButton, FormControl, FormGroup, FormLabel, FormControlLa
 import EditIcon from '@mui/icons-material/Edit';
 import CheckIcon from '@mui/icons-material/Check';
 import axios from 'axios';
+import { api_url } from '../../../../utils/config';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -53,7 +54,7 @@ const Activities = (props) => {
             headers: { Authorization: `Bearer ${props.token}` }
         }
         try {
-            const res = await axios.get("http://localhost:2002/api/club", config);
+            const res = await axios.get(api_url + "/api/club", config);
             // console.log(res.data.data.clubs);
             return res.data.data.clubs;
         } catch (e) {

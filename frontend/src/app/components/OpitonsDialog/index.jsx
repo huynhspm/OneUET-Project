@@ -7,8 +7,9 @@ import axios from "axios";
 import { OptionButton, RedButton } from "./styles";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { api_url } from "../../utils/config";
 
-function OptionsDialog({ onClose, documentID, linkDownload }) {
+function OptionsDialog({ onClose, documentID, linkDownload, belongToMe, status }) {
     const navigate = useNavigate();    
 
 	// user token
@@ -32,10 +33,9 @@ function OptionsDialog({ onClose, documentID, linkDownload }) {
     };
 
     const deleteDocument = async () => {
-        console.log(documentID);
         try {
             await axios
-                .delete("http://localhost:2002/api/document/" + String(documentID), config);
+                .delete(api_url + "/api/document/me/" + String(documentID), config);
 
         } catch (e) {
             console.log(e.response.data);
@@ -46,7 +46,7 @@ function OptionsDialog({ onClose, documentID, linkDownload }) {
         try {
             await axios({
                 method: 'put',
-                url: String("http://localhost:2002/api/document/me/" + String(documentID)),
+                url: String(api_url + "/api/document/me/" + String(documentID)),
                 data: {
                     status: 'pending'
                 },
@@ -76,28 +76,37 @@ function OptionsDialog({ onClose, documentID, linkDownload }) {
                 onClose={onClose}
                 TransitionComponent={Zoom}
             >
-                <RedButton
-                    onClick={deleteDocument}
-                    component={Link}
-                    to="/document/"
-                >
-                    DELETE
-                </RedButton>
+                {
+                    belongToMe && 
+                    <RedButton
+                        onClick={deleteDocument}
+                        component={Link}
+                        to="/profile/private-document/"
+                    >
+                        DELETE
+                    </RedButton>
+                }
                 <Divider />
-                <OptionButton
-                    component={Link}
-                    to={"/document/edit/" + documentID}
-                >
-                    EDIT
-                </OptionButton>
+                {
+                    belongToMe &&
+                    <OptionButton
+                        component={Link}
+                        to={"/document/edit/" + documentID}
+                    >
+                        EDIT
+                    </OptionButton>
+                }
                 <Divider />
                 <OptionButton href={linkDownload}> DOWNLOAD </OptionButton>
                 <Divider />
-                <OptionButton
-                    onClick={setToPublic}
-                >
-                    SET TO PUBLIC
-                </OptionButton>
+                {
+                    belongToMe && status === "private" &&
+                    <OptionButton
+                        onClick={setToPublic}
+                    >
+                        SET TO PUBLIC
+                    </OptionButton>
+                }
                 <Divider />
                 <OptionButton onClick={() => {onClose(false)}}>
                     Cancel

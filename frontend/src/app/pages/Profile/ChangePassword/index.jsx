@@ -3,6 +3,7 @@ import axios from 'axios';
 import Title from '../../../components/Title';
 import { Box, Paper, TextField, Grid, Container, Button } from '@mui/material';
 import { PasswordUIValidator, PasswordValidCode, PasswordValidText } from "../../../utils/validation/password";
+import { api_url } from "../../../utils/config";
 
 const ChangePassword = (props) => {
     // Old password
@@ -46,7 +47,7 @@ const ChangePassword = (props) => {
             headers: { Authorization: `Bearer ${props.token}` }
         }
         try {
-            const res = await axios.put("http://localhost:2002/api/user/me/password", {
+            const res = await axios.put(api_url + "/api/user/me/password", {
                 oldPassword: oldPassword,
                 newPassword: newPassword
             }, config);
@@ -64,7 +65,7 @@ const ChangePassword = (props) => {
         <Container maxWidth="sm">
             <Box
                 component="div"
-                sx={{ flexGrow: 1, p: 1, m: 1 }}
+                sx={{ flexGrow: 1, p: 1, m: 1, minHeight: window.innerHeight }}
             >
                 <Paper
                     sx={{

@@ -26,9 +26,6 @@ const DocumentCard = (props) => {
                     <Typography sx={{ display: 'flex' }} variant="h5" >
                         {props.name}
                     </Typography>
-                    {/* <Typography variant="body2" color="text.secondary">
-                        {props.description}
-                    </Typography> */}
                 </CardContent>
                 <CardActions sx={{
                     display: 'flex',

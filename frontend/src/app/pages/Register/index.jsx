@@ -8,6 +8,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { EmailUIValidator, EmailValidCode, EmailValidText } from "../../utils/validation/email";
 import { PasswordUIValidator, PasswordValidCode, PasswordValidText } from "../../utils/validation/password";
 import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Grid, Box, Container, MenuItem, Select, InputLabel, FormControl, FormHelperText, FormGroup } from "@mui/material";
+import { api_url } from "../../utils/config";
 
 const theme = createTheme();
 
@@ -51,7 +52,7 @@ export default function Register() {
 	// Resend OTP function
 	const resendOTP = async () => {
 		try {
-			const res = await axios.post("http://localhost:2002/api/login/forget", {
+			const res = await axios.post(api_url + "/api/login/forget", {
 				email: email,
 			});
 			console.log(res);
@@ -64,7 +65,7 @@ export default function Register() {
 	const handleOTP = async (setIsValidOtp) => {
 		console.log(otp);
 		try {
-			const res = await axios.post("http://localhost:2002/api/login/verify", {
+			const res = await axios.post(api_url + "/api/login/verify", {
 				email: email,
 				otp: otp,
 			});
@@ -130,7 +131,7 @@ export default function Register() {
 
 		// Call register api
 		try {
-			const res = await axios.post("http://localhost:2002/api/register", {
+			const res = await axios.post(api_url + "/api/register", {
 				email: email,
 				password: password,
 				birthday: new Date(birthday),

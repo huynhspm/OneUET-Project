@@ -16,6 +16,7 @@ router.delete("/me/:id", [verifyToken], controller.deleteMyDocument);
 
 router.get("/", [verifyToken, verifyAdmin], controller.getDocuments);
 router.get("/:id", [verifyToken, verifyAdmin], controller.getDocument);
+router.put("/:id", [verifyToken, verifyAdmin], controller.updateDocument);
 router.delete("/:id", [verifyToken, verifyAdmin], controller.deleteDocument);
 
 module.exports = router;

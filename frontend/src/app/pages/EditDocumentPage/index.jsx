@@ -2,23 +2,47 @@ import { useParams } from "react-router-dom";
 import Main from "./Main";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { api_url } from "../../utils/config";
+import { useNavigate } from "react-router-dom";
 
 const EditDocumentPage = (props) => {
     const [doc_ids, setDoc_ids] = useState([]);
 
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo'
+    const navigate = useNavigate();
+
+	// user token
+	const [token, setToken] = useState('');
+
+	// fetch user token
+	const getToken = (() => {
+		if (token === '') {
+			const lastToken = sessionStorage.getItem("token");
+			if (lastToken !== null && lastToken !== undefined) {
+				setToken(lastToken);
+			} else {
+				navigate('/login');
+			}
+		}
+	})
+
+    useEffect(() => {
+		getToken();
+	}, [navigate, token]);
+
     const config = {
         headers: { Authorization: `Bearer ${token}` }
     };
 
     useEffect(() => {
-        fetchData();
-    }, []);
+        if (token !== '') {
+            fetchData();
+        }
+    }, [token]);
     
     const fetchData = async () => {
         try {
             await axios
-                .get("http://localhost:2002/api/document/public", config)
+                .get(api_url + "/api/user/me", config)
                 .then((res) => {
                     let docs = res.data.data.documents;
                     console.log(docs)

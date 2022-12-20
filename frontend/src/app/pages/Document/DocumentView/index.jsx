@@ -8,6 +8,8 @@ import axios from 'axios';
 import { useState } from 'react';
 import "../../../utils/styles.css"
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { api_url } from '../../../utils/config';
+import { useNavigate } from 'react-router-dom';
 
 const DocumentView = (props) => {
     const [showOptionsDialog, setShowOptionsDialog] = useState(false);
@@ -19,21 +21,47 @@ const DocumentView = (props) => {
     const [linkDownload, setLinkDownload] = useState();
     const [dateUploaded, setDateUploaded] = useState();
     const [comments, setComments] = useState([]);
+    const [belongToMe, setBelongToMe] = useState();
+    const [status, setStatus] = useState();
+
     const docId = props.id;
 
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo'
+    const navigate = useNavigate();
+
+	// user token
+	const [token, setToken] = useState('');
+
     const config = {
         headers: { Authorization: `Bearer ${token}` }
     };
 
+	// fetch user token
+	const getToken = (() => {
+		if (token === '') {
+			const lastToken = sessionStorage.getItem("token");
+			if (lastToken !== null && lastToken !== undefined) {
+				setToken(lastToken);
+			} else {
+				navigate('/login');
+			}
+		}
+	})
+
     useEffect(() => {
-        fetchData();
-    }, []);
+        getToken();
+	}, [navigate, token]);
+
+
+    useEffect(() => {
+        if (token !== '') {
+            fetchData();
+        }
+    }, [token]);
 
     const fetchData = async () => {
         try {
             await axios
-                .get("http://localhost:2002/api/document/public/" + String(props.id), config)
+                .get(api_url + "/api/document/public/" + String(props.id), config)
                 .then((res) => {
                     let data = res.data.data;
                     console.log(data);
@@ -53,7 +81,8 @@ const DocumentView = (props) => {
                         tmp_comments.push(data.comments[property]);
                     }
                     setComments(tmp_comments);
-                    // console.log(tmp_comments);
+                    setBelongToMe(data.belongToMe);
+                    setStatus(data.document.status)
                     setDateUploaded(data.document.updatedAt);
                 });
         } catch (e) {
@@ -80,7 +109,7 @@ const DocumentView = (props) => {
                             flexDirection: 'column',
                         }}
                     >
-                        <iframe src={pdf_link} height='700vh' />
+                        <iframe src={pdf_link} height={window.innerHeight - 150} />
                     </Box>
                     <Box
                         sx={{ flexGrow: 1, pl: 2, pt: 1, position: 'relative' }}
@@ -107,7 +136,7 @@ const DocumentView = (props) => {
                 </Box>
             </Box>
             {showOptionsDialog && (
-                <OptionsDialog documentID={props.id} linkDownload={linkDownload} onClose={setShowOptionsDialog} />
+                <OptionsDialog documentID={props.id} linkDownload={linkDownload} onClose={setShowOptionsDialog} belongToMe={belongToMe} status={status}/>
             )}
         </>
     );

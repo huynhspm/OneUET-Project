@@ -1,6 +1,6 @@
 import "/node_modules/bootstrap/dist/css/bootstrap.min.css";
 // import "/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
-
+import styled from "styled-components";
 import { Link } from "react-router-dom";
 //import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
@@ -12,12 +12,14 @@ import FactCheckIcon from "@mui/icons-material/FactCheck";
 import AvatarDropdown from "../../components/AvatarDropdown";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import { Box, Typography } from "@mui/material";
-
+import {
+  Box,
+} from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
+import { api_url } from "../../utils/config";
 
 const Header = (props) => {
   const [isFetch, setIsFetch] = useState(false);
@@ -57,11 +59,12 @@ const Header = (props) => {
   const fetchData = async () => {
     try {
       await axios
-        .get("http://localhost:2002/api/document/public", {
+        .get(api_url + "/api/document/public", {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => {
           let docs = getDocuments(res.data);
+          // console.log(res);
           let tmp = [];
           for (let id in docs) {
             let element = {
@@ -81,26 +84,46 @@ const Header = (props) => {
     <>
       <div className="header" color="white">
         <div className="btn-group button-group">
-          <Link className="homepage-button btn" to="/">
-            <HomeIcon />
-            <Typography>Trang chủ</Typography>
-          </Link>
-          <Link className="convert-button btn" to="/convert">
-            <AutoAwesomeIcon />
-            <Typography>Convert</Typography>
-          </Link>
-          <Link className="document-button btn" to="/document">
-            <SummarizeIcon />
-            <Typography>Document</Typography>
-          </Link>
-          <Link className="grade-button btn" to="/grade">
-            <SchoolIcon />
-            <Typography>Grade</Typography>
-          </Link>
-          <Link className="validation-button btn" to="/validation-document">
-            <FactCheckIcon />
-            <Typography>Validation Document</Typography>
-          </Link>
+          {props.location !== "/" ?
+            <Link className="homepage-button btn" to="/" >
+              <HomeIcon /> Trang chủ
+            </Link> :
+            <Link className="homepage-button btn btn-primary" to="/" >
+              <HomeIcon /> Trang chủ
+            </Link>
+          }
+          {props.location !== "/convert" ?
+            <Link className="convert-button btn" to="/convert">
+              <AutoAwesomeIcon /> Convert
+            </Link> :
+            <Link className="convert-button btn btn-primary" to="/convert">
+              <AutoAwesomeIcon /> Convert
+            </Link>
+          }
+          {props.location !== "/document" ?
+            <Link className="document-button btn" to="/document">
+              <SummarizeIcon /> Document
+            </Link> :
+            <Link className="document-button btn btn-primary" to="/document">
+              <SummarizeIcon /> Document
+            </Link>
+          }
+          {props.location !== "/grade" ?
+            <Link className="grade-button btn" to="/grade">
+              <SchoolIcon /> Grade
+            </Link> :
+            <Link className="grade-button btn btn-primary" to="/grade">
+              <SchoolIcon /> Grade
+            </Link>
+          }
+          {props.location !== "/validation-document" ?
+            <Link className="validation-button btn" to="/validation-document">
+              <FactCheckIcon /> Validation Document
+            </Link> :
+            <Link className="validation-button btn btn-primary" to="/validation-document">
+              <FactCheckIcon /> Validation Document
+            </Link>
+          }
         </div>
         <Box
           sx={{

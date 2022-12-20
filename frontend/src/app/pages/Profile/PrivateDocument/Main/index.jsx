@@ -1,30 +1,45 @@
 import React from "react";
-import { Box, Drawer, Toolbar } from '@mui/material';
+import { Box, Drawer, Toolbar } from "@mui/material";
 import DocumentCard from "../../../../components/DocumentCard";
 import { useState, useEffect } from "react";
-import { drawerWidth, documentCardHeight } from "../../../../utils/config";
+import { drawerWidth, documentCardHeight, api_url } from "../../../../utils/config";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const PrivateDocument = (props) => {
     const [card, setCard] = React.useState([]);
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo'
+    
+    const navigate = useNavigate();    
+
+	// user token
+	const [token, setToken] = useState('');
+
+	// fetch user token
+	useEffect(() => {
+		if (token === '') {
+			const lastToken = sessionStorage.getItem("token");
+			if (lastToken !== null && lastToken !== undefined) {
+				setToken(lastToken);
+			} else {
+				navigate('/login');
+			}
+		}
+	}, [token, navigate]);
+
+    useEffect(() => {
+        if (token !== "") {
+            fetchData();
+        }
+    }, [token]);
+
     const config = {
         headers: { Authorization: `Bearer ${token}` }
     };
 
-    function getDocuments(data) {
-        let docs = data.data;
-        return docs?.documents;
-    }
-
-    useEffect(() => {
-        fetchData();
-    }, []);
-
     const fetchData = async () => {
         try {
             await axios
-                .get("http://localhost:2002/api/user/me", config)
+                .get(api_url + "/api/user/me", config)
                 .then((res) => {
                     let docs = res.data.data.documents;
 					console.log(res);
@@ -48,37 +63,40 @@ const PrivateDocument = (props) => {
             console.log(e.response.data);
         }
     }
-    return (
-        <>
-            <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-                <Box
-                    component="main"
-                    sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
-                >
-                    {
-                        card.length > 0 &&
-                        <div>
-                            <Box sx={{ display: 'flex', flexWrap: "wrap", }}>
-                                {card.map((card, index) => (
-                                    <DocumentCard
-                                        src_img={card.src_img}
-                                        name={card.name}
-                                        description={card.description}
-                                        unit={card.unit}
-                                        major={card.major}
-                                        key={index}
-                                        path='/profile/private-document/'
-                                        linkView={card.linkView}
-                                        docID={card.docID} />
-                                ))}
-                            </Box>
-                        </div>
-                    }
-
-                </Box>
-            </Box>
-        </>
-    );
+  
+  return (
+    <>
+      <Box sx={{ display: "flex", flexDirection: "row" }}>
+        <Box
+          component="main"
+          sx={{
+            flexGrow: 1,
+            p: 3,
+            width: { sm: `calc(100% - ${drawerWidth}px)` },
+          }}>
+          {card.length > 0 && (
+            <div>
+              <Box sx={{ display: "flex", flexWrap: "wrap" }}>
+                {card.map((card, index) => (
+                  <DocumentCard
+                    src_img={card.src_img}
+                    name={card.name}
+                    description={card.description}
+                    unit={card.unit}
+                    major={card.major}
+                    key={index}
+                    path="/profile/private-document/"
+                    linkView={card.linkView}
+                    docID={card.docID}
+                  />
+                ))}
+              </Box>
+            </div>
+          )}
+        </Box>
+      </Box>
+    </>
+  );
 };
 
 export default PrivateDocument;
