@@ -1,13 +1,12 @@
 import React from "react";
-import './styles.css'
-import dayjs from "dayjs";
 import Title from "../../../../components/Title";
 import { Box, Grid, Button, Paper } from '@mui/material';
 import { PDFExport } from '@progress/kendo-react-pdf';
-import { GenderValue } from "../../../../utils/information/gender";
+import CurriculumVitae from "./CurriculumVitae";
 
 const ExportCV = (props) => {
     const pdfExportComponent = React.useRef(null);
+
     return (
         <Box sx={{
             p: 1,
@@ -33,53 +32,54 @@ const ExportCV = (props) => {
                     </Box>
                 </Grid>
                 <Grid item xs={12}>
-                    <Paper
-                        variant="outlined"
+                    <Box
                         sx={{
-                            p: 1,
-                            borderColor: 'primary.default'
+                            display: 'flex',
+                            justifyContent: 'center'
                         }}
                     >
-                        <PDFExport
-                            ref={pdfExportComponent}
-                            paperSize="A4"
-                            imageResolution={72}
+                        <Paper
+                            variant="outlined"
+                            sx={{
+                                maxWidth: '9in',
+                                p: 1,
+                                borderColor: 'primary.default'
+                            }}
                         >
-                            <div className="cv">
-                                <div className="cv-sub-section">
-                                    <div className="cv-avatar">
-                                        <img className="cv-avatar" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="avatar" />
-                                    </div>
-                                    <div className="cv-contact">
-                                        <div className="cv-heading">Liên lạc</div>
-                                        <div className="cv-contact-row"><i className="material-icons">mail</i>{props.emailVNU}</div>
-                                        <div className="cv-contact-row"><i className="material-icons">call</i>{props.phone}</div>
-                                        <div className="cv-contact-row"><i className="material-icons">home</i>{props.address}</div>
-                                    </div>
-                                </div>
-                                <div className="cv-main-section">
-                                    <div className="cv-header">
-                                        <div className="cv-name">{props.name}</div>
-                                        <div className="cv-basic-info">Giới tính: {GenderValue[props.gender]} <br />
-                                            Ngày sinh: {dayjs(props.birthday).format('DD/MM/YYYY')}</div>
-                                        <hr />
-                                    </div>
-                                    <div className="cv-body">
-                                        <div className="cv-education">
-                                            <div className="cv-heading">Học vấn</div>
-                                            <p>Trường Đại học Công nghệ - {props.unit}</p>
-                                        </div>
-                                        <div className="cv-activities">
-                                            <div className="cv-heading">Hoạt động</div>
-                                            <p>Đoàn Thanh niên - Chức vụ cao nhất: {props.unionPosition} <br />
-                                                Hội Sinh viên - Chức vụ cao nhất: {props.associationPosition}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </PDFExport>
-                    </Paper>
+                            <PDFExport
+                                ref={pdfExportComponent}
+                                paperSize="A4"
+                                scale={0.6}
+                                imageResolution={72}
+                            >
+                                <CurriculumVitae
+                                    // Basic
+                                    avatar={props.avatar}
+                                    code={props.code}
+                                    name={props.name}
+                                    birthday={props.birthday}
+                                    gender={props.gender}
+                                    emailVNU={props.emailVNU}
+                                    email={props.email}
+                                    phone={props.phone}
+                                    address={props.address}
+
+                                    // Education
+                                    program={props.program}
+                                    academicYear={props.academicYear}
+                                    unit={props.unit}
+                                    classID={props.classID}
+
+                                    // Activites
+                                    unionJoint={props.unionJoint}
+                                    partyJoint={props.partyJoint}
+                                    unionPosition={props.unionPosition}
+                                    associationPosition={props.associationPosition}
+                                    club={props.club}
+                                />
+                            </PDFExport>
+                        </Paper>
+                    </Box>
                 </Grid>
             </Grid>
         </Box>
