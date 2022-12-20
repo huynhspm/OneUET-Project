@@ -47,7 +47,7 @@ const PrvDocView = (props) => {
         if (token !== "") {
             fetchData();
         }
-    }, [token]);
+    }, [token, status]);
 
     const config = {
         headers: { Authorization: `Bearer ${token}` }

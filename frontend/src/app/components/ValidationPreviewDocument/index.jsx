@@ -32,10 +32,12 @@ const ValidationPreviewDocument = (props) => {
 
 
     const approveDocument = async () => {
+        console.log(props.docID);
+        console.log("approveDocument");
         try {
             await axios({
                 method: 'put',
-                url: String(api_url + "/api/document/me/" + String(props.docID)),
+                url: String(api_url + "/api/document/" + String(props.docID)),
                 data: {
                     status: 'public'
                 },
@@ -49,10 +51,12 @@ const ValidationPreviewDocument = (props) => {
     }
 
     const declineDocument = async () => {
+        console.log(props.docID);
+        console.log("declineDocument");
         try {
             await axios({
                 method: 'put',
-                url: String(api_url + "/api/document/me/" + String(props.docID)),
+                url: String(api_url + "/api/document/" + String(props.docID)),
                 data: {
                     status: 'private'
                 },

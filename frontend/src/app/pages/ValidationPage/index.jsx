@@ -6,8 +6,6 @@ import { Box,
   ListItemText,
   ListItemIcon
  } from "@mui/material";
-import Main from "../../components/Main";
-import Sidebar from "../../components/SidebarVali";
 import { Grade, Assignment } from "@mui/icons-material";
 
 import { useNavigate } from "react-router-dom";
@@ -16,7 +14,7 @@ import axios from "axios";
 import { api_url, drawerWidth } from "../../utils/config";
 import DocumentCard from "../../components/DocumentCard";
 import ValidationDocuments from "../../components/ValidationDocuments";
-import { toDateString } from "../../utils/function";
+import { toDateString, getDocumentThumbnail } from "../../utils/function";
 
 const ValidationPage = (props) => {
 	const [card, setCard] = useState([]);
@@ -66,7 +64,7 @@ const ValidationPage = (props) => {
 							name: docs[id].name,
 							description: docs[id].description,
 							linkView: docs[id].linkView,
-							src_img: "https://randomuser.me/api/portraits/women/2.jpg",
+							src_img: getDocumentThumbnail(docs[id].name),
 							unit: docs[id].unit,
 							major: docs[id].major,
 							fileID: docs[id].fileId,
