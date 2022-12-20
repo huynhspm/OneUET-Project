@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { drawerWidth, documentCardHeight, api_url } from "../../../../utils/config";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { getDocumentThumbnail, toDateString } from "../../../../utils/function";
 
 const PrivateDocument = (props) => {
     const [card, setCard] = React.useState([]);
@@ -49,11 +50,12 @@ const PrivateDocument = (props) => {
 							name: docs[id].name,
 							description: docs[id].description,
 							linkView: docs[id].linkView,
-							src_img: "https://randomuser.me/api/portraits/women/2.jpg",
+							src_img: getDocumentThumbnail(docs[id].name),
 							unit: docs[id].unit,
 							major: docs[id].major,
 							fileID: docs[id].fileId,
 							docID: docs[id].id,
+              dateUploaded: toDateString(docs[id].updatedAt)
 						}
 						tmpCard.push(element);
 					}
@@ -88,6 +90,7 @@ const PrivateDocument = (props) => {
                     path="/profile/private-document/"
                     linkView={card.linkView}
                     docID={card.docID}
+                    dateUploaded={card.dateUploaded}
                   />
                 ))}
               </Box>

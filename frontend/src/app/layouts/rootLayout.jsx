@@ -22,6 +22,7 @@ import SearchCourses from "../pages/SearchCourses";
 import ForgetPassword from "../pages/ForgetPassword";
 import Logout from "../pages/Logout";
 import PrivateDocument from "../pages/Profile/PrivateDocument";
+// import ValidationGradeView from  "../pages/ValidationPage/ValidationView";
 const RootLayout = () => {
   const [token, setToken] = useState("");
 
@@ -68,6 +69,7 @@ const CustomRoutes = (props) => {
       <Route path="/grade" element={<GradeCourses />} />
       <Route path="/SearchCourses" element={<SearchCourses />} />
       <Route path="/validation-document" element={<ValidationPage />} />
+      <Route path="/validation-document/:linkPDF" element={<ValidationGrade />} />
       <Route path="/profile/:type" element={<Profile location={location.pathname} />} />
       <Route path="/validation-grade" element={<ValidationGrade />} />
       <Route path="/profile/:type" element={<Profile token={token} location={location.pathname} />} />
