@@ -18,6 +18,7 @@ import { PDFExport, savePDF } from '@progress/kendo-react-pdf';
 
 
 const compareById = (matchingItem) => (item) => matchingItem.id === item.id;
+const rand = ["MO", "TU", "WE", "TH", "FR", "SA", "SU"]
 
 const RoomScheduler = (props) => {
   const [data, setData] = useState([]);
@@ -37,6 +38,7 @@ const RoomScheduler = (props) => {
       ["-08-29T", "-11-12T"],
       ["-01-30T", "-05-14T"],
     ];
+    console.log("AAA", semesters)
     let sem_index = parseInt(semesters[2]) - 1;
     return {
       start: String(parseInt(semesters[sem_index]) + 1) + sems[sem_index][0],
@@ -44,19 +46,35 @@ const RoomScheduler = (props) => {
     };
   }
 
+  function convertDayOfWeek(dayNumber){
+    if(dayNumber == "2") return "MO"
+    if(dayNumber == "3") return "TU"
+    if(dayNumber == "4") return "WE"
+    if(dayNumber == "5") return "TH"
+    if(dayNumber == "6") return "FR"
+    if(dayNumber == "7") return "SA"
+    if(dayNumber == "CN") return "SU"
+  }
+
   const fetchData = async () => {
     try {
       console.log(config);
 
       await axios.get("http://localhost:2002/api/user/me", config).then((res) => {
-        let classes = res.data.data.classes;
+        let classes = res.data.data.classes.studyingClasses;
         let tmp_data = [];
-        console.log("res", res);
         for (let index in classes) {
-          console.log(classes[index]);
+          console.log(classes.length ,classes[index]);
+          if(classes[index].section === null || classes[index].classroom === null)
+            continue
           let sections = classes[index].section.split("-");
           let semesters = extractSemester(classes[index].semester);
-          console.log(semesters);
+          let classroom = classes[index].classroom;
+          let group = classes[index].group;
+          let dayOfWeek = rand[index]; // convertDayOfWeek(class[index].dayOfWeek)
+          let nameTeacher = classes[index].nameTeacher
+
+
           tmp_data.push({
             id: classes[index].id,
             start: new Date(semesters.start + sectionMap[sections[0]]),
@@ -64,14 +82,13 @@ const RoomScheduler = (props) => {
               semesters.start + sectionMap[parseInt(sections[1]) + 1]
             ),
             isAllDay: false,
-            recurrenceRule: "FREQ=WEEKLY;BYDAY=TU;WKST=TU;COUNT=15",
+            recurrenceRule: "FREQ=WEEKLY;BYDAY=" + dayOfWeek + ";COUNT=15",
             recurrenceExceptions: [],
-            title: classes[index].code,
+            title: classes[index].code + "\n" + classroom + "\n" + "Nhóm " + group + "\n" + nameTeacher,
             RoomID: undefined,
           });
-          // setData(tmp_data);
-          console.log(tmp_data);
         }
+        console.log(tmp_data)
         setData(tmp_data);
       });
     } catch (e) {
@@ -88,7 +105,6 @@ const RoomScheduler = (props) => {
 
     setData((dataState) =>
       dataState.reduce((acc, item) => {
-        console.log(data);
         // Skip the item if it was deleted
         if (deleted.find(compareById(item))) return acc;
         // Push the updated item or current item
@@ -96,7 +112,6 @@ const RoomScheduler = (props) => {
         return acc;
       }, newItemsWithIds)
     );
-    console.log(data);
   };
 
   const pdfExportComponent = useRef(null);
