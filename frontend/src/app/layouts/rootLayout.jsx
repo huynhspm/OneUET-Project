@@ -9,7 +9,6 @@ import ValidationPage from "../pages/ValidationPage";
 
 import { Box } from "@mui/system";
 
-import Main from "../pages/Document/Main";
 import Document from "../pages/Document";
 import Convert from "../pages/Convert";
 import Login from "../pages/Login";
