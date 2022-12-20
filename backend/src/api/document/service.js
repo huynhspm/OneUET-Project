@@ -203,8 +203,9 @@ const getMyDocument = async (req) => {
 			if (document.userId === req.user.id) {
 				course = await document.getCourse();
 				teacher = await document.getTeacher();
-				comments = await document.getComments();
-
+				comments = await document.getComments({
+					include: "user"
+				});
 				message = "Get my document successfully";
 				status = ResponseCode.OK;
 			} else {
