@@ -7,7 +7,7 @@ import {
 import Add from '../../../components/Add';
 import DocumentCard from '../../../components/DocumentCard';
 import FilterSidebar from '../../../components/FilterSidebar';
-import { getFilterPair, stringToColour } from '../../../utils/function';
+import { getFilterPair, getDocumentThumbnail, toDateString } from '../../../utils/function';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { drawerWidth, documentCardHeight, units, majors, unitsAndMajors, api_url, ui_avatar_api } from '../../../utils/config';
@@ -76,11 +76,12 @@ const Main = (props) => {
 							name: docs[id].name,
 							description: docs[id].description,
 							linkView: docs[id].linkView,
-							src_img: ui_avatar_api + "name=" + docs[id].name + "&background=" + stringToColour(docs[id].name),
+							src_img: getDocumentThumbnail(docs[id].name),
 							unit: docs[id].unit,
 							major: docs[id].major,
 							fileID: docs[id].fileId,
 							docID: docs[id].id,
+							dateUploaded: toDateString(docs[id].updatedAt)
 						}
 						tmpCard.push(element);
 					}
@@ -182,6 +183,7 @@ const Main = (props) => {
 									key={index}
 									path='/document/'
 									linkView={card.linkView}
+									dateUploaded={card.dateUploaded}
 									docID={card.docID} />
 							))}
 						</Box>

@@ -23,7 +23,7 @@ const DocumentCard = (props) => {
                     alt="sorry about error"
                 />
                 <CardContent sx={{ maxHeight: 70 }}>
-                    <Typography sx={{ display: 'flex' }} variant="h5" >
+                    <Typography sx={{ display: 'flex'}} variant="h5" >
                         {props.name}
                     </Typography>
                 </CardContent>
@@ -42,6 +42,7 @@ const DocumentCard = (props) => {
                 name={props.name}
                 docID={props.docID}
                 path={props.path}
+                dateUploaded={props.dateUploaded}
                 linkView={props.linkView}
             />
         </>
