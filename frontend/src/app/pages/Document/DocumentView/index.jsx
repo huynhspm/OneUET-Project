@@ -84,7 +84,7 @@ const DocumentView = (props) => {
                             flexDirection: 'column',
                         }}
                     >
-                        <iframe src={pdf_link} height='700vh' />
+                        <iframe src={pdf_link} height={window.innerHeight - 150} />
                     </Box>
                     <Box
                         sx={{ flexGrow: 1, pl: 2, pt: 1, position: 'relative' }}

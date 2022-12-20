@@ -71,6 +71,7 @@ const CustomRoutes = (props) => {
       <Route path="/profile/:type" element={<Profile location={location.pathname} />} />
       <Route path="/validation-grade" element={<ValidationGrade />} />
       <Route path="/profile/:type" element={<Profile token={token} location={location.pathname} />} />
+      <Route path="/profile/private-document/:docId" element={<PrivateDocument/>} />
     </Routes>
   );
 }

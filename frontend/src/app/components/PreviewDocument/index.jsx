@@ -1,7 +1,6 @@
 import { Modal, Box, Button, Divider, Zoom, Hidden, Card, CardActions, CardContent, Typography } from '@mui/material';
 import { Link } from "react-router-dom";
 import React, { useState } from 'react';
-import OptionsDialog from '../OpitonsDialog';
 import '../../utils/styles.css';
 import { CenterModal } from '../../utils/styles';
 
