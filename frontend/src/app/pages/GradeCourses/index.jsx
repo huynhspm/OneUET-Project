@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import axios from 'axios';
 import { useEffect } from 'react';
+import { api_url } from '../../utils/config';
 
 
 const getUserData = async token => {
@@ -10,7 +11,7 @@ const getUserData = async token => {
       headers: { Authorization: `Bearer ${token}` }
   }
   try {
-      const response = await axios.get("http://localhost:2002/", config);
+      const response = await axios.get(api_url, config);
       return response.data.data;
   } catch (e) {
       console.log(e.response);
@@ -132,7 +133,7 @@ let getData = async () => {
 export default function DataGridDemo() {
 
   const [pageSize, setPageSize] = React.useState(5);
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZUlkIjoxLCJpYXQiOjE2NzA0ODk2ODEsImV4cCI6MTY3MzA4MTY4MX0.rSseHQSrXVyf_PyY3WAIoU07AKavd3-XP-RIXgXRgr4";
+
 
   return (
     <>

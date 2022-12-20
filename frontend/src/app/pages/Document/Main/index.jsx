@@ -7,10 +7,10 @@ import {
 import Add from '../../../components/Add';
 import DocumentCard from '../../../components/DocumentCard';
 import FilterSidebar from '../../../components/FilterSidebar';
-import { getFilterPair } from '../../../utils/function';
+import { getFilterPair, stringToColour } from '../../../utils/function';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { drawerWidth, documentCardHeight, units, majors, unitsAndMajors } from '../../../utils/config';
+import { drawerWidth, documentCardHeight, units, majors, unitsAndMajors, api_url, ui_avatar_api } from '../../../utils/config';
 import axios from "axios";
 import '../styles.css'
 
@@ -62,7 +62,7 @@ const Main = (props) => {
 	const fetchData = async () => {
 		try {
 			await axios
-				.get("http://localhost:2002/api/document/public",
+				.get(api_url + "/api/document/public",
 					{
 						params: filterParams,
 						headers: { Authorization: `Bearer ${token}` }
@@ -76,7 +76,7 @@ const Main = (props) => {
 							name: docs[id].name,
 							description: docs[id].description,
 							linkView: docs[id].linkView,
-							src_img: "https://randomuser.me/api/portraits/women/2.jpg",
+							src_img: ui_avatar_api + "name=" + docs[id].name + "&background=" + stringToColour(docs[id].name),
 							unit: docs[id].unit,
 							major: docs[id].major,
 							fileID: docs[id].fileId,
@@ -95,7 +95,7 @@ const Main = (props) => {
 	const fetchAllCourses = async () => {
 		try {
 			await axios
-				.get("http://localhost:2002/api/course", {
+				.get(api_url + "/api/course", {
 					headers: { Authorization: `Bearer ${token}` }
 				})
 				.then((res) => {
@@ -117,7 +117,7 @@ const Main = (props) => {
 	const fetchAllTeachers = async () => {
 		try {
 			await axios
-				.get("http://localhost:2002/api/teacher", {
+				.get(api_url + "/api/teacher", {
 					headers: { Authorization: `Bearer ${token}` }
 				})
 				.then((res) => {

@@ -8,6 +8,7 @@ import { OTPValidCode } from "../../utils/validation/otp";
 import { EmailUIValidator, EmailValidCode, EmailValidText } from "../../utils/validation/email";
 import { PasswordUIValidator, PasswordValidCode, PasswordValidText } from "../../utils/validation/password";
 import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Grid, Box, Container } from '@mui/material';
+import { api_url } from "../../utils/config";
 
 const theme = createTheme();
 
@@ -50,7 +51,7 @@ export default function Login(props) {
 	// Resend OTP function
 	const resendOTP = async () => {
 		try {
-			const res = await axios.post("http://localhost:2002/api/login/forget", {
+			const res = await axios.post(api_url + "/api/login/forget", {
 				email: email,
 			});
 			console.log(res);
@@ -63,7 +64,7 @@ export default function Login(props) {
 	const handleOTP = async (setIsValidOtp) => {
 		console.log(otp);
 		try {
-			const res = await axios.post("http://localhost:2002/api/login/verify", {
+			const res = await axios.post(api_url + "/api/login/verify", {
 				email: email,
 				otp: otp,
 			});
@@ -110,7 +111,7 @@ export default function Login(props) {
 
 		// Handle Login
 		try {
-			const res = await axios.post("http://localhost:2002/api/login", {
+			const res = await axios.post(api_url + "/api/login", {
 				email: email,
 				password: password,
 			});

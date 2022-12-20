@@ -7,6 +7,9 @@ import {TextField} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import axios from 'axios';
 import { useEffect } from 'react';
+import { api_url } from '../../utils/config';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 const getUserData = async token => {
   const config = {
@@ -15,7 +18,7 @@ const getUserData = async token => {
 
   try {
 
-    const response = await axios.get("http://localhost:2002/grade", 
+    const response = await axios.get(api_url + "/grade", 
     {
       // params: {linkPDF},
       headers: { Authorization: `Bearer ${token}` }
@@ -104,7 +107,7 @@ const updateData = async (token, data) => {
   }
   console.log(data);
   try {
-      const response = await axios.put("http://localhost:2002/user/me", data, config);
+      const response = await axios.put(api_url + "/user/me", data, config);
       console.log(response);
   } catch (e) {
       console.log(e.response);
@@ -130,7 +133,28 @@ const useFakeMutation = () => {
 };
 
 export default function ValidationGrade() {
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZUlkIjoxLCJpYXQiOjE2NzA0ODk2ODEsImV4cCI6MTY3MzA4MTY4MX0.rSseHQSrXVyf_PyY3WAIoU07AKavd3-XP-RIXgXRgr4";
+  const navigate = useNavigate();
+
+	// user token
+	const [token, setToken] = useState('');
+
+	// fetch user token
+	const getToken = (() => {
+		if (token === '') {
+			const lastToken = sessionStorage.getItem("token");
+			if (lastToken !== null && lastToken !== undefined) {
+				setToken(lastToken);
+			} else {
+				navigate('/login');
+			}
+		}
+	})
+
+  useEffect(() => {
+		getToken();
+	}, [navigate, token]);
+
+
 
   const [codeClass, setCodeClass] = React.useState(null);
   const [semester, setSemester] = React.useState(null);

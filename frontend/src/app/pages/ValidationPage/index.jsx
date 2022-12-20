@@ -8,13 +8,12 @@ import { Box,
  } from "@mui/material";
 import Main from "../../components/Main";
 import Sidebar from "../../components/SidebarVali";
-
 import { Grade, Assignment } from "@mui/icons-material";
 
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { drawerWidth } from "../../utils/config";
+import { api_url, drawerWidth } from "../../utils/config";
 import DocumentCard from "../../components/DocumentCard";
 import ValidationDocuments from "../../components/ValidationDocuments";
 
@@ -50,11 +49,11 @@ const ValidationPage = (props) => {
   const fetchData = async () => {
 		try {
 			await axios
-				.get("http://localhost:2002/api/document/",
+				.get(api_url + "/api/document",
 					{
-            params: {
-              status: "pending"
-            },
+						params: {
+							status: "pending"
+						},
 						headers: { Authorization: `Bearer ${token}` }
 					})
 				.then((res) => {

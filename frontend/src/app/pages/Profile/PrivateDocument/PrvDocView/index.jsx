@@ -8,6 +8,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useNavigate } from 'react-router-dom';
+import { api_url } from '../../../../utils/config';
 
 const PrvDocView = (props) => {
     const [showOptionsDialog, setShowOptionsDialog] = useState(false);
@@ -55,7 +56,7 @@ const PrvDocView = (props) => {
     const fetchData = async () => {
         try {
             await axios
-            .get("http://localhost:2002/api/document/me/" + String(props.id), config)
+            .get(api_url + "/api/document/me/" + String(props.id), config)
             .then((res) => {
                 let data = res.data.data;
                 setBelongToMe(res.data.data.belongToMe);

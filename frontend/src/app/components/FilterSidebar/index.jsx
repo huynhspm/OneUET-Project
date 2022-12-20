@@ -16,7 +16,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import { FilterBox, CategoryBox } from "../../utils/styles";
 import { useEffect, useState } from "react";
 import React from "react";
-import { categories, units, majors, years } from "../../utils/config";
+import { categories, units, majors, years, api_url } from "../../utils/config";
 import axios from "axios";
 import { getFilterPair } from "../../utils/function";
 import { useNavigate } from "react-router-dom";
@@ -95,7 +95,7 @@ const FilterSidebar = (props) => {
     const fetchData = async () => {
         try {
             await axios
-                .get("http://localhost:2002/api/document/public", config)
+                .get(api_url + "/api/document/public", config)
                 .then((res) => {
                     let docs = res.data.data.documents;
                     let tmpTeacherId = [];
