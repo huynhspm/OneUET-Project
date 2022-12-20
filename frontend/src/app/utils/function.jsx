@@ -20,3 +20,11 @@ export const getDictValues = (dict) => {
     }
     return res;
 }
+
+export const getFilterPair = (id, dict) => {
+	let res = {};
+	for (let i in id) {
+		res[id[i]] = dict[id[i]];
+	}
+	return res;
+}

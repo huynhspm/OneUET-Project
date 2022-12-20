@@ -16,9 +16,38 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import { FilterBox, CategoryBox } from "../../utils/styles";
 import { useEffect, useState } from "react";
 import React from "react";
-import { categories, units, majors, years } from "../../utils/constant";
+import { categories, units, majors, years } from "../../utils/config";
+import axios from "axios";
+import { getFilterPair } from "../../utils/function";
+import { useNavigate } from "react-router-dom";
 
 const FilterSidebar = (props) => {
+
+    const navigate = useNavigate();
+
+    // user token
+	const [token, setToken] = useState('');
+
+    const getToken = () => {
+		if (token === '') {
+			const lastToken = sessionStorage.getItem("token");
+			if (lastToken !== null && lastToken !== undefined) {
+				setToken(lastToken);
+			} else {
+				navigate('/login');
+			}
+		}
+    }
+
+	// fetch user token
+	useEffect(() => {
+        getToken();
+	}, [token, navigate]);
+
+    const config = {
+        headers: { Authorization: `Bearer ${token}` }
+    };
+
     const [filterData, setFilterData] = useState({
         "Khoa": units,
         "Ngành": majors,
@@ -52,6 +81,37 @@ const FilterSidebar = (props) => {
         setOpenCategories,
         setOpenYears
     ];
+
+    // all documents that consist of teacherId and courseId 
+    const [filterTeacherId, setfilterTeacherId] = useState([]);
+	const [filterCourseId, setfilterCourseId] = useState([]);
+
+    useEffect(() => {
+        if (token !== '') {
+            fetchData();
+        }
+    }, [token]);
+    
+    const fetchData = async () => {
+        try {
+            await axios
+                .get("http://localhost:2002/api/document/public", config)
+                .then((res) => {
+                    let docs = res.data.data.documents;
+                    let tmpTeacherId = [];
+					let tmpCourseId = [];
+                    for (let index in docs) {
+                        tmpTeacherId.push(docs[index].teacherId);
+						tmpCourseId.push(docs[index].courseId);
+                    }
+                    setfilterCourseId(tmpCourseId);
+					setfilterTeacherId(tmpTeacherId);
+                });
+        } catch (e) {
+            console.log(e.response.data);
+        }
+    }
+
 
     function handleClick(index) {
         return (() => {
@@ -139,7 +199,7 @@ const FilterSidebar = (props) => {
                                         onChange={handleCheck}
                                         sx={{ pl: 1 }} />
                                 ))}
-                                {data === "Giảng viên" && Object.keys(props.teacher).map((id, index) => (
+                                {data === "Giảng viên" && Object.keys(getFilterPair(filterTeacherId, props.teacher)).map((id, index) => (
                                     <FormControlLabel
                                         key={index}
                                         value={id}
@@ -148,7 +208,7 @@ const FilterSidebar = (props) => {
                                         onChange={handleCheckTeacher}
                                         sx={{ pl: 1 }} />
                                 ))}
-                                {data === "Môn" && Object.keys(props.course).map((id, index) => (
+                                {data === "Môn" && Object.keys(getFilterPair(filterCourseId, props.course)).map((id, index) => (
                                     <FormControlLabel
                                         key={index}
                                         value={id}

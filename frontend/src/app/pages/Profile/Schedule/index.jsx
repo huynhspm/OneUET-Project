@@ -12,9 +12,10 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { guid } from "@progress/kendo-react-common";
 
-import { sectionMap } from "../../../utils/constant";
-import { Button } from "@mui/material";
-import { PDFExport, savePDF } from "@progress/kendo-react-pdf";
+import { sectionMap } from '../../../utils/config';
+import { Button } from '@mui/material';
+import { PDFExport, savePDF } from '@progress/kendo-react-pdf';
+
 
 const compareById = (matchingItem) => (item) => matchingItem.id === item.id;
 

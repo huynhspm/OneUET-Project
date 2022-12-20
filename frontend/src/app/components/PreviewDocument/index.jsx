@@ -1,18 +1,11 @@
-import { Modal, Box, Button, Divider, TextField, Hidden, Card, CardActions, CardContent, Typography } from '@mui/material';
+import { Modal, Box, Button, Divider, Zoom, Hidden, Card, CardActions, CardContent, Typography } from '@mui/material';
 import { Link } from "react-router-dom";
 import React, { useState } from 'react';
 import OptionsDialog from '../OpitonsDialog';
 import '../../utils/styles.css';
-import Tags from '../Tags';
-import Comment from '../Comment/Post';
 import { CenterModal } from '../../utils/styles';
 
 const PreviewDocument = (props) => {
-    let t1 = "https://docs.google.com/viewer?srcid=";
-    let t2 = "&pid=explorer&efh=false&a=v&chrome=false&embedded=true";
-
-    const pdf_link = t1.concat('1pRHDGYar6n85cSndPP0XYuBKNcBlqEqd', t2);
-
     return (
         <>
             <CenterModal
@@ -42,8 +35,8 @@ const PreviewDocument = (props) => {
                     <Typography color="textSecondary" className="datePosted" sx={{ pt: 1 }}>
                         5 DAYS AGO
                     </Typography>
-                    <iframe src={pdf_link} className='pdf-viewer'></iframe>
-                    <Button variant='contained' sx={{mt:3}} component={Link} to={"/document/" + String(props.docID)}>View Full Page</Button>
+                    <iframe src={props.linkView} className='pdf-viewer'></iframe>
+                    <Button variant='contained' sx={{mt:3}} component={Link} to={String(props.path) + String(props.docID)}>View Full Page</Button>
                 </Box>
             </CenterModal>
         </>
