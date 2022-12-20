@@ -224,10 +224,10 @@ const updateGrade = async (req) => {
 		console.log(curClass, ".................")
 
 		if (curClass) {
+			curClass.finish = true;
 			for (let index in grades) {
 				let grade = grades[index];
 				grade["id"] = undefined;
-				grade["finish"] = true;
 
 				let student = await Student.findOne({
 					where: { code: grade.studentCode },

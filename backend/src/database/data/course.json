@@ -62,7 +62,7 @@
     {
         "id": 11,
         "name": "Nhập môn cơ điện tử",
-        "code": "EMA 2027",
+        "code": "EMA2027",
         "credit": 3
     },
     {
@@ -272,7 +272,7 @@
     {
         "id": 46,
         "name": "Matlab và ứng dụng",
-        "code": "EMA 2006",
+        "code": "EMA2006",
         "credit": 3
     },
     {
@@ -356,7 +356,7 @@
     {
         "id": 60,
         "name": "Công nghệ gia công phi truyền thống và tạo mẫu nhanh",
-        "code": "EMA 3006",
+        "code": "EMA3006",
         "credit": 3
     },
     {
@@ -506,7 +506,7 @@
     {
         "id": 85,
         "name": "Ứng dụng máy tính trong đo lường và điều khiển",
-        "code": "EMA 3071",
+        "code": "EMA3071",
         "credit": 3
     },
     {
@@ -620,7 +620,7 @@
     {
         "id": 104,
         "name": "Kỹ thuật điều khiển",
-        "code": "ELT 3051",
+        "code": "ELT3051",
         "credit": 3
     },
     {
@@ -632,7 +632,7 @@
     {
         "id": 106,
         "name": "Toán trong Công nghệ",
-        "code": "ELT 2029",
+        "code": "ELT2029",
         "credit": 3
     },
     {
@@ -674,7 +674,7 @@
     {
         "id": 113,
         "name": "Phương pháp tính trong kỹ thuật",
-        "code": "EMA 2011",
+        "code": "EMA2011",
         "credit": 3
     },
     {
@@ -878,7 +878,7 @@
     {
         "id": 147,
         "name": "Tối ưu hóa",
-        "code": "INT 3103",
+        "code": "INT3103",
         "credit": 3
     },
     {
@@ -1004,7 +1004,7 @@
     {
         "id": 168,
         "name": "Kiến trúc máy tính và mạng truyền thông công nghiệp",
-        "code": "INT 2013",
+        "code": "INT2013",
         "credit": 3
     },
     {
@@ -1136,7 +1136,7 @@
     {
         "id": 190,
         "name": "Thực tập chuyên đề Công nghệ nano",
-        "code": "EPN 3030",
+        "code": "EPN3030",
         "credit": 3
     },
     {
@@ -1160,7 +1160,7 @@
     {
         "id": 194,
         "name": "Kỹ thuật hóa học và ứng dụng",
-        "code": "EPN 2002",
+        "code": "EPN2002",
         "credit": 3
     },
     {
@@ -1232,7 +1232,7 @@
     {
         "id": 206,
         "name": "Mô hình hóa và mô phỏng trong Vật lý",
-        "code": "EPN 2004",
+        "code": "EPN2004",
         "credit": 3
     },
     {
@@ -1249,684 +1249,666 @@
     },
     {
         "id": 209,
-        "name": "Kết cấu thiết bị bay và đồ án",
-        "code": "EMA 3101",
-        "credit": 4
-    },
-    {
-        "id": 210,
         "name": "Phát triển ứng dụng di động",
         "code": "INT3120",
         "credit": 3
     },
     {
-        "id": 211,
+        "id": 210,
         "name": "Golf",
         "code": "PES1080",
         "credit": 1
     },
     {
-        "id": 212,
+        "id": 211,
         "name": "Công nghệ chế tạo pin mặt trời",
         "code": "EPN3055",
         "credit": 2
     },
     {
-        "id": 213,
+        "id": 212,
         "name": "Thực tập Chuyên đề quản lý và an toàn năng lượng",
         "code": "EET3031",
         "credit": 2
     },
     {
-        "id": 214,
+        "id": 213,
         "name": "Điện gió",
         "code": "EET3024",
         "credit": 2
     },
     {
-        "id": 215,
+        "id": 214,
         "name": "Học máy",
         "code": "INT3405E",
         "credit": 3
     },
     {
-        "id": 216,
+        "id": 215,
         "name": "MEMS sinh học và các vi thiết bị y sinh",
-        "code": "ELT 3211",
+        "code": "ELT3211",
         "credit": 3
     },
     {
-        "id": 217,
+        "id": 216,
         "name": "An toàn và an ninh mạng",
         "code": "INT3307",
         "credit": 3
     },
     {
-        "id": 218,
+        "id": 217,
         "name": "Đồ án học phần Hệ thống quang điện",
         "code": "EET3006",
         "credit": 2
     },
     {
-        "id": 219,
+        "id": 218,
         "name": "Điều khiển điện thủy khí",
-        "code": "EMA 3064",
+        "code": "EMA3064",
         "credit": 3
     },
     {
-        "id": 220,
+        "id": 219,
         "name": "Công trình biển ngoài khơi, độ tin cậy và đồ án",
         "code": "EMA3096",
         "credit": 4
     },
     {
-        "id": 221,
+        "id": 220,
         "name": "Thiết kế giao diện người dùng",
         "code": "INT3115",
         "credit": 3
     },
     {
-        "id": 222,
+        "id": 221,
         "name": "Vật liệu gốm kỹ thuật",
         "code": "EPN3052",
         "credit": 2
     },
     {
-        "id": 223,
+        "id": 222,
         "name": "Hệ quản trị cơ sở dữ liệu",
         "code": "INT3202E",
         "credit": 3
     },
     {
-        "id": 224,
+        "id": 223,
         "name": "Máy CNC và CAD/CAM",
         "code": "EMA2040",
         "credit": 2
     },
     {
-        "id": 225,
+        "id": 224,
         "name": "Tích trữ và biến đổi các nguồn năng lượng mới",
         "code": "EET3017",
         "credit": 2
     },
     {
-        "id": 226,
+        "id": 225,
         "name": "Các chủ đề hiện đại của Hệ thống thông tin",
-        "code": "INT 3220",
+        "code": "INT3220",
         "credit": 3
     },
     {
-        "id": 227,
+        "id": 226,
         "name": "Xử lý ngôn ngữ tự nhiên",
         "code": "INT3406E",
         "credit": 3
     },
     {
-        "id": 228,
+        "id": 227,
         "name": "Thiết kế khuôn mẫu",
         "code": "EMA3042",
         "credit": 2
     },
     {
-        "id": 229,
+        "id": 228,
         "name": "Phân tích thiết kế các hệ thống thông tin",
-        "code": "INT 2020",
+        "code": "INT2020",
+        "credit": 3
+    },
+    {
+        "id": 229,
+        "name": "MEMS sinh học và các thiết bị y-sinh",
+        "code": "ELT3088",
         "credit": 3
     },
     {
         "id": 230,
-        "name": "MEMS sinh học và các thiết bị y-sinh",
-        "code": "ELT 3088",
-        "credit": 3
-    },
-    {
-        "id": 231,
         "name": "Kỹ thuật điện và điện tử",
         "code": "EMA2005",
         "credit": 3
     },
     {
-        "id": 232,
+        "id": 231,
         "name": "Chuyên đề Công nghệ Nhật Bản",
-        "code": "INT 3138",
+        "code": "INT3138",
         "credit": 3
     },
     {
-        "id": 233,
+        "id": 232,
         "name": "Động lực học trong công trình",
         "code": "EMA3120",
         "credit": 4
     },
     {
-        "id": 234,
+        "id": 233,
         "name": "Quản trị sản xuất và logistics trong nông nghiệp",
         "code": "AGT2012",
         "credit": 3
     },
     {
-        "id": 235,
+        "id": 234,
         "name": "Đánh giá hiệu năng mạng",
         "code": "INT3308",
         "credit": 3
     },
     {
-        "id": 236,
+        "id": 235,
         "name": "Kho dữ liệu",
         "code": "INT3207",
         "credit": 3
     },
     {
-        "id": 237,
+        "id": 236,
         "name": "Tương tác người - máy",
         "code": "INT2041",
         "credit": 3
     },
     {
-        "id": 238,
+        "id": 237,
         "name": "Mô hình hóa động lực học và điều khiển Robot",
         "code": "RBE3011",
         "credit": 2
     },
     {
-        "id": 239,
+        "id": 238,
         "name": "Đồ án học phần Kinh tế và chính sách năng lượng",
         "code": "EET3030",
         "credit": 2
     },
     {
-        "id": 240,
+        "id": 239,
         "name": "Cơ học chất lỏng thực nghiệm",
         "code": "EMA3104",
         "credit": 3
     },
     {
-        "id": 241,
+        "id": 240,
         "name": "Các nguyên lý truyền thông",
         "code": "ELT3243",
         "credit": 3
     },
     {
-        "id": 242,
+        "id": 241,
         "name": "Các cơ cấu chấp hành Robot",
         "code": "RBE3012",
         "credit": 3
     },
     {
-        "id": 243,
+        "id": 242,
         "name": "Hệ thống vi xử lý",
         "code": "ELT3048E",
         "credit": 3
     },
     {
-        "id": 244,
+        "id": 243,
         "name": "Kinh tế và chính sách năng lượng",
         "code": "EET3029",
         "credit": 2
     },
     {
-        "id": 245,
+        "id": 244,
         "name": "Lập trình mạng",
         "code": "INT3304",
         "credit": 3
     },
     {
-        "id": 246,
+        "id": 245,
         "name": "Các vật liệu polymer chức năng cấu trúc nanô",
         "code": "EPN3009",
         "credit": 2
     },
     {
-        "id": 247,
+        "id": 246,
         "name": "Hệ thống đồng phát và thu hồi nhiệt xả thải",
         "code": "EET3015",
         "credit": 2
     },
     {
-        "id": 248,
+        "id": 247,
         "name": "Vật liệu tiên tiến trong xây dựng - giao thông",
         "code": "CTE3014",
         "credit": 2
     },
     {
-        "id": 249,
+        "id": 248,
         "name": "Kiến trúc máy tính",
         "code": "ELT3047E",
         "credit": 3
     },
     {
-        "id": 250,
+        "id": 249,
         "name": "Thiết kế các công trình đặc biệt",
         "code": "CTE3021",
         "credit": 2
     },
     {
-        "id": 251,
+        "id": 250,
         "name": "Lập trình thi đấu",
         "code": "INT3512",
         "credit": 3
     },
     {
-        "id": 252,
+        "id": 251,
         "name": "Đồ án học phần Hệ thống năng lượng nhiệt mặt trời",
         "code": "EET3004",
         "credit": 2
     },
     {
-        "id": 253,
+        "id": 252,
         "name": "Động lực học bay và điều khiển",
         "code": "AER3023",
         "credit": 3
     },
     {
-        "id": 254,
+        "id": 253,
         "name": "Thí nghiệm đo đạc môi trường biển",
         "code": "EMA3107",
         "credit": 3
     },
     {
-        "id": 255,
+        "id": 254,
         "name": "Thực tập chuyên đề Công nghệ quang tử",
-        "code": "EPN 3029",
+        "code": "EPN3029",
         "credit": 3
     },
     {
-        "id": 256,
+        "id": 255,
         "name": "Kỹ thuật đo lường, đầu đo và đồ án",
         "code": "EMA3099",
         "credit": 4
     },
     {
-        "id": 257,
+        "id": 256,
         "name": "Kỹ thuật xử lý và truyền thông đa phương tiện",
         "code": "ELT3231",
         "credit": 3
     },
     {
-        "id": 258,
+        "id": 257,
         "name": "Công nghệ năng lượng Hydro và pin nhiên liệu",
         "code": "EET3013",
         "credit": 2
     },
     {
-        "id": 259,
+        "id": 258,
         "name": "Kiểm soát ô nhiễm trong các quá trình năng lượng",
         "code": "EET3025",
         "credit": 2
     },
     {
-        "id": 260,
+        "id": 259,
         "name": "Lý thuyết dẻo",
         "code": "EMA3121",
         "credit": 3
     },
     {
-        "id": 261,
+        "id": 260,
         "name": "Vật liệu bán dẫn cấu trúc nanô",
         "code": "EPN3035",
         "credit": 2
     },
     {
-        "id": 262,
+        "id": 261,
         "name": "Giải thuật cho Robot thông minh",
         "code": "RBE3047",
         "credit": 3
     },
     {
-        "id": 263,
+        "id": 262,
         "name": "Truyền thông quang",
         "code": "ELT3213",
         "credit": 3
     },
     {
-        "id": 264,
+        "id": 263,
         "name": "Kết cấu Hàng không",
         "code": "AER3001",
         "credit": 3
     },
     {
-        "id": 265,
+        "id": 264,
         "name": "Thiết bị, máy trong xấy dựng - giao thông",
         "code": "CTE3008",
         "credit": 2
     },
     {
-        "id": 266,
+        "id": 265,
         "name": "Năng lượng mới và tiết kiệm năng lượng trong xây dựng, giao thông",
         "code": "CTE3013",
         "credit": 2
     },
     {
-        "id": 267,
+        "id": 266,
         "name": "Mạng truyền thông máy tính 2",
         "code": "ELT3214E",
         "credit": 3
     },
     {
-        "id": 268,
+        "id": 267,
         "name": "Đồ án học phần Kiểm soát ô nhiễm trong các ngành năng lượng",
         "code": "EET3026",
         "credit": 2
     },
     {
-        "id": 269,
+        "id": 268,
         "name": "Lý thuyết điều khiển tự động",
         "code": "AER3051",
         "credit": 3
     },
     {
-        "id": 270,
+        "id": 269,
         "name": "Sức bền vật liệu và cơ học kết cấu",
         "code": "EMA2012",
         "credit": 4
     },
     {
-        "id": 271,
+        "id": 270,
         "name": "Kỹ thuật Anten",
         "code": "ELT3189",
         "credit": 3
     },
     {
-        "id": 272,
+        "id": 271,
         "name": "Quản lý dự án phần mềm",
         "code": "INT3111",
         "credit": 3
     },
     {
-        "id": 273,
+        "id": 272,
         "name": "Kỹ nghệ yêu cầu",
         "code": "INT3133",
         "credit": 3
     },
     {
-        "id": 274,
+        "id": 273,
         "name": "Quản lý rủi ro trong công nghiệp năng lượng",
         "code": "EET3033",
         "credit": 3
     },
     {
-        "id": 275,
+        "id": 274,
         "name": "Tự động hóa quá trình sản xuất",
         "code": "EMA3108",
         "credit": 3
     },
     {
-        "id": 276,
+        "id": 275,
         "name": "Hóa học hữu cơ",
         "code": "EET2001",
         "credit": 3
     },
     {
-        "id": 277,
+        "id": 276,
         "name": "Học máy",
         "code": "INT3405",
         "credit": 3
     },
     {
-        "id": 278,
+        "id": 277,
         "name": "Hóa đại cương",
         "code": "CTE2016",
         "credit": 2
     },
     {
-        "id": 279,
+        "id": 278,
         "name": "Thiết kế nhà bê tông cốt thép",
         "code": "CTE3018",
         "credit": 2
     },
     {
-        "id": 280,
+        "id": 279,
         "name": "Đồ án học phần bức xạ và biến đổi năng lượng mặt trời",
         "code": "EET3002",
         "credit": 2
     },
     {
-        "id": 281,
+        "id": 280,
         "name": "Dự án",
         "code": "INT3509",
         "credit": 4
     },
     {
-        "id": 282,
+        "id": 281,
         "name": "Khoa học quản lý đại cương",
         "code": "MNS1052",
         "credit": 2
     },
     {
-        "id": 283,
+        "id": 282,
         "name": "Tâm lý học đại cương",
         "code": "PSY1050",
         "credit": 2
     },
     {
-        "id": 284,
+        "id": 283,
         "name": "Quang phi tuyến",
         "code": "EPN3016",
         "credit": 2
     },
     {
-        "id": 285,
+        "id": 284,
         "name": "Vật lý lượng tử",
         "code": "EPN2015",
         "credit": 3
     },
     {
-        "id": 286,
+        "id": 285,
         "name": "Hệ thống robot thông minh",
         "code": "ELT3077",
         "credit": 3
     },
     {
-        "id": 287,
+        "id": 286,
         "name": "Xây dựng và đánh giá các dự án năng lượng",
         "code": "EET3032",
         "credit": 3
     },
     {
-        "id": 288,
+        "id": 287,
         "name": "Lập trình cho thiết bị di động",
         "code": "ELT3097",
         "credit": 3
     },
     {
-        "id": 289,
+        "id": 288,
         "name": "Nguyên lý Kỹ thuật điện tử",
         "code": "ELT2201",
         "credit": 3
     },
     {
-        "id": 290,
+        "id": 289,
         "name": "Thiết bị quang tử",
         "code": "EPN3024",
         "credit": 2
     },
     {
-        "id": 291,
+        "id": 290,
         "name": "Cơ sở công nghệ chế tạo máy",
-        "code": "EMA 2022",
+        "code": "EMA2022",
         "credit": 3
     },
     {
-        "id": 292,
+        "id": 291,
         "name": "Chuẩn kỹ năng của Công nghệ thông tin",
-        "code": "INT 3510",
+        "code": "INT3510",
         "credit": 2
     },
     {
-        "id": 293,
+        "id": 292,
         "name": "Quang điện tử",
         "code": "ELT3110",
         "credit": 3
     },
     {
-        "id": 294,
+        "id": 293,
         "name": "Văn hóa kinh doanh Nhật Bản",
         "code": "JAP3047",
         "credit": 3
     },
     {
-        "id": 295,
+        "id": 294,
         "name": "Thiết kế, tích hợp vệ tinh nhỏ và đồ án",
-        "code": "EMA 3103",
+        "code": "EMA3103",
         "credit": 4
     },
     {
-        "id": 296,
+        "id": 295,
         "name": "Thực tập Chuyên đề biến đổi và tích trữ các nguồn năng lượng mới",
         "code": "EET3019",
         "credit": 2
     },
     {
-        "id": 297,
+        "id": 296,
         "name": "Quang tử nanô",
         "code": "EPN3020",
         "credit": 2
     },
     {
-        "id": 298,
+        "id": 297,
         "name": "Đường lối cách mạng của Đảng Cộng sản Việt Nam",
         "code": "HIS1002",
         "credit": 3
     },
     {
-        "id": 299,
+        "id": 298,
         "name": "Thực tập ngành kỹ thuật Robot",
         "code": "RBE3051",
         "credit": 2
     },
     {
-        "id": 300,
+        "id": 299,
         "name": "Thực tập ngành Kỹ thuật máy tính",
         "code": "ELT3242",
         "credit": 3
     },
     {
-        "id": 301,
+        "id": 300,
         "name": "Đồ án 1: Thiết kế và xây dựng Robot 1",
         "code": "RBE3021",
         "credit": 2
     },
     {
-        "id": 302,
+        "id": 301,
         "name": "Thực tập doanh nghiệp",
         "code": "INT4002",
         "credit": 3
     },
     {
-        "id": 303,
+        "id": 302,
         "name": "Thực tập doanh nghiệp Nhật Bản",
         "code": "INT4003",
         "credit": 3
     },
     {
-        "id": 304,
+        "id": 303,
         "name": "Đồ án tốt nghiệp",
         "code": "EMA4050",
         "credit": 10
     },
     {
-        "id": 305,
+        "id": 304,
         "name": "Thực tập xưởng",
         "code": "EMA4002",
         "credit": 2
     },
     {
-        "id": 306,
+        "id": 305,
         "name": "Thực tập chuyên ngành",
         "code": "INT3508",
         "credit": 3
     },
     {
-        "id": 307,
+        "id": 306,
         "name": "Thực tập tốt nghiệp",
         "code": "AER4002",
         "credit": 3
     },
     {
-        "id": 308,
+        "id": 307,
         "name": "Thực tập tốt nghiệp",
         "code": "INT4001",
         "credit": 3
     },
     {
-        "id": 309,
+        "id": 308,
         "name": "Đồ án tốt nghiệp",
         "code": "CTE4050",
         "credit": 10
     },
     {
-        "id": 310,
+        "id": 309,
         "name": "Dự án công nghệ",
         "code": "INT3132",
         "credit": 3
     },
     {
-        "id": 311,
+        "id": 310,
         "name": "Đồ án tốt nghiệp",
         "code": "AER4050",
         "credit": 10
     },
     {
-        "id": 312,
+        "id": 311,
         "name": "Đồ án tốt nghiệp",
         "code": "EET4000",
         "credit": 10
     },
     {
-        "id": 313,
+        "id": 312,
         "name": "Đồ án tốt nghiệp",
         "code": "ELT4068",
         "credit": 10
     },
     {
-        "id": 314,
+        "id": 313,
         "name": "Khóa luận tốt nghiệp",
         "code": "ELT4054",
         "credit": 7
     },
     {
-        "id": 315,
+        "id": 314,
         "name": "Khóa luận tốt nghiệp",
         "code": "INT4054",
         "credit": 7
     },
     {
-        "id": 316,
+        "id": 315,
         "name": "Khóa luận tốt nghiệp",
         "code": "INT4050",
         "credit": 7
     },
     {
-        "id": 317,
-        "name": "Khóa luận tốt nghiệp",
-        "code": "INT 4050",
-        "credit": 10
-    },
-    {
-        "id": 318,
-        "name": "Đồ án tốt nghiệp",
-        "code": "INT 4054",
-        "credit": 10
-    },
-    {
-        "id": 319,
+        "id": 316,
         "name": "Khóa luận tốt nghiệp",
         "code": "ELT4053",
         "credit": 10
     },
     {
-        "id": 320,
+        "id": 317,
         "name": "Đồ án 2: Thực tập kỹ thuật - đồ án thiết kế trong xây dựng dân dụng và công nghiệp",
         "code": "CTE4003",
         "credit": 3
     },
     {
-        "id": 321,
+        "id": 318,
         "name": "Thực tập thiết kế hệ thống",
         "code": "ELT2037",
         "credit": 4
     },
     {
-        "id": 322,
+        "id": 319,
         "name": "Dự án khoa học",
         "code": "INT3131",
         "credit": 3
