@@ -1,43 +1,53 @@
-import * as React from "react";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import validator from "validator";
 import { useNavigate } from "react-router-dom";
 import OtpModal from "../../components/OtpModal";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { OTPValidCode } from "../../utils/validation/otp";
+import { EmailUIValidator, EmailValidCode, EmailValidText } from "../../utils/validation/email";
+import { PasswordUIValidator, PasswordValidCode, PasswordValidText } from "../../utils/validation/password";
+import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Grid, Box, Container } from '@mui/material';
 
 const theme = createTheme();
 
 export default function Login(props) {
-	const [login, setLogin] = React.useState(false);
-	const [active, setActive] = React.useState(false);
+	// Login state
+	const [login, setLogin] = useState(false);
+	const [active, setActive] = useState(false);
 
-	const [email, setEmail] = React.useState("");
-	const [password, setPassword] = React.useState("");
-	const [otp, setOtp] = React.useState("");
+	// Email
+	const [email, setEmail] = useState("");
+	const [isValidEmail, setIsValidEmail] = useState(EmailValidCode.OK);
 
-	const navigate = useNavigate();
-	const [isValidEmail, setIsValidEmail] = React.useState(0);
-	const [isValidPassword, setIsValidPassword] = React.useState(0);
+	// Password
+	const [password, setPassword] = useState("");
+	const [isValidPassword, setIsValidPassword] = useState(PasswordValidCode.OK);
+
+	// Otp in Modal (optional)
+	const [otp, setOtp] = useState("");
 
 	// Modal
-	const [open, setOpen] = React.useState(false);
+	const [open, setOpen] = useState(false);
 	const handleClose = () => setOpen(false);
 
-	const EmailState = ["", "Please enter your email", "Invalid Email"];
+	// Token
+	const navigate = useNavigate();
+	const [token, setToken] = useState("");
 
-	const PasswordState = ["", "Please enter your password", "Wrong password"];
+	// Get Token from sessionStorage
+	useEffect(() => {
+		if (token === "") {
+			const lastToken = sessionStorage.getItem("token");
+			if (lastToken !== null && lastToken !== undefined) {
+				console.log(lastToken);
+				setToken(lastToken); // Successfully get Token!
+				navigate(-1); // Go back to the previous page
+			}
+		}
+	}, [token, navigate]);
 
+	// Resend OTP function
 	const resendOTP = async () => {
 		try {
 			const res = await axios.post("http://localhost:2002/api/login/forget", {
@@ -49,7 +59,8 @@ export default function Login(props) {
 		}
 	};
 
-	const handleOTP = async (setError) => {
+	// Handle OTP function
+	const handleOTP = async (setIsValidOtp) => {
 		console.log(otp);
 		try {
 			const res = await axios.post("http://localhost:2002/api/login/verify", {
@@ -58,49 +69,43 @@ export default function Login(props) {
 			});
 			console.log(res.data);
 			if (res.data.message === "OTP expired, please click resend") {
-				setError(3);
+				setIsValidOtp(OTPValidCode.Expired);
 				return;
 			}
-			props.setToken(res.data.data.token);
-			setError(0);
+			setToken(res.data.data.token);
+			props.setToken(token);
+			setIsValidOtp(0);
 			setActive(true);
 		} catch (e) {
 			console.log(e.response.data.message);
 			if (e.response.data.message === "Invalid OTP") {
 				if (otp === "") {
-					setError(1);
+					setIsValidOtp(OTPValidCode.Empty);
 				} else {
-					setError(2);
+					setIsValidOtp(OTPValidCode.Invalid);
 				}
 			}
 		}
 	};
 
+	// Handle Submit login function
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		let validation = true;
 
 		// Validation
-		if (email === "") {
-			setIsValidEmail(1);
+		setIsValidEmail(EmailUIValidator(email));
+		if (EmailUIValidator(email) !== EmailValidCode.OK) {
 			validation = false;
-		} else {
-			if (!validator.isEmail(email)) {
-				setIsValidEmail(2);
-				validation = false;
-			} else {
-				setIsValidEmail(0);
-			}
 		}
-		if (password === "") {
-			setIsValidPassword(1);
+
+		setIsValidPassword(PasswordUIValidator(password));
+		if (PasswordUIValidator(password) !== PasswordValidCode.OK) {
 			validation = false;
-		} else {
-			setIsValidPassword(0);
 		}
 
 		if (!validation) {
-			return false;
+			return;
 		}
 
 		// Handle Login
@@ -110,17 +115,18 @@ export default function Login(props) {
 				password: password,
 			});
 			console.log(res);
-			props.setToken(res.data.data.token);
+			setToken(res.data.data.token);
+			props.setToken(token);
 			setLogin(true);
 			setActive(true);
 		} catch (e) {
 			if (e.response !== undefined) {
 				console.log(e.response.data.message);
 				if (e.response.data.message === "Invalid email") {
-					setIsValidEmail(2);
+					setIsValidEmail(EmailValidCode.Invalid);
 				}
 				if (e.response.data.message === "Invalid password") {
-					setIsValidPassword(2);
+					setIsValidPassword(PasswordValidCode.Wrong);
 				}
 				if (e.response.data.message === "Login successfully but not active") {
 					setLogin(true);
@@ -130,32 +136,24 @@ export default function Login(props) {
 		}
 	};
 
-	React.useEffect(() => {
-		const lastToken = sessionStorage.getItem("token");
-		if (lastToken !== null && lastToken !== undefined) {
-			props.setToken(lastToken);
-			setLogin(true);
-			setActive(true);
-		}
-	}, [props]);
-
-	React.useEffect(() => {
+	// Checking Login state
+	useEffect(() => {
 		if (login) {
 			if (active) {
-				sessionStorage.setItem("token", props.token);
+				sessionStorage.setItem("token", token); // Save Token to sessionStorage
+				console.log(token);
 				navigate("/");
 			} else {
 				setOpen(!active);
 			}
 		}
-	}, [login, active, navigate, props.token]);
+	}, [login, active, navigate, token]);
 
 	return (
 		<React.Fragment>
 			<OtpModal
 				open={open}
 				handleClose={handleClose}
-				active={active}
 				otp={otp}
 				setOtp={setOtp}
 				handleOTP={handleOTP}
@@ -185,15 +183,14 @@ export default function Login(props) {
 								margin="normal"
 								required
 								fullWidth
-								// id="email"
 								label="Email Address"
 								name="email"
 								value={email}
 								onChange={(event) => {
 									setEmail(event.target.value);
 								}}
-								error={isValidEmail !== 0}
-								helperText={EmailState[isValidEmail]}
+								error={isValidEmail !== EmailValidCode.OK}
+								helperText={EmailValidText[isValidEmail]}
 								// autoComplete="email"
 								type="text"
 								autoFocus
@@ -203,14 +200,13 @@ export default function Login(props) {
 								required
 								fullWidth
 								label="Password"
-								// id="password"
 								name="password"
 								value={password}
 								onChange={(event) => {
 									setPassword(event.target.value);
 								}}
-								error={isValidPassword !== 0}
-								helperText={PasswordState[isValidPassword]}
+								error={isValidPassword !== PasswordValidCode.OK}
+								helperText={PasswordValidText[isValidPassword]}
 								// autoComplete="current-password"
 								type="password"
 							/>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from "react-router-dom";
 import { Divider } from '@mui/material';
 import Header from '../../containers/Header';
@@ -9,26 +9,28 @@ import Schedule from './Schedule';
 import Grade from '../Grade';
 import PrivateDocument from './PrivateDocument';
 import FilterSidebar from '../../components/FilterSidebar';
-import { units } from '../../utils/constant';
+import { units } from '../../utils/config';
+import Main from './PrivateDocument/Main' 
 import ChangePassword from './ChangePassword';
 
-const drawerWidth = 240;
+const drawerWidth = 210;
 
 const Profile = (props) => {
     const { type } = useParams();
 
-    const filterData = {
-        Khoa: units,
-        Ngành: ['Công nghệ thông tin', 'Khoa học máy tính', 'Send email', 'Drafts']
-    }
-
     const navigate = useNavigate();
+    const [token, setToken] = useState('');
     useEffect(() => {
-        // console.log(props.token);
-        if (props.token == '') {
+        if (token === '') {
+          const lastToken = sessionStorage.getItem("token");
+          if (lastToken !== null && lastToken !== undefined) {
+            // console.log(lastToken);
+            setToken(lastToken);
+          } else {
             navigate('/login');
+          }
         }
-    }, [props.token]);
+      }, [token, navigate]);
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -37,18 +39,18 @@ const Profile = (props) => {
                 sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
             >
                 <LeftDrawer />
-                {type === 'private-document' && <FilterSidebar filterData={filterData} />}
+                {/* {type === 'private-document' && <FilterSidebar filterData={filterData} />} */}
             </Box>
             <Box
                 component="main"
                 sx={{ flexGrow: 1, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
                 <Divider />
-                {type === 'information' && <Information token={props.token} />}
+                {type === 'information' && <Information token={token} />}
                 {type === 'schedule' && <Schedule />}
                 {type === 'learning-result' && <Grade />}
-                {type === 'private-document' && <PrivateDocument />}
-                {type === 'change-password' && <ChangePassword token={props.token} />}
+                {type === 'private-document' && <Main />}
+                {type === 'change-password' && <ChangePassword token={token} />}
                 {type === 'login' && <Header />}
             </Box>
         </Box>

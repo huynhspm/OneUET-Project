@@ -1,7 +1,7 @@
 module.exports = {
 	port: process.env.PORT || 2003,
-	mysql_host: process.env.MYSQL_SERVER_HOST || process.env.MYSQL_LOCAL_HOST,
-	mysql_port: process.env.MYSQL_SERVER_PORT || process.env.MYSQL_LOCAL_PORT,
+	mysql_host: process.env.MYSQL_SERVICE_HOST || process.env.MYSQL_LOCAL_HOST,
+	mysql_port: process.env.MYSQL_SERVICE_PORT || process.env.MYSQL_LOCAL_PORT,
 	mysql_username:
 		process.env.MYSQL_USERNAME || process.env.MYSQL_LOCAL_USERNAME,
 	mysql_password:
@@ -17,4 +17,8 @@ module.exports = {
 			pass: process.env.MAIL_PASSWORD,
 		},
 	},
+	client_id: process.env.CLIENT_ID,
+	client_secret: process.env.CLIENT_SECRET,
+	redirect_uri: process.env.REDIRECT_URI,
+	refresh_token: process.env.REFRESH_TOKEN,
 };

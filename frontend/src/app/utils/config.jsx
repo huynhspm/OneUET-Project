@@ -1,3 +1,5 @@
+export const api_url = 'http://localhost:2002';
+
 export const documentCardHeight = 250;
 export const drawerWidth = 270;
 
@@ -37,6 +39,9 @@ export const drawerWidth = 270;
 //     ]
 // }
 
+
+export const ui_avatar_api = 'https://ui-avatars.com/api/?';
+
 export const units = [
     "Khoa Công nghệ Thông tin",
     "Khoa Điện tử Viễn thông",
@@ -51,6 +56,14 @@ export const units = [
 export const categories = [
     "Giáo trình",
     "Đề thi"
+]
+
+export const years = [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022
 ]
 
 export const majors = [

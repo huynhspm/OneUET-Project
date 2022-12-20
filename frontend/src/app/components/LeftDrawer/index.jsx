@@ -21,33 +21,53 @@ const LowerTexts = ['Đổi mật khẩu', 'Đăng xuất'];
 const LowerIcons = [<SyncLockIcon />, <LogoutIcon />];
 const LowerHrefs = ["/profile/change-password", "/logout"];
 
-const LeftDrawer = () => {
+const LeftDrawer = (props) => {
   return (
     <div>
       <Divider />
       <List>
         {UpperTexts.map((text, index) => (
-          <ListItem button component={Link} to={UpperHrefs[index]} key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {UpperIcons[index]}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
+          // <ListItem button component={Link} to={UpperHrefs[index]} key={text} disablePadding>
+          //   <ListItemButton>
+          //     <ListItemIcon>
+          //       {UpperIcons[index]}
+          //     </ListItemIcon>
+          //     <ListItemText primary={text} />
+          //   </ListItemButton>
+          // </ListItem>
+          <div style={{width: "100%"}}>
+            {props.location !== UpperHrefs[index] ?
+              <Link className="validation-button btn" to={UpperHrefs[index]} style={{width: "100%", display: "flex", justifyContent:"flex-start"}}>
+                {UpperIcons[index]} &nbsp;&nbsp;&nbsp;&nbsp;{text}
+              </Link> :
+              <Link className="validation-button btn btn-primary" to={UpperHrefs[index]} style={{width: "100%", display: "flex", justifyContent:"flex-start"}}>
+                {UpperIcons[index]} &nbsp;&nbsp;&nbsp;&nbsp;{text}
+              </Link>
+            }
+          </div>
         ))}
       </List>
       <Divider variant="middle" />
       <List>
         {LowerTexts.map((text, index) => (
-          <ListItem button component={Link} to={LowerHrefs[index]} key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {LowerIcons[index]}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
+          // <ListItem button component={Link} to={LowerHrefs[index]} key={text} disablePadding>
+          //   <ListItemButton>
+          //     <ListItemIcon>
+          //       {LowerIcons[index]}
+          //     </ListItemIcon>
+          //     <ListItemText primary={text} />
+          //   </ListItemButton>
+          // </ListItem>
+          <div style={{width: "100%"}}>
+            {props.location !== LowerHrefs[index] ?
+              <Link className="validation-button btn" to={LowerHrefs[index]} style={{width: "100%", display: "flex", justifyContent:"flex-start"}}>
+                {LowerIcons[index]} &nbsp;&nbsp;&nbsp;&nbsp;{text}
+              </Link> :
+              <Link className="validation-button btn btn-primary" to={LowerHrefs[index]} style={{width: "100%", display: "flex", justifyContent:"flex-start"}}>
+                {LowerIcons[index]} &nbsp;&nbsp;&nbsp;&nbsp;{text}
+              </Link>
+            }
+          </div>
         ))}
       </List>
     </div>

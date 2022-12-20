@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import React, { useState } from 'react';
 import PreviewDocument from '../PreviewDocument';
 import axios from 'axios';
-import { documentCardHeight } from '../../utils/constant';
+import { documentCardHeight } from '../../utils/config';
 
 const DocumentCard = (props) => {
     const [open, setOpen] = useState(false);
@@ -44,6 +44,8 @@ const DocumentCard = (props) => {
                 description={props.description}
                 name={props.name}
                 docID={props.docID}
+                path={props.path}
+                linkView={props.linkView}
             />
         </>
     )

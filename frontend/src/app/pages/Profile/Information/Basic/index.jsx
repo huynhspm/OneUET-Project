@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Title from '../../../../components/Title';
 import { Box, Grid, Button, IconButton, TextField, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
@@ -11,7 +11,7 @@ import Image from 'mui-image';
 const Basic = (props) => {
     const [editable, setEditable] = React.useState(false);
 
-    const [avatar, setAvatar] = React.useState("https://randomuser.me/api/portraits/women/79.jpg");
+    const [avatar, setAvatar] = React.useState("");
 
     const Submit = () => {
         console.log("Basic Information submited!");
@@ -24,13 +24,21 @@ const Basic = (props) => {
             otherEmail: props.email
         });
     }
-    
+
     const ControlValue = (value) => {
         if (value === undefined || value === null) {
             return '';
         }
         return value;
     }
+
+    useEffect(() => {
+        let name = "";
+        if (props.name !== undefined && props.name !== null && props.name !== "") {
+            name = props.name.replaceAll(" ", "+");
+        }
+        setAvatar("https://ui-avatars.com/api/?name=" + name + "&background=eeeeee");
+    }, [props.name]);
 
     return (
         <React.Fragment>

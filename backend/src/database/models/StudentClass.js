@@ -14,13 +14,13 @@ const StudentClass = sequelize.define(
 			type: DataTypes.INTEGER,
 		},
 		midterm: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.FLOAT,
 		},
 		final: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.FLOAT,
 		},
 		total: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.FLOAT,
 		},
 	},
 	{

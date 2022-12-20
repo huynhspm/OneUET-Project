@@ -1,66 +1,52 @@
-import React from 'react';
-import { Box, Paper, TextField, Grid, Container, Button } from '@mui/material';
-import Title from '../../../components/Title';
+import React, { useState } from "react";
 import axios from 'axios';
+import Title from '../../../components/Title';
+import { Box, Paper, TextField, Grid, Container, Button } from '@mui/material';
+import { PasswordUIValidator, PasswordValidCode, PasswordValidText } from "../../../utils/validation/password";
 
 const ChangePassword = (props) => {
-    const [oldPassword, setOldPassword] = React.useState('');
-    const [newPassword, setNewPassword] = React.useState('');
-    const [rewritePassword, setRewritePassword] = React.useState('');
+    // Old password
+    const [oldPassword, setOldPassword] = useState('');
+    const [isValidOldPassword, setIsValidOldPassword] = useState(PasswordValidCode.OK);
 
-    const [oldState, setOldState] = React.useState(0);
-    const [newState, setNewState] = React.useState(0);
-    const [rewriteState, setRewriteState] = React.useState(0);
-    const PasswordState = [
-        "",
-        "Please enter password",
-        "Wrong password",
-        "New password can not be same as old password",
-        "Confirm password does not match the new password"
-    ];
+    // New password
+    const [newPassword, setNewPassword] = useState('');
+    const [isValidNewPassword, setIsValidNewPassword] = useState(PasswordValidCode.OK);
 
+    // Rewrite password
+    const [rewritePassword, setRewritePassword] = useState('');
+    const [isValidRewritePassword, setIsValidRewritePassword] = useState(PasswordValidCode.OK);
+
+    // Handle Submit change password function
     const handleSubmit = async () => {
         let validation = true;
-        if (oldPassword == '') {
-            setOldState(1);
+
+        // Validation
+        setIsValidOldPassword(PasswordUIValidator(oldPassword));
+        if (PasswordUIValidator(oldPassword) !== PasswordValidCode.OK) {
             validation = false;
-        } else {
-            setOldState(0);
         }
 
-        if (newPassword == '') {
-            setNewState(1);
+        setIsValidNewPassword(PasswordUIValidator(newPassword, oldPassword));
+        if (PasswordUIValidator(newPassword, oldPassword) !== PasswordValidCode.OK) {
             validation = false;
-        } else {
-            if (oldPassword == newPassword) {
-                setNewState(3);
-                validation = false;
-            } else {
-                setNewState(0);
-            }
         }
 
-        if (rewritePassword == '') {
-            setRewriteState(1);
+        setIsValidRewritePassword(PasswordUIValidator(rewritePassword, newPassword, false));
+        if (PasswordUIValidator(rewritePassword, newPassword, false) !== PasswordValidCode.OK) {
             validation = false;
-        } else {
-            if (newPassword != rewritePassword) {
-                setRewriteState(4);
-                validation = false;
-            } else {
-                setRewriteState(0);
-            }
         }
 
-        if (!validation) {
-            return;
-        }
+		if (!validation) {
+			return;
+		}
 
+        // Change password
         const config = {
             headers: { Authorization: `Bearer ${props.token}` }
         }
         try {
-            const res = await axios.put("http://localhost:2002/user/me/password", {
+            const res = await axios.put("http://localhost:2002/api/user/me/password", {
                 oldPassword: oldPassword,
                 newPassword: newPassword
             }, config);
@@ -68,8 +54,8 @@ const ChangePassword = (props) => {
             window.location.reload();
         } catch (e) {
             console.log(e.response);
-            if (e.response.data.message == "Invalid oldPassword") {
-                setOldState(2);
+            if (e.response.data.message === "Invalid oldPassword") {
+                setIsValidOldPassword(PasswordValidCode.Wrong);
             }
         }
     }
@@ -78,7 +64,7 @@ const ChangePassword = (props) => {
         <Container maxWidth="sm">
             <Box
                 component="div"
-                sx={{ flexGrow: 1, p: 1, m: 1 }}
+                sx={{ flexGrow: 1, p: 1, m: 1, minHeight: window.innerHeight }}
             >
                 <Paper
                     sx={{
@@ -103,8 +89,8 @@ const ChangePassword = (props) => {
                                     onChange={(event) => {
                                         setOldPassword(event.target.value);
                                     }}
-                                    error={oldState != 0}
-                                    helperText={PasswordState[oldState]}
+                                    error={isValidOldPassword !== PasswordValidCode.OK}
+                                    helperText={PasswordValidText[isValidOldPassword]}
                                     type="password"
                                 />
                             </Grid>
@@ -117,8 +103,8 @@ const ChangePassword = (props) => {
                                     onChange={(event) => {
                                         setNewPassword(event.target.value);
                                     }}
-                                    error={newState != 0}
-                                    helperText={PasswordState[newState]}
+                                    error={isValidNewPassword !== PasswordValidCode.OK}
+                                    helperText={PasswordValidText[isValidNewPassword]}
                                     type="password"
                                 />
                             </Grid>
@@ -131,8 +117,8 @@ const ChangePassword = (props) => {
                                     onChange={(event) => {
                                         setRewritePassword(event.target.value);
                                     }}
-                                    error={rewriteState != 0}
-                                    helperText={PasswordState[rewriteState]}
+                                    error={isValidRewritePassword !== PasswordValidCode.OK}
+                                    helperText={PasswordValidText[isValidRewritePassword]}
                                     type="password"
                                 />
                             </Grid>

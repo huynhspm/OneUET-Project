@@ -1,6 +1,6 @@
 const { Class, Student, StudentClass } = require("../../database/models");
 const ResponseCode = require("../../utils/constant/ResponseCode");
-const sendEmailGrade = require("../../utils/email");
+const { sendEmailGrade } = require("../../utils/email");
 
 const verifyClass = async (req) => {
 	try {
@@ -151,6 +151,50 @@ const deleteClass = async (req) => {
 	}
 };
 
+const addStudent = async (req) => {
+	try {
+		let curClass, message, status;
+		const { code, semester, grades } = req.body;
+		curClass = await Class.findOne({
+			where: { code, semester },
+		});
+
+		// grades = [
+		// 	{
+		// 		studentCode: 20020054,
+		// 		midterm: 10,
+		// 		final: 10,
+		// 		total: 10,
+		// 	},
+		// ];
+
+		if (curClass) {
+			for (let index in grades) {
+				let grade = grades[index];
+
+				let student = await Student.findOne({
+					where: { code: grade.studentCode },
+				});
+
+				curClass.addStudent(student, { through: grade });
+			}
+
+			message = "Add student successfully";
+			status = ResponseCode.OK;
+		} else {
+			message = "Class not existed";
+			status = ResponseCode.Not_Found;
+		}
+
+		return {
+			message,
+			status,
+		};
+	} catch (e) {
+		throw e;
+	}
+};
+
 const updateGrade = async (req) => {
 	try {
 		let curClass, message, status;
@@ -159,18 +203,38 @@ const updateGrade = async (req) => {
 			where: { code, semester },
 		});
 
+		// grades = [
+		// 	{
+		// 		studentCode: 20020054,
+		// 		midterm: 10,
+		// 		final: 10,
+		// 		total: 10,
+		// 	},
+		// 	{
+		// 		studentCode: 20020054,
+		// 		midterm: 70,
+		// 		final: 70,
+		// 		total: 70,
+		// 	},
+		// ];
+
 		if (curClass) {
-			for (let grade in grades) {
+			for (let index in grades) {
+				let grade = grades[index];
+				grade["id"] = undefined;
+				grade["finish"] = true;
+
 				let student = await Student.findOne({
 					where: { code: grade.studentCode },
 				});
-				await StudentClass.update(grades, {
+
+				await StudentClass.update(grade, {
 					where: { studentId: student.id, classId: curClass.id },
 				});
 
 				let email = student.code + "@vnu.edu.vn";
 				let subject = "Your score in class " + curClass.code;
-				// sendEmailOTP(email, grade, subject);
+				// sendEmailGrade(email, grade, subject);
 			}
 
 			message = "Update grade successfully";
@@ -180,39 +244,14 @@ const updateGrade = async (req) => {
 			status = ResponseCode.Not_Found;
 		}
 
-		data = { curClass };
+		return {
+			message,
+			status,
+		};
 	} catch (e) {
 		throw e;
 	}
 };
-
-// const addStudent = async (req) => {
-// 	try {
-// 		let curClass, message, status;
-// 		const { code, semester, grades } = req.body;
-// 		curClass = await Class.findOne({
-// 			where: { code, semester },
-// 		});
-
-// 		for (let grade in grades) {
-// 			let student = await Student.findOne({
-// 				where: { code: grade.studentCode },
-// 			});
-// 			await curClass.addStudent(student.id, { through: { grade } });
-// 		}
-
-// 		message = "Add student successfully";
-// 		status = ResponseCode.OK;
-
-// 		return {
-// 			data,
-// 			message,
-// 			status,
-// 		};
-// 	} catch (e) {
-// 		throw e;
-// 	}
-// };
 
 module.exports = {
 	createClass,
@@ -220,5 +259,6 @@ module.exports = {
 	getClass,
 	updateClass,
 	deleteClass,
+	addStudent,
 	updateGrade,
 };
