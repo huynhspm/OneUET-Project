@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Image from 'mui-image';
+import { ui_avatar_api } from '../../../../utils/config';
 import Title from '../../../../components/Title';
 import { GenderValue } from '../../../../utils/information/gender';
 import EditIcon from '@mui/icons-material/Edit';
@@ -38,7 +39,7 @@ const Basic = (props) => {
         if (props.name !== undefined && props.name !== null && props.name !== "") {
             name = props.name.replaceAll(" ", "+");
         }
-        props.setAvatar("https://ui-avatars.com/api/?name=" + name + "&background=eeeeee");
+        props.setAvatar(ui_avatar_api + "name=" + name + "&background=eeeeee");
     }, [props.name]);
 
     return (
@@ -94,9 +95,9 @@ const Basic = (props) => {
                             }}
                         >
                             <Image src={props.avatar} sx={{ maxWidth: 120 }} duration={0} />
-                            <Typography fontWeight='bold' sx={{ mt:2 }}>{props.name}</Typography>
+                            <Typography fontWeight='bold' sx={{ mt: 2 }}>{props.name}</Typography>
                             <Typography>{props.code}</Typography>
-                            <Button component="div" variant="outlined" disabled={!editable} sx={{ mt:2 }}>Cập nhật</Button>
+                            <Button component="div" variant="outlined" disabled={!editable} sx={{ mt: 2 }}>Cập nhật</Button>
                         </Box>
                     </Grid>
                     <Grid item xs={10}>

@@ -38,7 +38,8 @@
     font-family: 'Material Icons';
     font-weight: normal;
     font-style: normal;
-    font-size: 24px;  /* Preferred icon size */
+    font-size: 24px;
+    /* Preferred icon size */
     display: inline-block;
     line-height: 1;
     text-transform: none;
@@ -46,18 +47,18 @@
     word-wrap: normal;
     white-space: nowrap;
     direction: ltr;
-  
+
     /* Support for all WebKit browsers. */
     -webkit-font-smoothing: antialiased;
     /* Support for Safari and Chrome. */
     text-rendering: optimizeLegibility;
-  
+
     /* Support for Firefox. */
     -moz-osx-font-smoothing: grayscale;
-  
+
     /* Support for IE. */
     font-feature-settings: 'liga';
-  }
+}
 
 :root {
     --main-width: 64%;
@@ -68,6 +69,8 @@
 }
 
 div.cv {
+    width: 210mm;
+    height: 297mm;
     font-family: 'IBM Flex Sans', sans-serif;
     display: flex;
     flex-direction: row;
@@ -82,12 +85,17 @@ div.cv-sub-section {
     background-color: #f5f5f5;
 }
 
-div.cv-sub-section>div+div {
-    margin-top: 2em;
+
+div.cv-contact, div.cv-references {
+    padding: 0.1618in 0.1618in 0.1618in 0.1618in;
 }
 
-div.cv-contact {
-    padding: 0.1618in 0.1618in 0.1618in 0.1618in;
+div.cv-sub-section > div:last-child {
+    margin-top: auto;
+}
+
+div.cv-sub-section>div+div {
+    margin-top: 2em;
 }
 
 div.cv-main-section {
@@ -97,7 +105,7 @@ div.cv-main-section {
     flex-direction: column;
 }
 
-div.cv-header {
+div.cv-main-header {
     display: block;
     flex-basis: var(--header-height);
     flex-grow: 0;
@@ -111,7 +119,7 @@ div.cv-name {
 }
 
 div.cv-basic-info {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 400;
     margin-bottom: 1rem;
 }
@@ -150,7 +158,7 @@ div.cv-body {
     flex-direction: column;
 }
 
-div.cv-heading {
+div.cv-header {
     font-size: 1.6rem;
     font-weight: 500;
     letter-spacing: 0;
@@ -159,14 +167,36 @@ div.cv-heading {
     margin-top: 0;
 }
 
-div.cv-contact-row {
+div.cv-contact-row, div.cv-references-p {
     display: flex;
     justify-content: left;
     align-items: center;
     margin-block-start: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+}
+
+div.cv-education-row > *:last-child, div.cv-activites-row > *:last-child {
+    margin-bottom: 2rem;
+}
+
+div.cv-education-header, div.cv-activites-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+div.cv-education-header > p, div.cv-activites-header > p {
+    margin-bottom: 0;
+}
+
+div.cv-education-header > *:first-child, div.cv-activites-header > *:first-child {
+    font-size: 1.3rem;
+}
+
+div.cv-education-header > *:last-child, div.cv-activites-header > *:last-child {
+    margin-left: auto;
 }
 
 .material-icons {

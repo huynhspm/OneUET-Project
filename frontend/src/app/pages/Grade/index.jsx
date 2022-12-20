@@ -4,13 +4,14 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { api_url } from "../../utils/config";
 
 const getUserData = async (token) => {
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
   try {
-    const response = await axios.get("http://localhost:2002/", config);
+    const response = await axios.get(api_url, config);
     return response.data.data;
   } catch (e) {
     console.log(e.response);
