@@ -22,7 +22,7 @@ const compareById = (matchingItem) => (item) => matchingItem.id === item.id;
 const RoomScheduler = (props) => {
   const [data, setData] = useState([]);
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55boeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZUlkIjoxLCJpYXQiOjE2NzA0ODk2ODEsImV4cCI6MTY3MzA4MTY4MX0.rSseHQSrXVyf_PyY3WAIoU07AKavd3-XP-RIXgXRgr4";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkIjoyLCJpYXQiOjE2NzA0ODk2NDgsImV4cCI6MTY3MzA4MTY0OH0.kKVgxO566QaVpvGbqtKBmr_I_Sl8RSlEk8Nhr-GWM74";
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
@@ -46,10 +46,12 @@ const RoomScheduler = (props) => {
 
   const fetchData = async () => {
     try {
-      await axios.get("http://localhost:2002/student/1", config).then((res) => {
+      console.log(config);
+
+      await axios.get("http://localhost:2002/api/user/me", config).then((res) => {
         let classes = res.data.data.classes;
         let tmp_data = [];
-        console.log(res);
+        console.log("res", res);
         for (let index in classes) {
           console.log(classes[index]);
           let sections = classes[index].section.split("-");

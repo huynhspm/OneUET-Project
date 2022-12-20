@@ -39,41 +39,15 @@ const PrivateDocument = (props) => {
     }
 
     const { docId } = useParams();
-
     return (
         <>
-            <Box sx={{ display: 'flex', flexDirection: 'row', minHeight: window.innerHeight }}>
-                <Box
-                    component="main"
-                    sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
-                >
-                    {
-                        card.length > 0 &&
-                        <div>
-                            <Box sx={{ display: 'flex', flexWrap: "wrap", }}>
-                                {card.map((card, index) => (
-                                    <DocumentCard
-                                        key={index}
-                                        height={documentCardHeight}
-                                        src_img={card.src_img}
-                                        name={card.name}
-                                        description={card.description}
-                                        unit={card.unit}
-                                        major={card.major}
-                                        fileID={card.fileID} />
-                                ))}
-                            </Box>
-                        </div>
-                    }
 
-                    {docId === "" && <Main />}
-                    {docIds.map((id, index) => (
-                        docId === String(id) && <PrvDocView key={id} id={id} />
-                    ))}
-                </Box>
-            </Box>
+            {docId === "" && <Main />}
+            {docIds.map((id, index) => (
+                docId === String(id) && <PrvDocView key={id} id={id} />
+            ))}
+
         </>
     );
 };
-
 export default PrivateDocument;

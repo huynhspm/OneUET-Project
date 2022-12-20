@@ -5,19 +5,37 @@
     width: 100%;
     z-index: 1300;
     flex: auto;
-    background-color: white; 
+    background-color: white;
     display: flex;
     justify-content: space-between;
     border-bottom: ridge;
 }
+
 .input-search {
     width: 90%;
 }
+
 .btn {
     margin: auto;
     border-radius: 0;
 }
 
+.btn:hover {
+    background-color: #EAEAEA;
+    color: black;
+}
+
 .btn-group {
     color: white;
+}
+
+.btn-primary {
+    background-color: #FFA69E;
+    border: 0;
+}
+
+.btn-primary:hover {
+    color: white;
+    /* background-color: #0D6EFD; */
+    background-color: #FFA69E;
 }

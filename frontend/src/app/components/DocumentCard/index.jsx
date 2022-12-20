@@ -23,7 +23,12 @@ const DocumentCard = (props) => {
                     alt="sorry about error"
                 />
                 <CardContent sx={{ maxHeight: 70 }}>
-                    <Typography sx={{ display: 'flex' }} variant="h5" >
+                    <Typography sx={{
+                        display: '-webkit-box',
+                        overflow: 'hidden',
+                        WebkitBoxOrient: 'vertical',
+                        WebkitLineClamp: 2,
+                    }} variant="h5" >
                         {props.name}
                     </Typography>
                     {/* <Typography variant="body2" color="text.secondary">
