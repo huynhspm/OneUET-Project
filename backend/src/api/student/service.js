@@ -1,10 +1,11 @@
 const { Student } = require("../../database/models");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 
-const verifyStudent = async (query) => {
+const verifyStudent = async (req) => {
 	try {
+		const { id } = req.params;
 		let student, message, status;
-		student = await Student.findOne(query);
+		student = await Student.findByPk(id);
 
 		if (student) {
 			message = "Get student successfully";

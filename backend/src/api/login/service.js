@@ -1,9 +1,9 @@
-const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const config = require("../../config");
 const { User } = require("../../database/models");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 const { sendEmailOTP, createOTP } = require("../../utils/email");
+const { hashPassword, comparePassword } = require("../../utils/password");
 
 const verifyEmail = async (email) => {
 	return await User.findOne({ where: { email } });
@@ -19,7 +19,8 @@ const login = async (req) => {
 		message = "Invalid email";
 		status = ResponseCode.Forbidden;
 	} else {
-		const verifyPassword = bcrypt.compareSync(password, user.password);
+		const verifyPassword = comparePassword(password, user.password);
+		
 		if (!verifyPassword) {
 			message = "Invalid password";
 			status = ResponseCode.Forbidden;
@@ -138,8 +139,7 @@ const resetPassword = async (req, res) => {
 				message = "OTP expired, please click resend";
 				status = ResponseCode.OK;
 			} else {
-				const hashPassword = bcrypt.hashSync(password, config.salt);
-				await user.update({ password: hashPassword });
+				await user.update({ password: hashPassword(password) });
 
 				const role = await user.getRole();
 				const token = jwt.sign(

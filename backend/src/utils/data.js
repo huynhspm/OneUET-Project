@@ -13,6 +13,8 @@ const documents = require("../database/data/document.json");
 const comments = require("../database/data/comment.json");
 const grades = require("../database/data/grade.json");
 
+const { hashPassword } = require("../utils/password");
+
 async function createCourse() {
 	for (let course of courses) {
 		await models.Course.create(course);
@@ -64,7 +66,15 @@ async function createClub() {
 
 async function createUser() {
 	for (let user of users) {
-		await models.User.create(user);
+		const code = user.email.slice(0, 8);
+		const student = await models.Student.findOne({ where: { code } });
+
+		user["password"] = hashPassword(user["password"]);
+
+		if (student) {
+			user["studentId"] = student.id;
+			await models.User.create(user);
+		}
 	}
 }
 

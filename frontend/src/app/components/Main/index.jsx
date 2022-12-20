@@ -8,7 +8,7 @@ import {
 import React from "react";
 import "./main.css";
 
-import { Cancel, Done, LocalOfferOutlined } from "@mui/icons-material";
+import { Cancel, Done } from "@mui/icons-material";
 const Main = (props) => {
   const { link } = props;
   return (
@@ -35,14 +35,6 @@ const Main = (props) => {
                 <Cancel />
               </ListItemIcon>
               <ListItemText primary="Cancel" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <LocalOfferOutlined />
-              </ListItemIcon>
-              <ListItemText primary="Add tags" />
             </ListItemButton>
           </ListItem>
         </List>

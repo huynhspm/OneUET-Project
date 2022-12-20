@@ -1,5 +1,3 @@
-const bcrypt = require("bcrypt");
-const config = require("../../config");
 const { DataTypes } = require("sequelize");
 const sequelize = require("../");
 const Role = require("./Role");
@@ -85,17 +83,5 @@ Student.hasOne(User);
 
 User.belongsTo(Role);
 Role.hasMany(User);
-
-User.beforeCreate(
-	(user) => (user.password = bcrypt.hashSync(user.password, config.salt))
-);
-
-User.afterCreate(async (user) => {
-	const code = user.email.slice(0, 8);
-	const student = await Student.findOne({ where: { code } });
-	if (student) {
-		await user.update({ studentId: student.id });
-	}
-});
 
 module.exports = User;

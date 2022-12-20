@@ -1,7 +1,6 @@
 const { User } = require("../../database/models");
-const bcrypt = require("bcrypt");
 const ResponseCode = require("../../utils/constant/ResponseCode");
-const config = require("../../config");
+const { hashPassword, comparePassword } = require("../../utils/password");
 
 const verifyUser = async (id) => {
 	try {
@@ -76,12 +75,9 @@ const updateMyPassword = async (req) => {
 		if (user) {
 			const { oldPassword, newPassword } = req.body;
 
-			console.log(oldPassword, newPassword);
-
-			const verifyPassword = bcrypt.compareSync(oldPassword, user.password);
-			const hashNewPassword = bcrypt.hashSync(newPassword, config.salt);
+			const verifyPassword = comparePassword(oldPassword, user.password);
 			if (verifyPassword) {
-				user = await user.update({ password: hashNewPassword });
+				user = await user.update({ password: hashPassword(newPassword) });
 
 				message = "Update my password successfully";
 				status = ResponseCode.OK;

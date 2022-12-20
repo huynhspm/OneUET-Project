@@ -2,7 +2,7 @@ import "/node_modules/bootstrap/dist/css/bootstrap.min.css";
 // import "/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
 
 import { Link } from "react-router-dom";
-import IconButton from "@mui/material/IconButton";
+//import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import HomeIcon from "@mui/icons-material/Home";
 import SummarizeIcon from "@mui/icons-material/Summarize";
@@ -12,15 +12,8 @@ import FactCheckIcon from "@mui/icons-material/FactCheck";
 import AvatarDropdown from "../../components/AvatarDropdown";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import {
-  Box,
-  List,
-  Switch,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-} from "@mui/material";
-import { ModeNight } from "@mui/icons-material";
+import { Box, Typography } from "@mui/material";
+
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "./styles.css";
@@ -47,6 +40,7 @@ const Header = (props) => {
 		}
 	}, [token, navigate]);
 
+
   const [docs, setDocs] = useState([]);
 
   useEffect(() => {
@@ -58,15 +52,14 @@ const Header = (props) => {
   function getDocuments(data) {
     let docs = data.data;
     return docs?.documents;
-  };
+  }
 
   const fetchData = async () => {
     try {
       await axios
-        .get("http://localhost:2002/api/document/public",
-          {
-            headers: { Authorization: `Bearer ${token}` }
-          })
+        .get("http://localhost:2002/api/document/public", {
+          headers: { Authorization: `Bearer ${token}` },
+        })
         .then((res) => {
           let docs = getDocuments(res.data);
           let tmp = [];
@@ -74,7 +67,7 @@ const Header = (props) => {
             let element = {
               name: docs[id].name,
               docID: docs[id].id,
-            }
+            };
             tmp.push(element);
           }
           setDocs(tmp);
@@ -82,49 +75,54 @@ const Header = (props) => {
     } catch (e) {
       console.log(e.response.data);
     }
-  }
-
-
+  };
 
   return (
     <>
-      <div className="header">
+      <div className="header" color="white">
         <div className="btn-group button-group">
           <Link className="homepage-button btn" to="/">
-            <HomeIcon /> Trang chủ
+            <HomeIcon />
+            <Typography>Trang chủ</Typography>
           </Link>
           <Link className="convert-button btn" to="/convert">
-            <AutoAwesomeIcon /> Convert
+            <AutoAwesomeIcon />
+            <Typography>Convert</Typography>
           </Link>
           <Link className="document-button btn" to="/document">
-            <SummarizeIcon /> Document
+            <SummarizeIcon />
+            <Typography>Document</Typography>
           </Link>
           <Link className="grade-button btn" to="/grade">
-            <SchoolIcon /> Grade
+            <SchoolIcon />
+            <Typography>Grade</Typography>
           </Link>
           <Link className="validation-button btn" to="/validation-document">
-            <FactCheckIcon /> Validation Document
+            <FactCheckIcon />
+            <Typography>Validation Document</Typography>
           </Link>
         </div>
-        <Box sx={{
-          width: "30%",
-          display: "flex",
-          justifyContent: "space-between"
-        }}>
+        <Box
+          sx={{
+            width: "30%",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
           <Autocomplete
             sx={{
               p: 0,
               width: "100%",
-              display: 'flex',
-              alignItems: 'center',
-              '.MuiOutlinedInput-root .MuiAutocomplete-input': {
-                p: '7.5px 10px 7.5px 20px'
+              display: "flex",
+              alignItems: "center",
+              ".MuiOutlinedInput-root .MuiAutocomplete-input": {
+                p: "7.5px 10px 7.5px 20px",
               },
-              '.MuiOutlinedInput-root': {
+              ".MuiOutlinedInput-root": {
                 p: 0,
                 pr: 1,
                 borderRadius: 50,
-              }
+              },
             }}
             freeSolo
             getOptionLabel={(option) => option.name}
