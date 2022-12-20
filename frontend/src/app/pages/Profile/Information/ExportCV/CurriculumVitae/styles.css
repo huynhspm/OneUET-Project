@@ -69,8 +69,8 @@
 }
 
 div.cv {
-    width: 210mm;
-    height: 297mm;
+    width: 208mm;
+    height: 295mm;
     font-family: 'IBM Flex Sans', sans-serif;
     display: flex;
     flex-direction: row;
@@ -114,7 +114,7 @@ div.cv-main-header {
 }
 
 div.cv-name {
-    font-size: 4.8rem;
+    font-size: 4.2rem;
     font-weight: 500;
 }
 

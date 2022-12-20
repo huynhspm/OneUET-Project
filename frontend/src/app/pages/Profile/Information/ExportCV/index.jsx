@@ -49,7 +49,7 @@ const ExportCV = (props) => {
                             <PDFExport
                                 ref={pdfExportComponent}
                                 paperSize="A4"
-                                scale={0.79}
+                                scale={0.75}
                                 imageResolution={300}
                             >
                                 <CurriculumVitae
