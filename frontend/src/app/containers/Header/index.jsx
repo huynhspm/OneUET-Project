@@ -1,6 +1,6 @@
 import "/node_modules/bootstrap/dist/css/bootstrap.min.css";
 // import "/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
-
+import styled from "styled-components";
 import { Link } from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
@@ -19,6 +19,7 @@ import {
   ListItem,
   ListItemButton,
   ListItemIcon,
+  colors,
 } from "@mui/material";
 import { ModeNight } from "@mui/icons-material";
 import axios from "axios";
@@ -75,21 +76,46 @@ const Header = (props) => {
     <>
       <div className="header">
         <div className="btn-group button-group">
-          <Link className="homepage-button btn" to="/">
-            <HomeIcon /> Trang chủ
-          </Link>
-          <Link className="convert-button btn" to="/convert">
-            <AutoAwesomeIcon /> Convert
-          </Link>
-          <Link className="document-button btn" to="/document">
-            <SummarizeIcon /> Document
-          </Link>
-          <Link className="grade-button btn" to="/grade">
-            <SchoolIcon /> Grade
-          </Link>
-          <Link className="validation-button btn" to="/validation-document">
-            <FactCheckIcon /> Validation Document
-          </Link>
+          {props.location !== "/" ?
+            <Link className="homepage-button btn" to="/" >
+              <HomeIcon /> Trang chủ
+            </Link> :
+            <Link className="homepage-button btn btn-primary" to="/" >
+              <HomeIcon /> Trang chủ
+            </Link>
+          }
+          {props.location !== "/convert" ?
+            <Link className="convert-button btn" to="/convert">
+              <AutoAwesomeIcon /> Convert
+            </Link> :
+            <Link className="convert-button btn btn-primary" to="/convert">
+              <AutoAwesomeIcon /> Convert
+            </Link>
+          }
+          {props.location !== "/document" ?
+            <Link className="document-button btn" to="/document">
+              <SummarizeIcon /> Document
+            </Link> :
+            <Link className="document-button btn btn-primary" to="/document">
+              <SummarizeIcon /> Document
+            </Link>
+          }
+          {props.location !== "/grade" ?
+            <Link className="grade-button btn" to="/grade">
+              <SchoolIcon /> Grade
+            </Link> :
+            <Link className="grade-button btn btn-primary" to="/grade">
+              <SchoolIcon /> Grade
+            </Link>
+          }
+          {props.location !== "/validation-document" ?
+            <Link className="validation-button btn" to="/validation-document">
+              <FactCheckIcon /> Validation Document
+            </Link> :
+            <Link className="validation-button btn btn-primary" to="/validation-document">
+              <FactCheckIcon /> Validation Document
+            </Link>
+          }
         </div>
         <Box sx={{
           width: "30%",
@@ -103,7 +129,8 @@ const Header = (props) => {
               display: 'flex',
               alignItems: 'center',
               '.MuiOutlinedInput-root .MuiAutocomplete-input': {
-                p: '7.5px 10px 7.5px 20px'
+                p: '7.5px 10px 7.5px 20px',
+
               },
               '.MuiOutlinedInput-root': {
                 p: 0,

@@ -23,7 +23,7 @@ const Document = (props) => {
     const fetchData = async () => {
         try {
             await axios
-                .get("http://localhost:2002/document/public", config)
+                .get("http://localhost/api/document/public", config)
                 .then((res) => {
                     let docs = res.data.data.documents;
                     console.log(docs)

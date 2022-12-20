@@ -78,7 +78,7 @@ const ChangePassword = (props) => {
         <Container maxWidth="sm">
             <Box
                 component="div"
-                sx={{ flexGrow: 1, p: 1, m: 1 }}
+                sx={{ flexGrow: 1, p: 1, m: 1, minHeight: window.innerHeight }}
             >
                 <Paper
                     sx={{

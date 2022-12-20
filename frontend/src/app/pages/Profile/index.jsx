@@ -12,7 +12,7 @@ import FilterSidebar from '../../components/FilterSidebar';
 import { units } from '../../utils/constant';
 import ChangePassword from './ChangePassword';
 
-const drawerWidth = 240;
+const drawerWidth = 210;
 
 const Profile = (props) => {
     const { type } = useParams();
@@ -36,7 +36,7 @@ const Profile = (props) => {
                 component="nav"
                 sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
             >
-                <LeftDrawer />
+                <LeftDrawer location={props.location}/>
                 {type === 'private-document' && <FilterSidebar filterData={filterData} />}
             </Box>
             <Box

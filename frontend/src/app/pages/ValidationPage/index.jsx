@@ -9,7 +9,7 @@ const ValidationPage = () => {
     useValidationPageHook();
 
   return (
-    <Box>
+    <Box sx={{ minHeight: window.innerHeight, width: '100%' }}>
       <Stack direction="row" spacing={2} justifyContent="space-between">
         <Sidebar
           listSideBar={listSideBar}

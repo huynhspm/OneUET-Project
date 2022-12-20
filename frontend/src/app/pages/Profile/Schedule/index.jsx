@@ -41,12 +41,13 @@ const RoomScheduler = (props) => {
 
   const fetchData = async () => {
     try {
+      console.log("AAAAA")
       await axios
-        .get("http://localhost:2002/student/1", config)
+        .get("http://localhost/api/document/public", config)
         .then((res) => {
           let classes = res.data.data.classes;
           let tmp_data = []
-          console.log(res);
+          console.log("ABC123", res);
           for (let index in classes) {
             console.log(classes[index]);
             let sections = classes[index].section.split("-");

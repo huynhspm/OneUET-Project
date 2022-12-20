@@ -5,9 +5,10 @@
     width: 100%;
     z-index: 1300;
     flex: auto;
-    background-color: #f1f1f1; 
+    background-color: white; 
     display: flex;
     justify-content: space-between;
+    border-bottom: ridge;
 }
 
 .input-search {
@@ -15,4 +16,5 @@
 }
 .btn {
     margin: auto;
+    border-radius: 0;
 }
