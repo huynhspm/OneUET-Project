@@ -124,28 +124,7 @@ const useFakeMutation = () => {
   );
 };
 
-export default function ValidationGrade() {
-  const navigate = useNavigate();
-
-	// user token
-	const [token, setToken] = useState('');
-
-	// fetch user token
-	const getToken = (() => {
-		if (token === '') {
-			const lastToken = sessionStorage.getItem("token");
-			if (lastToken !== null && lastToken !== undefined) {
-				setToken(lastToken);
-			} else {
-				navigate('/login');
-			}
-		}
-	})
-
-  useEffect(() => {
-		getToken();
-	}, [navigate, token]);
-
+export default function ValidationGrade(props) {
 
 
   const [codeClass, setCodeClass] = React.useState(null);
@@ -177,6 +156,8 @@ export default function ValidationGrade() {
   //     }
   //   }
   // }, [token, navigate]);
+  const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZUlkIjoxLCJpYXQiOjE2NzA0ODk2ODEsImV4cCI6MTY3MzA4MTY4MX0.rSseHQSrXVyf_PyY3WAIoU07AKavd3-XP-RIXgXRgr4";
 
   useEffect(() => {
     if (token !== '') {
@@ -184,15 +165,15 @@ export default function ValidationGrade() {
         let rows2 = [];
         data = data.grade;
 
-        for (var i = 0; i < 1; i++) {
-          rows2.push({
-            studentCode: data[i].studentCode,
-            id: i + 1,
-            midterm: data[i].midterm,
-            final: data[i].final,
-            total: data[i].total,
-          });
-        }
+      for (var i = 0; i < data.length; i++) {
+        rows2.push({
+          studentCode: data[i].studentCode,
+          id: i + 1,
+          midterm: data[i].midterm,
+          final: data[i].final,
+          total: data[i].total,
+        });
+      }
 
         setRows(rows2);
       });        
@@ -224,7 +205,11 @@ export default function ValidationGrade() {
     // Editable table grade
     <Box>
       <Box
-        sx={{ display: "flex", justifyContent: "space-around", maxWidth: 400 }}>
+        sx={{
+          display: "flex",
+          justifyContent: "space-around",
+          width: "30vw",
+        }}>
         <Box>
           <Box>
             <TextField
@@ -272,7 +257,7 @@ export default function ValidationGrade() {
         </Box>
       </Box>
       <Box sx={{ display: "flex", flexDirection: "row" }}>
-        <Box component="nav" sx={{ width: "50%", flexShrink: { sm: 0 } }}>
+        <Box component="nav" sx={{ width: "40vw", flexShrink: { sm: 0 } }}>
           <DataGrid
             sx={{
               height: 900,
@@ -304,7 +289,7 @@ export default function ValidationGrade() {
           />
         </Box>
 
-        <Box sx={{ flexGrow: 1, p: 3, width: "50%" }}>
+        <Box sx={{ flexGrow: 1, p: 3, width: "40vw" }}>
           <div className="pdf-viewer" align="right">
             <iframe src={pdf_link} width="100%" height="910px"></iframe>
           </div>
