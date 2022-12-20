@@ -34,6 +34,8 @@ const register = async (req) => {
 		const code = newUser.email.slice(0, 8);
 		const student = await Student.findOne({ where: { code } });
 
+		console.log(student);
+
 		if (student) {
 			const { otp, expiredTime } = createOTP();
 			// sendOTP(newUser.email, otp);
@@ -42,7 +44,7 @@ const register = async (req) => {
 			newUser["expiredTime"] = expiredTime;
 			newUser["studentId"] = student.id;
 			newUser["roleId"] = RoleCode.User;
-			newUser["password"] = hashPassword(password);
+			newUser["password"] = hashPassword(newUser.password);
 			await User.create(newUser);
 
 			message = "Register successfully but not active";

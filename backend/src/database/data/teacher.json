@@ -138,5 +138,2126 @@
         "name": "TS.Phan Hải Đăng",
         "falcuty": null,
         "level": null
+    },
+    {
+        "id": 21,
+        "email": null,
+        "name": "PGS.TS.Trịnh Anh Vũ",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 22,
+        "email": null,
+        "name": "TS.Hà Minh Cường",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 23,
+        "email": null,
+        "name": "TS.Trần Lê Hưng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 24,
+        "email": null,
+        "name": "GS.TS.Nguyễn Năng Định",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 25,
+        "email": null,
+        "name": "ThS.Cấn Duy Cát",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 26,
+        "email": null,
+        "name": "ThS.Bùi Huy Hoàng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 27,
+        "email": null,
+        "name": "CN.Hoàng Đăng Kiên",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 28,
+        "email": null,
+        "name": "ThS.Trần Như Chí",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 29,
+        "email": null,
+        "name": "ThS.Hoàng Bảo Anh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 30,
+        "email": null,
+        "name": "Trường ĐHNN",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 31,
+        "email": null,
+        "name": "PGS.TS.Đào Như Mai",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 32,
+        "email": null,
+        "name": "TS.Lê Thị Vinh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 33,
+        "email": null,
+        "name": "TS.Bùi Quang Hưng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 34,
+        "email": null,
+        "name": "GS.TSKH.Nguyễn Đình Đức",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 35,
+        "email": null,
+        "name": "ThS.Trần Tuấn Linh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 36,
+        "email": null,
+        "name": "TS.Đặng Cao Cường",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 37,
+        "email": null,
+        "name": "TS.Nguyễn Hoàng Quân",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 38,
+        "email": null,
+        "name": "CN.Nguyễn Thị Thu Trang B",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 39,
+        "email": null,
+        "name": "TS.Ma Thị Châu",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 40,
+        "email": null,
+        "name": "CN.Đoàn Thị Hoài Thu",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 41,
+        "email": null,
+        "name": "ThS.Nguyễn Đăng Cơ",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 42,
+        "email": null,
+        "name": "PGS.TS.Trần Trọng Hiếu",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 43,
+        "email": null,
+        "name": "TS.Dương Việt Dũng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 44,
+        "email": null,
+        "name": "PGS.TS.Phạm Hồng Minh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 45,
+        "email": null,
+        "name": "TS.Hà Thị Quyến",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 46,
+        "email": null,
+        "name": "TS.Trần Đăng Khoa",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 47,
+        "email": null,
+        "name": "TS.Chu Đức Hà",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 48,
+        "email": null,
+        "name": "TS.Nguyễn Thị Minh Hồng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 49,
+        "email": null,
+        "name": "TS.Nguyễn Trường Giang",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 50,
+        "email": null,
+        "name": "CN.Nguyễn Đức Tiến",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 51,
+        "email": null,
+        "name": "CN.Đinh Bảo Minh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 52,
+        "email": null,
+        "name": "ThS.Chu Thị Phương Dung",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 53,
+        "email": null,
+        "name": "ThS.Nguyễn Thu Hằng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 54,
+        "email": null,
+        "name": "TS.Phạm Đức Hạnh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 55,
+        "email": null,
+        "name": "TS.Nguyễn Thị Lan",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 56,
+        "email": null,
+        "name": "TS.Vũ Thị Thao",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 57,
+        "email": null,
+        "name": "TS.Nguyễn Tuấn Cảnh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 58,
+        "email": null,
+        "name": "ThS.Nguyễn Cao Sơn",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 59,
+        "email": null,
+        "name": "TS.Nguyễn Văn Vinh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 60,
+        "email": null,
+        "name": "Công ty Framgia VN",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 61,
+        "email": null,
+        "name": "TS.Trần Thanh Tùng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 62,
+        "email": null,
+        "name": "TS.Bùi Hồng Sơn",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 63,
+        "email": null,
+        "name": "PGS.TS.Lê Thanh Hà",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 64,
+        "email": null,
+        "name": "TS.Lê Vũ Hà",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 65,
+        "email": null,
+        "name": "TS.Hoàng Đình Quế",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 66,
+        "email": null,
+        "name": "ThS.Vũ Ngọc Linh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 67,
+        "email": null,
+        "name": "TS.Nguyễn Hồng Thịnh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 68,
+        "email": null,
+        "name": "TS.Đinh Sĩ Tiệp",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 69,
+        "email": null,
+        "name": "ThS.Nguyễn Thị Hồng Hạnh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 70,
+        "email": null,
+        "name": "ThS.Nguyễn Thu Trang",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 71,
+        "email": null,
+        "name": "PGS.TS.Hà Quang Thụy",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 72,
+        "email": null,
+        "name": "TS.Đinh Thị Thái Mai",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 73,
+        "email": null,
+        "name": "TS.Đặng Đức Hạnh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 74,
+        "email": null,
+        "name": "TS.Vũ Thị Thùy Anh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 75,
+        "email": null,
+        "name": "TS.Trần Ngọc Hưng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 76,
+        "email": null,
+        "name": "TS.Phan Quốc Nguyên",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 77,
+        "email": null,
+        "name": "TS.Ngô Thị Duyên",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 78,
+        "email": null,
+        "name": "TS.Hoàng Xuân Tùng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 79,
+        "email": null,
+        "name": "ThS.Phong Thị Thu Huyền",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 80,
+        "email": null,
+        "name": "KS.Phạm Đình Nguyện",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 81,
+        "email": null,
+        "name": "PGS.TSKH.Tạ Thị Hoài An",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 82,
+        "email": null,
+        "name": "CN.Nguyễn Đăng Bảo Long",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 83,
+        "email": null,
+        "name": "PGS.TS.Hoàng Văn Xiêm",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 84,
+        "email": null,
+        "name": "PGS.TS.Đinh Văn Mạnh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 85,
+        "email": null,
+        "name": "GS.TS.Nguyễn Đình Kiên",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 86,
+        "email": null,
+        "name": "TS.Nguyễn Đức Cường",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 87,
+        "email": null,
+        "name": "PGS.TS.Nguyễn Nam Hoàng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 88,
+        "email": null,
+        "name": "TS.Nguyễn Hồng Nam",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 89,
+        "email": null,
+        "name": "TS.Nguyễn Quỳnh Nga",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 90,
+        "email": null,
+        "name": "ThS.Vương Thị Hồng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 91,
+        "email": null,
+        "name": "CN.Phạm Hoàng Quốc Việt",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 92,
+        "email": null,
+        "name": "TS.Trần Mậu Danh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 93,
+        "email": null,
+        "name": "ThS.Vũ Minh Anh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 94,
+        "email": null,
+        "name": "TS.Phạm Minh Triển",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 95,
+        "email": null,
+        "name": "TS.Lưu Mạnh Hà",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 96,
+        "email": null,
+        "name": "TS.Dương Tuấn Mạnh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 97,
+        "email": null,
+        "name": "TS.Nguyễn Tiến Dũng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 98,
+        "email": null,
+        "name": "ThS.Kiều Hải Đăng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 99,
+        "email": null,
+        "name": "ThS.Hoàng Văn Thắng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 100,
+        "email": null,
+        "name": "TS.Phạm Thanh Hà",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 101,
+        "email": null,
+        "name": "TS.Nguyễn Anh Tuấn (HVKTQS)",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 102,
+        "email": null,
+        "name": "PGS.TS.Nguyễn Ngọc Hóa",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 103,
+        "email": null,
+        "name": "TS.Lương Thùy Liên",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 104,
+        "email": null,
+        "name": "CN.Lê Công Thương",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 105,
+        "email": null,
+        "name": "ThS.Phan Hoàng Anh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 106,
+        "email": null,
+        "name": "PGS.TS.Nguyễn Linh Trung",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 107,
+        "email": null,
+        "name": "TS.Đặng Thanh Hải",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 108,
+        "email": null,
+        "name": "ThS.Nguyễn Thanh Tùng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 109,
+        "email": null,
+        "name": "Trường ĐHKHTN",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 110,
+        "email": null,
+        "name": "TS.Hoàng Xuân Phương",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 111,
+        "email": null,
+        "name": "TS.Hoàng Văn Mạnh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 112,
+        "email": null,
+        "name": "PGS.TS.Lê Tuấn Anh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 113,
+        "email": null,
+        "name": "TS.Lê Thị Hiên",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 114,
+        "email": null,
+        "name": "TS.Vũ Thị Huyền",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 115,
+        "email": null,
+        "name": "PGS.TS.Trần Thị Minh Hằng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 116,
+        "email": null,
+        "name": "TS.Nguyễn Lê Khanh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 117,
+        "email": null,
+        "name": "TS.Vũ Quốc Tuấn",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 118,
+        "email": null,
+        "name": "ThS.Nguyễn Văn Cương",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 119,
+        "email": null,
+        "name": "PGS.TS.Trần Thu Hà",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 120,
+        "email": null,
+        "name": "TS.Nguyễn Ngọc Linh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 121,
+        "email": null,
+        "name": "GVC.ThS.Nguyễn Vinh Quang",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 122,
+        "email": null,
+        "name": "ThS.Phạm Đình Tuân",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 123,
+        "email": null,
+        "name": "GVCC.TS.Đặng Hữu Chung",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 124,
+        "email": null,
+        "name": "TS.Nguyễn Minh Tuấn (TS)",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 125,
+        "email": null,
+        "name": "PGS.TS.Nguyễn Việt Khoa",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 126,
+        "email": null,
+        "name": "TS.Nguyễn Thị Thìn",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 127,
+        "email": null,
+        "name": "TS.Hồ Thị Anh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 128,
+        "email": null,
+        "name": "TS.Phạm Tiến Thành",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 129,
+        "email": null,
+        "name": "TS.Hoàng Thị Hải Yến",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 130,
+        "email": null,
+        "name": "TS.Nguyễn Bích Vân",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 131,
+        "email": null,
+        "name": "ThS.Nguyễn Như Cường",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 132,
+        "email": null,
+        "name": "TS.Lê Văn Tuân",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 133,
+        "email": null,
+        "name": "PGS.TS.Nguyễn Phương Thái",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 134,
+        "email": null,
+        "name": "PGS.TS.Nguyễn Quốc Tuấn",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 135,
+        "email": null,
+        "name": "TS.Lâm Sinh Công",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 136,
+        "email": null,
+        "name": "ThS.Dư Thành Hưng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 137,
+        "email": null,
+        "name": "TS.Hồ Minh Toàn",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 138,
+        "email": null,
+        "name": "CN.Nguyễn Ngọc Quỳnh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 139,
+        "email": null,
+        "name": "ThS.Lương Việt Nguyên",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 140,
+        "email": null,
+        "name": "TS.Lê Hồng Hải",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 141,
+        "email": null,
+        "name": "PGS.TS.Nguyễn Phương Hoài Nam",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 142,
+        "email": null,
+        "name": "TS.TS.Nguyễn Thanh Lịch",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 143,
+        "email": null,
+        "name": "TS.Trần Anh Quân",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 144,
+        "email": null,
+        "name": "PGS.TS.Nguyễn Kiên Cường",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 145,
+        "email": null,
+        "name": "ThS.Nguyễn Năng Thiều",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 146,
+        "email": null,
+        "name": "TS.Bùi Trung Ninh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 147,
+        "email": null,
+        "name": "PGS.TS.Nguyễn Hoàng Hải",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 148,
+        "email": null,
+        "name": "PGS.TS.Nguyễn Trần Thuật",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 149,
+        "email": null,
+        "name": "CN.Ngô Kiên Tuấn",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 150,
+        "email": null,
+        "name": "TS.Trần Thanh Hải",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 151,
+        "email": null,
+        "name": "TS.Bùi Đình Tú",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 152,
+        "email": null,
+        "name": "PGS.TS.Đặng Thế Ba",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 153,
+        "email": null,
+        "name": "ThS.Nguyễn Văn Tùng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 154,
+        "email": null,
+        "name": "PGS.TS.Nguyễn Thế Hiện",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 155,
+        "email": null,
+        "name": "ThS.Đào Minh Thư",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 156,
+        "email": null,
+        "name": "CN.Lê Văn Thịnh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 157,
+        "email": null,
+        "name": "PGS.TS.Nguyễn Việt Anh (PGS)",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 158,
+        "email": null,
+        "name": "GS.TS.Hoàng Nam Nhật",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 159,
+        "email": null,
+        "name": "ThS.Trịnh Hoàng Quân",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 160,
+        "email": null,
+        "name": "PGS.TS.Trần Thị Lan Hương",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 161,
+        "email": null,
+        "name": "TS.Phạm Hồng Công",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 162,
+        "email": null,
+        "name": "ThS.Nguyễn Tuấn Anh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 163,
+        "email": null,
+        "name": "TS.Võ Đình Hiếu",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 164,
+        "email": null,
+        "name": "ThS.Phạm Thị Quỳnh Trang",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 165,
+        "email": null,
+        "name": "TS.Phạm Đức Quang",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 166,
+        "email": null,
+        "name": "TS.Nguyễn Đức Toàn",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 167,
+        "email": null,
+        "name": "GVC.TS.Lê Phê Đô",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 168,
+        "email": null,
+        "name": "ThS.Ngô Đình Đạt",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 169,
+        "email": null,
+        "name": "GS.TS.Chử Đức Trình",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 170,
+        "email": null,
+        "name": "ThS.Lê Minh Khôi",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 171,
+        "email": null,
+        "name": "TS.Nguyễn Ngọc Thắng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 172,
+        "email": null,
+        "name": "TS.Phạm Chung",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 173,
+        "email": null,
+        "name": "PGS.TS.Đỗ Ngọc Quỳnh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 174,
+        "email": null,
+        "name": "ThS.Vũ Nguyên Thức",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 175,
+        "email": null,
+        "name": "TS.Phạm Duy Hưng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 176,
+        "email": null,
+        "name": "TS.Phạm Mạnh Linh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 177,
+        "email": null,
+        "name": "ThS.Lưu Quang Thắng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 178,
+        "email": null,
+        "name": "TS.Nguyễn Kiêm Hùng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 179,
+        "email": null,
+        "name": "CN.Trần Thanh Hằng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 180,
+        "email": null,
+        "name": "TS.Hà Minh Lam",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 181,
+        "email": null,
+        "name": "PGS.TS.Đỗ Thị Hương Giang",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 182,
+        "email": null,
+        "name": "ThS.Hồ Anh Tâm",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 183,
+        "email": null,
+        "name": "PGS.TS.Trương Anh Hoàng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 184,
+        "email": null,
+        "name": "CN.Nguyễn Thị Huyền",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 185,
+        "email": null,
+        "name": "ThS.Phan Thị Hoàng Mai",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 186,
+        "email": null,
+        "name": "TS.Lê Đình Anh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 187,
+        "email": null,
+        "name": "TS.Trần Mai Vũ",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 188,
+        "email": null,
+        "name": "TS.Tạ Việt Cường",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 189,
+        "email": null,
+        "name": "PGS.TS.Nguyễn Trí Thành",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 190,
+        "email": null,
+        "name": "TS.Vũ Lâm Đông",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 191,
+        "email": null,
+        "name": "PGS.TS.Trần Xuân Tú",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 192,
+        "email": null,
+        "name": "ThS.Bùi Thị Hà",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 193,
+        "email": null,
+        "name": "TS.Tô Văn Khánh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 194,
+        "email": null,
+        "name": "TS.Đỗ Đức Đông",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 195,
+        "email": null,
+        "name": "GVC.ThS.Vũ Bá Duy",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 196,
+        "email": null,
+        "name": "TS.Nguyễn Đăng Phú",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 197,
+        "email": null,
+        "name": "TS.Nguyễn Thị Thanh Vân",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 198,
+        "email": null,
+        "name": "TS.Nguyễn Chính Kiên",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 199,
+        "email": null,
+        "name": "TS.Vũ Thị Hồng Nhạn",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 200,
+        "email": null,
+        "name": "ThS.Dương Thị Thanh Hương",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 201,
+        "email": null,
+        "name": "PGS.TS.Mai Anh Tuấn",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 202,
+        "email": null,
+        "name": "CN.Đỗ Thái Dương",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 203,
+        "email": null,
+        "name": "ThS.Nguyễn Chỉ Dũng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 204,
+        "email": null,
+        "name": "CN.Nguyễn Hoàng Quân (CN)",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 205,
+        "email": null,
+        "name": "PGS.TS.Phạm Công Nhất",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 206,
+        "email": null,
+        "name": "GS.TS.Lê Huy Hàm",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 207,
+        "email": null,
+        "name": "TS.Lê Nguyên Khôi",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 208,
+        "email": null,
+        "name": "TS.Nguyễn Thế Hoàng Anh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 209,
+        "email": null,
+        "name": "TS.Nguyễn Ngọc An",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 210,
+        "email": null,
+        "name": "TS.Nguyễn Tiến Cường",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 211,
+        "email": null,
+        "name": "TS.Hoàng Minh Tuấn",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 212,
+        "email": null,
+        "name": "GVC.TS.Lê Thị Hải Hà",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 213,
+        "email": null,
+        "name": "TS.Dương Lê Minh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 214,
+        "email": null,
+        "name": "TS.Lê Đức Trọng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 215,
+        "email": null,
+        "name": "PGS.TS.Trương Ninh Thuận",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 216,
+        "email": null,
+        "name": "PGS.TS.Lê Sỹ Vinh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 217,
+        "email": null,
+        "name": "ThS.Nguyễn Thị Cẩm Vân",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 218,
+        "email": null,
+        "name": "PGS.TS.Lã Đức Việt",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 219,
+        "email": null,
+        "name": "TS.Trần Trúc Mai",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 220,
+        "email": null,
+        "name": "KS.Nguyễn Đình Khoa",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 221,
+        "email": null,
+        "name": "TS.Nguyễn Tất Thắng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 222,
+        "email": null,
+        "name": "TS.Lê Quang Minh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 223,
+        "email": null,
+        "name": "TS.Trần Thị Thuý Quỳnh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 224,
+        "email": null,
+        "name": "PGS.TS.Phạm Ngọc Hùng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 225,
+        "email": null,
+        "name": "ThS.Nguyễn Thị Kim Thanh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 226,
+        "email": null,
+        "name": "ThS.Hồ Đắc Phương",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 227,
+        "email": null,
+        "name": "ThS.Nguyễn Thị Thanh Thúy",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 228,
+        "email": null,
+        "name": "CN.Nguyễn Thành Sơn",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 229,
+        "email": null,
+        "name": "PGS.TS.Nguyễn Hoài Sơn",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 230,
+        "email": null,
+        "name": "ThS.Đặng Song Hà",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 231,
+        "email": null,
+        "name": "TS.Bùi Duy Hiếu",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 232,
+        "email": null,
+        "name": "CN.Phạm Xuân Lộc",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 233,
+        "email": null,
+        "name": "GS.TSKH.Dương Ngọc Hải",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 234,
+        "email": null,
+        "name": "TS.Trần Dương Trí",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 235,
+        "email": null,
+        "name": "TS.Hoàng Thị Điệp",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 236,
+        "email": null,
+        "name": "GS.TS.Bạch Gia Dương",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 237,
+        "email": null,
+        "name": "ThS.Đỗ Thị Thu Hà",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 238,
+        "email": null,
+        "name": "TS.Trần Hồng Nguyên",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 239,
+        "email": null,
+        "name": "CN.Phạm Tuấn Dũng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 240,
+        "email": null,
+        "name": "ThS.Nguyễn Minh Trang",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 241,
+        "email": null,
+        "name": "TS.Nguyễn Thị Hậu",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 242,
+        "email": null,
+        "name": "CN.Nguyễn Minh Tuấn",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 243,
+        "email": null,
+        "name": "GS.TS.Nguyễn Thanh Thủy",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 244,
+        "email": null,
+        "name": "ThS.Lê Tiến Dung",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 245,
+        "email": null,
+        "name": "TS.Lê Xuân Huy",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 246,
+        "email": null,
+        "name": "ThS.Hoàng Thị Ngọc Trang",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 247,
+        "email": null,
+        "name": "ThS.Dương Ngọc Sơn",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 248,
+        "email": null,
+        "name": "ThS.Bùi Nam Dương",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 249,
+        "email": null,
+        "name": "ThS.Đỗ Hoàng Kiên",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 250,
+        "email": null,
+        "name": "TS.Phạm Ngọc Thảo",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 251,
+        "email": null,
+        "name": "TS.Đào Quang Khải",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 252,
+        "email": null,
+        "name": "ThS.Nguyễn Việt Tân",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 253,
+        "email": null,
+        "name": "ThS.Trần Kim Hoàng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 254,
+        "email": null,
+        "name": "TS.Hoàng Mai Hà",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 255,
+        "email": null,
+        "name": "TS.Nguyễn Xuân Trường",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 256,
+        "email": null,
+        "name": "TS.Nguyễn Hải Bình",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 257,
+        "email": null,
+        "name": "TS.Lê Hoàng Quỳnh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 258,
+        "email": null,
+        "name": "TS.Trần Quốc Long",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 259,
+        "email": null,
+        "name": "TS.Đỗ Quang Lộc",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 260,
+        "email": null,
+        "name": "TS.Nguyễn Đại Thọ",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 261,
+        "email": null,
+        "name": "TS.Trần Cao Quyền",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 262,
+        "email": null,
+        "name": "TS.Trần Quốc Quân",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 263,
+        "email": null,
+        "name": "PGS.TS.Nguyễn Hải Châu",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 264,
+        "email": null,
+        "name": "TS.Đinh Văn Duy",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 265,
+        "email": null,
+        "name": "KS.Nguyễn Phương Chi",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 266,
+        "email": null,
+        "name": "TS.Dư Phương Hạnh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 267,
+        "email": null,
+        "name": "ThS.Đào Thị Bích Thảo",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 268,
+        "email": null,
+        "name": "ThS.Võ Quốc Bảo",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 269,
+        "email": null,
+        "name": "TS.TS.Nguyễn Đức Tùng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 270,
+        "email": null,
+        "name": "ThS.ThS.Đỗ Mạnh Hùng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 271,
+        "email": null,
+        "name": "ThS.ThS.Nguyễn Thị Hồng Việt",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 272,
+        "email": null,
+        "name": "PGS.TS.Nguyễn Hà Nam",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 273,
+        "email": null,
+        "name": "CN.Trần Minh Đức",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 274,
+        "email": null,
+        "name": "TS.Vũ Minh Pháp",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 275,
+        "email": null,
+        "name": "PGS.TS.Bùi Đình Trí",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 276,
+        "email": null,
+        "name": "PGS.TS.Nguyễn Thị Nhật Thanh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 277,
+        "email": null,
+        "name": "TS.Trần Thị Thúy Quỳnh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 278,
+        "email": null,
+        "name": "CN.Đỗ Hải Sơn",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 279,
+        "email": null,
+        "name": "PGS.TS.Phan Xuân Hiếu",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 280,
+        "email": null,
+        "name": "TS.Dương Xuân Biên",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 281,
+        "email": null,
+        "name": "TS.Trần Hoàng Việt",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 282,
+        "email": null,
+        "name": "ThS.Ngô Lê Minh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 283,
+        "email": null,
+        "name": "TS.Phạm Hoàng Giang",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 284,
+        "email": null,
+        "name": "ThS.Mai Thanh Minh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 285,
+        "email": null,
+        "name": "TS.Trần Thế Hùng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 286,
+        "email": null,
+        "name": "KS.Ngô Quý Thêm",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 287,
+        "email": null,
+        "name": "KS.Nguyễn Tiến Hùng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 288,
+        "email": null,
+        "name": "TS.Nguyễn Trọng Nghĩa",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 289,
+        "email": null,
+        "name": "TS.Nghiêm Thị Hà Liên",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 290,
+        "email": null,
+        "name": "PGS.TS.Phạm Đức Thắng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 291,
+        "email": null,
+        "name": "TS.Phùng Mạnh Dương",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 292,
+        "email": null,
+        "name": "TS.Nguyễn Thị Ngọc Diệp",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 293,
+        "email": null,
+        "name": "ThS.Nguyễn Hồng Phong",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 294,
+        "email": null,
+        "name": "TS.Nguyễn Thị Yến Mai",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 295,
+        "email": null,
+        "name": "ThS.Nguyễn Quang Minh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 296,
+        "email": null,
+        "name": "ThS.Nguyễn Minh Thuận",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 297,
+        "email": null,
+        "name": "TS.Nguyễn Thị Thúy Hằng ML",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 298,
+        "email": null,
+        "name": "TS.Nguyễn Duy Trung",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 299,
+        "email": null,
+        "name": "CN.Nguyễn Văn Hoàn",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 300,
+        "email": null,
+        "name": "PGS.TS.Đinh Văn Châu",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 301,
+        "email": null,
+        "name": "TS.Nguyễn Văn Thức",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 302,
+        "email": null,
+        "name": "ThS.Tạ Thị Bích Ngọc",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 303,
+        "email": null,
+        "name": "TS.Đặng Thị Lan",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 304,
+        "email": null,
+        "name": "PGS.TS.Ngô Quang Minh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 305,
+        "email": null,
+        "name": "TS.Vũ Dương",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 306,
+        "email": null,
+        "name": "TS.Trần Thị Quang Hoa",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 307,
+        "email": null,
+        "name": "TS.Cao Văn Mai",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 308,
+        "email": null,
+        "name": "CN.Ngô Minh Hoàng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 309,
+        "email": null,
+        "name": "CN.Nghiêm Xuân Hiến",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 310,
+        "email": null,
+        "name": "CN.Nguyễn Thanh Bình",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 311,
+        "email": null,
+        "name": "TS.Nguyễn Phương Thúy",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 312,
+        "email": null,
+        "name": "TS.Đặng Nam Khánh",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 313,
+        "email": null,
+        "name": "ThS.Chử Văn An",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 314,
+        "email": null,
+        "name": "TS.Lê Thị Hợi",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 315,
+        "email": null,
+        "name": "ThS.Lê Thế Soát",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 316,
+        "email": null,
+        "name": "TS.Hoàng Thanh Tùng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 317,
+        "email": null,
+        "name": "Khoa CNTT",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 318,
+        "email": null,
+        "name": "Khoa Điện tử Viễn thông",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 319,
+        "email": null,
+        "name": "Khoa CHKT&TĐH",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 320,
+        "email": null,
+        "name": "PGS.TS.Phạm Mạnh Thắng",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 321,
+        "email": null,
+        "name": "Viện HKVT",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 322,
+        "email": null,
+        "name": "Bộ môn công nghệ XD-GT",
+        "falcuty": null,
+        "level": null
+    },
+    {
+        "id": 323,
+        "email": null,
+        "name": "Khoa VLKT&CNNN",
+        "falcuty": null,
+        "level": null
     }
 ]
