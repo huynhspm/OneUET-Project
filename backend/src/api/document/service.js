@@ -53,7 +53,6 @@ async function uploadFile(name) {
 
 async function generatePublicUrl(id) {
 	try {
-		// const fileId = '1rJnEYdfhkzmb1I0ij3wYldrjaro0aO6t';
 		await drive.permissions.create({
 			fileId: id,
 			requestBody: {
@@ -65,16 +64,11 @@ async function generatePublicUrl(id) {
 			fileId: id,
 			fields: "webViewLink, webContentLink",
 		});
-		// result.push({
-		// 	customViewLink: t1.concat(id, t2)
-		// });
-		// console.log(result)
 		const res = {
 			linkDownload: result.data.webContentLink,
 			linkView: t1.concat(id, t2),
 		};
 		return res;
-		// console.log(result.data);
 	} catch (error) {
 		console.log(error.message);
 	}
@@ -339,10 +333,10 @@ const getDocuments = async (req) => {
 const updateDocument = async (req) => {
 	try {
 		let { document, message, status } = await verifyDocument(req);
-		let course, teacher, comments;
+		let updatedDocument = req.body;
 
 		if (document) {
-			document.update({ status: "public" });
+			document.update(updatedDocument);
 			message = "Update document successfully";
 			status = ResponseCode.OK;
 		}
