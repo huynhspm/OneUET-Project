@@ -48,7 +48,7 @@ const updateUserData = async (token, data) => {
 
 const Information = (props) => {
     // Basic
-    const [avatar, setAvatar] = useState("https://randomuser.me/api/portraits/women/79.jpg");
+    const [avatar, setAvatar] = useState(null);
 
     const [code, setCode] = useState(null);
     const [name, setName] = useState(null);
