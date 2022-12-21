@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react';
+import Image from 'mui-image';
+import { ui_avatar_api } from '../../../../utils/config';
 import Title from '../../../../components/Title';
-import { Box, Grid, Button, IconButton, TextField, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import { GenderValue } from '../../../../utils/information/gender';
 import EditIcon from '@mui/icons-material/Edit';
 import CheckIcon from '@mui/icons-material/Check';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import Image from 'mui-image';
+import { Box, Grid, Button, IconButton, TextField, FormControl, InputLabel, Select, MenuItem, Typography } from '@mui/material';
 
 const Basic = (props) => {
     const [editable, setEditable] = React.useState(false);
-
-    const [avatar, setAvatar] = React.useState("");
 
     const Submit = () => {
         console.log("Basic Information submited!");
@@ -21,7 +21,9 @@ const Basic = (props) => {
             birthday: props.birthday,
             gender: props.gender,
             email: props.emailVNU,
-            otherEmail: props.email
+            otherEmail: props.email,
+            phone: props.phone,
+            address: props.address
         });
     }
 
@@ -37,7 +39,7 @@ const Basic = (props) => {
         if (props.name !== undefined && props.name !== null && props.name !== "") {
             name = props.name.replaceAll(" ", "+");
         }
-        setAvatar("https://ui-avatars.com/api/?name=" + name + "&background=eeeeee");
+        props.setAvatar(ui_avatar_api + "name=" + name + "&background=eeeeee");
     }, [props.name]);
 
     return (
@@ -88,11 +90,14 @@ const Basic = (props) => {
                                 m: 1,
                                 minHeight: 200,
                                 justifyContent: "center",
-                                alignItems: "center"
+                                alignItems: "center",
+                                flexDirection: 'column',
                             }}
                         >
-                            <Image src={avatar} sx={{ maxWidth: 120 }} duration={0} />
-                            <Button component="div" variant="outlined" disabled={!editable}>Cập nhật</Button>
+                            <Image src={props.avatar} sx={{ maxWidth: 120 }} duration={0} />
+                            <Typography fontWeight='bold' sx={{ mt: 2 }}>{props.name}</Typography>
+                            <Typography>{props.code}</Typography>
+                            <Button component="div" variant="outlined" disabled={!editable} sx={{ mt: 2 }}>Cập nhật</Button>
                         </Box>
                     </Grid>
                     <Grid item xs={10}>
@@ -153,9 +158,9 @@ const Basic = (props) => {
                                         }}
                                         label="Giới tính"
                                     >
-                                        <MenuItem value={0}>Nam</MenuItem>
-                                        <MenuItem value={1}>Nữ</MenuItem>
-                                        <MenuItem value={2}>Khác</MenuItem>
+                                        {GenderValue.map((value, index) => (
+                                            <MenuItem key={index} value={index}>{value}</MenuItem>
+                                        ))}
                                     </Select>
                                 </FormControl>
                             </Grid>
@@ -185,6 +190,34 @@ const Basic = (props) => {
                                     }}
                                     id="email"
                                     type="email"
+                                />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <TextField
+                                    required
+                                    disabled={!editable}
+                                    fullWidth
+                                    label="Số điện thoại"
+                                    value={ControlValue(props.phone)}
+                                    onChange={(event) => {
+                                        props.setPhone(event.target.value);
+                                    }}
+                                    id="phone"
+                                    type="phone"
+                                />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <TextField
+                                    required
+                                    disabled={!editable}
+                                    fullWidth
+                                    label="Địa chỉ"
+                                    value={ControlValue(props.address)}
+                                    onChange={(event) => {
+                                        props.setAddress(event.target.value);
+                                    }}
+                                    id="address"
+                                    type="address"
                                 />
                             </Grid>
                         </Grid>
