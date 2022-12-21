@@ -110,24 +110,23 @@ export default function ValidationGrade(props) {
   const handleCloseSnackbar = () => setSnackbar(null);
 
   const navigate = useNavigate();
-  
 
-  // // user token
-  // const [token, setToken] = useState("");
+  // user token
+  const [token, setToken] = useState("");
 
-  // // fetch user token
-  // useEffect(() => {
-  //   console.log(token);
-  //   if (token === "") {
-  //     const lastToken = sessionStorage.getItem("token");
-  //     if (lastToken !== null && lastToken !== undefined) {
-  //       console.log(lastToken);
-  //       setToken(lastToken);
-  //     } else {
-  //       navigate("/login");
-  //     }
-  //   }
-  // }, [token, navigate]);
+  // fetch user token
+  useEffect(() => {
+    console.log(token);
+    if (token === "") {
+      const lastToken = sessionStorage.getItem("token");
+      if (lastToken !== null && lastToken !== undefined) {
+        console.log(lastToken);
+        setToken(lastToken);
+      } else {
+        navigate("/login");
+      }
+    }
+  }, [token, navigate]);
 
   const getUserData = async (token) => {
     console.log();
@@ -144,11 +143,6 @@ export default function ValidationGrade(props) {
 
   const location = useLocation();
   const linkPDF = location.state.linkPDF;
-
-  	const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZUlkIjoxLCJpYXQiOjE2NzA0ODk2ODEsImV4cCI6MTY3MzA4MTY4MX0.rSseHQSrXVyf_PyY3WAIoU07AKavd3-XP-RIXgXRgr4";
-
-
 
   useEffect(() => {
     if (token !== "") {
