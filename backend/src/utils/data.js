@@ -137,6 +137,10 @@ async function createUser() {
 
 		if (student) {
 			user["studentId"] = student.id;
+			user["avatar"] =
+				"https://ui-avatars.com/api/?name=" +
+				student.name.replaceAll(" ", "+") +
+				"&background=eeeeee";
 			await models.User.create(user);
 		}
 	}

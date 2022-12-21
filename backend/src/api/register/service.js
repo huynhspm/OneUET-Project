@@ -41,6 +41,10 @@ const register = async (req) => {
 			newUser["studentId"] = student.id;
 			newUser["roleId"] = RoleCode.User;
 			newUser["password"] = hashPassword(newUser.password);
+			newUser["avatar"] =
+				"https://ui-avatars.com/api/?name=" +
+				student.name.replaceAll(" ", "+") +
+				"&background=eeeeee";
 			await User.create(newUser);
 
 			message = "Register successfully but not active";
