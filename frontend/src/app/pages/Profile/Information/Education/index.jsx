@@ -138,7 +138,7 @@ const Education = (props) => {
                         <FormControl fullWidth>
                             <InputLabel id="program-label">Chương trình đào tạo</InputLabel>
                             <Select
-                                disabled={!editable}
+                                disabled
                                 labelId="program-label"
                                 id="program"
                                 value={ControlValue(props.program)}
@@ -161,7 +161,7 @@ const Education = (props) => {
                         <FormControl fullWidth>
                             <InputLabel id="academic-year-label">Khoá</InputLabel>
                             <Select
-                                disabled={!editable}
+                                disabled
                                 labelId="academic-year-label"
                                 id="academic-year"
                                 value={ControlValue(props.academicYear)}
@@ -184,7 +184,7 @@ const Education = (props) => {
                         <FormControl fullWidth>
                             <InputLabel id="unit-label">Đơn vị đào tạo</InputLabel>
                             <Select
-                                disabled={!editable}
+                                disabled
                                 labelId="unit-label"
                                 id="unit"
                                 value={ControlValue(props.unit)}
@@ -207,7 +207,7 @@ const Education = (props) => {
                         <FormControl fullWidth>
                             <InputLabel id="class-label">Lớp quản lý</InputLabel>
                             <Select
-                                disabled={!editable}
+                                disabled
                                 labelId="class-label"
                                 id="class"
                                 value={ControlValue(classIndex)}
