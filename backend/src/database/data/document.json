@@ -111,5 +111,33 @@
 		"major": "Kỹ thuật máy tính",
 		"linkView": "https://arxiv.org/pdf/1910.10093.pdf",
 		"linkDownload": "https://arxiv.org/pdf/1910.10093.pdf"
+	},
+	{
+		"year": 2022,
+		"category": "Giáo trình",
+		"name": "Xác suất thống kê",
+		"fileId": 9,
+		"userId": 3,
+		"teacherId": 3,
+		"courseId": 2,
+		"status": "private",
+		"unit": "Khoa Công nghệ Thông tin",
+		"major": "Công nghệ thông tin",
+		"linkView": "https://docs.google.com/viewer?srcid=1YtZIsRVA6vjCoUv7Ig59u40wTdVhYSUD&pid=explorer&efh=false&a=v&chrome=false&embedded=true",
+		"linkDownload": "https://drive.google.com/uc?id=1YtZIsRVA6vjCoUv7Ig59u40wTdVhYSUD&export=download"
+	},
+	{
+		"year": 2022,
+		"category": "Giáo trình",
+		"name": "Web",
+		"fileId": 9,
+		"userId": 3,
+		"teacherId": 3,
+		"courseId": 2,
+		"status": "private",
+		"unit": "Khoa Công nghệ Thông tin",
+		"major": "Công nghệ thông tin",
+		"linkView": "https://docs.google.com/viewer?srcid=1u4-IutDLOkAriKlI716fyd5hx0DVqrGv&pid=explorer&efh=false&a=v&chrome=false&embedded=true",
+		"linkDownload": "https://drive.google.com/uc?id=1u4-IutDLOkAriKlI716fyd5hx0DVqrGv&export=download"
 	}
 ]
