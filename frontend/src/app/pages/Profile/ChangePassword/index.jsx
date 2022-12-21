@@ -38,9 +38,9 @@ const ChangePassword = (props) => {
             validation = false;
         }
 
-		if (!validation) {
-			return;
-		}
+        if (!validation) {
+            return;
+        }
 
         // Change password
         const config = {
@@ -130,10 +130,11 @@ const ChangePassword = (props) => {
                                         justifyContent: "right"
                                     }}
                                 >
-                                    <Button 
-                                    component="div" 
-                                    variant="outlined" 
-                                    onClick={handleSubmit}
+                                    <Button
+                                        type="submit"
+                                        component="div"
+                                        variant="outlined"
+                                        onClick={handleSubmit}
                                     >Đổi mật khẩu</Button>
                                 </Box>
                             </Grid>

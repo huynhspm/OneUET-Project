@@ -21,27 +21,25 @@ export default function CustomizedSelects() {
 
 	const navigate = useNavigate();
 
-	// user token
-	const [token, setToken] = useState(
-		"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZUlkIjoxLCJpYXQiOjE2NzA0ODk2ODEsImV4cCI6MTY3MzA4MTY4MX0.rSseHQSrXVyf_PyY3WAIoU07AKavd3-XP-RIXgXRgr4"
-	);
+  // user token
+  const [token, setToken] = useState("");
 
-	// fetch user token
-	const getToken = () => {
-		if (token === "") {
-			const lastToken = sessionStorage.getItem("token");
-			if (lastToken !== null && lastToken !== undefined) {
-				console.log(lastToken);
-				setToken(lastToken);
-			} else {
-				navigate("/login");
-			}
-		}
-	};
+  // fetch user token
+  const getToken = () => {
+    if (token === "") {
+      const lastToken = sessionStorage.getItem("token");
+      if (lastToken !== null && lastToken !== undefined) {
+        // console.log(lastToken);
+        setToken(lastToken);
+      } else {
+        navigate("/login");
+      }
+    }
+  };
 
-	useEffect(() => {
-		// getToken();
-	}, [navigate, token]);
+  useEffect(() => {
+    getToken();
+  }, [navigate, token]);
 
 	useEffect(() => {
 		fetchData();
@@ -138,45 +136,37 @@ export default function CustomizedSelects() {
 						</NativeSelect>
 					</FormControl>
 				</Box>
-
-				<Box>
-					<Button
-						sx={{
-							width: 200,
-							height: "7vh",
-							mt: 5,
-							backgroundColor: "#FFA69E",
-							"&:hover": {
-								backgroundColor: "#DFA8BB",
-							},
-						}}
-						variant="contained"
-						onClick={() => {
-							fetchData();
-							fetchData();
-							console.log(classes);
-						}}
-					>
-						Tìm kiếm
-					</Button>
-				</Box>
-			</div>
-			<Box>
-				{classes.length !== 0 &&
-					classes.map((id, index) => (
-						<Button
-							sx={{ width: "100%", height: "7vh", mt: 2 }}
-							variant="contained"
-							onClick={async () => {
-								navigate("/courses", {
-									state: { id: classes[index].id },
-								});
-							}}
-						>
-							{classes[index].code}
-						</Button>
-					))}
-			</Box>
-		</div>
-	);
+        <Box>
+          <Button
+            sx={{
+              width: 200, height: "7vh", mt: 5, backgroundColor: "#FFA69E", '&:hover': {
+                backgroundColor: "#DFA8BB",
+              }
+            }}
+            variant="contained"
+            onClick={() => {
+              fetchData();
+              fetchData();
+              console.log(classes);
+            }}>
+            Tìm kiếm
+          </Button>
+        </Box>
+      </div>
+      <Box>
+        {classes.length !== 0 &&
+          classes.map((id, index) => (
+            <Button
+              sx={{ width: "100%", height: "7vh", mt: 2 }}
+              variant="contained"
+              onClick={async () => {
+                navigate("/courses", {
+                  state: { id: classes[index].id },
+                });
+              }}>
+              {classes[index].code}
+            </Button>
+          ))}
+      </Box>
+    </div>);
 }
