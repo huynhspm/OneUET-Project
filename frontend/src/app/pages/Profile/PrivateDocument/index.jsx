@@ -41,12 +41,10 @@ const PrivateDocument = (props) => {
     const { docId } = useParams();
     return (
         <>
-
             {docId === "" && <Main />}
             {docIds.map((id, index) => (
                 docId === String(id) && <PrvDocView key={id} id={id} />
             ))}
-
         </>
     );
 };

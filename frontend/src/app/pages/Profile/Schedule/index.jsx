@@ -1,27 +1,39 @@
-import React, { startTransition, useRef } from "react";
+import React, { useRef } from "react";
 import {
   Scheduler,
+  SchedulerItem,
   TimelineView,
   DayView,
   WeekView,
   MonthView,
   AgendaView,
 } from "@progress/kendo-react-scheduler";
+import styled from 'styled-components'
 import "@progress/kendo-theme-default/dist/all.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { guid } from "@progress/kendo-react-common";
-
+import Button from '@mui/material/Button';
 import { sectionMap } from '../../../utils/config';
-import { Button } from '@mui/material';
 import { PDFExport, savePDF } from '@progress/kendo-react-pdf';
-
+import "./styles.css"
 
 const compareById = (matchingItem) => (item) => matchingItem.id === item.id;
-const rand = ["MO", "TU", "WE", "TH", "FR", "SA", "SU"]
+
+const CustomScheduler = styled(Scheduler)`
+    .k-scheduler-layout-flex .k-scheduler-cell {
+      min-height: 90px;
+    }
+`;
+const NeatScheduler = styled(Scheduler)`
+    .k-scheduler-layout-flex .k-scheduler-cell {
+      min-height: 30px;
+    }
+`;
 
 const RoomScheduler = (props) => {
   const [data, setData] = useState([]);
+  const [isNeat, setIsNeat] = useState(false);
   const token =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkIjoyLCJpYXQiOjE2NzA0ODk2NDgsImV4cCI6MTY3MzA4MTY0OH0.kKVgxO566QaVpvGbqtKBmr_I_Sl8RSlEk8Nhr-GWM74";
   const config = {
@@ -38,7 +50,6 @@ const RoomScheduler = (props) => {
       ["-08-29T", "-11-12T"],
       ["-01-30T", "-05-14T"],
     ];
-    console.log("AAA", semesters)
     let sem_index = parseInt(semesters[2]) - 1;
     return {
       start: String(parseInt(semesters[sem_index]) + 1) + sems[sem_index][0],
@@ -46,14 +57,44 @@ const RoomScheduler = (props) => {
     };
   }
 
-  function convertDayOfWeek(dayNumber){
-    if(dayNumber == "2") return "MO"
-    if(dayNumber == "3") return "TU"
-    if(dayNumber == "4") return "WE"
-    if(dayNumber == "5") return "TH"
-    if(dayNumber == "6") return "FR"
-    if(dayNumber == "7") return "SA"
-    if(dayNumber == "CN") return "SU"
+  const CustomItem = (props) => {
+    // console.log(props.dataItem.title)
+    let title = props.dataItem.title
+    let titles = title.split("<br>")
+    let newProps = Object.assign({}, props);
+
+    const childrens = titles.map((val, index) => {
+      if (index === 0) return <div className="titleScheduleItem">{val}</div>
+      if (isNeat === false) {
+        let vals = val.split("<space>")
+        return <div><strong>{vals[0]}</strong>{vals[1]}</div>
+      }
+    });
+
+    newProps.children = <div>{childrens}</div>
+    return (
+      <SchedulerItem
+        {...newProps}
+        style={{
+          ...newProps.style,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "#FFA69E",
+          color: "black",
+        }}
+      />)
+  };
+
+
+  function convertDayOfWeek(dayNumber) {
+    if (dayNumber === "2") return "MO"
+    if (dayNumber === "3") return "TU"
+    if (dayNumber === "4") return "WE"
+    if (dayNumber === "5") return "TH"
+    if (dayNumber === "6") return "FR"
+    if (dayNumber === "7") return "SA"
+    if (dayNumber === "CN") return "SU"
   }
 
   const fetchData = async () => {
@@ -64,15 +105,18 @@ const RoomScheduler = (props) => {
         let classes = res.data.data.classes.studyingClasses;
         let tmp_data = [];
         for (let index in classes) {
-          console.log(classes.length ,classes[index]);
-          if(classes[index].section === null || classes[index].classroom === null)
+          console.log(classes.length, classes[index]);
+          if (classes[index].section === null || classes[index].classroom === null)
             continue
           let sections = classes[index].section.split("-");
           let semesters = extractSemester(classes[index].semester);
           let classroom = classes[index].classroom;
           let group = classes[index].group;
-          let dayOfWeek = rand[index]; // convertDayOfWeek(class[index].dayOfWeek)
-          let nameTeacher = classes[index].nameTeacher
+          let dayOfWeek = convertDayOfWeek(classes[index].dayOfWeek)
+          let nameTeacher = ""
+          for (let j in classes[index].teachers) {
+            nameTeacher += classes[index].teachers[j].name
+          }
 
 
           tmp_data.push({
@@ -82,9 +126,9 @@ const RoomScheduler = (props) => {
               semesters.start + sectionMap[parseInt(sections[1]) + 1]
             ),
             isAllDay: false,
-            recurrenceRule: "FREQ=WEEKLY;BYDAY=" + dayOfWeek + ";COUNT=15",
+            recurrenceRule: "FREQ=WEEKLY;BYDAY=" + dayOfWeek + ";COUNT=20",
             recurrenceExceptions: [],
-            title: classes[index].code + "\n" + classroom + "\n" + "Nhóm " + group + "\n" + nameTeacher,
+            title: classes[index].course.name + "<br>" + "Mã lớp: <space>" + classes[index].code + "<br>" + "Giảng đường: <space>" + classroom + "<br>" + "Nhóm: <space>" + group + "<br>" + "Giảng viên: <space>" + nameTeacher,
             RoomID: undefined,
           });
         }
@@ -119,23 +163,39 @@ const RoomScheduler = (props) => {
     pdfExportComponent.current.save();
   };
 
+  const handleNeatSchedule = () => {
+    setIsNeat(!isNeat)
+  }
+
   return (
     <div className="k-my-8">
-      <div className="k-mb-4 k-font-weight-bold">Book a room</div>
       <Button onClick={handleExportWithComponent}>EXPORT SCHEDULE</Button>
+      <Button onClick={handleNeatSchedule}>{isNeat === true ? "FULL INFORMATION" : "COMPACT INFORMATION"}</Button>
       <PDFExport ref={pdfExportComponent} papersize="A4">
-        <Scheduler
-          // editable
-          data={data}
-          // onDataChange={onDataChange}
-          // resources={[meetingRooms]}
-          // height={38*15}
-          // footer="false"
-          defaultView="week"
-        >
-          <WeekView startTime={"07:00"} endTime={"19:00"} slotDivisions={1} />
-          <DayView />
-        </Scheduler>
+        {isNeat === false ?
+          (
+            <CustomScheduler
+              data={data}
+              onDataChange={onDataChange}
+              height={100 * 15}
+              defaultView="week"
+              item={CustomItem}
+            >
+
+              <WeekView workDayStart={"07:00"} workDayEnd={"19:00"} slotDivisions={1} currentTimeMarker={false}/>
+            </CustomScheduler>
+          ) : (
+            <NeatScheduler
+              data={data}
+              onDataChange={onDataChange}
+              height={50 * 15}
+              defaultView="week"
+              item={CustomItem}
+            >
+
+              <WeekView workDayStart={"07:00"} workDayEnd={"19:00"} slotDivisions={1} currentTimeMarker={false}/>
+            </NeatScheduler>
+          )}
       </PDFExport>
     </div>
   );

@@ -163,6 +163,26 @@ const getDocument = async (req, res) => {
 	}
 };
 
+// PUT: /document/:id
+const updateDocument = async (req, res) => {
+	try {
+		const result = await service.updateDocument(req);
+		const { data, message, status } = result;
+
+		res.status(status).json({
+			data: data,
+			message: message,
+			status: status,
+		});
+	} catch (e) {
+		res.status(ResponseCode.Bad_Request).json({
+			data: e.message,
+			message: "Couldn't update document",
+			status: ResponseCode.Bad_Request,
+		});
+	}
+};
+
 // DELETE: /document/:id
 const deleteDocument = async (req, res) => {
 	try {
@@ -192,5 +212,6 @@ module.exports = {
 	deleteMyDocument,
 	getDocuments,
 	getDocument,
+	updateDocument,
 	deleteDocument,
 };

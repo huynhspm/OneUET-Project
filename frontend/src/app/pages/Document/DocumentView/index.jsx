@@ -19,6 +19,9 @@ const DocumentView = (props) => {
     const [linkDownload, setLinkDownload] = useState();
     const [dateUploaded, setDateUploaded] = useState();
     const [comments, setComments] = useState([]);
+    const [belongToMe, setBelongToMe] = useState();
+    const [status, setStatus] = useState();
+
     const docId = props.id;
 
     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkcyI6MiwiaWF0IjoxNjcwNDM2ODU2LCJleHAiOjE2NzMwMjg4NTZ9.2G84rwn7b1FcD60TAbxcljmTylOZJ4VXz2Y932g55bo'
@@ -53,7 +56,8 @@ const DocumentView = (props) => {
                         tmp_comments.push(data.comments[property]);
                     }
                     setComments(tmp_comments);
-                    // console.log(tmp_comments);
+                    setBelongToMe(data.belongToMe);
+                    setStatus(data.document.status)
                     setDateUploaded(data.document.updatedAt);
                 });
         } catch (e) {
@@ -80,7 +84,7 @@ const DocumentView = (props) => {
                             flexDirection: 'column',
                         }}
                     >
-                        <iframe src={pdf_link} height='700vh' />
+                        <iframe src={pdf_link} height={window.innerHeight - 150} />
                     </Box>
                     <Box
                         sx={{ flexGrow: 1, pl: 2, pt: 1, position: 'relative' }}
@@ -107,7 +111,7 @@ const DocumentView = (props) => {
                 </Box>
             </Box>
             {showOptionsDialog && (
-                <OptionsDialog documentID={props.id} linkDownload={linkDownload} onClose={setShowOptionsDialog} />
+                <OptionsDialog documentID={props.id} linkDownload={linkDownload} onClose={setShowOptionsDialog} belongToMe={belongToMe} status={status}/>
             )}
         </>
     );

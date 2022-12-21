@@ -1,0 +1,27 @@
+/* .k-scheduler-layout-flex .k-scheduler-cell {
+    min-height: 90px;
+} */
+.titleScheduleItem {
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    color: black;
+}
+.k-link {
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.k-heading-cell {
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.k-scheduler-row:has(.k-scheduler-times-all-day) {
+    display: none;
+    /* background-color: red; */
+}
