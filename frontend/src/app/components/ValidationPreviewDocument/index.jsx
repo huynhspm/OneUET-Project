@@ -7,6 +7,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { api_url } from '../../utils/config';
+import { refreshPage } from '../../utils/function';
 
 const ValidationPreviewDocument = (props) => {
     const navigate = useNavigate();
@@ -32,10 +33,12 @@ const ValidationPreviewDocument = (props) => {
 
 
     const approveDocument = async () => {
+        console.log(props.docID);
+        console.log("approveDocument");
         try {
             await axios({
                 method: 'put',
-                url: String(api_url + "/api/document/me/" + String(props.docID)),
+                url: String(api_url + "/api/document/" + String(props.docID)),
                 data: {
                     status: 'public'
                 },
@@ -49,10 +52,12 @@ const ValidationPreviewDocument = (props) => {
     }
 
     const declineDocument = async () => {
+        console.log(props.docID);
+        console.log("declineDocument");
         try {
             await axios({
                 method: 'put',
-                url: String(api_url + "/api/document/me/" + String(props.docID)),
+                url: String(api_url + "/api/document/" + String(props.docID)),
                 data: {
                     status: 'private'
                 },

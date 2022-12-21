@@ -8,6 +8,7 @@ import { OptionButton, RedButton } from "./styles";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { api_url } from "../../utils/config";
+import { refreshPage } from "../../utils/function";
 
 function OptionsDialog({ onClose, documentID, linkDownload, belongToMe, status }) {
     const navigate = useNavigate();    
@@ -53,6 +54,7 @@ function OptionsDialog({ onClose, documentID, linkDownload, belongToMe, status }
                 headers: { Authorization: `Bearer ${token}` }
             }).then(() => {
                 onClose(false);
+                refreshPage();
             });
         } catch (e) {
             console.log(e.response.data);

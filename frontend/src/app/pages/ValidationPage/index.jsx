@@ -8,8 +8,6 @@ import {
   ListItemIcon,
   Button,
 } from "@mui/material";
-import Main from "../../components/Main";
-import Sidebar from "../../components/SidebarVali";
 import { Grade, Assignment } from "@mui/icons-material";
 
 import { useState, useEffect } from "react";
@@ -17,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { api_url, drawerWidth } from "../../utils/config";
 import ValidationDocuments from "../../components/ValidationDocuments";
-import { toDateString } from "../../utils/function";
+import { toDateString, getDocumentThumbnail } from "../../utils/function";
 
 const ValidationPage = (props) => {
   const [card, setCard] = useState([]);
@@ -51,45 +49,46 @@ const ValidationPage = (props) => {
 
   useEffect(() => {
     fetchData();
-  }, [token, openValidDoc]);
+  }, [token, openValidDoc, card]);
 
   useEffect(() => {
     getValidGrade();
   }, [token, openValidGrade]);
 
   const fetchData = async () => {
-    try {
-      await axios
-        .get(api_url + "/api/document", {
-          params: {
-            status: "pending",
-          },
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        .then((res) => {
-          let docs = res.data.data.documents;
-          console.log(res);
-          let tmpCard = [];
-          for (let id in docs) {
-            let element = {
-              name: docs[id].name,
-              description: docs[id].description,
-              linkView: docs[id].linkView,
-              src_img: "https://randomuser.me/api/portraits/women/2.jpg",
-              unit: docs[id].unit,
-              major: docs[id].major,
-              fileID: docs[id].fileId,
-              docID: docs[id].id,
-              dateUploaded: toDateString(docs[id].updatedAt),
-            };
-            tmpCard.push(element);
-          }
-          setCard(tmpCard.reverse());
-        });
-    } catch (e) {
-      console.log(e.response.data);
-    }
-  };
+		try {
+			await axios
+				.get(api_url + "/api/document",
+					{
+						params: {
+							status: "pending"
+						},
+						headers: { Authorization: `Bearer ${token}` }
+					})
+				.then((res) => {
+					let docs = res.data.data.documents;
+					console.log(res);
+					let tmpCard = [];
+					for (let id in docs) {
+						let element = {
+							name: docs[id].name,
+							description: docs[id].description,
+							linkView: docs[id].linkView,
+							src_img: getDocumentThumbnail(docs[id].name),
+							unit: docs[id].unit,
+							major: docs[id].major,
+							fileID: docs[id].fileId,
+							docID: docs[id].id,
+							dateUploaded: toDateString(docs[id].updatedAt)
+						}
+						tmpCard.push(element);
+					}
+					setCard(tmpCard.reverse());
+				});
+		} catch (e) {
+			console.log(e.response.data);
+		}
+	}
 
   const getValidGrade = async () => {
     try {
