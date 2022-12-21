@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Title from '../../../../components/Title';
-import { Box, Grid, IconButton, FormControl, FormGroup, FormLabel, FormControlLabel, Checkbox, Select, TextField, InputLabel, ListItemText, OutlinedInput, MenuItem } from '@mui/material';
+import { Box, Grid, IconButton, FormControl, FormGroup, FormLabel, FormControlLabel, Checkbox, Select, TextField, InputLabel, ListItemText, OutlinedInput, MenuItem, Typography } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import CheckIcon from '@mui/icons-material/Check';
-import axios from 'axios';
-import { api_url } from '../../../../utils/config';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -30,14 +28,14 @@ const ControlValue = (value, type = 0) => {
 }
 
 const Activities = (props) => {
-    const [editable, setEditable] = React.useState(false);
+    const [editable, setEditable] = useState(false);
 
     const Submit = () => {
         console.log("Activities Information submited!");
         let clubIds = [];
-        props.club.map((value) => {
-            clubIds.push(value+1);
-        });
+        for (let i = 0; i < props.club.length; i++) {
+            clubIds.push(props.club[i] + 1);
+        }
         props.updateUserData(props.token, {
             unionJoint: props.unionJoint,
             partyJoint: props.partyJoint,
@@ -46,33 +44,6 @@ const Activities = (props) => {
             clubIds: clubIds
         });
     }
-
-    const [clubsList, setClubsList] = useState([]);
-
-    const getClubList = async () => {
-        const config = {
-            headers: { Authorization: `Bearer ${props.token}` }
-        }
-        try {
-            const res = await axios.get(api_url + "/api/club", config);
-            // console.log(res.data.data.clubs);
-            return res.data.data.clubs;
-        } catch (e) {
-            console.log(e.response.data);
-        }
-    }
-
-    useEffect(() => {
-        if (props.token !== "" && props.token !== null && props.token !== undefined) {
-            getClubList().then((value) => {
-                if (clubsList.length === 0) {
-                    for (let i = 0; i < value.length; i++) {
-                        clubsList.push(value[i].name);
-                    }
-                }
-            })
-        }
-    }, [props.token]);
 
     return (
         <React.Fragment>
@@ -119,7 +90,13 @@ const Activities = (props) => {
                 >
                     <Grid item xs={2}>
                         <FormControl disabled={!editable} sx={{ m: 3 }} component="fieldset" variant="standard">
-                            <FormLabel component="legend">Đã kết nạp</FormLabel>
+                            <FormLabel component="legend">
+                                <Typography component="div">
+                                    <Box sx={{ fontSize: 18 }}>
+                                        Đã kết nạp
+                                    </Box>
+                                </Typography>
+                            </FormLabel>
                             <FormGroup>
                                 <FormControlLabel
                                     control={
@@ -189,13 +166,13 @@ const Activities = (props) => {
                                         renderValue={(selected) => {
                                             let name_selected = [];
                                             for (let i = 0; i < selected.length; i++) {
-                                                name_selected.push(clubsList[selected[i]]);
+                                                name_selected.push(props.clubsList[selected[i]]);
                                             }
                                             return name_selected.join(', ');
                                         }}
                                         MenuProps={MenuProps}
                                     >
-                                        {clubsList.map((name, index) => (
+                                        {props.clubsList.map((name, index) => (
                                             <MenuItem key={name} value={index}>
                                                 <Checkbox checked={props.club.indexOf(index) > -1} />
                                                 <ListItemText primary={name} />

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Basic from './Basic';
 import Education from './Education';
@@ -21,6 +21,18 @@ const getUserData = async token => {
     }
 }
 
+const getClubList = async (token) => {
+    const config = {
+        headers: { Authorization: `Bearer ${token}` }
+    }
+    try {
+        const res = await axios.get(api_url + "/api/club", config);
+        return res.data.data.clubs;
+    } catch (e) {
+        console.log(e.response.data);
+    }
+}
+
 const updateUserData = async (token, data) => {
     const config = {
         headers: { Authorization: `Bearer ${token}` }
@@ -28,41 +40,52 @@ const updateUserData = async (token, data) => {
     console.log(data);
     try {
         const response = await axios.put(api_url + "/api/user/me", data, config);
-        console.log(response);
+        console.log(response.data);
     } catch (e) {
         console.log(e.response);
     }
 }
 
 const Information = (props) => {
-    const [isFetch, setIsFetch] = React.useState(false);
-
     // Basic
-    const [avatar, setAvatar] = React.useState("https://randomuser.me/api/portraits/women/79.jpg");
+    const [avatar, setAvatar] = useState("https://randomuser.me/api/portraits/women/79.jpg");
 
-    const [code, setCode] = React.useState(null);
-    const [name, setName] = React.useState(null);
-    const [birthday, setBirthday] = React.useState(null);
-    const [gender, setGender] = React.useState(null);
-    const [emailVNU, setEmailVNU] = React.useState(null);
-    const [email, setEmail] = React.useState(null);
-    const [phone, setPhone] = React.useState(null);
-    const [address, setAddress] = React.useState(null);
+    const [code, setCode] = useState(null);
+    const [name, setName] = useState(null);
+    const [birthday, setBirthday] = useState(null);
+    const [gender, setGender] = useState(null);
+    const [emailVNU, setEmailVNU] = useState(null);
+    const [email, setEmail] = useState(null);
+    const [phone, setPhone] = useState(null);
+    const [address, setAddress] = useState(null);
 
     // Education
-    const [program, setProgram] = React.useState(null);
-    const [academicYear, setAcademicYear] = React.useState(null);
-    const [unit, setUnit] = React.useState(null);
-    const [classID, setClassID] = React.useState(null);
+    const [program, setProgram] = useState(null);
+    const [academicYear, setAcademicYear] = useState(null);
+    const [unit, setUnit] = useState(null);
+    const [classID, setClassID] = useState(null);
+    const [clubsList, setClubsList] = useState([]);
 
     // Activites
-    const [unionJoint, setUnionJoint] = React.useState(null);
-    const [partyJoint, setPartyJoint] = React.useState(null);
-    const [unionPosition, setUnionPosition] = React.useState(null);
-    const [associationPosition, setAssociationPosition] = React.useState(null);
-    const [club, setClub] = React.useState([]);
+    const [unionJoint, setUnionJoint] = useState(null);
+    const [partyJoint, setPartyJoint] = useState(null);
+    const [unionPosition, setUnionPosition] = useState(null);
+    const [associationPosition, setAssociationPosition] = useState(null);
+    const [club, setClub] = useState([]);
 
-    const fetchData = () => {
+    useEffect(() => {
+        if (props.token !== "" && props.token !== null && props.token !== undefined) {
+            getClubList(props.token).then((value) => {
+                if (clubsList.length === 0) {
+                    for (let i = 0; i < value.length; i++) {
+                        clubsList.push(value[i].name);
+                    }
+                }
+            })
+        }
+    }, [props.token]);
+
+    useEffect(() => {
         if (props.token !== "" && props.token !== null && props.token !== undefined) {
             getUserData(props.token).then((data) => {
                 const user = data.profile.user;
@@ -94,17 +117,9 @@ const Information = (props) => {
                 for (let i = 0; i < clubs.length; i++) {
                     club.push(clubs[i].id-1);
                 }
-
-                setIsFetch(true);
             });
         }
-    }
-
-    useEffect(() => {
-        if (!isFetch) {
-            fetchData();
-        }
-    }, [props.token, isFetch]);
+    }, [props.token]);
 
     return (
         <Box
@@ -163,7 +178,6 @@ const Information = (props) => {
                             setClassID={setClassID}
                             token={props.token}
                             updateUserData={updateUserData}
-                            isFetch={isFetch}
                         />
                     </Paper>
                 </Grid>
@@ -186,6 +200,7 @@ const Information = (props) => {
                             setAssociationPosition={setAssociationPosition}
                             club={club}
                             setClub={setClub}
+                            clubsList={clubsList}
                             token={props.token}
                             updateUserData={updateUserData}
                         />
@@ -223,6 +238,7 @@ const Information = (props) => {
                             unionPosition={unionPosition}
                             associationPosition={associationPosition}
                             club={club}
+                            clubsList={clubsList}
                         />
                     </Paper>
                 </Grid>
