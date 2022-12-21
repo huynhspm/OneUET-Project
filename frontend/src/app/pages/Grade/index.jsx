@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api_url } from "../../utils/config";
 
+
 const columns = [
   {
     field: "id",
