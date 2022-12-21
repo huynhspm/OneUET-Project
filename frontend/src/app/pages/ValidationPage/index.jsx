@@ -45,18 +45,17 @@ const ValidationPage = (props) => {
     getToken();
   }, [navigate, token]);
 
-	useEffect(() => {
-		if (token !== '') {
-			fetchData();
-		}
-  	}, [token, openValidDoc, card]);
+  useEffect(() => {
+    if (token !== "") {
+      fetchData();
+    }
+  }, [token, openValidDoc]);
 
-	useEffect(() => {
-		if (token !== '') { 
-			getValidGrade();
-		}
-	}, [token, openValidGrade]);
-
+  useEffect(() => {
+    if (token !== "") {
+      getValidGrade();
+    }
+  }, [token, openValidGrade]);
 
   const fetchData = async () => {
     try {
@@ -92,7 +91,6 @@ const ValidationPage = (props) => {
       console.log(e.response.data);
     }
   };
-
 
   const getValidGrade = async () => {
     try {
@@ -162,9 +160,14 @@ const ValidationPage = (props) => {
             {linkPDF.map((link, index) => (
               <Button
                 sx={{
-                  width: "75vw", height: "7vh", mt: 2, display: "center", backgroundColor: "#FFA69E", '&:hover': {
+                  width: "75vw",
+                  height: "7vh",
+                  mt: 2,
+                  display: "center",
+                  backgroundColor: "#FFA69E",
+                  "&:hover": {
                     backgroundColor: "#DFA8BB",
-                  }
+                  },
                 }}
                 variant="contained"
                 onClick={async () => {

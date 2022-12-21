@@ -73,7 +73,7 @@ const updateData = async (token, data) => {
       data,
       config
     );
-    console.log(response);
+    // console.log(response);
     return response;
   } catch (e) {
     console.log(e);
@@ -110,24 +110,23 @@ export default function ValidationGrade(props) {
   const handleCloseSnackbar = () => setSnackbar(null);
 
   const navigate = useNavigate();
-  
 
-  // // user token
-  // const [token, setToken] = useState("");
+  // user token
+  const [token, setToken] = useState("");
 
-  // // fetch user token
-  // useEffect(() => {
-  //   console.log(token);
-  //   if (token === "") {
-  //     const lastToken = sessionStorage.getItem("token");
-  //     if (lastToken !== null && lastToken !== undefined) {
-  //       console.log(lastToken);
-  //       setToken(lastToken);
-  //     } else {
-  //       navigate("/login");
-  //     }
-  //   }
-  // }, [token, navigate]);
+  // fetch user token
+  useEffect(() => {
+    console.log(token);
+    if (token === "") {
+      const lastToken = sessionStorage.getItem("token");
+      if (lastToken !== null && lastToken !== undefined) {
+        console.log(lastToken);
+        setToken(lastToken);
+      } else {
+        navigate("/login");
+      }
+    }
+  }, [token, navigate]);
 
   const getUserData = async (token) => {
     console.log();
@@ -145,10 +144,7 @@ export default function ValidationGrade(props) {
   const location = useLocation();
   const linkPDF = location.state.linkPDF;
 
-  	const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZUlkIjoxLCJpYXQiOjE2NzA0ODk2ODEsImV4cCI6MTY3MzA4MTY4MX0.rSseHQSrXVyf_PyY3WAIoU07AKavd3-XP-RIXgXRgr4";
-
-
+  // const token ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZUlkIjoxLCJpYXQiOjE2NzA0ODk2ODEsImV4cCI6MTY3MzA4MTY4MX0.rSseHQSrXVyf_PyY3WAIoU07AKavd3-XP-RIXgXRgr4";
 
   useEffect(() => {
     if (token !== "") {
@@ -247,9 +243,11 @@ export default function ValidationGrade(props) {
         <Box>
           <Button
             sx={{
-              mt: 8, backgroundColor: "#FFA69E", '&:hover': {
+              mt: 8,
+              backgroundColor: "#FFA69E",
+              "&:hover": {
                 backgroundColor: "#DFA8BB",
-              }
+              },
             }}
             variant="contained"
             onClick={async () => {
@@ -282,10 +280,10 @@ export default function ValidationGrade(props) {
                 backgroundColor: "#dee2e6",
               },
               ".MuiTablePagination-selectLabel, .MuiTablePagination-displayedRows":
-              {
-                marginBottom: 0,
-                fontSize: 15,
-              },
+                {
+                  marginBottom: 0,
+                  fontSize: 15,
+                },
             }}
             rows={rows}
             columns={columns}
