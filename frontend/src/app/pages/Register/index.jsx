@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { api_url } from "../../utils/config";
 import { useNavigate } from "react-router-dom";
 import OtpModal from "../../components/OtpModal";
 import { OTPValidCode } from "../../utils/validation/otp";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import LockOpenIcon from '@mui/icons-material/LockOpen';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { EmailUIValidator, EmailValidCode, EmailValidText } from "../../utils/validation/email";
 import { PasswordUIValidator, PasswordValidCode, PasswordValidText } from "../../utils/validation/password";
 import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Grid, Box, Container, MenuItem, Select, InputLabel, FormControl, FormHelperText, FormGroup } from "@mui/material";
-import { api_url } from "../../utils/config";
 
 const theme = createTheme();
 
@@ -142,6 +142,9 @@ export default function Register() {
 				setRegistered(true);
 				setActive(false);
 			}
+			if (res.data.message === "Code not existed, student not existed") {
+				setIsValidEmail(EmailValidCode.Code_Existed);
+			}
 		} catch (e) {
 			console.log(e.response.data);
 			if (e.response.data.message === "Email existed") {
@@ -185,7 +188,7 @@ export default function Register() {
 						}}
 					>
 						<Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-							<LockOutlinedIcon />
+							<LockOpenIcon />
 						</Avatar>
 						<Box
 							component="form"
