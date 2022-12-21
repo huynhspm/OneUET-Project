@@ -9,9 +9,54 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { api_url } from "../../utils/config";
+
+const getUserData = async token => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` }
+  }
+  try {
+    const response = await axios.get(api_url + "/api/user/me", config);
+    return response.data.data;
+  } catch (e) {
+    console.log(e.response);
+  }
+}
 
 const AvatarDropdown = () => {
+  const navigate = useNavigate();
+  const [token, setToken] = useState('');
+  useEffect(() => {
+    if (token === '') {
+      const lastToken = sessionStorage.getItem("token");
+      if (lastToken !== null && lastToken !== undefined) {
+        // console.log(lastToken);
+        setToken(lastToken);
+      } else {
+        navigate('/login');
+      }
+    }
+  }, [token, navigate]);
+
+  const ControlAvatar = (value) => {
+    if (value === undefined || value === null) {
+      return "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png";
+    }
+    return value;
+  }
+
+  useEffect(() => {
+    if (token !== "" && token !== null && token !== undefined) {
+      getUserData(token).then((data) => {
+        setAvatar(data.profile.user.avatar);
+      });
+    }
+  }, [token]);
+
+  const [avatar, setAvatar] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -29,7 +74,7 @@ const AvatarDropdown = () => {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        <Avatar src="https://randomuser.me/api/portraits/women/79.jpg" />
+        <Avatar src={ControlAvatar(avatar)} />
       </Button>
       <Menu
         id="basic-menu"

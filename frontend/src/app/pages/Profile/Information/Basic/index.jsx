@@ -94,7 +94,7 @@ const Basic = (props) => {
                                 flexDirection: 'column',
                             }}
                         >
-                            <Image src={props.avatar} sx={{ maxWidth: 120 }} duration={0} />
+                            <Image src={ControlValue(props.avatar)} sx={{ maxWidth: 120 }} duration={0} />
                             <Typography fontWeight='bold' sx={{ mt: 2 }}>{props.name}</Typography>
                             <Typography>{props.code}</Typography>
                             <Button component="div" variant="outlined" disabled={!editable} sx={{ mt: 2 }}>Cập nhật</Button>

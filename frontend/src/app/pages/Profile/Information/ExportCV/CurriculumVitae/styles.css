@@ -34,11 +34,10 @@
         url("../../../../../utils/fonts/MaterialIcons-Regular.ttf") format("truetype");
 }
 
-.material-icons {
-    font-family: 'Material Icons';
+div.cv-contact-row > svg {
     font-weight: normal;
     font-style: normal;
-    font-size: 24px;
+    font-size: 1.2rem;
     /* Preferred icon size */
     display: inline-block;
     line-height: 1;
@@ -197,6 +196,10 @@ div.cv-education-header > *:first-child, div.cv-activites-header > *:first-child
 
 div.cv-education-header > *:last-child, div.cv-activites-header > *:last-child {
     margin-left: auto;
+}
+
+div.cv-clubs-header {
+    margin-bottom: 0;
 }
 
 .material-icons {
