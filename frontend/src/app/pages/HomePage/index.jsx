@@ -10,7 +10,7 @@ let func = [
   { name: "Grade", info: "Xem điểm sinh viên toàn trường", to: "/grade", linkImage: process.env.PUBLIC_URL  + "/assets/img/grade.png"},
   { name: "Profile", info: "Xem thông tin của bản thân và tạo CV ưng ý", to: "/profile/information", linkImage: process.env.PUBLIC_URL  + "/assets/img/information.png"},
   { name: "Schedule", info: "Xem thời khóa biểu và tạo thời gian biểu cho bản thân", to: "/profile/schedule", linkImage: process.env.PUBLIC_URL  + "/assets/img/schedule.png"},
-  { name: "Convert", info: "Chuyển đổi giữa nhiều loại tài liệu khác nhau", to: "/convert", linkImage: process.env.PUBLIC_URL  + "/assets/img/information.png"},
+  { name: "Convert", info: "Chuyển đổi giữa nhiều loại tài liệu khác nhau", to: "/convert", linkImage: process.env.PUBLIC_URL  + "/assets/img/convert.png"},
   { name: "Private Document", info: "Xem những tài liệu của bản thân và đưa chúng đến cộng đồng", to: "/profile/private-document", linkImage: process.env.PUBLIC_URL  + "/assets/img/private-document.png"},
 ]
 
