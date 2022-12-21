@@ -8,22 +8,20 @@ import {
   ListItemIcon,
   Button,
 } from "@mui/material";
-import Main from "../../components/Main";
-import Sidebar from "../../components/SidebarVali";
 import { Grade, Assignment } from "@mui/icons-material";
 
-import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { api_url, drawerWidth } from "../../utils/config";
-import DocumentCard from "../../components/DocumentCard";
 import ValidationDocuments from "../../components/ValidationDocuments";
-import ValidationGrade from "../ValidationGrade";
-import { toDateString } from "../../utils/function";
+import { toDateString, getDocumentThumbnail } from "../../utils/function";
 
 const ValidationPage = (props) => {
   const [card, setCard] = useState([]);
   const [linkPDF, setLinkPDF] = useState([]);
+  const [openValidGrade, setOpenValidGrade] = useState(true);
+  const [openValidDoc, setOpenValidDoc] = useState(false);
 
   const navigate = useNavigate();
 
@@ -45,17 +43,13 @@ const ValidationPage = (props) => {
     }
   };
 
-  const [openValidGrade, setOpenValidGrade] = useState(true);
-  const [openValidDoc, setOpenValidDoc] = useState(false);
-  const [openGrade, setOpenGrade] = useState(false);
-
   useEffect(() => {
     // getToken();
   }, [navigate, token]);
 
   useEffect(() => {
     fetchData();
-  }, [token, openValidDoc]);
+  }, [token, openValidDoc, card]);
 
   useEffect(() => {
     getValidGrade();
@@ -80,7 +74,7 @@ const ValidationPage = (props) => {
 							name: docs[id].name,
 							description: docs[id].description,
 							linkView: docs[id].linkView,
-							src_img: "https://randomuser.me/api/portraits/women/2.jpg",
+							src_img: getDocumentThumbnail(docs[id].name),
 							unit: docs[id].unit,
 							major: docs[id].major,
 							fileID: docs[id].fileId,
@@ -163,13 +157,17 @@ const ValidationPage = (props) => {
           <Box>
             {linkPDF.map((link, index) => (
               <Button
-                sx={{ width: "100%", height: "7vh", mt: 2 }}
+                sx={{ width: "80vw", height: "7vh", mt: 2, display: "center" }}
                 variant="contained"
                 onClick={async () => {
-                  console.log("DDDDD");
-                  //   setOpenGrade(true);
+                  console.log(link);
+                  navigate("/validation-grade", {
+                    state: { linkPDF: link.linkPDF },
+                  });
                 }}>
-                {link.linkPDF}
+                Bảng điểm {index + 1}
+                <br></br>
+                Link: {link.linkPDF}
               </Button>
             ))}
           </Box>

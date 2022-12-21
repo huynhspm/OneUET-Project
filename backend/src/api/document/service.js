@@ -154,7 +154,10 @@ const getPublicDocuments = async (req) => {
 const getPublicDocument = async (req) => {
 	try {
 		let { document, message, status } = await verifyDocument(req);
-		let course, teacher, comments, belongToMe = (req.user.id === document.userId);
+		let course,
+			teacher,
+			comments,
+			belongToMe = req.user.id === document.userId;
 
 		if (document) {
 			if (document.status === "public") {
@@ -178,7 +181,7 @@ const getPublicDocument = async (req) => {
 			course,
 			teacher,
 			comments,
-			belongToMe
+			belongToMe,
 		};
 
 		return {
@@ -214,7 +217,10 @@ const getMyDocuments = async (req) => {
 const getMyDocument = async (req) => {
 	try {
 		let { document, message, status } = await verifyDocument(req);
-		let course, teacher, comments, belongToMe = (document.userId === req.user.id);
+		let course,
+			teacher,
+			comments,
+			belongToMe = document.userId === req.user.id;
 
 		if (document) {
 			if (document.userId === req.user.id) {
@@ -237,7 +243,7 @@ const getMyDocument = async (req) => {
 			course,
 			teacher,
 			comments,
-			belongToMe
+			belongToMe,
 		};
 
 		return {
@@ -258,10 +264,6 @@ const updateMyDocument = async (req) => {
 			if (document.userId === req.user.id) {
 				const updatedDocument = req.body;
 				await document.update(updatedDocument);
-				// course = await document.getCourse();
-				// teacher = await document.getTeacher();
-				// comments = await document.getComments();
-
 				message = "Update my document successfully";
 				status = ResponseCode.OK;
 			} else {
@@ -336,7 +338,7 @@ const updateDocument = async (req) => {
 		let updatedDocument = req.body;
 
 		if (document) {
-			document.update(updatedDocument);
+			document = await document.update(updatedDocument);
 			message = "Update document successfully";
 			status = ResponseCode.OK;
 		}

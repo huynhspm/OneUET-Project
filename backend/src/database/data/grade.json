@@ -1,5 +1,390 @@
 [
     {
+        "studentCode": "20020186",
+        "midterm": 8.0,
+        "final": 0.0,
+        "total": 3.2,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "17020578",
+        "midterm": 8.0,
+        "final": 5.8,
+        "total": 6.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020001",
+        "midterm": 9.5,
+        "final": 9.2,
+        "total": 9.3,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "18020196",
+        "midterm": 8.0,
+        "final": 7.7,
+        "total": 7.8,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020002",
+        "midterm": 10.0,
+        "final": 8.5,
+        "total": 9.1,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "19020234",
+        "midterm": 6.5,
+        "final": 8.8,
+        "total": 7.9,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020098",
+        "midterm": 3.0,
+        "final": 7.5,
+        "total": 5.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020039",
+        "midterm": 10.0,
+        "final": 10.0,
+        "total": 10.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020378",
+        "midterm": 5.5,
+        "final": 9.0,
+        "total": 7.6,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020043",
+        "midterm": 6.0,
+        "final": 5.5,
+        "total": 5.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020008",
+        "midterm": 7.5,
+        "final": 7.2,
+        "total": 7.3,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020046",
+        "midterm": 6.5,
+        "final": 5.3,
+        "total": 5.8,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020011",
+        "midterm": 9.0,
+        "final": 8.0,
+        "total": 8.4,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020395",
+        "midterm": 6.5,
+        "final": 6.3,
+        "total": 6.4,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020257",
+        "midterm": 7.0,
+        "final": 3.8,
+        "total": 5.1,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020048",
+        "midterm": 4.5,
+        "final": 6.5,
+        "total": 5.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020049",
+        "midterm": 4.0,
+        "final": 6.2,
+        "total": 5.3,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020102",
+        "midterm": 5.0,
+        "final": 6.7,
+        "total": 6.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020013",
+        "midterm": 9.5,
+        "final": 7.2,
+        "total": 8.1,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020050",
+        "midterm": 8.5,
+        "final": 8.3,
+        "total": 8.4,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020408",
+        "midterm": 8.0,
+        "final": 7.5,
+        "total": 7.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020409",
+        "midterm": 7.5,
+        "final": 8.3,
+        "total": 8.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020410",
+        "midterm": 9.0,
+        "final": 5.3,
+        "total": 6.8,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020198",
+        "midterm": 5.5,
+        "final": 5.3,
+        "total": 5.4,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020054",
+        "midterm": 9.0,
+        "final": 9.0,
+        "total": 9.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "19020335",
+        "midterm": 6.5,
+        "final": 6.8,
+        "total": 6.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020056",
+        "midterm": 3.0,
+        "final": 2.8,
+        "total": 2.9,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020109",
+        "midterm": 7.0,
+        "final": 7.0,
+        "total": 7.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020434",
+        "midterm": 7.0,
+        "final": 8.7,
+        "total": 8.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020112",
+        "midterm": 10.0,
+        "final": 7.5,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020203",
+        "midterm": 7.5,
+        "final": 8.2,
+        "total": 7.9,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020113",
+        "midterm": 8.5,
+        "final": 8.7,
+        "total": 8.6,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020057",
+        "midterm": 9.5,
+        "final": 9.7,
+        "total": 9.6,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "19020360",
+        "midterm": 1.5,
+        "final": 0.0,
+        "total": 0.6,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "18020908",
+        "midterm": 6.5,
+        "final": 6.2,
+        "total": 6.3,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020022",
+        "midterm": 8.5,
+        "final": 5.8,
+        "total": 6.9,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020059",
+        "midterm": 5.5,
+        "final": 3.3,
+        "total": 4.2,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020024",
+        "midterm": 7.5,
+        "final": 6.8,
+        "total": 7.1,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020262",
+        "midterm": 8.0,
+        "final": 7.7,
+        "total": 7.8,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020208",
+        "midterm": 7.5,
+        "final": 9.5,
+        "total": 8.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020063",
+        "midterm": 8.0,
+        "final": 6.0,
+        "total": 6.8,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020263",
+        "midterm": 7.5,
+        "final": 8.8,
+        "total": 8.3,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020026",
+        "midterm": 9.5,
+        "final": 7.8,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "18021015",
+        "midterm": 8.5,
+        "final": 6.3,
+        "total": 7.2,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020067",
+        "midterm": 9.0,
+        "final": 8.2,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020028",
+        "midterm": 10.0,
+        "final": 8.3,
+        "total": 7.0,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020470",
+        "midterm": 7.0,
+        "final": 7.8,
+        "total": 7.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "19020430",
+        "midterm": 9.0,
+        "final": 8.2,
+        "total": 8.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "19020444",
+        "midterm": 8.0,
+        "final": 2.5,
+        "total": 4.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020481",
+        "midterm": 6.0,
+        "final": 3.5,
+        "total": 4.5,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020484",
+        "midterm": 6.5,
+        "final": 6.8,
+        "total": 6.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020034",
+        "midterm": 9.5,
+        "final": 8.3,
+        "total": 8.8,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "18021318",
+        "midterm": 7.5,
+        "final": 7.8,
+        "total": 7.7,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "20020070",
+        "midterm": 9.0,
+        "final": 9.5,
+        "total": 9.3,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
+        "studentCode": "18021415",
+        "midterm": 7.5,
+        "final": 4.7,
+        "total": 5.8,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022023210122Kien%20truc%20may%20tinh%20INT2212_4.pdf"
+    },
+    {
         "studentCode": "20020096",
         "midterm": 9.6,
         "final": 7.5,
@@ -1958,5 +2343,33 @@
         "final": 9.0,
         "total": 9.0,
         "linkPDF": "http://112.137.129.30/viewgrade/public/upload/041125140622Cong%20nghe%20phan%20mem_4.pdf"
+    },
+    {
+        "studentCode": "20020054",
+        "midterm": 10,
+        "final": 10,
+        "total": 10,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022631210122Kinh%20te%20chinh%20tri%20Mac%20le_3.pdf"
+    },
+    {
+        "studentCode": "20020203",
+        "midterm": 10,
+        "final": 10,
+        "total": 10,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022631210122Kinh%20te%20chinh%20tri%20Mac%20le_3.pdf"
+    },
+    {
+        "studentCode": "20020001",
+        "midterm": 10,
+        "final": 10,
+        "total": 10,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022631210122Kinh%20te%20chinh%20tri%20Mac%20le_3.pdf"
+    },
+    {
+        "studentCode": "20020057",
+        "midterm": 10,
+        "final": 10,
+        "total": 10,
+        "linkPDF": "http://112.137.129.30/viewgrade/public/upload/022631210122Kinh%20te%20chinh%20tri%20Mac%20le_3.pdf"
     }
 ]

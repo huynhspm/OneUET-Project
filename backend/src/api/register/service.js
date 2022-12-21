@@ -1,7 +1,7 @@
 const { User, Student } = require("../../database/models");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 const RoleCode = require("../../utils/constant/RoleCode");
-const { sendOTP, createOTP } = require("../../utils/email");
+const { sendEmailOTP, createOTP } = require("../../utils/email");
 const { hashPassword } = require("../../utils/password");
 
 const verifyEmail = async (email) => {
@@ -20,26 +20,22 @@ const register = async (req) => {
 			status = ResponseCode.Bad_Request;
 		} else {
 			const { otp, expiredTime } = createOTP();
-			// sendOTP(user.email, otp);
-			console.log("sendOTP");
+			sendEmailOTP(user.email, otp);
 			newUser["otp"] = otp;
 			newUser["expiredTime"] = expiredTime;
-			newUser["password"] = hashPassword(password);
+			newUser["password"] = hashPassword(newUser.password);
 			data = await user.update(newUser);
 
 			message = "Register successfully but not active!";
 			status = ResponseCode.Created;
 		}
 	} else {
-		const code = newUser.email.slice(0, 8);
+		const code = newUser.email.split("@")[0];
 		const student = await Student.findOne({ where: { code } });
-
-		console.log(student);
 
 		if (student) {
 			const { otp, expiredTime } = createOTP();
-			// sendOTP(newUser.email, otp);
-			console.log("sendOTP");
+			sendEmailOTP(newUser.email, otp);
 			newUser["otp"] = otp;
 			newUser["expiredTime"] = expiredTime;
 			newUser["studentId"] = student.id;

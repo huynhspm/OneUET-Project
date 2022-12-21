@@ -2,33 +2,17 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { DataGrid } from "@mui/x-data-grid";
+import InputLabel from "@mui/material/InputLabel";
+import FormControl from "@mui/material/FormControl";
+import NativeSelect from "@mui/material/NativeSelect";
+import OutlinedInput from "@mui/material/OutlinedInput";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import { TextField } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { api_url } from "../../utils/config";
-
-const getUserData = async (token) => {
-  try {
-
-    const response = await axios.get(api_url + "/grade", 
-    {
-      // params: {linkPDF},
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    return response.data.data;
-  } catch (e) {
-    console.log("error to get database");
-  }
-};
-
-const linkPDF = "";
-let t1 = "https://docs.google.com/viewer?srcid=";
-let t2 = "&pid=explorer&efh=false&a=v&chrome=false&embedded=true";
-
-const pdf_link = t1.concat("12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV", t2);
+import { useLocation, useNavigate } from "react-router-dom";
 
 const columns = [
   {
@@ -79,29 +63,18 @@ const columns = [
   },
 ];
 
-let getData = async () => {
-  const url = "http://localhost:3000/data.json";
-  const response = await fetch(url);
-  const data = await response.json();
-  for (var i = 0; i < data["students"].length; i++) {
-    const obj = {};
-    obj.studentCode = data["students"][i]["0"];
-    obj.id = i;
-    obj.midterm = data["students"][i]["1"];
-    obj.final = data["students"][i]["2"];
-    obj.total = data["students"][i]["3"];
-  }
-  return data;
-};
-
 const updateData = async (token, data) => {
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
   try {
-      const response = await axios.put(api_url + "/api/class/grade", data, config);
-      console.log(response);
-      return response;
+    const response = await axios.put(
+      api_url + "/api/class/grade",
+      data,
+      config
+    );
+    console.log(response);
+    return response;
   } catch (e) {
     console.log(e);
     if (e.response.data.message == "Class not existed") return e.response;
@@ -125,8 +98,6 @@ const useFakeMutation = () => {
 };
 
 export default function ValidationGrade(props) {
-
-
   const [codeClass, setCodeClass] = React.useState(null);
   const [semester, setSemester] = React.useState(null);
   const [code, setCode] = React.useState(null);
@@ -138,7 +109,7 @@ export default function ValidationGrade(props) {
   const mutateRow = useFakeMutation();
   const handleCloseSnackbar = () => setSnackbar(null);
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   // // user token
   // const [token, setToken] = useState("");
@@ -156,27 +127,44 @@ export default function ValidationGrade(props) {
   //     }
   //   }
   // }, [token, navigate]);
+
+  const getUserData = async (token) => {
+    console.log();
+    try {
+      const response = await axios.get(api_url + "/api/grade", {
+        params: { linkPDF },
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      return response.data.data;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const location = useLocation();
+  const linkPDF = location.state.linkPDF;
+
   const token =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZUlkIjoxLCJpYXQiOjE2NzA0ODk2ODEsImV4cCI6MTY3MzA4MTY4MX0.rSseHQSrXVyf_PyY3WAIoU07AKavd3-XP-RIXgXRgr4";
 
   useEffect(() => {
-    if (token !== '') {
+    if (token !== "") {
       getUserData(token).then((data) => {
         let rows2 = [];
         data = data.grade;
 
-      for (var i = 0; i < data.length; i++) {
-        rows2.push({
-          studentCode: data[i].studentCode,
-          id: i + 1,
-          midterm: data[i].midterm,
-          final: data[i].final,
-          total: data[i].total,
-        });
-      }
+        for (var i = 0; i < data.length; i++) {
+          rows2.push({
+            studentCode: data[i].studentCode,
+            id: i + 1,
+            midterm: data[i].midterm,
+            final: data[i].final,
+            total: data[i].total,
+          });
+        }
 
         setRows(rows2);
-      });        
+      });
     }
   }, [token]);
 
@@ -223,15 +211,33 @@ export default function ValidationGrade(props) {
           </Box>
 
           <Box>
-            <TextField
-              sx={{ m: 1, ml: 3, width: 200 }}
-              id="semester"
-              label="Học kỳ"
-              helperText="Ví dụ: 2021-2022-1"
-              onChange={(event) => {
-                setSemester(event.target.value);
-              }}
-            />
+            <FormControl sx={{ m: 3, width: 200 }}>
+              <InputLabel htmlFor="semester">Học kỳ:</InputLabel>
+              <NativeSelect
+                input={<OutlinedInput label="Học kỳ:" />}
+                defaultValue={10}
+                onChange={(event) => {
+                  if (event.target.value == 10) setSemester("2020-2021-1");
+                  if (event.target.value == 20) setSemester("2020-2021-2");
+                  if (event.target.value == 30) setSemester("2020-2021-Hè");
+                  if (event.target.value == 40) setSemester("2021-2022-1");
+                  if (event.target.value == 50) setSemester("2021-2022-2");
+                  if (event.target.value == 60) setSemester("2021-2022-Hè");
+                  
+                  console.log(semester);
+                }}
+                inputProps={{
+                  name: "semester",
+                  id: "uncontrolled-native",
+                }}>
+                <option value={10}>2020-2021-1</option>
+                <option value={20}>2020-2021-2</option>
+                <option value={30}>2020-2021-Hè</option>
+                <option value={40}>2021-2022-1</option>
+                <option value={50}>2021-2022-2</option>
+                <option value={60}>2021-2022-Hè</option>
+              </NativeSelect>
+            </FormControl>
           </Box>
         </Box>
         <Box>
@@ -241,6 +247,7 @@ export default function ValidationGrade(props) {
             onClick={async () => {
               console.log(rows);
               let change = {
+                linkPDF,
                 semester,
                 code,
                 grades: rows,
@@ -251,6 +258,7 @@ export default function ValidationGrade(props) {
                   children: "Tên lớp hoặc kỳ không đúng",
                   severity: "error",
                 });
+              else navigate("/validation-document", {});
             }}>
             Xác nhận
           </Button>
@@ -291,7 +299,7 @@ export default function ValidationGrade(props) {
 
         <Box sx={{ flexGrow: 1, p: 3, width: "40vw" }}>
           <div className="pdf-viewer" align="right">
-            <iframe src={pdf_link} width="100%" height="910px"></iframe>
+            <iframe src={linkPDF} width="100%" height="910px"></iframe>
           </div>
         </Box>
       </Box>
