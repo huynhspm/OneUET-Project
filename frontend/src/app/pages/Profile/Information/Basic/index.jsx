@@ -104,8 +104,7 @@ const Basic = (props) => {
                         <Grid container spacing={2}>
                             <Grid item xs={6}>
                                 <TextField
-                                    required
-                                    disabled={!editable}
+                                    disabled
                                     fullWidth
                                     label="Mã số sinh viên"
                                     value={ControlValue(props.code)}
@@ -118,8 +117,7 @@ const Basic = (props) => {
                             </Grid>
                             <Grid item xs={6}>
                                 <TextField
-                                    required
-                                    disabled={!editable}
+                                    disabled
                                     fullWidth
                                     label="Họ và tên"
                                     value={ControlValue(props.name)}
@@ -166,8 +164,7 @@ const Basic = (props) => {
                             </Grid>
                             <Grid item xs={6}>
                                 <TextField
-                                    required
-                                    disabled={!editable}
+                                    disabled
                                     fullWidth
                                     label="Địa chỉ Email ĐHQGHN"
                                     value={ControlValue(props.emailVNU)}
@@ -180,7 +177,6 @@ const Basic = (props) => {
                             </Grid>
                             <Grid item xs={6}>
                                 <TextField
-                                    required
                                     disabled={!editable}
                                     fullWidth
                                     label="Địa chỉ Email khác"
@@ -194,7 +190,6 @@ const Basic = (props) => {
                             </Grid>
                             <Grid item xs={6}>
                                 <TextField
-                                    required
                                     disabled={!editable}
                                     fullWidth
                                     label="Số điện thoại"
@@ -208,7 +203,6 @@ const Basic = (props) => {
                             </Grid>
                             <Grid item xs={6}>
                                 <TextField
-                                    required
                                     disabled={!editable}
                                     fullWidth
                                     label="Địa chỉ"

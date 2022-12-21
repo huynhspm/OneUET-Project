@@ -144,8 +144,6 @@ export default function ValidationGrade(props) {
   const location = useLocation();
   const linkPDF = location.state.linkPDF;
 
-  // const token ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZUlkIjoxLCJpYXQiOjE2NzA0ODk2ODEsImV4cCI6MTY3MzA4MTY4MX0.rSseHQSrXVyf_PyY3WAIoU07AKavd3-XP-RIXgXRgr4";
-
   useEffect(() => {
     if (token !== "") {
       getUserData(token).then((data) => {

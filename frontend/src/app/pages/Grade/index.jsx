@@ -106,7 +106,7 @@ export default function Grade() {
   }
 
   const getUserData = async (token) => {
-    console.log(token);
+    // console.log(token);
     token =
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkIjoyLCJpYXQiOjE2NzA0ODk2NDgsImV4cCI6MTY3MzA4MTY0OH0.kKVgxO566QaVpvGbqtKBmr_I_Sl8RSlEk8Nhr-GWM74";
     const config = {

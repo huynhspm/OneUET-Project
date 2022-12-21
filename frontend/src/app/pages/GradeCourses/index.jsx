@@ -260,16 +260,14 @@ export default function DataGridDemo() {
   }
 
   // user token
-  const [token, setToken] = useState(
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZUlkIjoxLCJpYXQiOjE2NzA0ODk2ODEsImV4cCI6MTY3MzA4MTY4MX0.rSseHQSrXVyf_PyY3WAIoU07AKavd3-XP-RIXgXRgr4"
-  );
+  const [token, setToken] = useState("");
 
   // fetch user token
   const getToken = () => {
     if (token === "") {
       const lastToken = sessionStorage.getItem("token");
       if (lastToken !== null && lastToken !== undefined) {
-        console.log(lastToken);
+        // console.log(lastToken);
         setToken(lastToken);
       } else {
         navigate("/login");
@@ -278,7 +276,7 @@ export default function DataGridDemo() {
   };
 
   useEffect(() => {
-    // getToken();
+    getToken();
   }, [navigate, token]);
 
   useEffect(() => {
