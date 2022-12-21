@@ -14,9 +14,10 @@ import axios from "axios";
 import { api_url, drawerWidth } from "../../utils/config";
 
 export default function CustomizedSelects() {
-  const [semester, setSemester] = React.useState("2020-2021");
-  const [year, setYear] = React.useState("Học kỳ 1");
+  const [semester, setSemester] = React.useState("1");
+  const [year, setYear] = React.useState("2020-2021");
   const [valueSearch, setValueSearch] = React.useState("");
+  const [classes, setClasses] = React.useState([]);
 
   const navigate = useNavigate();
 
@@ -44,20 +45,27 @@ export default function CustomizedSelects() {
 
   useEffect(() => {
     fetchData();
-  }, [token]);
+  }, [semester]);
 
   const fetchData = async () => {
+    let tmp = year + "-" + semester;
+    console.log(year, semester);
     try {
       await axios
-        .get(api_url + "/api/document", {
+        .get(api_url + "/api/class", {
           params: {
-            status: "pending",
+            code: valueSearch,
+            semester: tmp,
           },
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => {
-          let docs = res.data.data.documents;
+          // let docs = res.data.data.documents;
           console.log(res);
+          console.log(res.data.data.classes);
+          setClasses(res.data.data.classes);
+          console.log("DXXX", classes);
+          // return res.data.data.classes;
         });
     } catch (e) {
       console.log(e.response.data);
@@ -81,8 +89,8 @@ export default function CustomizedSelects() {
             label="Tìm kiếm môn học"
             type="search"
             onChange={(event) => {
-              setValueSearch(event.target.value);
               console.log(event.target.value);
+              setValueSearch(event.target.value);
             }}
           />
         </Box>
@@ -95,12 +103,11 @@ export default function CustomizedSelects() {
               input={<OutlinedInput label="Năm học" />}
               defaultValue={10}
               onChange={(event) => {
-                if (event.target.value == 10) setYear("2020 - 2021");
-                else setYear("2021 - 2022");
-                console.log(year);
+                if (event.target.value == 10) setYear("2020-2021");
+                else setYear("2021-2022");
               }}
               inputProps={{
-                name: "age",
+                name: "year",
                 id: "year",
               }}>
               <option value={10}>2020 - 2021</option>
@@ -117,9 +124,8 @@ export default function CustomizedSelects() {
               input={<OutlinedInput label="Học kỳ:" />}
               defaultValue={10}
               onChange={(event) => {
-                if (event.target.value == 10) setSemester("Học kỳ 1");
-                else setSemester("Học kỳ 2");
-                console.log(semester);
+                if (event.target.value == 10) setSemester("1");
+                else setSemester("2");
               }}
               inputProps={{
                 name: "semester",
@@ -135,24 +141,31 @@ export default function CustomizedSelects() {
           <Button
             sx={{ width: 200, height: "7vh", mt: 5 }}
             variant="contained"
-            onClick={async () => {
-              console.log(semester, year, valueSearch);
+            onClick={() => {
+              fetchData();
+              fetchData();
+              console.log(classes);
             }}>
             Tìm kiếm
           </Button>
         </Box>
       </div>
 
-      <Button
-        sx={{ width: "100%", height: "7vh", mt: 2 }}
-        variant="contained"
-        onClick={async () => {
-          navigate("/courses", {
-            state: { linkPDF: "sssss" },
-          });
-        }}>
-        Lập trình hướng đối tượng (INT3301)
-      </Button>
+      <Box>
+        {classes.length !== 0 &&
+          classes.map((id, index) => (
+            <Button
+              sx={{ width: "100%", height: "7vh", mt: 2 }}
+              variant="contained"
+              onClick={async () => {
+                navigate("/courses", {
+                  state: { id: classes[index].id },
+                });
+              }}>
+              {classes[index].code}
+            </Button>
+          ))}
+      </Box>
     </>
   );
 }

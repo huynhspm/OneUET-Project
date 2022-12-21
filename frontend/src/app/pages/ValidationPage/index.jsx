@@ -23,8 +23,7 @@ const ValidationPage = (props) => {
   const [openValidGrade, setOpenValidGrade] = useState(true);
   const [openValidDoc, setOpenValidDoc] = useState(false);
 
-	const navigate = useNavigate();
-	
+  const navigate = useNavigate();
 
   // user token
   const [token, setToken] = useState("");
@@ -43,51 +42,54 @@ const ValidationPage = (props) => {
   };
 
   useEffect(() => {
-    // getToken();
+    getToken();
   }, [navigate, token]);
 
-  useEffect(() => {
-    fetchData();
-  }, [token, openValidDoc, card]);
+	useEffect(() => {
+		if (token !== '') {
+			fetchData();
+		}
+  	}, [token, openValidDoc, card]);
 
-  useEffect(() => {
-    getValidGrade();
-  }, [token, openValidGrade]);
+	useEffect(() => {
+		if (token !== '') { 
+			getValidGrade();
+		}
+	}, [token, openValidGrade]);
 
   const fetchData = async () => {
-		try {
-			await axios
-				.get(api_url + "/api/document",
-					{
-						params: {
-							status: "pending"
-						},
-						headers: { Authorization: `Bearer ${token}` }
-					})
-				.then((res) => {
-					let docs = res.data.data.documents;
-					console.log(res);
-					let tmpCard = [];
-					for (let id in docs) {
-						let element = {
-							name: docs[id].name,
-							description: docs[id].description,
-							linkView: docs[id].linkView,
-							src_img: getDocumentThumbnail(docs[id].name),
-							unit: docs[id].unit,
-							major: docs[id].major,
-							fileID: docs[id].fileId,
-							docID: docs[id].id,
-							dateUploaded: toDateString(docs[id].updatedAt)
-						}
-						tmpCard.push(element);
-					}
-					setCard(tmpCard.reverse());
-				});
-		} catch (e) {
-			console.log(e.response.data);
-		}
-	}
+    try {
+      await axios
+        .get(api_url + "/api/document", {
+          params: {
+            status: "pending",
+          },
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          let docs = res.data.data.documents;
+          console.log(res);
+          let tmpCard = [];
+          for (let id in docs) {
+            let element = {
+              name: docs[id].name,
+              description: docs[id].description,
+              linkView: docs[id].linkView,
+              src_img: getDocumentThumbnail(docs[id].name),
+              unit: docs[id].unit,
+              major: docs[id].major,
+              fileID: docs[id].fileId,
+              docID: docs[id].id,
+              dateUploaded: toDateString(docs[id].updatedAt),
+            };
+            tmpCard.push(element);
+          }
+          setCard(tmpCard.reverse());
+        });
+    } catch (e) {
+      console.log(e.response.data);
+    }
+  };
 
   const getValidGrade = async () => {
     try {
