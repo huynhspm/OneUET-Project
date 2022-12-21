@@ -6,20 +6,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api_url } from "../../utils/config";
 
-const getUserData = async (token) => {
-  const config = {
-    headers: { Authorization: `Bearer ${token}` },
-  };
-  try {
-    const response = await axios.get(
-      "http://localhost:2002/api/user/me",
-      config
-    );
-    return response.data.data;
-  } catch (e) {
-    console.log(e.response);
-  }
-};
 
 const columns = [
   {
@@ -96,42 +82,63 @@ const columns = [
 const rows = [];
 
 export default function Grade() {
-
   const [pageSize, setPageSize] = React.useState(5);
   const [isFetch, setIsFetch] = React.useState(false);
+  const [isSetToken, setIsSetToken] = React.useState(true);
   const navigate = useNavigate();
+
+  const getUserData = async (token) => {
+    console.log(token);
+    token =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZUlkIjoyLCJpYXQiOjE2NzA0ODk2NDgsImV4cCI6MTY3MzA4MTY0OH0.kKVgxO566QaVpvGbqtKBmr_I_Sl8RSlEk8Nhr-GWM74";
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    try {
+      const response = await axios.get(api_url + "/api/user/me", config);
+      console.log(response.data.data.classes.studiedClasses);
+      return response.data.data.classes.studiedClasses;
+    } catch (e) {
+      console.log(e.response);
+    }
+  };
 
   // user token
   const [token, setToken] = useState("");
 
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+
   // fetch user token
-  useEffect(() => {
+  const getToken = () => {
     if (token === "") {
       const lastToken = sessionStorage.getItem("token");
       if (lastToken !== null && lastToken !== undefined) {
-        // console.log(lastToken);
         setToken(lastToken);
       } else {
         navigate("/login");
       }
     }
-  }, [token, navigate]);
-
-  const fetchData = () => {
-    getUserData(token).then((data) => {
-      console.log("Data");
-      console.log(data);
-    });
   };
 
   useEffect(() => {
-    console.log("Fetch", isFetch);
-    if (!isFetch) {
-      fetchData();
-      setIsFetch(true);
-      console.log("Set", isFetch);
+    getToken();
+  }, [navigate, token]);
+
+  useEffect(() => {
+    if (token !== "") {
+      getUserData();
     }
-  }, [token, isFetch]);
+  }, [token]);
+
+  // useEffect(() => {
+  //   console.log("Fetch", isFetch);
+  //   if (isSetToken) {
+  //     getUserData
+  //     console.log("Set", isFetch);
+  //   }
+  // }, [token, isFetch]);
 
   return (
     <Box sx={{ height: 910, width: "100%" }}>
@@ -141,10 +148,10 @@ export default function Grade() {
             backgroundColor: "#dee2e6",
           },
           ".MuiTablePagination-selectLabel, .MuiTablePagination-displayedRows":
-          {
-            marginBottom: 0,
-            fontSize: 15,
-          },
+            {
+              marginBottom: 0,
+              fontSize: 15,
+            },
         }}
         rows={rows}
         columns={columns}
