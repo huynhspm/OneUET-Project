@@ -9,15 +9,15 @@ const CurriculumVitae = (props) => {
     return (
         <div className="cv">
             <div className="cv-sub-section">
-                <div className="cv-avatar">
+                {props.isAvatar && <div className="cv-avatar">
                     <img className="cv-avatar" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="avatar" />
-                </div>
-                <div className="cv-contact">
+                </div>}
+                {props.contact && <div className="cv-contact">
                     <div className="cv-header">Liên lạc</div>
                     <div className="cv-contact-row"><FontAwesomeIcon icon={faEnvelope} /> &nbsp; {props.emailVNU}</div>
                     <div className="cv-contact-row"><FontAwesomeIcon icon={faPhone} /> &nbsp; {props.phone}</div>
                     <div className="cv-contact-row"><FontAwesomeIcon icon={faLocationDot} /> &nbsp; {props.address}</div>
-                </div>
+                </div>}
                 <div className='cv-references'>
                     <div className="cv-header">Nguồn</div>
                     <div className='cv-references-p'>Thông tin được cung cấp bởi ONE-UET.</div>
@@ -26,12 +26,14 @@ const CurriculumVitae = (props) => {
             <div className="cv-main-section">
                 <div className="cv-main-header">
                     <div className="cv-name">{props.name}</div>
-                    <div className="cv-basic-info">Giới tính: {GenderValue[props.gender]} <br />
-                        Ngày sinh: {dayjs(props.birthday).format('DD/MM/YYYY')}</div>
+                    {props.basic && <div className="cv-basic-info">
+                        Giới tính: {GenderValue[props.gender]} <br />
+                        Ngày sinh: {dayjs(props.birthday).format('DD/MM/YYYY')}
+                    </div>}
                     <hr />
                 </div>
                 <div className="cv-body">
-                    <div className="cv-education">
+                    {props.education && <div className="cv-education">
                         <div className="cv-header">Học vấn</div>
                         <div className='cv-education-row'>
                             <div className='cv-education-header'>
@@ -40,8 +42,8 @@ const CurriculumVitae = (props) => {
                             </div>
                             <p>{props.unit}</p>
                         </div>
-                    </div>
-                    <div className="cv-activities">
+                    </div>}
+                    {props.activities && <div className="cv-activities">
                         <div className="cv-header">Hoạt động</div>
                         <div className='cv-activities-row'>
                             <div className='cv-activites-header'>
@@ -57,7 +59,18 @@ const CurriculumVitae = (props) => {
                             </div>
                             <p>{props.associationPosition}</p>
                         </div>
-                    </div>
+                    </div>}
+                    {props.isClub && <div className='cv-clubs'>
+                        <div className='cv-header'>Câu lạc bộ</div>
+                        {props.clubsList.map((name, index) => {
+                            if (props.club.indexOf(index) > -1)
+                                return (
+                                    <div className='cv-clubs-header'>
+                                        <p>{name}</p>
+                                    </div>
+                                )
+                        })}
+                    </div>}
                 </div>
             </div>
         </div>

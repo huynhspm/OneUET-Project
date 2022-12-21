@@ -52,7 +52,8 @@ const createClass = async (req) => {
 
 const getClasses = async (req) => {
 	try {
-		const classes = await Class.findAll();
+		const query = req.query;
+		const classes = await Class.findAll({ where: query });
 		const message = "Get classes successfully";
 		const status = ResponseCode.OK;
 

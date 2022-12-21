@@ -6,10 +6,14 @@ import { drawerWidth, documentCardHeight, api_url } from "../../../../utils/conf
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { getDocumentThumbnail, toDateString } from "../../../../utils/function";
+import Add from "../../../../components/Add";
+
 
 const PrivateDocument = (props) => {
     const [card, setCard] = React.useState([]);
-    
+	const [course, setCourse] = useState([]);
+	const [teacher, setTeacher] = useState({});
+
     const navigate = useNavigate();    
 
 	// user token
@@ -30,6 +34,8 @@ const PrivateDocument = (props) => {
     useEffect(() => {
         if (token !== "") {
             fetchData();
+			fetchAllTeachers();
+        	fetchAllCourses();
         }
     }, [token]);
 
@@ -66,6 +72,51 @@ const PrivateDocument = (props) => {
         }
     }
   
+
+	const fetchAllCourses = async () => {
+		try {
+			await axios
+				.get(api_url + "/api/course", {
+					headers: { Authorization: `Bearer ${token}` }
+				})
+				.then((res) => {
+					let courses = res.data.data.courses;
+					let tmp = {};
+					for (let index in courses) {
+						let id = courses[index].id;
+						let name = courses[index].name;
+						course[id] = name;
+						tmp[id] = name;
+					}
+					setCourse(tmp);
+				});
+		} catch (e) {
+			console.log(e.response.data);
+		}
+	};
+
+	const fetchAllTeachers = async () => {
+		try {
+			await axios
+				.get(api_url + "/api/teacher", {
+					headers: { Authorization: `Bearer ${token}` }
+				})
+				.then((res) => {
+					let teachers = res.data.data.teachers;
+					let tmp = {};
+					for (let index in teachers) {
+						let id = teachers[index].id;
+						let name = teachers[index].name;
+						teacher[id] = name;
+						tmp[id] = name;
+					}
+					setTeacher(tmp);
+				});
+		} catch (e) {
+			console.log(e);
+		}
+	}
+
   return (
     <>
       <Box sx={{ display: "flex", flexDirection: "row" }}>
@@ -98,6 +149,7 @@ const PrivateDocument = (props) => {
           )}
         </Box>
       </Box>
+			<Add course={course} teacher={teacher} />
     </>
   );
 };
