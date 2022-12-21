@@ -73,7 +73,7 @@ const updateData = async (token, data) => {
       data,
       config
     );
-    console.log(response);
+    // console.log(response);
     return response;
   } catch (e) {
     console.log(e);
@@ -241,9 +241,11 @@ export default function ValidationGrade(props) {
         <Box>
           <Button
             sx={{
-              mt: 8, backgroundColor: "#FFA69E", '&:hover': {
+              mt: 8,
+              backgroundColor: "#FFA69E",
+              "&:hover": {
                 backgroundColor: "#DFA8BB",
-              }
+              },
             }}
             variant="contained"
             onClick={async () => {
@@ -276,10 +278,10 @@ export default function ValidationGrade(props) {
                 backgroundColor: "#dee2e6",
               },
               ".MuiTablePagination-selectLabel, .MuiTablePagination-displayedRows":
-              {
-                marginBottom: 0,
-                fontSize: 15,
-              },
+                {
+                  marginBottom: 0,
+                  fontSize: 15,
+                },
             }}
             rows={rows}
             columns={columns}

@@ -54,15 +54,15 @@ const ValidationPage = (props) => {
   }, [navigate, token]);
 
   useEffect(() => {
-      if (token !== '') {
-          fetchData();
-      }  
-  }, [token, openValidDoc, card]);
+    if (token !== "") {
+      fetchData();
+    }
+  }, [token, openValidDoc]);
 
   useEffect(() => {
-      if (token !== '') {
-          getValidGrade();
-      }  
+    if (token !== "") {
+      getValidGrade();
+    }
   }, [token, openValidGrade]);
 
   const fetchData = async () => {
@@ -99,7 +99,6 @@ const ValidationPage = (props) => {
       console.log(e.response.data);
     }
   };
-
 
   const getValidGrade = async () => {
     try {
@@ -168,33 +167,68 @@ const ValidationPage = (props) => {
             minHeight: window.innerHeight,
             alignItems: "flex-start",
           }}>
-          {openValidDoc && <ValidationDocuments card={card} />}
-          {openValidGrade && (
-            <Box>
-              {linkPDF.map((link, index) => (
-                <Button
-                  sx={{
-                    width: "75vw", height: "7vh", mt: 2, display: "center", backgroundColor: "#FFA69E", '&:hover': {
-                      backgroundColor: "#DFA8BB",
-                    }
-                  }}
-                  variant="contained"
-                  onClick={async () => {
-                    console.log(link);
-                    navigate("/validation-grade", {
-                      state: { linkPDF: link.linkPDF },
-                    });
-                  }}>
-                  Bảng điểm {index + 1}
-                  <br></br>
-                  Link: {link.linkPDF}
-                </Button>
-              ))}
-            </Box>
-          )}
+          <ListItemButton component="a" href="#grades">
+            <ListItemIcon>
+              <Grade />
+            </ListItemIcon>
+            <ListItemText primary="Grade" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem
+          disablePadding
+          onClick={() => {
+            setOpenValidDoc(true);
+            setOpenValidGrade(false);
+          }}>
+          <ListItemButton component="a" href="#documents">
+            <ListItemIcon>
+              <Assignment />
+            </ListItemIcon>
+            <ListItemText primary="Documents" />
+          </ListItemButton>
+        </ListItem>
+      </Box>
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          p: 3,
+          width: { sm: `calc(100% - ${drawerWidth}px)` },
+          display: "flex",
+          minHeight: window.innerHeight,
+          alignItems: "flex-start",
+        }}>
+        {openValidDoc && <ValidationDocuments card={card} />}
+        {openValidGrade && (
+          <Box>
+            {linkPDF.map((link, index) => (
+              <Button
+                sx={{
+                  width: "75vw",
+                  height: "7vh",
+                  mt: 2,
+                  display: "center",
+                  backgroundColor: "#FFA69E",
+                  "&:hover": {
+                    backgroundColor: "#DFA8BB",
+                  },
+                }}
+                variant="contained"
+                onClick={async () => {
+                  console.log(link);
+                  navigate("/validation-grade", {
+                    state: { linkPDF: link.linkPDF },
+                  });
+                }}>
+                Bảng điểm {index + 1}
+                <br></br>
+                Link: {link.linkPDF}
+              </Button>
+            ))}
+          </Box>
+        )}
 
-          {/* {openGrade && <ValidationGrade />} */}
-        </Box>
+        {/* {openGrade && <ValidationGrade />} */}
       </Box>
     </>
   );
