@@ -8,8 +8,6 @@ import {
   ListItemIcon,
   Button,
 } from "@mui/material";
-import Main from "../../components/Main";
-import Sidebar from "../../components/SidebarVali";
 import { Grade, Assignment } from "@mui/icons-material";
 
 import { useState, useEffect } from "react";
