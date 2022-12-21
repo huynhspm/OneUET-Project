@@ -225,6 +225,7 @@ export default function ValidationGrade(props) {
             onClick={async () => {
               console.log(rows);
               let change = {
+                linkPDF,
                 semester,
                 code,
                 grades: rows,
