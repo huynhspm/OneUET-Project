@@ -22,6 +22,7 @@ import { units, majors, categories, years } from '../../utils/config';
 import { fileToDataUri, controlValue } from '../../utils/function';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { api_url } from '../../utils/config';
 
 const Add = (props) => {
     const [open, setOpen] = useState(false);
@@ -101,7 +102,7 @@ const Add = (props) => {
             teacherId: parseInt(teacherId)
         }
         try {
-            await axios.post("http://localhost:2002/api/document", data, config);
+            await axios.post(api_url + "/api/document", data, config);
         } catch (e) {
             console.log(e.response.data);
         }

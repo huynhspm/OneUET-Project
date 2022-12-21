@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import Title from '../../../../components/Title';
-import { Box, Grid, FormControl, Select, MenuItem, InputLabel, IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import CheckIcon from '@mui/icons-material/Check';
+import { ProgramList, AcademicYearList, UnitList } from '../../../../utils/information/education';
+import { Box, Grid, FormControl, Select, MenuItem, InputLabel, IconButton } from '@mui/material';
 
 const ControlValue = (value) => {
     if (value === undefined || value === null) {
@@ -41,26 +42,11 @@ const Education = (props) => {
         });
     }
 
-    const programs = [
-        "Chuẩn",
-        "Chất lượng cao"
-    ];
+    const programs = ProgramList;
 
-    const academicYears = [];
-    for (let i = 2018; i <= 2022; i++) {
-        academicYears.push("QH-" + String(i) + "-I/CQ");
-    }
+    const academicYears = AcademicYearList;
 
-    const units = [
-        "Khoa Công nghệ Thông tin",
-        "Khoa Điện tử Viễn thông",
-        "Khoa Vật lý kỹ thuật & Công nghệ Nano",
-        "Khoa Cơ học kỹ thuật & Tự động hoá",
-        "Khoa Công nghệ Nông nghiệp",
-        "Khoa Công nghệ Xây dựng - Giao thông",
-        "Viện Công nghệ Hàng không Vũ trụ",
-        "Viện Trí tuệ Nhân tạo"
-    ];
+    const units = UnitList;
 
     const classIDs = new Array(academicYears.length);
     for (let i = 0; i < academicYears.length; i++) {

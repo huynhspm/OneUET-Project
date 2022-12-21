@@ -7,13 +7,14 @@ import ExportCV from './ExportCV';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import axios from 'axios';
+import { api_url } from '../../../utils/config';
 
 const getUserData = async token => {
     const config = {
         headers: { Authorization: `Bearer ${token}` }
     }
     try {
-        const response = await axios.get("http://localhost:2002/api/user/me", config);
+        const response = await axios.get(api_url + "/api/user/me", config);
         return response.data.data;
     } catch (e) {
         console.log(e.response);
@@ -26,7 +27,7 @@ const updateUserData = async (token, data) => {
     }
     console.log(data);
     try {
-        const response = await axios.put("http://localhost:2002/api/user/me", data, config);
+        const response = await axios.put(api_url + "/api/user/me", data, config);
         console.log(response);
     } catch (e) {
         console.log(e.response);
@@ -45,6 +46,8 @@ const Information = (props) => {
     const [gender, setGender] = React.useState(null);
     const [emailVNU, setEmailVNU] = React.useState(null);
     const [email, setEmail] = React.useState(null);
+    const [phone, setPhone] = React.useState(null);
+    const [address, setAddress] = React.useState(null);
 
     // Education
     const [program, setProgram] = React.useState(null);
@@ -74,6 +77,8 @@ const Information = (props) => {
                 setGender(user.gender);
                 setEmailVNU(user.email);
                 setEmail(user.otherEmail);
+                setPhone(user.phone);
+                setAddress(user.address);
 
                 // Education
                 setProgram(user.program);
@@ -130,6 +135,10 @@ const Information = (props) => {
                             setEmailVNU={setEmailVNU}
                             email={email}
                             setEmail={setEmail}
+                            phone={phone}
+                            setPhone={setPhone}
+                            address={address}
+                            setAddress={setAddress}
                             token={props.token}
                             updateUserData={updateUserData}
                         />
@@ -190,7 +199,31 @@ const Information = (props) => {
                             flexDirection: 'column',
                         }}
                     >
-                        <ExportCV />
+                        <ExportCV 
+                            // Basic
+                            avatar={avatar}
+                            code={code}
+                            name={name}
+                            birthday={birthday}
+                            gender={gender}
+                            emailVNU={emailVNU}
+                            email={email}
+                            phone={phone}
+                            address={address}
+
+                            // Education
+                            program={program}
+                            academicYear={academicYear}
+                            unit={unit}
+                            classID={classID}
+
+                            // Activites
+                            unionJoint={unionJoint}
+                            partyJoint={partyJoint}
+                            unionPosition={unionPosition}
+                            associationPosition={associationPosition}
+                            club={club}
+                        />
                     </Paper>
                 </Grid>
             </Grid>

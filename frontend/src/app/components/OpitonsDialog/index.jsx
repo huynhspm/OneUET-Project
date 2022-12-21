@@ -7,6 +7,8 @@ import axios from "axios";
 import { OptionButton, RedButton } from "./styles";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { api_url } from "../../utils/config";
+import { refreshPage } from "../../utils/function";
 
 function OptionsDialog({ onClose, documentID, linkDownload, belongToMe, status }) {
     const navigate = useNavigate();    
@@ -34,7 +36,7 @@ function OptionsDialog({ onClose, documentID, linkDownload, belongToMe, status }
     const deleteDocument = async () => {
         try {
             await axios
-                .delete("http://localhost:2002/api/document/me/" + String(documentID), config);
+                .delete(api_url + "/api/document/me/" + String(documentID), config);
 
         } catch (e) {
             console.log(e.response.data);
@@ -45,13 +47,14 @@ function OptionsDialog({ onClose, documentID, linkDownload, belongToMe, status }
         try {
             await axios({
                 method: 'put',
-                url: String("http://localhost:2002/api/document/me/" + String(documentID)),
+                url: String(api_url + "/api/document/me/" + String(documentID)),
                 data: {
                     status: 'pending'
                 },
                 headers: { Authorization: `Bearer ${token}` }
             }).then(() => {
                 onClose(false);
+                refreshPage();
             });
         } catch (e) {
             console.log(e.response.data);

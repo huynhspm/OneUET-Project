@@ -17,11 +17,9 @@
 .k-heading-cell {
     font-size: 15px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .k-scheduler-row:has(.k-scheduler-times-all-day) {
     display: none;
-    /* background-color: red; */
 }

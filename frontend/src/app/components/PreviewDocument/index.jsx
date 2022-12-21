@@ -31,8 +31,8 @@ const PreviewDocument = (props) => {
                         {props.description}
                     </Typography>
                     <Divider />
-                    <Typography color="textSecondary" className="datePosted" sx={{ pt: 1 }}>
-                        5 DAYS AGO
+                    <Typography color="textSecondary" sx={{ pt: 1 }}>
+                        {props.dateUploaded}
                     </Typography>
                     <iframe src={props.linkView} className='pdf-viewer'></iframe>
                     <Button variant='contained' sx={{mt:3}} component={Link} to={String(props.path) + String(props.docID)}>View Full Page</Button>

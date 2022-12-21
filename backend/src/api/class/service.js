@@ -1,4 +1,9 @@
-const { Class, Student, StudentClass } = require("../../database/models");
+const {
+	Class,
+	Student,
+	StudentClass,
+	Grade,
+} = require("../../database/models");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 const { sendEmailGrade } = require("../../utils/email");
 
@@ -159,18 +164,10 @@ const addStudent = async (req) => {
 			where: { code, semester },
 		});
 
-		// grades = [
-		// 	{
-		// 		studentCode: 20020054,
-		// 		midterm: 10,
-		// 		final: 10,
-		// 		total: 10,
-		// 	},
-		// ];
-
 		if (curClass) {
 			for (let index in grades) {
 				let grade = grades[index];
+				grade["id"] = undefined;
 
 				let student = await Student.findOne({
 					where: { code: grade.studentCode },
@@ -197,31 +194,11 @@ const addStudent = async (req) => {
 
 const updateGrade = async (req) => {
 	try {
-		let curClass, message, status;		
-		const { code, semester, grades } = req.body;
-		
-		console.log(".......................")
-		console.log(code, semester, grades)
-		console.log("????????????????????????")
+		let curClass, message, status;
+		const { code, semester, grades, linkPDF } = req.body;
 		curClass = await Class.findOne({
 			where: { code, semester },
 		});
-
-		// grades = [
-		// 	{
-		// 		studentCode: 20020054,
-		// 		midterm: 10,
-		// 		final: 10,
-		// 		total: 10,
-		// 	},
-		// 	{
-		// 		studentCode: 20020054,
-		// 		midterm: 70,
-		// 		final: 70,
-		// 		total: 70,
-		// 	},
-		// ];
-		console.log(curClass, ".................")
 
 		if (curClass) {
 			curClass.finish = true;
@@ -237,12 +214,12 @@ const updateGrade = async (req) => {
 					where: { studentId: student.id, classId: curClass.id },
 				});
 
-				console.log("????????????");
-
 				let email = student.code + "@vnu.edu.vn";
 				let subject = "Your score in class " + curClass.code;
 				// sendEmailGrade(email, grade, subject);
 			}
+
+			await Grade.delete({ where: linkPDF });
 
 			message = "Update grade successfully";
 			status = ResponseCode.OK;
@@ -253,11 +230,11 @@ const updateGrade = async (req) => {
 
 		data = { curClass };
 
-		return{
-			data, 
-			message, 
+		return {
+			data,
+			message,
 			status,
-		}
+		};
 	} catch (e) {
 		throw e;
 	}

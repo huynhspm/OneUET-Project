@@ -1,19 +1,12 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-import axios from "axios";
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { api_url } from '../../utils/config';
+import axios from 'axios';
 
-const getUserData = async (token) => {
-  const config = {
-    headers: { Authorization: `Bearer ${token}` },
-  };
-  try {
-    const response = await axios.get("http://localhost:2002/", config);
-    return response.data.data;
-  } catch (e) {
-    console.log(e.response);
-  }
-};
+
 
 const columns = [
   {
@@ -107,30 +100,54 @@ const rows = [
   { id: 15, code: "20020057", name: "Đặng Xuân Lộc", date_of_birth: "06/04/2002", classes: "QH-2020-I/CQ-C-CLC", midterm_grade: 8.5, final_grade: 9.5, total_grade: 9.1 },
   { id: 16, code: "20020057", name: "Đặng Xuân Lộc", date_of_birth: "06/04/2002", classes: "QH-2020-I/CQ-C-CLC", midterm_grade: 8.5, final_grade: 9.5, total_grade: 9.1 },
 ];
-let getData = async () => {
-  const url = "http://localhost:3000/data.json";
-  const response = await fetch(url);
-  const data = await response.json();
-  for (var i = 0; i < data["students"].length; i++) {
-    const obj = {};
-    obj.code = data["students"][i]["0"];
-    obj.name = 0;
-    obj.date_of_birth = 0;
-    obj.classes = 0;
-    obj.id = i;
-    obj.midterm_grade = data["students"][i]["1"];
-    obj.final_grade = data["students"][i]["2"];
-    obj.total_grade = data["students"][i]["3"];
-    rows[i] = obj;
-  }
-  console.log(rows);
-  return data;
-};
 
 export default function DataGridDemo() {
   const [pageSize, setPageSize] = React.useState(5);
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZUlkIjoxLCJpYXQiOjE2NzA0ODk2ODEsImV4cCI6MTY3MzA4MTY4MX0.rSseHQSrXVyf_PyY3WAIoU07AKavd3-XP-RIXgXRgr4";
+  const navigate = useNavigate();
+
+  // user token
+  const [token, setToken] = useState(
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZUlkIjoxLCJpYXQiOjE2NzA0ODk2ODEsImV4cCI6MTY3MzA4MTY4MX0.rSseHQSrXVyf_PyY3WAIoU07AKavd3-XP-RIXgXRgr4"
+  );
+
+  // fetch user token
+  const getToken = () => {
+    if (token === "") {
+      const lastToken = sessionStorage.getItem("token");
+      if (lastToken !== null && lastToken !== undefined) {
+        console.log(lastToken);
+        setToken(lastToken);
+      } else {
+        navigate("/login");
+      }
+    }
+  };
+
+  useEffect(() => {
+    // getToken();
+  }, [navigate, token]);
+
+  useEffect(() => {
+    fetchData();
+  }, [token]);
+
+  const fetchData = async () => {
+    try {
+      await axios
+        .get(api_url + "/api/document", {
+          params: {
+            status: "pending",
+          },
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          let docs = res.data.data.documents;
+          console.log(res);
+        });
+    } catch (e) {
+      console.log(e.response.data);
+    }
+  };
 
   return (
     <>

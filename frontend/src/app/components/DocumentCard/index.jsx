@@ -47,6 +47,7 @@ const DocumentCard = (props) => {
                 name={props.name}
                 docID={props.docID}
                 path={props.path}
+                dateUploaded={props.dateUploaded}
                 linkView={props.linkView}
             />
         </>

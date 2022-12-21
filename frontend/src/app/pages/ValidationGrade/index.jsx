@@ -7,25 +7,8 @@ import Alert from "@mui/material/Alert";
 import { TextField } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-
-const getUserData = async (token) => {
-  try {
-    const response = await axios.get("http://localhost:2002/api/grade", {
-      // params: {linkPDF},
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    return response.data.data;
-  } catch (e) {
-    console.log("error to get database");
-  }
-};
-
-const linkPDF = "";
-let t1 = "https://docs.google.com/viewer?srcid=";
-let t2 = "&pid=explorer&efh=false&a=v&chrome=false&embedded=true";
-
-const pdf_link = t1.concat("12YkwJaHsX1uDK35Np6b0MuqvCORO2qXV", t2);
+import { api_url } from "../../utils/config";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const columns = [
   {
@@ -76,31 +59,17 @@ const columns = [
   },
 ];
 
-let getData = async () => {
-  const url = "http://localhost:3000/data.json";
-  const response = await fetch(url);
-  const data = await response.json();
-  for (var i = 0; i < data["students"].length; i++) {
-    const obj = {};
-    obj.studentCode = data["students"][i]["0"];
-    obj.id = i;
-    obj.midterm = data["students"][i]["1"];
-    obj.final = data["students"][i]["2"];
-    obj.total = data["students"][i]["3"];
-  }
-  return data;
-};
-
 const updateData = async (token, data) => {
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
   try {
     const response = await axios.put(
-      "http://localhost:2002/api/class/grade",
+      api_url + "/api/class/grade",
       data,
       config
     );
+    console.log(response);
     return response;
   } catch (e) {
     console.log(e);
@@ -124,7 +93,8 @@ const useFakeMutation = () => {
   );
 };
 
-export default function ValidationGrade() {
+export default function ValidationGrade(props) {
+  const [codeClass, setCodeClass] = React.useState(null);
   const [semester, setSemester] = React.useState(null);
   const [code, setCode] = React.useState(null);
   const [rows, setRows] = React.useState([]);
@@ -135,7 +105,7 @@ export default function ValidationGrade() {
   const mutateRow = useFakeMutation();
   const handleCloseSnackbar = () => setSnackbar(null);
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   // // user token
   // const [token, setToken] = useState("");
@@ -153,26 +123,46 @@ export default function ValidationGrade() {
   //     }
   //   }
   // }, [token, navigate]);
-  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZUlkIjoxLCJpYXQiOjE2NzA0ODk2ODEsImV4cCI6MTY3MzA4MTY4MX0.rSseHQSrXVyf_PyY3WAIoU07AKavd3-XP-RIXgXRgr4'
+
+  const getUserData = async (token) => {
+    console.log();
+    try {
+      const response = await axios.get(api_url + "/api/grade", {
+        params: { linkPDF },
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      return response.data.data;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const location = useLocation();
+  const linkPDF = location.state.linkPDF;
+
+  const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZUlkIjoxLCJpYXQiOjE2NzA0ODk2ODEsImV4cCI6MTY3MzA4MTY4MX0.rSseHQSrXVyf_PyY3WAIoU07AKavd3-XP-RIXgXRgr4";
 
   useEffect(() => {
-    getUserData(token).then((data) => {
-      let rows2 = [];
-      data = data.grade;
+    if (token !== "") {
+      getUserData(token).then((data) => {
+        let rows2 = [];
+        data = data.grade;
 
-      for (var i = 0; i < 1; i++) {
-        rows2.push({
-          studentCode: data[i].studentCode,
-          id: i + 1,
-          midterm: data[i].midterm,
-          final: data[i].final,
-          total: data[i].total,
-        });
-      }
+        for (var i = 0; i < data.length; i++) {
+          rows2.push({
+            studentCode: data[i].studentCode,
+            id: i + 1,
+            midterm: data[i].midterm,
+            final: data[i].final,
+            total: data[i].total,
+          });
+        }
 
-      setRows(rows2);
-    });
-  }, []);
+        setRows(rows2);
+      });
+    }
+  }, [token]);
 
   const processRowUpdate = async (newRow) => {
     const response = await mutateRow(newRow);
@@ -199,7 +189,11 @@ export default function ValidationGrade() {
     // Editable table grade
     <Box>
       <Box
-        sx={{ display: "flex", justifyContent: "space-around", maxWidth: 400 }}>
+        sx={{
+          display: "flex",
+          justifyContent: "space-around",
+          width: "30vw",
+        }}>
         <Box>
           <Box>
             <TextField
@@ -226,11 +220,16 @@ export default function ValidationGrade() {
         </Box>
         <Box>
           <Button
-            sx={{ mt: 8 }}
+            sx={{
+              mt: 8, backgroundColor: "#FFA69E", '&:hover': {
+                backgroundColor: "#DFA8BB",
+              }
+            }}
             variant="contained"
             onClick={async () => {
               console.log(rows);
               let change = {
+                linkPDF,
                 semester,
                 code,
                 grades: rows,
@@ -241,13 +240,14 @@ export default function ValidationGrade() {
                   children: "Tên lớp hoặc kỳ không đúng",
                   severity: "error",
                 });
+              else navigate("/validation-document", {});
             }}>
             Xác nhận
           </Button>
         </Box>
       </Box>
       <Box sx={{ display: "flex", flexDirection: "row" }}>
-        <Box component="nav" sx={{ width: "50%", flexShrink: { sm: 0 } }}>
+        <Box component="nav" sx={{ width: "40vw", flexShrink: { sm: 0 } }}>
           <DataGrid
             sx={{
               height: 900,
@@ -256,10 +256,10 @@ export default function ValidationGrade() {
                 backgroundColor: "#dee2e6",
               },
               ".MuiTablePagination-selectLabel, .MuiTablePagination-displayedRows":
-                {
-                  marginBottom: 0,
-                  fontSize: 15,
-                },
+              {
+                marginBottom: 0,
+                fontSize: 15,
+              },
             }}
             rows={rows}
             columns={columns}
@@ -279,9 +279,9 @@ export default function ValidationGrade() {
           />
         </Box>
 
-        <Box sx={{ flexGrow: 1, p: 3, width: "50%" }}>
+        <Box sx={{ flexGrow: 1, p: 3, width: "40vw" }}>
           <div className="pdf-viewer" align="right">
-            <iframe src={pdf_link} width="100%" height="910px"></iframe>
+            <iframe src={linkPDF} width="100%" height="910px"></iframe>
           </div>
         </Box>
       </Box>

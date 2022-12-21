@@ -2,70 +2,84 @@ import { useState, useRef } from 'react';
 import preprocessImage from './preprocess';
 import Tesseract from 'tesseract.js';
 import './styles.css';
+import { InputBox, InputButton } from '../../utils/styles';
+import { Box, Button, Typography } from '@mui/material';
+import ConvertApi from 'convertapi-js'
+import { useNavigate } from 'react-router-dom';
+
 
 const Convert = () => {
-  const [image, setImage] = useState("");
-  const [text, setText] = useState("");
-  // const [pin, setPin] = useState("");
-  const canvasRef = useRef(null);
-  const imageRef = useRef(null);
- 
-  const handleChange = (event) => {
-    setImage(URL.createObjectURL(event.target.files[0]))
-    // setImage(`${window.location.origin}/${event.target.files[0].name}`);
-    // const image = preprocessImage(canvasObj, event.target.files[0]);
-  }
+	const [docxFile, setDocxFile] = useState('UPLOAD .DOCX FILE');
+	const [linkDocxFile, setLinkDocxFile] = useState(null);
+	const api = "https://v2.convertapi.com/d/"
+	let fileId;
+	let fileName;
 
-  const handleClick = () => {
-    
-    const canvas = canvasRef.current;
-    canvas.width = imageRef.current.width;
-    canvas.height = imageRef.current.height;
-    const ctx = canvas.getContext('2d');
+	const docxToPdf = async (event) => {
+		let convertApi = ConvertApi.auth('8lVPmnUYpb4Ob5Sr');
+		let params = convertApi.createParams()
+		params.add('File', event.target.files[0]);
+		console.log(event.target.files[0]);
+		let result = await convertApi.convert('docx', 'pdf', params)
+		console.log(result);
+		// let url = result.files[0].Url;
+		return result;
+	}
+	
+	const handleDocxFile = async (event) => {
+		setDocxFile(event.target.files[0].name);
+		try {
+			await docxToPdf(event).then((res) => {
+				let fileId = res.files[0].FileId;
+				let fileName = res.files[0].FileName;
+				let url = res.files[0].Url;
+				document.getElementById(url).click();
+				console.log(res.files[0].Url);
+				setLinkDocxFile(api + fileId + "/" + encodeURIComponent(fileName));
+			})
+		} catch (e) {
+			console.log(e);
+		}
+	}
 
-    ctx.drawImage(imageRef.current, 0, 0);
-    ctx.putImageData(preprocessImage(canvas),0,0);
-    const dataUrl = canvas.toDataURL("image/jpeg");
-  
-    Tesseract.recognize(
-      dataUrl,'eng+vie',
-      { 
-        logger: m => console.log(m) 
-      }
-    )
-    .catch (err => {
-      console.error(err);
-    })
-    .then(result => {
-      // Get Confidence score
-      let confidence = result.confidence
-      // Get full output
-      let text = result.text
-  
-      setText(text);
-      // setPin(patterns);
-    })
-  }
+	return (
+		<>
+			<Box sx={{
+				display: 'flex',
+				alignItems: 'center',
+				flexDirection: 'row',
+				justifyContent: 'center',
+			}}>
 
-  return (
-    <div className="App">
-      <main className="App-main">
-        <h3>Actual image uploaded</h3>
-        <img 
-           src={image} className="App-logo" alt="logo"
-           ref={imageRef} 
-           />
-        <h3>Canvas</h3>
-        <canvas ref={canvasRef} width={700} height={300}></canvas>
-          <h3>Extracted text</h3>
-        {/* <div className="pin-box"> */}
-          <p> {text} </p>
-        {/* </div> */}
-        <input type="file" onChange={handleChange} />
-        <button onClick={handleClick} style={{height:50}}>Convert to text</button>
-      </main>
-    </div>
-  );
+				<Button
+					variant="outlined"
+					component="label"
+					fullWidth
+					sx={{ m: 3 }}
+				>
+					<Typography variant='h6'>
+						{docxFile}
+					</Typography>
+					<input
+						type="file"
+						hidden
+						onChange={handleDocxFile} />
+				</Button>
+				<Button
+					variant="outlined"
+					component="label"
+					fullWidth
+					sx={{ m: 3 }}
+					disabled={(linkDocxFile === null)}
+					href={linkDocxFile}
+				>
+					<Typography variant='h6'>
+						DOWNLOAD FILE PDF
+					</Typography>
+				</Button>
+			</Box>
+		</>
+	);
 }
 
 export default Convert;
