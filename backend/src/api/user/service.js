@@ -1,8 +1,4 @@
-const {
-	User,
-	Course,
-	Teacher,
-} = require("../../database/models");
+const { User, Course, Teacher } = require("../../database/models");
 const ResponseCode = require("../../utils/constant/ResponseCode");
 const { hashPassword, comparePassword } = require("../../utils/password");
 
@@ -42,6 +38,14 @@ const getMyUser = async (req) => {
 
 			let studiedClasses = await student.getClasses({
 				where: { finish: true },
+				include: [
+					{
+						model: Course,
+					},
+					{
+						model: Teacher,
+					},
+				],
 			});
 
 			let studyingClasses = await student.getClasses({

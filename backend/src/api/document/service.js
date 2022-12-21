@@ -53,7 +53,6 @@ async function uploadFile(name) {
 
 async function generatePublicUrl(id) {
 	try {
-		// const fileId = '1rJnEYdfhkzmb1I0ij3wYldrjaro0aO6t';
 		await drive.permissions.create({
 			fileId: id,
 			requestBody: {
@@ -65,16 +64,11 @@ async function generatePublicUrl(id) {
 			fileId: id,
 			fields: "webViewLink, webContentLink",
 		});
-		// result.push({
-		// 	customViewLink: t1.concat(id, t2)
-		// });
-		// console.log(result)
 		const res = {
 			linkDownload: result.data.webContentLink,
 			linkView: t1.concat(id, t2),
 		};
 		return res;
-		// console.log(result.data);
 	} catch (error) {
 		console.log(error.message);
 	}
@@ -160,7 +154,10 @@ const getPublicDocuments = async (req) => {
 const getPublicDocument = async (req) => {
 	try {
 		let { document, message, status } = await verifyDocument(req);
-		let course, teacher, comments, belongToMe = (req.user.id === document.userId);
+		let course,
+			teacher,
+			comments,
+			belongToMe = req.user.id === document.userId;
 
 		if (document) {
 			if (document.status === "public") {
@@ -184,7 +181,7 @@ const getPublicDocument = async (req) => {
 			course,
 			teacher,
 			comments,
-			belongToMe
+			belongToMe,
 		};
 
 		return {
@@ -220,7 +217,10 @@ const getMyDocuments = async (req) => {
 const getMyDocument = async (req) => {
 	try {
 		let { document, message, status } = await verifyDocument(req);
-		let course, teacher, comments, belongToMe = (document.userId === req.user.id);
+		let course,
+			teacher,
+			comments,
+			belongToMe = document.userId === req.user.id;
 
 		if (document) {
 			if (document.userId === req.user.id) {
@@ -243,7 +243,7 @@ const getMyDocument = async (req) => {
 			course,
 			teacher,
 			comments,
-			belongToMe
+			belongToMe,
 		};
 
 		return {
@@ -264,10 +264,6 @@ const updateMyDocument = async (req) => {
 			if (document.userId === req.user.id) {
 				const updatedDocument = req.body;
 				await document.update(updatedDocument);
-				// course = await document.getCourse();
-				// teacher = await document.getTeacher();
-				// comments = await document.getComments();
-
 				message = "Update my document successfully";
 				status = ResponseCode.OK;
 			} else {
@@ -339,10 +335,10 @@ const getDocuments = async (req) => {
 const updateDocument = async (req) => {
 	try {
 		let { document, message, status } = await verifyDocument(req);
-		let course, teacher, comments;
+		let updatedDocument = req.body;
 
 		if (document) {
-			document.update({ status: "public" });
+			document = await document.update(updatedDocument);
 			message = "Update document successfully";
 			status = ResponseCode.OK;
 		}
