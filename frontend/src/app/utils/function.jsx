@@ -24,25 +24,25 @@ export const getDictValues = (dict) => {
 }
 
 export const getFilterPair = (id, dict) => {
-	let res = {};
-	for (let i in id) {
-		res[id[i]] = dict[id[i]];
-	}
-	return res;
+    let res = {};
+    for (let i in id) {
+        res[id[i]] = dict[id[i]];
+    }
+    return res;
 }
 
 export const stringToColour = (str) => {
     let hash = 0;
     for (let i = 0; i < str.length; i++) {
-      hash = str.charCodeAt(i) + ((hash << 5) - hash);
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
     }
     let colour = '';
     for (let i = 0; i < 3; i++) {
-      let value = (hash >> (i * 8)) & 0xFF;
-      colour += ('00' + value.toString(16)).substr(-2);
+        let value = (hash >> (i * 8)) & 0xFF;
+        colour += ('00' + value.toString(16)).substr(-2);
     }
     return colour;
-  }
+}
 
 export const getDocumentThumbnail = (name) => {
     return ui_avatar_api + "name=" + name + "&background=" + stringToColour(name);
@@ -52,4 +52,8 @@ export const toDateString = (str) => {
     const date = new Date(str);
     return date.toLocaleTimeString() + " " + date.toDateString();
 
+}
+
+export const refreshPage = () => {
+    window.location.reload();
 }

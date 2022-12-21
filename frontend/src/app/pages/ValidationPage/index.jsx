@@ -43,7 +43,7 @@ const ValidationPage = (props) => {
 
   useEffect(() => {
 		fetchData();
-	}, [token]);
+	}, [token, card]);
 
   const fetchData = async () => {
 		try {
