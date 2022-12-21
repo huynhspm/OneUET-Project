@@ -20,7 +20,7 @@ const login = async (req) => {
 		status = ResponseCode.Forbidden;
 	} else {
 		const verifyPassword = comparePassword(password, user.password);
-		
+
 		if (!verifyPassword) {
 			message = "Invalid password";
 			status = ResponseCode.Forbidden;
@@ -41,8 +41,7 @@ const login = async (req) => {
 				status = ResponseCode.OK;
 			} else {
 				const { otp, expiredTime } = createOTP();
-				// sendOTP(user.email, otp);
-				console.log("sendOTP");
+				sendEmailOTP(user.email, otp);
 				await user.update({ otp, expiredTime });
 
 				message = "Login successfully but not active";
@@ -109,8 +108,7 @@ const sendOTP = async (req, res) => {
 		status = ResponseCode.Forbidden;
 	} else {
 		const { otp, expiredTime } = createOTP();
-		// sendEmailOTP(user.email, otp);
-		console.log("sendEmailOTP");
+		sendEmailOTP(user.email, otp);
 		await user.update({ otp, expiredTime });
 
 		message = "Send OTP successfully";
