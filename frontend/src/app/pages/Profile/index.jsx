@@ -35,7 +35,7 @@ const Profile = (props) => {
                 component="nav"
                 sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
             >
-                <LeftDrawer />
+                <LeftDrawer location={props.location} />
                 {/* {type === 'private-document' && <FilterSidebar filterData={filterData} />} */}
             </Box>
             <Box

@@ -57,6 +57,7 @@ const ValidationPage = (props) => {
 		}
 	}, [token, openValidGrade]);
 
+
   const fetchData = async () => {
     try {
       await axios
@@ -66,6 +67,7 @@ const ValidationPage = (props) => {
           },
           headers: { Authorization: `Bearer ${token}` },
         })
+
         .then((res) => {
           let docs = res.data.data.documents;
           console.log(res);
@@ -90,6 +92,7 @@ const ValidationPage = (props) => {
       console.log(e.response.data);
     }
   };
+
 
   const getValidGrade = async () => {
     try {
@@ -158,7 +161,11 @@ const ValidationPage = (props) => {
           <Box>
             {linkPDF.map((link, index) => (
               <Button
-                sx={{ width: "80vw", height: "7vh", mt: 2, display: "center" }}
+                sx={{
+                  width: "75vw", height: "7vh", mt: 2, display: "center", backgroundColor: "#FFA69E", '&:hover': {
+                    backgroundColor: "#DFA8BB",
+                  }
+                }}
                 variant="contained"
                 onClick={async () => {
                   console.log(link);

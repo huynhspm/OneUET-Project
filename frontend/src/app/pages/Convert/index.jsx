@@ -55,7 +55,7 @@ const Convert = () => {
 
 	return (
 		<> 
-			<Box sx={{mt: 3, mb: 6, mr:50, ml:50}}>
+			<Box sx={{mt: 3, mb: 40, mr:50, ml:50}}>
 				<Box sx={{display: 'flex', flexDirection: 'row'}}>
 					<FormControl fullWidth sx={{m:3}}>
 						<InputLabel id="id-From">From</InputLabel>

@@ -73,13 +73,12 @@ export default function CustomizedSelects() {
   };
 
   return (
-    <>
+    <div style={{ minHeight: window.innerHeight }}>
       <div
         style={{
           display: "flex",
           justifyContent: "space-around",
           margin: "30px",
-          // height: '100vh'
         }}>
         <Box>
           <SearchIcon sx={{ color: "action.active", mt: 7, fontSize: 40 }} />
@@ -139,7 +138,11 @@ export default function CustomizedSelects() {
 
         <Box>
           <Button
-            sx={{ width: 200, height: "7vh", mt: 5 }}
+            sx={{
+              width: 200, height: "7vh", mt: 5, backgroundColor: "#FFA69E", '&:hover': {
+                backgroundColor: "#DFA8BB",
+              }
+            }}
             variant="contained"
             onClick={() => {
               fetchData();
@@ -150,7 +153,6 @@ export default function CustomizedSelects() {
           </Button>
         </Box>
       </div>
-
       <Box>
         {classes.length !== 0 &&
           classes.map((id, index) => (
@@ -167,5 +169,6 @@ export default function CustomizedSelects() {
           ))}
       </Box>
     </>
+
   );
 }

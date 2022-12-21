@@ -118,10 +118,10 @@ const Header = (props) => {
           }
           {props.location !== "/validation-document" ?
             <Link className="validation-button btn" to="/validation-document">
-              <FactCheckIcon /> Validation Document
+              <FactCheckIcon /> Admin
             </Link> :
             <Link className="validation-button btn btn-primary" to="/validation-document">
-              <FactCheckIcon /> Validation Document
+              <FactCheckIcon /> Admin
             </Link>
           }
         </div>
