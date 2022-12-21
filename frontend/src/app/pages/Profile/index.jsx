@@ -7,9 +7,6 @@ import LeftDrawer from '../../components/LeftDrawer';
 import Information from './Information';
 import Schedule from './Schedule';
 import Grade from '../Grade';
-import PrivateDocument from './PrivateDocument';
-import FilterSidebar from '../../components/FilterSidebar';
-import { units } from '../../utils/config';
 import Main from './PrivateDocument/Main' 
 import ChangePassword from './ChangePassword';
 

@@ -97,17 +97,17 @@ export default function Register() {
 		let validation = true;
 
 		setIsValidEmail(EmailUIValidator(email));
-		if (EmailUIValidator(email) != EmailValidCode.OK) {
+		if (EmailUIValidator(email) !== EmailValidCode.OK) {
 			validation = false;
 		}
 
 		setIsValidPassword(PasswordUIValidator(password));
-		if (PasswordUIValidator(password) != PasswordValidCode.OK) {
+		if (PasswordUIValidator(password) !== PasswordValidCode.OK) {
 			validation = false;
 		}
 
 		setIsValidRewritePassword(PasswordUIValidator(rewritePassword, password, false));
-		if (PasswordUIValidator(rewritePassword, password, false) != PasswordValidCode.OK) {
+		if (PasswordUIValidator(rewritePassword, password, false) !== PasswordValidCode.OK) {
 			validation = false;
 		}
 
@@ -205,7 +205,7 @@ export default function Register() {
 										onChange={(event) => {
 											setEmail(event.target.value);
 										}}
-										error={isValidEmail != EmailValidCode.OK}
+										error={isValidEmail !== EmailValidCode.OK}
 										helperText={EmailValidText[isValidEmail]}
 										autoComplete="email"
 										type="email"
@@ -222,7 +222,7 @@ export default function Register() {
 										onChange={(event) => {
 											setPassword(event.target.value);
 										}}
-										error={isValidPassword != PasswordValidCode.OK}
+										error={isValidPassword !== PasswordValidCode.OK}
 										helperText={PasswordValidText[isValidPassword]}
 										autoComplete="password"
 										type="password"
@@ -239,7 +239,7 @@ export default function Register() {
 										onChange={(event) => {
 											setRewritePassword(event.target.value);
 										}}
-										error={isValidRewritePassword != PasswordValidCode.OK}
+										error={isValidRewritePassword !== PasswordValidCode.OK}
 										helperText={PasswordValidText[isValidRewritePassword]}
 										autoComplete="password"
 										type="password"

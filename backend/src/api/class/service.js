@@ -194,32 +194,39 @@ const addStudent = async (req) => {
 
 const updateGrade = async (req) => {
 	try {
-		let curClass, message, status;
+		let curClasses, message, status;
 		const { code, semester, grades, linkPDF } = req.body;
-		curClass = await Class.findOne({
+		curClasses = await Class.findAll({
 			where: { code, semester },
 		});
 
-		if (curClass) {
-			curClass.finish = true;
-			for (let index in grades) {
-				let grade = grades[index];
-				grade["id"] = undefined;
+		if (curClasses.length) {
+			for (let index in curClasses) {
+				let curClass = curClasses[index];
 
-				let student = await Student.findOne({
-					where: { code: grade.studentCode },
-				});
+				await curClass.update({ finish: true });
+				for (let index in grades) {
+					let grade = grades[index];
+					grade["id"] = undefined;
 
-				await StudentClass.update(grade, {
-					where: { studentId: student.id, classId: curClass.id },
-				});
+					let student = await Student.findOne({
+						where: { code: grade.studentCode },
+					});
 
-				let email = student.code + "@vnu.edu.vn";
-				let subject = "Your score in class " + curClass.code;
-				// sendEmailGrade(email, grade, subject);
+					let studentClass = await StudentClass.findOne({
+						where: { studentId: student.id, classId: curClass.id },
+					});
+
+					if (studentClass) {
+						await studentClass.update(grade);
+						let email = student.code + "@vnu.edu.vn";
+						let subject = "Your score in class " + curClass.code;
+						// sendEmailGrade(email, grade, subject);
+					}
+				}
 			}
 
-			await Grade.delete({ where: linkPDF });
+			await Grade.destroy({ where: { linkPDF } });
 
 			message = "Update grade successfully";
 			status = ResponseCode.OK;
@@ -228,10 +235,7 @@ const updateGrade = async (req) => {
 			status = ResponseCode.Not_Found;
 		}
 
-		data = { curClass };
-
 		return {
-			data,
 			message,
 			status,
 		};
