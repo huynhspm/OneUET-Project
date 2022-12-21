@@ -1,6 +1,14 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+import {
+  DataGrid,
+  GridToolbarContainer,
+  GridToolbarColumnsButton,
+  GridToolbarFilterButton,
+  GridToolbarExport,
+  GridToolbarDensitySelector,
+  GridToolbar,
+} from "@mui/x-data-grid";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { api_url } from '../../utils/config';
@@ -105,6 +113,16 @@ export default function DataGridDemo() {
   const [pageSize, setPageSize] = React.useState(5);
   const navigate = useNavigate();
 
+  function CustomToolbar() {
+    return (
+      <GridToolbarContainer>
+        <GridToolbarColumnsButton sx={{ color: "black" }} />
+        <GridToolbarFilterButton sx={{ color: "black" }} />
+        <GridToolbarExport sx={{ color: "black" }} />
+      </GridToolbarContainer>
+    );
+  }
+
   // user token
   const [token, setToken] = useState(
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZUlkIjoxLCJpYXQiOjE2NzA0ODk2ODEsImV4cCI6MTY3MzA4MTY4MX0.rSseHQSrXVyf_PyY3WAIoU07AKavd3-XP-RIXgXRgr4"
@@ -164,7 +182,7 @@ export default function DataGridDemo() {
           rows={rows}
           columns={columns}
           components={{
-            Toolbar: GridToolbar,
+            Toolbar: CustomToolbar,
           }}
           componentsProps={{
 
