@@ -2,6 +2,10 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { DataGrid } from "@mui/x-data-grid";
+import InputLabel from "@mui/material/InputLabel";
+import FormControl from "@mui/material/FormControl";
+import NativeSelect from "@mui/material/NativeSelect";
+import OutlinedInput from "@mui/material/OutlinedInput";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import { TextField } from "@mui/material";
@@ -209,15 +213,33 @@ export default function ValidationGrade(props) {
           </Box>
 
           <Box>
-            <TextField
-              sx={{ m: 1, ml: 3, width: 200 }}
-              id="semester"
-              label="Học kỳ"
-              helperText="Ví dụ: 2021-2022-1"
-              onChange={(event) => {
-                setSemester(event.target.value);
-              }}
-            />
+            <FormControl sx={{ m: 3, width: 200 }}>
+              <InputLabel htmlFor="semester">Học kỳ:</InputLabel>
+              <NativeSelect
+                input={<OutlinedInput label="Học kỳ:" />}
+                defaultValue={10}
+                onChange={(event) => {
+                  if (event.target.value == 10) setSemester("2020-2021-1");
+                  if (event.target.value == 20) setSemester("2020-2021-2");
+                  if (event.target.value == 30) setSemester("2020-2021-Hè");
+                  if (event.target.value == 40) setSemester("2021-2022-1");
+                  if (event.target.value == 50) setSemester("2021-2022-2");
+                  if (event.target.value == 60) setSemester("2021-2022-Hè");
+                  
+                  console.log(semester);
+                }}
+                inputProps={{
+                  name: "semester",
+                  id: "uncontrolled-native",
+                }}>
+                <option value={10}>2020-2021-1</option>
+                <option value={20}>2020-2021-2</option>
+                <option value={30}>2020-2021-Hè</option>
+                <option value={40}>2021-2022-1</option>
+                <option value={50}>2021-2022-2</option>
+                <option value={60}>2021-2022-Hè</option>
+              </NativeSelect>
+            </FormControl>
           </Box>
         </Box>
         <Box>
