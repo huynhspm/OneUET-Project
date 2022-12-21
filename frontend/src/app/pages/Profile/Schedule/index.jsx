@@ -92,7 +92,7 @@ const RoomScheduler = (props) => {
 			if (index === 0) return <div className="titleScheduleItem">{val}</div>
 			if (isNeat === false) {
 				let vals = val.split("<space>")
-				return <div><strong>{vals[0]}</strong>{vals[1]}</div>
+				return <div className="k-detail"><strong>{vals[0]}</strong>{vals[1]}</div>
 			}
 		});
 

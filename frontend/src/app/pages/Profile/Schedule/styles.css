@@ -1,13 +1,41 @@
 /* .k-scheduler-layout-flex .k-scheduler-cell {
     min-height: 90px;
 } */
+
+@font-face {
+    font-family: "IBM Flex Sans";
+    font-weight: 300;
+    src: url("../../../utils/fonts/IBMPlexSans-Light.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "IBM Flex Sans";
+    font-weight: 400;
+    src: url("../../../utils/fonts/IBMPlexSans-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "IBM Flex Sans";
+    font-weight: 500;
+    src: url("../../../utils/fonts/IBMPlexSans-Medium.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "IBM Flex Sans";
+    font-weight: 600;
+    src: url("../../../utils/fonts/IBMPlexSans-SemiBold.ttf") format("truetype");
+}
+
 .titleScheduleItem {
+    font-family: "IBM Flex Sans";
     font-weight: bold;
     font-size: 18px;
     text-align: center;
     color: black;
 }
+
 .k-link {
+    font-family: "IBM Flex Sans";
     font-size: 20px;
     display: flex;
     justify-content: center;
@@ -15,11 +43,21 @@
 }
 
 .k-heading-cell {
+    font-family: "IBM Flex Sans";
     font-size: 15px;
     display: flex;
     align-items: flex-start;
 }
 
 .k-scheduler-row:has(.k-scheduler-times-all-day) {
+    font-family: "IBM Flex Sans";
     display: none;
+}
+
+.k-detail-container {
+    margin-top: 1;
+}
+
+.k-detail {
+    font-family: "IBM Flex Sans";
 }
