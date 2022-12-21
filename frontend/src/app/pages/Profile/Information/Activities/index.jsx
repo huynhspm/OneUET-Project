@@ -119,7 +119,6 @@ const Activities = (props) => {
                         <Grid container spacing={2}>
                             <Grid item xs={6}>
                                 <TextField
-                                    required
                                     disabled={!editable}
                                     fullWidth
                                     label="Chức vụ cao nhất (Đoàn Thanh niên)"
@@ -133,7 +132,6 @@ const Activities = (props) => {
                             </Grid>
                             <Grid item xs={6}>
                                 <TextField
-                                    required
                                     disabled={!editable}
                                     fullWidth
                                     label="Chức vụ cao nhất (Hội Sinh viên)"

@@ -16,8 +16,10 @@ import axios from "axios";
 import { api_url, drawerWidth } from "../../utils/config";
 import ValidationDocuments from "../../components/ValidationDocuments";
 import { toDateString, getDocumentThumbnail } from "../../utils/function";
+import DialogNotAdmin from "./DialogNotAdmin";
 
 const ValidationPage = (props) => {
+
   const [card, setCard] = useState([]);
   const [linkPDF, setLinkPDF] = useState([]);
   const [openValidGrade, setOpenValidGrade] = useState(true);
@@ -33,7 +35,7 @@ const ValidationPage = (props) => {
     if (token === "") {
       const lastToken = sessionStorage.getItem("token");
       if (lastToken !== null && lastToken !== undefined) {
-        console.log(lastToken);
+        // console.log(lastToken);
         setToken(lastToken);
       } else {
         navigate("/login");
@@ -41,22 +43,27 @@ const ValidationPage = (props) => {
     }
   };
 
+  const [isAdmin, setIsAdmin] = useState(false);
+  const handleClose = () => {
+    setIsAdmin(false);
+    navigate("/");
+  }
+
   useEffect(() => {
     getToken();
   }, [navigate, token]);
 
-	useEffect(() => {
-		if (token !== '') {
-			fetchData();
-		}
-  	}, [token, openValidDoc, card]);
+  useEffect(() => {
+      if (token !== '') {
+          fetchData();
+      }  
+  }, [token, openValidDoc, card]);
 
-	useEffect(() => {
-		if (token !== '') { 
-			getValidGrade();
-		}
-	}, [token, openValidGrade]);
-
+  useEffect(() => {
+      if (token !== '') {
+          getValidGrade();
+      }  
+  }, [token, openValidGrade]);
 
   const fetchData = async () => {
     try {
@@ -113,77 +120,83 @@ const ValidationPage = (props) => {
         });
     } catch (e) {
       console.log(e.response);
+      if (e.response.data.message === "You are not admin, Not permission") {
+        setIsAdmin(true);
+      }
     }
   };
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "row" }}>
-      <Box sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}>
-        <ListItem
-          disablePadding
-          onClick={() => {
-            setOpenValidDoc(false);
-            setOpenValidGrade(true);
+    <>
+      <DialogNotAdmin open={isAdmin} handleClose={handleClose} />
+      <Box sx={{ display: "flex", flexDirection: "row" }}>
+        <Box sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}>
+          <ListItem
+            disablePadding
+            onClick={() => {
+              setOpenValidDoc(false);
+              setOpenValidGrade(true);
+            }}>
+            <ListItemButton component="a" href="#grades">
+              <ListItemIcon>
+                <Grade />
+              </ListItemIcon>
+              <ListItemText primary="Grade" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem
+            disablePadding
+            onClick={() => {
+              setOpenValidDoc(true);
+              setOpenValidGrade(false);
+            }}>
+            <ListItemButton component="a" href="#documents">
+              <ListItemIcon>
+                <Assignment />
+              </ListItemIcon>
+              <ListItemText primary="Documents" />
+            </ListItemButton>
+          </ListItem>
+        </Box>
+        <Box
+          component="main"
+          sx={{
+            flexGrow: 1,
+            p: 3,
+            width: { sm: `calc(100% - ${drawerWidth}px)` },
+            display: "flex",
+            minHeight: window.innerHeight,
+            alignItems: "flex-start",
           }}>
-          <ListItemButton component="a" href="#grades">
-            <ListItemIcon>
-              <Grade />
-            </ListItemIcon>
-            <ListItemText primary="Grade" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem
-          disablePadding
-          onClick={() => {
-            setOpenValidDoc(true);
-            setOpenValidGrade(false);
-          }}>
-          <ListItemButton component="a" href="#documents">
-            <ListItemIcon>
-              <Assignment />
-            </ListItemIcon>
-            <ListItemText primary="Documents" />
-          </ListItemButton>
-        </ListItem>
-      </Box>
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          p: 3,
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
-          display: "flex",
-          minHeight: window.innerHeight,
-          alignItems: "flex-start",
-        }}>
-        {openValidDoc && <ValidationDocuments card={card} />}
-        {openValidGrade && (
-          <Box>
-            {linkPDF.map((link, index) => (
-              <Button
-                sx={{
-                  width: "75vw", height: "7vh", mt: 2, display: "center", backgroundColor: "#FFA69E", '&:hover': {
-                    backgroundColor: "#DFA8BB",
-                  }
-                }}
-                variant="contained"
-                onClick={async () => {
-                  console.log(link);
-                  navigate("/validation-grade", {
-                    state: { linkPDF: link.linkPDF },
-                  });
-                }}>
-                Bảng điểm {index + 1}
-                <br></br>
-                Link: {link.linkPDF}
-              </Button>
-            ))}
-          </Box>
-        )}
+          {openValidDoc && <ValidationDocuments card={card} />}
+          {openValidGrade && (
+            <Box>
+              {linkPDF.map((link, index) => (
+                <Button
+                  sx={{
+                    width: "75vw", height: "7vh", mt: 2, display: "center", backgroundColor: "#FFA69E", '&:hover': {
+                      backgroundColor: "#DFA8BB",
+                    }
+                  }}
+                  variant="contained"
+                  onClick={async () => {
+                    console.log(link);
+                    navigate("/validation-grade", {
+                      state: { linkPDF: link.linkPDF },
+                    });
+                  }}>
+                  Bảng điểm {index + 1}
+                  <br></br>
+                  Link: {link.linkPDF}
+                </Button>
+              ))}
+            </Box>
+          )}
 
-        {/* {openGrade && <ValidationGrade />} */}
+          {/* {openGrade && <ValidationGrade />} */}
+        </Box>
       </Box>
-    </Box>
+    </>
   );
 };
 

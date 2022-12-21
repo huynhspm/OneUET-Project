@@ -17,7 +17,8 @@ export const EmailValidCode = {
     Empty: 1,
     Invalid_Format: 2,
     Invalid: 3,
-    Existed: 4
+    Existed: 4,
+    Code_Existed: 5
 };
 
 // Email validation helper text a.k.a. error message
@@ -26,5 +27,6 @@ export const EmailValidText = [
     "Please enter your email", 
     "This is not a valid email format",
     "Invalid Email",
-    "This email has been used"
+    "This email has been used",
+    "Student ID not existed"
 ];
