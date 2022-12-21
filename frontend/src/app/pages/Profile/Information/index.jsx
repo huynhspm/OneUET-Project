@@ -46,6 +46,8 @@ const Information = (props) => {
     const [gender, setGender] = React.useState(null);
     const [emailVNU, setEmailVNU] = React.useState(null);
     const [email, setEmail] = React.useState(null);
+    const [phone, setPhone] = React.useState(null);
+    const [address, setAddress] = React.useState(null);
 
     // Education
     const [program, setProgram] = React.useState(null);
@@ -75,6 +77,8 @@ const Information = (props) => {
                 setGender(user.gender);
                 setEmailVNU(user.email);
                 setEmail(user.otherEmail);
+                setPhone(user.phone);
+                setAddress(user.address);
 
                 // Education
                 setProgram(user.program);
@@ -131,6 +135,10 @@ const Information = (props) => {
                             setEmailVNU={setEmailVNU}
                             email={email}
                             setEmail={setEmail}
+                            phone={phone}
+                            setPhone={setPhone}
+                            address={address}
+                            setAddress={setAddress}
                             token={props.token}
                             updateUserData={updateUserData}
                         />
@@ -191,7 +199,31 @@ const Information = (props) => {
                             flexDirection: 'column',
                         }}
                     >
-                        <ExportCV />
+                        <ExportCV 
+                            // Basic
+                            avatar={avatar}
+                            code={code}
+                            name={name}
+                            birthday={birthday}
+                            gender={gender}
+                            emailVNU={emailVNU}
+                            email={email}
+                            phone={phone}
+                            address={address}
+
+                            // Education
+                            program={program}
+                            academicYear={academicYear}
+                            unit={unit}
+                            classID={classID}
+
+                            // Activites
+                            unionJoint={unionJoint}
+                            partyJoint={partyJoint}
+                            unionPosition={unionPosition}
+                            associationPosition={associationPosition}
+                            club={club}
+                        />
                     </Paper>
                 </Grid>
             </Grid>

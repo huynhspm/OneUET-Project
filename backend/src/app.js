@@ -9,20 +9,23 @@ const router = require("./api");
 const app = express();
 var cors = require("cors");
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json({ limit: "50mb" }));
-app.use(cors());
-
-// app.use(express.static("../frontend/build"));
-
 const createData = require("./utils/data");
 
-const fetch = require("cross-fetch");
-
 const init = async () => {
+	app.use(express.urlencoded({ extended: true }));
+	app.use(express.json({ limit: "50mb" }));
+	app.use(cors());
+  
+  app.use("/api", router);
+	app.use(express.static("build"));
+
+	app.get("/*", function (req, res) {
+		res.sendFile("build/index.html", { root: "." });
+	});
+
 	await sequelize.sync();
 	console.log("Finish load database.");
-	app.use("/api", router);
+	
 	// await createData();
 	console.log("Create data successfully");
 };

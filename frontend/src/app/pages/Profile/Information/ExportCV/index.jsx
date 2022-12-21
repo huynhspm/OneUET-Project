@@ -1,11 +1,12 @@
 import React from "react";
-import { Box, Grid, Button, Paper } from '@mui/material';
 import Title from "../../../../components/Title";
-import { PDFExport, savePDF } from '@progress/kendo-react-pdf';
-import './styles.css'
+import { Box, Grid, Button, Paper } from '@mui/material';
+import { PDFExport } from '@progress/kendo-react-pdf';
+import CurriculumVitae from "./CurriculumVitae";
 
 const ExportCV = (props) => {
     const pdfExportComponent = React.useRef(null);
+
     return (
         <Box sx={{
             p: 1,
@@ -31,21 +32,54 @@ const ExportCV = (props) => {
                     </Box>
                 </Grid>
                 <Grid item xs={12}>
-                    <Paper
-                        variant="outlined"
+                    <Box
                         sx={{
-                            p: 1,
-                            borderColor: 'primary.default'
+                            display: 'flex',
+                            justifyContent: 'center'
                         }}
                     >
-                        <PDFExport ref={pdfExportComponent} paperSize="A4">
-                            <div className="cv">
-                                <div>
-                                    <p>Lương Sơn Bá</p>
-                                </div>
-                            </div>
-                        </PDFExport>
-                    </Paper>
+                        <Paper
+                            variant="outlined"
+                            sx={{
+                                maxWidth: '9in',
+                                p: 1,
+                                borderColor: 'primary.default'
+                            }}
+                        >
+                            <PDFExport
+                                ref={pdfExportComponent}
+                                paperSize="A4"
+                                scale={0.75}
+                                imageResolution={300}
+                            >
+                                <CurriculumVitae
+                                    // Basic
+                                    avatar={props.avatar}
+                                    code={props.code}
+                                    name={props.name}
+                                    birthday={props.birthday}
+                                    gender={props.gender}
+                                    emailVNU={props.emailVNU}
+                                    email={props.email}
+                                    phone={props.phone}
+                                    address={props.address}
+
+                                    // Education
+                                    program={props.program}
+                                    academicYear={props.academicYear}
+                                    unit={props.unit}
+                                    classID={props.classID}
+
+                                    // Activites
+                                    unionJoint={props.unionJoint}
+                                    partyJoint={props.partyJoint}
+                                    unionPosition={props.unionPosition}
+                                    associationPosition={props.associationPosition}
+                                    club={props.club}
+                                />
+                            </PDFExport>
+                        </Paper>
+                    </Box>
                 </Grid>
             </Grid>
         </Box>

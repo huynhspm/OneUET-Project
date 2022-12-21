@@ -264,10 +264,6 @@ const updateMyDocument = async (req) => {
 			if (document.userId === req.user.id) {
 				const updatedDocument = req.body;
 				await document.update(updatedDocument);
-				// course = await document.getCourse();
-				// teacher = await document.getTeacher();
-				// comments = await document.getComments();
-
 				message = "Update my document successfully";
 				status = ResponseCode.OK;
 			} else {
@@ -342,7 +338,7 @@ const updateDocument = async (req) => {
 		let updatedDocument = req.body;
 
 		if (document) {
-			document.update(updatedDocument);
+			document = await document.update(updatedDocument);
 			message = "Update document successfully";
 			status = ResponseCode.OK;
 		}
