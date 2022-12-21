@@ -63,7 +63,6 @@ const PrivateDocument = (props) => {
     }
 
     const { docId } = useParams();
-
     return (
         <>
             {docId === "" && <Main />}
@@ -73,5 +72,4 @@ const PrivateDocument = (props) => {
         </>
     );
 };
-
 export default PrivateDocument;

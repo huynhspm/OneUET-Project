@@ -246,7 +246,11 @@ export default function ValidationGrade(props) {
         </Box>
         <Box>
           <Button
-            sx={{ mt: 8 }}
+            sx={{
+              mt: 8, backgroundColor: "#FFA69E", '&:hover': {
+                backgroundColor: "#DFA8BB",
+              }
+            }}
             variant="contained"
             onClick={async () => {
               console.log(rows);
@@ -278,10 +282,10 @@ export default function ValidationGrade(props) {
                 backgroundColor: "#dee2e6",
               },
               ".MuiTablePagination-selectLabel, .MuiTablePagination-displayedRows":
-                {
-                  marginBottom: 0,
-                  fontSize: 15,
-                },
+              {
+                marginBottom: 0,
+                fontSize: 15,
+              },
             }}
             rows={rows}
             columns={columns}
