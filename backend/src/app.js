@@ -23,11 +23,10 @@ const init = async () => {
   // 	res.sendFile("build/index.html", { root: "." });
   // });
 
-
-	await sequelize.sync();
-	console.log("Finish load database.");
-	// await createData();
-	console.log("Create data successfully");
+  await sequelize.sync();
+  console.log("Finish load database.");
+  // await createData(); 
+  console.log("Create data successfully");
 };
 
 init();

@@ -1,11 +1,18 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import {
+  DataGrid,
+  GridToolbarContainer,
+  GridToolbarColumnsButton,
+  GridToolbarFilterButton,
+  GridToolbarExport,
+  GridToolbarDensitySelector,
+  GridToolbar,
+} from "@mui/x-data-grid";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api_url } from "../../utils/config";
-
 
 const columns = [
   {
@@ -22,12 +29,16 @@ const columns = [
     flex: 0.8,
     headerAlign: "center",
     align: "center",
+    description: "Giá trị không thể sắp xếp.",
+    sortable: false,
     // editable: true,
   },
   {
     field: "name",
     headerName: "Môn học",
     headerAlign: "center",
+    description: "Giá trị không thể sắp xếp.",
+    sortable: false,
     // width: 200,
     flex: 0.6,
   },
@@ -37,8 +48,6 @@ const columns = [
     type: "number",
     headerAlign: "center",
     align: "center",
-    description: "This column has a value getter and is not sortable.",
-    sortable: false,
     // width: 110,
     flex: 0.5,
   },
@@ -46,7 +55,7 @@ const columns = [
     field: "grade_text",
     headerName: "Điểm chữ",
     headerAlign: "center",
-    align: "left",
+    align: "center",
     // width: 200,
     flex: 0.5,
   },
@@ -79,13 +88,22 @@ const columns = [
   },
 ];
 
-const rows = [];
-
 export default function Grade() {
   const [pageSize, setPageSize] = React.useState(5);
   const [isFetch, setIsFetch] = React.useState(false);
   const [isSetToken, setIsSetToken] = React.useState(true);
+  const [rows, setRows] = React.useState([]);
   const navigate = useNavigate();
+
+  function CustomToolbar() {
+    return (
+      <GridToolbarContainer>
+        <GridToolbarColumnsButton sx={{ color: "black" }} />
+        <GridToolbarFilterButton sx={{ color: "black" }} />
+        <GridToolbarExport sx={{ color: "black" }} />
+      </GridToolbarContainer>
+    );
+  }
 
   const getUserData = async (token) => {
     // console.log(token);
@@ -128,48 +146,108 @@ export default function Grade() {
 
   useEffect(() => {
     if (token !== "") {
-      getUserData();
+      getUserData(token).then((data) => {
+        let rows2 = [];
+        console.log(data);
+
+        for (var i = 0; i < data.length; i++) {
+          let grade = data[i].studentClass.total;
+          let grade_text = "";
+          let grade_4 = 0.0;
+          if (grade < 4) {
+            grade_text = "F";
+            grade_4 = 0;
+          }
+          if (grade >= 4 && grade < 5.0) {
+            grade_text = "D";
+            grade_4 = 1.0;
+          }
+          if (grade >= 5.0 && grade < 5.5) {
+            grade_text = "D+";
+            grade_4 = 1.5;
+          }
+          if (grade >= 5.5 && grade < 6.5) {
+            grade_text = "C";
+            grade_4 = 2.0;
+          }
+          if (grade >= 6.5 && grade < 7.0) {
+            grade_text = "C+";
+            grade_4 = 2.5;
+          }
+          if (grade >= 7.0 && grade < 8.0) {
+            grade_text = "B";
+            grade_4 = 3.0;
+          }
+          if (grade >= 8.0 && grade < 8.5) {
+            grade_text = "B+";
+            grade_4 = 3.5;
+          }
+          if (grade >= 8.5 && grade < 9.0) {
+            grade_text = "A";
+            grade_4 = 3.7;
+          }
+          if (grade >= 9.0) {
+            grade_text = "A+";
+            grade_4 = 4.0;
+          }
+          rows2.push({
+            id: i + 1,
+            codeClass: data[i].code,
+            name: data[i].course.name,
+            grade_text: grade_text,
+            grade_4: grade_4,
+            grade_10: grade,
+            midterm_grade: data[i].studentClass.midterm,
+            final_grade: data[i].studentClass.final,
+            total_grade: data[i].studentClass.total,
+          });
+        }
+
+        setRows(rows2);
+      });
     }
   }, [token]);
 
-  // useEffect(() => {
-  //   console.log("Fetch", isFetch);
-  //   if (isSetToken) {
-  //     getUserData
-  //     console.log("Set", isFetch);
-  //   }
-  // }, [token, isFetch]);
-
   return (
-    <Box sx={{ height: 910, width: "100%" }}>
-      <DataGrid
+    <>
+      <Box
         sx={{
-          ".MuiTablePagination-toolbar": {
-            backgroundColor: "#dee2e6",
-          },
-          ".MuiTablePagination-selectLabel, .MuiTablePagination-displayedRows":
-            {
-              marginBottom: 0,
-              fontSize: 15,
+          display: "flex",
+          justifyContent: "center",
+          m: 3,
+        }}>
+        <h1>Bảng điểm học tập</h1>
+      </Box>
+      <Box sx={{ height: 910, width: "100%" }}>
+        <DataGrid
+          sx={{
+            ".MuiTablePagination-toolbar": {
+              backgroundColor: "#dee2e6",
             },
-        }}
-        rows={rows}
-        columns={columns}
-        components={{
-          Toolbar: GridToolbar,
-        }}
-        componentsProps={{
-          pagination: {
-            labelRowsPerPage: "Số hàng hiển thị:",
-          },
-        }}
-        pageSize={pageSize}
-        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-        rowsPerPageOptions={[5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]}
-        pagination
-        disableSelectionOnClick
-        experimentalFeatures={{ newEditingApi: true }}
-      />
-    </Box>
+            ".MuiTablePagination-selectLabel, .MuiTablePagination-displayedRows":
+              {
+                marginBottom: 0,
+                fontSize: 15,
+              },
+          }}
+          rows={rows}
+          columns={columns}
+          components={{
+            Toolbar: CustomToolbar,
+          }}
+          componentsProps={{
+            pagination: {
+              labelRowsPerPage: "Số hàng hiển thị:",
+            },
+          }}
+          pageSize={pageSize}
+          onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+          rowsPerPageOptions={[5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]}
+          pagination
+          disableSelectionOnClick
+          experimentalFeatures={{ newEditingApi: true }}
+        />
+      </Box>
+    </>
   );
 }

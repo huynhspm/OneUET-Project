@@ -54,27 +54,27 @@ const ValidationPage = (props) => {
   }, [navigate, token]);
 
   useEffect(() => {
-    if (token !== '') {
-      fetchData();
-    }
+      if (token !== '') {
+          fetchData();
+      }  
   }, [token, openValidDoc, card]);
 
   useEffect(() => {
-    if (token !== '') {
-      getValidGrade();
-    }
+      if (token !== '') {
+          getValidGrade();
+      }  
   }, [token, openValidGrade]);
 
   const fetchData = async () => {
     try {
       await axios
-        .get(api_url + "/api/document",
-          {
-            params: {
-              status: "pending"
-            },
-            headers: { Authorization: `Bearer ${token}` }
-          })
+        .get(api_url + "/api/document", {
+          params: {
+            status: "pending",
+          },
+          headers: { Authorization: `Bearer ${token}` },
+        })
+
         .then((res) => {
           let docs = res.data.data.documents;
           console.log(res);
@@ -89,8 +89,8 @@ const ValidationPage = (props) => {
               major: docs[id].major,
               fileID: docs[id].fileId,
               docID: docs[id].id,
-              dateUploaded: toDateString(docs[id].updatedAt)
-            }
+              dateUploaded: toDateString(docs[id].updatedAt),
+            };
             tmpCard.push(element);
           }
           setCard(tmpCard.reverse());
@@ -98,7 +98,8 @@ const ValidationPage = (props) => {
     } catch (e) {
       console.log(e.response.data);
     }
-  }
+  };
+
 
   const getValidGrade = async () => {
     try {
