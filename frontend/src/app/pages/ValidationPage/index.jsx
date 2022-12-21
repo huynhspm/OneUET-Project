@@ -42,15 +42,19 @@ const ValidationPage = (props) => {
   };
 
   useEffect(() => {
-    // getToken();
+      getToken();
   }, [navigate, token]);
 
   useEffect(() => {
-    fetchData();
+      if (token !== '') {
+          fetchData();
+      }  
   }, [token, openValidDoc, card]);
 
   useEffect(() => {
-    getValidGrade();
+      if (token !== '') {
+          getValidGrade();
+      }  
   }, [token, openValidGrade]);
 
   const fetchData = async () => {
