@@ -134,7 +134,7 @@
 		"userId": 3,
 		"teacherId": 3,
 		"courseId": 2,
-		"status": "private",
+		"status": "pending",
 		"unit": "Khoa Công nghệ Thông tin",
 		"major": "Công nghệ thông tin",
 		"linkView": "https://docs.google.com/viewer?srcid=1u4-IutDLOkAriKlI716fyd5hx0DVqrGv&pid=explorer&efh=false&a=v&chrome=false&embedded=true",
