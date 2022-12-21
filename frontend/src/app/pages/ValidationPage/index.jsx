@@ -23,7 +23,8 @@ const ValidationPage = (props) => {
   const [openValidGrade, setOpenValidGrade] = useState(true);
   const [openValidDoc, setOpenValidDoc] = useState(false);
 
-  const navigate = useNavigate();
+	const navigate = useNavigate();
+	
 
   // user token
   const [token, setToken] = useState(

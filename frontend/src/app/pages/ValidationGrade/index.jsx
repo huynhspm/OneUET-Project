@@ -110,6 +110,7 @@ export default function ValidationGrade(props) {
   const handleCloseSnackbar = () => setSnackbar(null);
 
   const navigate = useNavigate();
+  
 
   // // user token
   // const [token, setToken] = useState("");
@@ -206,6 +207,7 @@ export default function ValidationGrade(props) {
               label="Mã môn học"
               onChange={(event) => {
                 setCode(event.target.value);
+                // console.log(code);
               }}
             />
           </Box>
@@ -223,8 +225,8 @@ export default function ValidationGrade(props) {
                   if (event.target.value == 40) setSemester("2021-2022-1");
                   if (event.target.value == 50) setSemester("2021-2022-2");
                   if (event.target.value == 60) setSemester("2021-2022-Hè");
-                  
-                  console.log(semester);
+
+                  // console.log(semester);
                 }}
                 inputProps={{
                   name: "semester",
