@@ -54,39 +54,39 @@ const ValidationPage = (props) => {
   }, [token, openValidGrade]);
 
   const fetchData = async () => {
-		try {
-			await axios
-				.get(api_url + "/api/document",
-					{
-						params: {
-							status: "pending"
-						},
-						headers: { Authorization: `Bearer ${token}` }
-					})
-				.then((res) => {
-					let docs = res.data.data.documents;
-					console.log(res);
-					let tmpCard = [];
-					for (let id in docs) {
-						let element = {
-							name: docs[id].name,
-							description: docs[id].description,
-							linkView: docs[id].linkView,
-							src_img: getDocumentThumbnail(docs[id].name),
-							unit: docs[id].unit,
-							major: docs[id].major,
-							fileID: docs[id].fileId,
-							docID: docs[id].id,
-							dateUploaded: toDateString(docs[id].updatedAt)
-						}
-						tmpCard.push(element);
-					}
-					setCard(tmpCard.reverse());
-				});
-		} catch (e) {
-			console.log(e.response.data);
-		}
-	}
+    try {
+      await axios
+        .get(api_url + "/api/document",
+          {
+            params: {
+              status: "pending"
+            },
+            headers: { Authorization: `Bearer ${token}` }
+          })
+        .then((res) => {
+          let docs = res.data.data.documents;
+          console.log(res);
+          let tmpCard = [];
+          for (let id in docs) {
+            let element = {
+              name: docs[id].name,
+              description: docs[id].description,
+              linkView: docs[id].linkView,
+              src_img: getDocumentThumbnail(docs[id].name),
+              unit: docs[id].unit,
+              major: docs[id].major,
+              fileID: docs[id].fileId,
+              docID: docs[id].id,
+              dateUploaded: toDateString(docs[id].updatedAt)
+            }
+            tmpCard.push(element);
+          }
+          setCard(tmpCard.reverse());
+        });
+    } catch (e) {
+      console.log(e.response.data);
+    }
+  }
 
   const getValidGrade = async () => {
     try {
@@ -155,7 +155,11 @@ const ValidationPage = (props) => {
           <Box>
             {linkPDF.map((link, index) => (
               <Button
-                sx={{ width: "80vw", height: "7vh", mt: 2, display: "center" }}
+                sx={{
+                  width: "75vw", height: "7vh", mt: 2, display: "center", backgroundColor: "#FFA69E", '&:hover': {
+                    backgroundColor: "#DFA8BB",
+                  }
+                }}
                 variant="contained"
                 onClick={async () => {
                   console.log(link);

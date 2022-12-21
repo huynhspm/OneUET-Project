@@ -65,13 +65,12 @@ export default function CustomizedSelects() {
   };
 
   return (
-    <>
+    <div style={{ minHeight: window.innerHeight }}>
       <div
         style={{
           display: "flex",
           justifyContent: "space-around",
           margin: "30px",
-          // height: '100vh'
         }}>
         <Box>
           <SearchIcon sx={{ color: "action.active", mt: 7, fontSize: 40 }} />
@@ -133,7 +132,11 @@ export default function CustomizedSelects() {
 
         <Box>
           <Button
-            sx={{ width: 200, height: "7vh", mt: 5 }}
+            sx={{
+              width: 200, height: "7vh", mt: 5, backgroundColor: "#FFA69E", '&:hover': {
+                backgroundColor: "#DFA8BB",
+              }
+            }}
             variant="contained"
             onClick={async () => {
               console.log(semester, year, valueSearch);
@@ -144,7 +147,11 @@ export default function CustomizedSelects() {
       </div>
 
       <Button
-        sx={{ width: "100%", height: "7vh", mt: 2 }}
+        sx={{
+          width: "100%", height: "7vh", mt: 2, backgroundColor: "#FFA69E", '&:hover': {
+            backgroundColor: "#DFA8BB",
+          }
+        }}
         variant="contained"
         onClick={async () => {
           navigate("/courses", {
@@ -153,6 +160,48 @@ export default function CustomizedSelects() {
         }}>
         Lập trình hướng đối tượng (INT3301)
       </Button>
-    </>
+      <Button
+        sx={{
+          width: "100%", height: "7vh", mt: 2, backgroundColor: "#FFA69E", '&:hover': {
+            backgroundColor: "#DFA8BB",
+          }
+        }}
+        variant="contained"
+        onClick={async () => {
+          navigate("/courses", {
+            state: { linkPDF: "sssss" },
+          });
+        }}>
+        Cấu trúc dữ liệu và giải thuật (INT3304)
+      </Button>
+      <Button
+        sx={{
+          width: "100%", height: "7vh", mt: 2, backgroundColor: "#FFA69E", '&:hover': {
+            backgroundColor: "#DFA8BB",
+          }
+        }}
+        variant="contained"
+        onClick={async () => {
+          navigate("/courses", {
+            state: { linkPDF: "sssss" },
+          });
+        }}>
+        Kiến trúc máy tính (INT3002)
+      </Button>
+      <Button
+        sx={{
+          width: "100%", height: "7vh", mt: 2, backgroundColor: "#FFA69E", '&:hover': {
+            backgroundColor: "#DFA8BB",
+          }
+        }}
+        variant="contained"
+        onClick={async () => {
+          navigate("/courses", {
+            state: { linkPDF: "sssss" },
+          });
+        }}>
+        Nguyên lý hệ điều hành (INT3203)
+      </Button>
+    </div>
   );
 }
