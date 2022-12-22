@@ -25,7 +25,7 @@ const init = async () => {
 
   await sequelize.sync();
   console.log("Finish load database.");
-  // await createData(); 
+  // await createData();
   console.log("Create data successfully");
 };
 
