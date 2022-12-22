@@ -1,7 +1,7 @@
 # **OneUET-Project**
 ## **1. About this project**
 OneUET is a project founded by a team of 6 members who are students of the University of Technology - VNU
-### AIA team:
+### IAI team:
 - Trịnh Ngọc Huỳnh (back-end)
 - Phạm Gia Linh (front-end)
 - Lương Sơn Bá (front-end)
